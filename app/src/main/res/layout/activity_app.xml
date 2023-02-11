@@ -8,23 +8,23 @@
     tools:layout_editor_absoluteY="81dp">
 
     <ImageView
-        android:id="@+id/imageView13"
+        android:id="@+id/imgSync"
         android:layout_width="70dp"
         android:layout_height="60dp"
         android:layout_marginTop="44dp"
-        app:layout_constraintEnd_toEndOf="@+id/imageView10"
-        app:layout_constraintStart_toStartOf="@+id/imageView10"
-        app:layout_constraintTop_toBottomOf="@+id/imageView10"
+        app:layout_constraintEnd_toEndOf="@+id/imgCurrency"
+        app:layout_constraintStart_toStartOf="@+id/imgCurrency"
+        app:layout_constraintTop_toBottomOf="@+id/imgCurrency"
         app:srcCompat="@mipmap/sync" />
 
     <ImageView
-        android:id="@+id/imageView15"
+        android:id="@+id/imgConfig"
         android:layout_width="70dp"
         android:layout_height="60dp"
         android:layout_marginStart="40dp"
         app:layout_constraintBottom_toTopOf="@+id/textView10"
-        app:layout_constraintStart_toEndOf="@+id/imageView13"
-        app:layout_constraintTop_toTopOf="@+id/imageView13"
+        app:layout_constraintStart_toEndOf="@+id/imgSync"
+        app:layout_constraintTop_toTopOf="@+id/imgSync"
         app:srcCompat="@mipmap/config" />
 
     <TextView
@@ -32,18 +32,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Precios"
-        app:layout_constraintEnd_toEndOf="@+id/imageView12"
-        app:layout_constraintStart_toStartOf="@+id/imageView12"
-        app:layout_constraintTop_toBottomOf="@+id/imageView12" />
+        app:layout_constraintEnd_toEndOf="@+id/imgPrices"
+        app:layout_constraintStart_toStartOf="@+id/imgPrices"
+        app:layout_constraintTop_toBottomOf="@+id/imgPrices" />
 
     <ImageView
-        android:id="@+id/imageView12"
+        android:id="@+id/imgPrices"
         android:layout_width="70dp"
         android:layout_height="59dp"
         android:layout_marginEnd="40dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView13"
-        app:layout_constraintEnd_toStartOf="@+id/imageView13"
-        app:layout_constraintTop_toTopOf="@+id/imageView13"
+        app:layout_constraintBottom_toBottomOf="@+id/imgSync"
+        app:layout_constraintEnd_toStartOf="@+id/imgSync"
+        app:layout_constraintTop_toTopOf="@+id/imgSync"
         app:srcCompat="@mipmap/prices" />
 
     <TextView
@@ -51,27 +51,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Sincronizar"
-        app:layout_constraintEnd_toEndOf="@+id/imageView13"
-        app:layout_constraintStart_toStartOf="@+id/imageView13"
-        app:layout_constraintTop_toBottomOf="@+id/imageView13" />
+        app:layout_constraintEnd_toEndOf="@+id/imgSync"
+        app:layout_constraintStart_toStartOf="@+id/imgSync"
+        app:layout_constraintTop_toBottomOf="@+id/imgSync" />
 
     <TextView
         android:id="@+id/textView12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Configuración"
-        app:layout_constraintEnd_toEndOf="@+id/imageView15"
-        app:layout_constraintStart_toStartOf="@+id/imageView15"
-        app:layout_constraintTop_toBottomOf="@+id/imageView15" />
+        app:layout_constraintEnd_toEndOf="@+id/imgConfig"
+        app:layout_constraintStart_toStartOf="@+id/imgConfig"
+        app:layout_constraintTop_toBottomOf="@+id/imgConfig" />
 
     <ImageView
-        android:id="@+id/imageView9"
+        android:id="@+id/imgCurrencyCalculator"
         android:layout_width="70dp"
         android:layout_height="59dp"
         android:layout_marginEnd="40dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView10"
-        app:layout_constraintEnd_toStartOf="@+id/imageView10"
-        app:layout_constraintTop_toTopOf="@+id/imageView10"
+        app:layout_constraintBottom_toBottomOf="@+id/imgCurrency"
+        app:layout_constraintEnd_toStartOf="@+id/imgCurrency"
+        app:layout_constraintTop_toTopOf="@+id/imgCurrency"
         app:srcCompat="@mipmap/currency_calculator" />
 
     <TextView
@@ -79,28 +79,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Calcular divisas"
-        app:layout_constraintEnd_toEndOf="@+id/imageView9"
-        app:layout_constraintStart_toStartOf="@+id/imageView9"
-        app:layout_constraintTop_toBottomOf="@+id/imageView9" />
+        app:layout_constraintEnd_toEndOf="@+id/imgCurrencyCalculator"
+        app:layout_constraintStart_toStartOf="@+id/imgCurrencyCalculator"
+        app:layout_constraintTop_toBottomOf="@+id/imgCurrencyCalculator" />
 
     <ImageView
-        android:id="@+id/imageView8"
+        android:id="@+id/imgSearch"
         android:layout_width="70dp"
         android:layout_height="60dp"
         android:layout_marginStart="40dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView10"
-        app:layout_constraintStart_toEndOf="@+id/imageView10"
-        app:layout_constraintTop_toTopOf="@+id/imageView10"
+        app:layout_constraintBottom_toBottomOf="@+id/imgCurrency"
+        app:layout_constraintStart_toEndOf="@+id/imgCurrency"
+        app:layout_constraintTop_toTopOf="@+id/imgCurrency"
         app:srcCompat="@mipmap/search" />
 
     <ImageView
-        android:id="@+id/imageView10"
+        android:id="@+id/imgCurrency"
         android:layout_width="70dp"
         android:layout_height="60dp"
         android:layout_marginTop="44dp"
-        app:layout_constraintEnd_toEndOf="@+id/imageView6"
-        app:layout_constraintStart_toStartOf="@+id/imageView6"
-        app:layout_constraintTop_toBottomOf="@+id/imageView6"
+        app:layout_constraintEnd_toEndOf="@+id/imgPayment"
+        app:layout_constraintStart_toStartOf="@+id/imgPayment"
+        app:layout_constraintTop_toBottomOf="@+id/imgPayment"
         app:srcCompat="@mipmap/currency" />
 
     <TextView
@@ -108,59 +108,59 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Divisas"
-        app:layout_constraintEnd_toEndOf="@+id/imageView10"
-        app:layout_constraintStart_toStartOf="@+id/imageView10"
-        app:layout_constraintTop_toBottomOf="@+id/imageView10" />
+        app:layout_constraintEnd_toEndOf="@+id/imgCurrency"
+        app:layout_constraintStart_toStartOf="@+id/imgCurrency"
+        app:layout_constraintTop_toBottomOf="@+id/imgCurrency" />
 
     <TextView
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Buscar estudiante"
-        app:layout_constraintEnd_toEndOf="@+id/imageView8"
-        app:layout_constraintStart_toStartOf="@+id/imageView8"
-        app:layout_constraintTop_toBottomOf="@+id/imageView8" />
+        app:layout_constraintEnd_toEndOf="@+id/imgSearch"
+        app:layout_constraintStart_toStartOf="@+id/imgSearch"
+        app:layout_constraintTop_toBottomOf="@+id/imgSearch" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Facturas"
-        app:layout_constraintEnd_toEndOf="@+id/imageView7"
-        app:layout_constraintStart_toStartOf="@+id/imageView7"
-        app:layout_constraintTop_toBottomOf="@+id/imageView7" />
+        app:layout_constraintEnd_toEndOf="@+id/imgTickets"
+        app:layout_constraintStart_toStartOf="@+id/imgTickets"
+        app:layout_constraintTop_toBottomOf="@+id/imgTickets" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Registro"
-        app:layout_constraintEnd_toEndOf="@+id/imageView5"
-        app:layout_constraintStart_toStartOf="@+id/imageView5"
-        app:layout_constraintTop_toBottomOf="@+id/imageView5" />
+        app:layout_constraintEnd_toEndOf="@+id/imgRegister"
+        app:layout_constraintStart_toStartOf="@+id/imgRegister"
+        app:layout_constraintTop_toBottomOf="@+id/imgRegister" />
 
     <ImageView
-        android:id="@+id/imageView7"
+        android:id="@+id/imgTickets"
         android:layout_width="70dp"
         android:layout_height="60dp"
         android:layout_marginStart="40dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView6"
-        app:layout_constraintStart_toEndOf="@+id/imageView6"
-        app:layout_constraintTop_toTopOf="@+id/imageView6"
+        app:layout_constraintBottom_toBottomOf="@+id/imgPayment"
+        app:layout_constraintStart_toEndOf="@+id/imgPayment"
+        app:layout_constraintTop_toTopOf="@+id/imgPayment"
         app:srcCompat="@mipmap/ticket" />
 
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/imgRegister"
         android:layout_width="70dp"
         android:layout_height="59dp"
         android:layout_marginEnd="40dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView6"
-        app:layout_constraintEnd_toStartOf="@+id/imageView6"
-        app:layout_constraintTop_toTopOf="@+id/imageView6"
+        app:layout_constraintBottom_toBottomOf="@+id/imgPayment"
+        app:layout_constraintEnd_toStartOf="@+id/imgPayment"
+        app:layout_constraintTop_toTopOf="@+id/imgPayment"
         app:srcCompat="@mipmap/register" />
 
     <ImageView
-        android:id="@+id/imageView6"
+        android:id="@+id/imgPayment"
         android:layout_width="70dp"
         android:layout_height="60dp"
         android:layout_marginTop="60dp"
@@ -174,9 +174,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Pagos"
-        app:layout_constraintEnd_toEndOf="@+id/imageView6"
-        app:layout_constraintStart_toStartOf="@+id/imageView6"
-        app:layout_constraintTop_toBottomOf="@+id/imageView6" />
+        app:layout_constraintEnd_toEndOf="@+id/imgPayment"
+        app:layout_constraintStart_toStartOf="@+id/imgPayment"
+        app:layout_constraintTop_toBottomOf="@+id/imgPayment" />
 
     <TextView
         android:id="@+id/textView11"

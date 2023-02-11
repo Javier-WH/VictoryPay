@@ -6,6 +6,8 @@ import android.database.sqlite.SQLiteDatabase;
 
 import androidx.annotation.Nullable;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class GetUser extends DbHelper {
@@ -33,6 +35,26 @@ public class GetUser extends DbHelper {
 
         cursor.close();
         return user;
+    }
+
+    public ArrayList<HashMap<String, String>> getUsers(){
+
+        ArrayList<HashMap<String, String>> list = new ArrayList<>();
+
+        DbHelper dbHelper = new DbHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT * FROM users", null);
+
+        if(cursor.moveToFirst()){
+            do {
+                HashMap<String, String> data = new HashMap<>();
+                data.put("user", cursor.getString(1));
+                data.put("password", cursor.getString(2));
+                list.add(data);
+            }while (cursor.moveToNext());
+        }
+        return  list;
     }
 
 

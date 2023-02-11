@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">VictoryPay</string>
+
+    <string-array name="seccions">
+        <item>Seccion A</item>
+        <item>Seccion B</item>
+        <item>Seccion C</item>
+        <item>Seccion D</item>
+        <item>Seccion E</item>
+        <item>Seccion F</item>
+        <item>Seccion G</item>
+        <item>Seccion H</item>
+    </string-array>
+
+    <string-array name="grades">
+        <item>1er año</item>
+        <item>2do año</item>
+        <item>3er año</item>
+        <item>4to año</item>
+        <item>5to año</item>
+    </string-array>
+
 </resources>

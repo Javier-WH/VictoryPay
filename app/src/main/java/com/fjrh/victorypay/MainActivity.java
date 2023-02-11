@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -32,6 +33,20 @@ public class MainActivity extends AppCompatActivity {
         user = findViewById(R.id.txtUser);
         password = findViewById(R.id.txtPass);
         btnAcceptar.setOnClickListener(new btnAcceptEvent());
+
+        InsertUsers iu =new InsertUsers(this);
+
+        //agrega un usuario si no existe ***offline****
+        int userCount = new GetUser(this).getUsers().size();
+        if(userCount == 0){
+            try {
+                new InsertUsers(this).insertUsers(new HashMap<String, String>(){{put("user", "admin"); put("password", "admin");}});
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+
 
     }
 
