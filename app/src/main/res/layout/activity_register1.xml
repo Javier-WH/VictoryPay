@@ -9,7 +9,7 @@
     <ScrollView
         android:id="@+id/scrollView3"
         android:layout_width="381dp"
-        android:layout_height="313dp"
+        android:layout_height="155dp"
         android:layout_marginTop="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -52,32 +52,6 @@
                 android:hint="Apellidos"
                 android:inputType="textPersonName" />
 
-            <TextView
-                android:id="@+id/textView14"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="Sección" />
-
-            <Spinner
-                android:id="@+id/seccion"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:entries="@array/seccions" />
-
-            <TextView
-                android:id="@+id/textView15"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="Grado" />
-
-            <Spinner
-                android:id="@+id/grade"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:entries="@array/grades" />
-
 
         </LinearLayout>
     </ScrollView>
@@ -105,8 +79,8 @@
 
     <TextView
         android:id="@+id/textCode"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="199dp"
+        android:layout_height="28dp"
         android:layout_marginBottom="32dp"
         android:text="A1-4546"
         android:textColor="@color/purple_500"
@@ -126,5 +100,71 @@
         app:layout_constraintEnd_toEndOf="@+id/textCode"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textCode" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="178dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="10dp"
+        android:text="Sección"
+        app:layout_constraintStart_toStartOf="@+id/scrollView3"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView3" />
+
+    <TextView
+        android:id="@+id/textView24"
+        android:layout_width="178dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="10dp"
+        android:text="Genero"
+        app:layout_constraintStart_toStartOf="@+id/scrollView3"
+        app:layout_constraintTop_toBottomOf="@+id/seccion" />
+
+    <Spinner
+        android:id="@+id/seccion"
+        android:layout_width="190dp"
+        android:layout_height="50dp"
+        android:entries="@array/seccions"
+        app:layout_constraintStart_toStartOf="@+id/scrollView3"
+        app:layout_constraintTop_toBottomOf="@+id/textView14" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="190dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="10dp"
+        android:text="Grado"
+        app:layout_constraintEnd_toEndOf="@+id/scrollView3"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView3" />
+
+    <Spinner
+        android:id="@+id/grade"
+        android:layout_width="190dp"
+        android:layout_height="50dp"
+        android:entries="@array/grades"
+        app:layout_constraintEnd_toEndOf="@+id/scrollView3"
+        app:layout_constraintTop_toBottomOf="@+id/textView15" />
+
+    <RadioGroup
+        android:layout_width="381dp"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="@+id/scrollView3"
+        app:layout_constraintTop_toBottomOf="@+id/textView24">
+
+        <RadioButton
+            android:id="@+id/rdbMasculino"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checked="true"
+            android:text="Masculino" />
+
+        <RadioButton
+            android:id="@+id/rdbFemenino"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Femenino" />
+    </RadioGroup>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

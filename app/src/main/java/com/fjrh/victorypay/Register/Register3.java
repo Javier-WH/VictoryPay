@@ -18,6 +18,8 @@ import android.widget.TextView;
 
 import com.fjrh.victorypay.R;
 
+import java.util.HashMap;
+
 public class Register3 extends AppCompatActivity {
 
     private Context context;
@@ -32,6 +34,7 @@ public class Register3 extends AppCompatActivity {
     private EditText tutorCi;
     private TextView tutorNationality;
     private Boolean tutorXeno;
+    private HashMap<String, String> data;
 
 
 
@@ -43,11 +46,8 @@ public class Register3 extends AppCompatActivity {
         context = this;
         initComponets();
         initEvents();
-
         enableTutorData(false);
-
-
-
+        fillInputs();
     }
 
     private void initComponets(){
@@ -62,6 +62,7 @@ public class Register3 extends AppCompatActivity {
         tutorCi = findViewById(R.id.textTutorCi);
         tutorNationality = findViewById(R.id.textTutorNationality);
         tutorXeno = false;
+
 
     }
 
@@ -84,6 +85,18 @@ public class Register3 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(context, Register2.class);
+                data.putAll(getData());
+                i.putExtra("data", data);
+                startActivity(i);
+            }
+        });
+
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(context, Register4.class);
+                data.putAll(getData());
+                i.putExtra("data", data);
                 startActivity(i);
             }
         });
@@ -102,7 +115,6 @@ public class Register3 extends AppCompatActivity {
             }
         });
 
-
     }
 
     private void changeTutorNationality(){
@@ -115,6 +127,58 @@ public class Register3 extends AppCompatActivity {
         }
     }
 
+    public HashMap<String, String> getData(){
+        HashMap<String, String> data = new HashMap<>();
+
+        if(rdbMother.isChecked()){
+            data.put("tutorSelected", "1");
+            data.put("tutorName", this.data.get("motherName"));
+            data.put("tutorCi", this.data.get("motherCi"));
+            data.put("tutorNationality", this.data.get("motherNationality"));
+        }else if(rdBFather.isChecked()){
+            data.put("tutorSelected", "2");
+            data.put("tutorName", this.data.get("fatherName"));
+            data.put("tutorCi", this.data.get("fatherCi"));
+            data.put("tutorNationality", this.data.get("fatherNationality"));
+        }else if(rdbOther.isChecked()){
+            data.put("tutorSelected", "3");
+            data.put("tutorName", tutorName.getText().toString());
+            data.put("tutorCi", tutorCi.getText().toString());
+            data.put("tutorNationality", tutorNationality.getText().toString());
+        }
+
+        return data;
+    }
+
+    private void fillInputs(){
+        Intent intentData =getIntent();
+
+        if(intentData.hasExtra("data")){
+            data = (HashMap<String, String>) intentData.getSerializableExtra("data");
+
+            if(data.containsKey("tutorSelected")){
+
+                if (data.get("tutorSelected").equals("1")){
+                    rdbMother.setChecked(true);
+                    tutorName.setText("");
+                    tutorCi.setText("");
+                    tutorNationality.setText("V-");
+                }else if(data.get("tutorSelected").equals("2")){
+                    rdBFather.setChecked(true);
+                    tutorName.setText("");
+                    tutorCi.setText("");
+                    tutorNationality.setText("V-");
+                }else if(data.get("tutorSelected").equals("3")){
+                    rdbOther.setChecked(true);
+                    tutorName.setText(data.get("tutorName"));
+                    tutorCi.setText(data.get("tutorCi"));
+                    tutorNationality.setText(data.get("tutorNationality"));
+                }
+            }
+
+
+        }
+    }
 
 
 }

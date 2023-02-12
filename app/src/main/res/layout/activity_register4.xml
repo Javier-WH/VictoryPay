@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Register.Register4">
+
+    <TextView
+        android:id="@+id/textView28"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Datos del contacto"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@+id/TextPhone1"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnBack4"
+        android:layout_width="166dp"
+        android:layout_height="59dp"
+        android:layout_marginBottom="42dp"
+        android:text="Atras"
+        app:icon="@android:drawable/ic_media_rew"
+        app:layout_constraintBottom_toTopOf="@+id/textView25"
+        app:layout_constraintStart_toStartOf="@+id/TextPhone1" />
+
+    <Button
+        android:id="@+id/btnNext4"
+        android:layout_width="166dp"
+        android:layout_height="59dp"
+        android:layout_marginBottom="42dp"
+        android:layoutDirection="rtl"
+        android:text="Siguiente"
+        app:icon="@android:drawable/ic_media_ff"
+        app:layout_constraintBottom_toTopOf="@+id/chkWhatsaap1"
+        app:layout_constraintStart_toStartOf="@+id/TextPhone1" />
+
+    <TextView
+        android:id="@+id/textView25"
+        android:layout_width="190dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="130dp"
+        android:text="Telefono de contacto"
+        app:layout_constraintStart_toStartOf="@+id/TextPhone1"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView26"
+        android:layout_width="190dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Telefono opcional"
+        app:layout_constraintStart_toStartOf="@+id/TextPhone1"
+        app:layout_constraintTop_toBottomOf="@+id/TextPhone1" />
+
+    <TextView
+        android:id="@+id/textView27"
+        android:layout_width="381dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="E-mail"
+        app:layout_constraintEnd_toEndOf="@+id/TextPhone1"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/TextPhone1"
+        app:layout_constraintTop_toBottomOf="@+id/TextPhone2" />
+
+    <EditText
+        android:id="@+id/TextPhone1"
+        android:layout_width="381dp"
+        android:layout_height="50dp"
+        android:ems="10"
+        android:hint="Numero de teléfono"
+        android:inputType="phone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView25" />
+
+    <EditText
+        android:id="@+id/TextPhone2"
+        android:layout_width="381dp"
+        android:layout_height="50dp"
+        android:ems="10"
+        android:hint="Numero de teléfono"
+        android:inputType="phone"
+        app:layout_constraintEnd_toEndOf="@+id/TextPhone1"
+        app:layout_constraintStart_toStartOf="@+id/TextPhone1"
+        app:layout_constraintTop_toBottomOf="@+id/textView26" />
+
+    <EditText
+        android:id="@+id/TextEmailAddress"
+        android:layout_width="381dp"
+        android:layout_height="50dp"
+        android:ems="10"
+        android:hint="Dirrección de correo electrónico"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="@+id/TextPhone1"
+        app:layout_constraintStart_toStartOf="@+id/TextPhone1"
+        app:layout_constraintTop_toBottomOf="@+id/textView27" />
+
+    <CheckBox
+        android:id="@+id/chkWhatsaap1"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:text="Whatsaap"
+        android:textColor="@color/material_dynamic_neutral40"
+        app:layout_constraintBottom_toTopOf="@+id/TextPhone1"
+        app:layout_constraintEnd_toEndOf="@+id/TextPhone1"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/textView25" />
+
+    <CheckBox
+        android:id="@+id/chkWhatsaap2"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginStart="266dp"
+        android:text="Whatsaap"
+        android:textColor="@color/material_dynamic_neutral40"
+        app:layout_constraintBottom_toTopOf="@+id/TextPhone2"
+        app:layout_constraintEnd_toEndOf="@+id/TextPhone1"
+        app:layout_constraintHorizontal_bias="0.97"
+        app:layout_constraintStart_toStartOf="@+id/textView26" />
+</androidx.constraintlayout.widget.ConstraintLayout>

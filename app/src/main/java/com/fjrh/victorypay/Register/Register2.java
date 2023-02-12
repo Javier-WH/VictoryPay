@@ -5,12 +5,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.fjrh.victorypay.R;
+
+import java.util.HashMap;
 
 public class Register2 extends AppCompatActivity {
     private Context context;
@@ -24,6 +29,7 @@ public class Register2 extends AppCompatActivity {
     private TextView fatherNationality;
     private boolean motherXeno = false;
     private boolean fatherXeno = false;
+    private HashMap<String, String> data;
 
 
     @Override
@@ -33,6 +39,7 @@ public class Register2 extends AppCompatActivity {
         context = this;
         initComponents();
         initEvents();
+        fillInputs();
 
     }
 
@@ -45,6 +52,7 @@ public class Register2 extends AppCompatActivity {
         fatherCi = findViewById(R.id.textFatherCi);
         motherNationality = findViewById(R.id.textMotherNationality);
         fatherNationality = findViewById(R.id.textFatherNationality);
+
     }
 
     private void initEvents(){
@@ -53,6 +61,8 @@ public class Register2 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(context, Register1.class);
+                data.putAll(getData());
+                i.putExtra("data", data);
                 startActivity(i);
             }
         });
@@ -61,10 +71,11 @@ public class Register2 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(context, Register3.class);
+                data.putAll(getData());
+                i.putExtra("data", data);
                 startActivity(i);
             }
         });
-
 
         motherNationality.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,5 +112,55 @@ public class Register2 extends AppCompatActivity {
             fatherNationality.setText("E-");
         }
     }
+
+    public HashMap<String, String> getData(){
+        HashMap<String, String> data = new HashMap<>();
+        data.put("motherName", motherName.getText().toString());
+        data.put("motherCi", motherCi.getText().toString());
+        data.put("motherNationality", motherXeno ? "E-" : "V-");
+        data.put("fatherName", fatherName.getText().toString());
+        data.put("fatherCi", fatherCi.getText().toString());
+        data.put("fatherNationality", fatherXeno ? "E-" : "V-");
+        return data;
+    }
+
+    private void fillInputs(){
+        Intent intentData =getIntent();
+
+        if(intentData.hasExtra("data")){
+            data = (HashMap<String, String>) intentData.getSerializableExtra("data");
+
+            if(data.containsKey("motherName")){
+                motherName.setText(data.get("motherName"));
+            }
+            if(data.containsKey("motherCi")){
+                motherCi.setText(data.get("motherCi"));
+            }
+            if(data.containsKey("motherNationality")){
+                motherNationality.setText(data.get("motherNationality"));
+                if(motherNationality.getText().toString().equals("E-")){
+                    motherXeno = true;
+                }else{
+                    motherXeno = false;
+                }
+            }
+            if(data.containsKey("fatherName")){
+                fatherName.setText(data.get("fatherName"));
+            }
+            if(data.containsKey("fatherCi")){
+              fatherCi.setText(data.get("fatherCi"));
+            }
+            if(data.containsKey("fatherNationality")){
+                fatherNationality.setText(data.get("fatherNationality"));
+                if(fatherNationality.getText().toString().equals("E-")){
+                    fatherXeno = true;
+                }else{
+                    fatherXeno = false;
+                }
+            }
+
+        }
+    }
+
 
 }
