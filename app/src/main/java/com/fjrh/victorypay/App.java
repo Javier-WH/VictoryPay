@@ -7,9 +7,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 
-import java.util.HashMap;
+import com.fjrh.victorypay.Register.Register1;
 
 public class App extends AppCompatActivity {
     private Context context;
@@ -19,15 +18,8 @@ public class App extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_app);
         context = getBaseContext();
-        /*
-        Intent extraData = getIntent();
-        String userName = extraData.getStringExtra("userName");
-        */
 
         initComponents();
-
-
-
 
 
     }
@@ -46,7 +38,7 @@ public class App extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(context, Register.class);
+                Intent i = new Intent(context, Register1.class);
                 startActivity(i);
             }
         });

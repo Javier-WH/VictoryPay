@@ -1,8 +1,10 @@
 package com.fjrh.victorypay;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -12,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.fjrh.victorypay.Libraries.Message;
 import com.fjrh.victorypay.dataBases.DbHelper;
 import com.fjrh.victorypay.dataBases.GetUser;
 import com.fjrh.victorypay.dataBases.InsertUsers;
@@ -28,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        currentContext = getBaseContext();
+        currentContext = this;
         btnAcceptar = findViewById(R.id.btnAcept);
         user = findViewById(R.id.txtUser);
         password = findViewById(R.id.txtPass);
@@ -79,7 +82,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if(!user.containsKey(userInput)){
-            Toast.makeText(currentContext, "Usuario o contraseña incorrecto", Toast.LENGTH_LONG).show();
+           Toast.makeText(currentContext, "Usuario o contraseña incorrecto", Toast.LENGTH_LONG).show();
+
         }else{
                data.put("userName",userInput);
                data.put("id", user.get("id"));

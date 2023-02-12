@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Register">
+    tools:context=".Register.Register1">
 
     <ScrollView
         android:id="@+id/scrollView3"
-        android:layout_width="390dp"
-        android:layout_height="284dp"
-        android:layout_marginTop="110dp"
+        android:layout_width="381dp"
+        android:layout_height="313dp"
+        android:layout_marginTop="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.476"
@@ -30,10 +30,11 @@
                 android:text="Nombre del estudiante" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName"
+                android:id="@+id/student_name"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:ems="10"
+                android:hint="Nombres"
                 android:inputType="textPersonName" />
 
             <TextView
@@ -41,13 +42,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="Apellido del estudiante" />
+                android:text="Apellidos del estudiante" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName2"
+                android:id="@+id/student_last_name"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:ems="10"
+                android:hint="Apellidos"
                 android:inputType="textPersonName" />
 
             <TextView
@@ -58,9 +60,9 @@
                 android:text="Sección" />
 
             <Spinner
-                android:id="@+id/spinner"
+                android:id="@+id/seccion"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:entries="@array/seccions" />
 
             <TextView
@@ -71,14 +73,10 @@
                 android:text="Grado" />
 
             <Spinner
-                android:id="@+id/spinner2"
+                android:id="@+id/grade"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:entries="@array/grades" />
-
-            <RadioGroup
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
 
 
         </LinearLayout>
@@ -91,24 +89,22 @@
         android:text="Datos del estudiante"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
         android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textCode"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="23dp"
+        android:id="@+id/btnNext"
+        android:layout_width="166dp"
+        android:layout_height="59dp"
+        android:layout_marginBottom="12dp"
+        android:layoutDirection="rtl"
         android:text="Siguiente"
-        app:icon="@android:drawable/ic_media_play"
+        app:icon="@android:drawable/ic_media_ff"
         app:layout_constraintBottom_toTopOf="@+id/scrollView3"
-        app:layout_constraintEnd_toEndOf="@+id/scrollView3"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/scrollView3" />
 
     <TextView
-        android:id="@+id/textView21"
+        android:id="@+id/textCode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
@@ -126,9 +122,9 @@
         android:layout_height="wrap_content"
         android:text="Código"
         android:textSize="10sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView21"
-        app:layout_constraintEnd_toEndOf="@+id/textView21"
+        app:layout_constraintBottom_toTopOf="@+id/textCode"
+        app:layout_constraintEnd_toEndOf="@+id/textCode"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textView21" />
+        app:layout_constraintStart_toStartOf="@+id/textCode" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

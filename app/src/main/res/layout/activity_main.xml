@@ -20,8 +20,8 @@
 
     <ScrollView
         android:id="@+id/scrollView2"
-        android:layout_width="247dp"
-        android:layout_height="189dp"
+        android:layout_width="295dp"
+        android:layout_height="217dp"
         android:layout_marginTop="180dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -37,7 +37,7 @@
             <EditText
                 android:id="@+id/txtUser"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="57dp"
                 android:ems="10"
                 android:hint="Usuario"
                 android:inputType="textPersonName" />
@@ -45,7 +45,7 @@
             <EditText
                 android:id="@+id/txtPass"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="57dp"
                 android:layout_marginTop="20dp"
                 android:ems="10"
                 android:hint="Contraseña"

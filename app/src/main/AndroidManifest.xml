@@ -13,9 +13,25 @@
         android:theme="@style/Theme.VictoryPay"
         tools:targetApi="31">
         <activity
-            android:name=".Register"
+            android:name=".Register.Register3"
             android:exported="false"
-            android:parentActivityName=".App">>
+            android:parentActivityName=".App">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".App" />
+        </activity>
+        <activity
+            android:name=".Register.Register2"
+            android:exported="false"
+            android:parentActivityName=".App">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".App" />
+        </activity>
+        <activity
+            android:name=".Register.Register1"
+            android:exported="false"
+            android:parentActivityName=".App">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".App" />
