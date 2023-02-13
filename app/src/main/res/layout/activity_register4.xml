@@ -42,7 +42,7 @@
         android:layout_width="190dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="130dp"
-        android:text="Telefono de contacto"
+        android:text="Teléfono de contacto"
         app:layout_constraintStart_toStartOf="@+id/TextPhone1"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -51,7 +51,7 @@
         android:layout_width="190dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="Telefono opcional"
+        android:text="Teléfono opcional"
         app:layout_constraintStart_toStartOf="@+id/TextPhone1"
         app:layout_constraintTop_toBottomOf="@+id/TextPhone1" />
 

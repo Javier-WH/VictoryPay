@@ -43,7 +43,7 @@ public class Register2 extends AppCompatActivity {
 
     }
 
-    private void initComponents(){
+    private void initComponents() {
         next = findViewById(R.id.btnNext2);
         back = findViewById(R.id.btnBack2);
         motherName = findViewById(R.id.textMotherName);
@@ -55,25 +55,30 @@ public class Register2 extends AppCompatActivity {
 
     }
 
-    private void initEvents(){
+    private void initEvents() {
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent i = new Intent(context, Register1.class);
                 data.putAll(getData());
                 i.putExtra("data", data);
                 startActivity(i);
+
+
             }
         });
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(context, Register3.class);
-                data.putAll(getData());
-                i.putExtra("data", data);
-                startActivity(i);
+                if(isDataComplete()) {
+                    Intent i = new Intent(context, Register3.class);
+                    data.putAll(getData());
+                    i.putExtra("data", data);
+                    startActivity(i);
+                }
             }
         });
 
@@ -93,27 +98,27 @@ public class Register2 extends AppCompatActivity {
 
     }
 
-    private void changeMotherNationality(){
-        if(motherXeno){
+    private void changeMotherNationality() {
+        if (motherXeno) {
             motherXeno = false;
             motherNationality.setText("V-");
-        }else{
+        } else {
             motherXeno = true;
             motherNationality.setText("E-");
         }
     }
 
-    private void changeFatherNationality(){
-        if(fatherXeno){
+    private void changeFatherNationality() {
+        if (fatherXeno) {
             fatherXeno = false;
             fatherNationality.setText("V-");
-        }else{
+        } else {
             fatherXeno = true;
             fatherNationality.setText("E-");
         }
     }
 
-    public HashMap<String, String> getData(){
+    public HashMap<String, String> getData() {
         HashMap<String, String> data = new HashMap<>();
         data.put("motherName", motherName.getText().toString());
         data.put("motherCi", motherCi.getText().toString());
@@ -124,42 +129,64 @@ public class Register2 extends AppCompatActivity {
         return data;
     }
 
-    private void fillInputs(){
-        Intent intentData =getIntent();
+    private void fillInputs() {
+        Intent intentData = getIntent();
 
-        if(intentData.hasExtra("data")){
+        if (intentData.hasExtra("data")) {
             data = (HashMap<String, String>) intentData.getSerializableExtra("data");
 
-            if(data.containsKey("motherName")){
+            if (data.containsKey("motherName")) {
                 motherName.setText(data.get("motherName"));
             }
-            if(data.containsKey("motherCi")){
+            if (data.containsKey("motherCi")) {
                 motherCi.setText(data.get("motherCi"));
             }
-            if(data.containsKey("motherNationality")){
+            if (data.containsKey("motherNationality")) {
                 motherNationality.setText(data.get("motherNationality"));
-                if(motherNationality.getText().toString().equals("E-")){
+                if (motherNationality.getText().toString().equals("E-")) {
                     motherXeno = true;
-                }else{
+                } else {
                     motherXeno = false;
                 }
             }
-            if(data.containsKey("fatherName")){
+            if (data.containsKey("fatherName")) {
                 fatherName.setText(data.get("fatherName"));
             }
-            if(data.containsKey("fatherCi")){
-              fatherCi.setText(data.get("fatherCi"));
+            if (data.containsKey("fatherCi")) {
+                fatherCi.setText(data.get("fatherCi"));
             }
-            if(data.containsKey("fatherNationality")){
+            if (data.containsKey("fatherNationality")) {
                 fatherNationality.setText(data.get("fatherNationality"));
-                if(fatherNationality.getText().toString().equals("E-")){
+                if (fatherNationality.getText().toString().equals("E-")) {
                     fatherXeno = true;
-                }else{
+                } else {
                     fatherXeno = false;
                 }
             }
 
         }
+    }
+
+    private boolean isDataComplete() {
+
+        if (motherName.getText().toString().isEmpty()) {
+            Toast.makeText(context, "No ha suministrado un nombre para la madre", Toast.LENGTH_LONG).show();
+            return false;
+        }
+        if (motherCi.getText().toString().isEmpty()) {
+            Toast.makeText(context, "No ha suministrado una cédula para la madre", Toast.LENGTH_LONG).show();
+            return false;
+        }
+        if (fatherName.getText().toString().isEmpty()) {
+            Toast.makeText(context, "No ha suministrado un nombre para el padre", Toast.LENGTH_LONG).show();
+            return false;
+        }
+        if (fatherCi.getText().toString().isEmpty()) {
+            Toast.makeText(context, "No ha suministrado una cédula para el padre", Toast.LENGTH_LONG).show();
+            return false;
+        }
+
+        return true;
     }
 
 

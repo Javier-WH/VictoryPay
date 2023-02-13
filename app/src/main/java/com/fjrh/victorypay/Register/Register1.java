@@ -66,10 +66,12 @@ public class Register1 extends AppCompatActivity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(context, Register2.class);
-                data.putAll(getData());
-                i.putExtra("data", data);
-                startActivity(i);
+                if(isDataComplete()){
+                    Intent i = new Intent(context, Register2.class);
+                    data.putAll(getData());
+                    i.putExtra("data", data);
+                    startActivity(i);
+                }
             }
         });
         seccion.setOnItemSelectedListener(new generateCodeOnSelection());
@@ -138,6 +140,20 @@ public class Register1 extends AppCompatActivity {
         public void onNothingSelected(AdapterView<?> parent) {
 
         }
+    }
+
+    private boolean isDataComplete(){
+
+        if(name.getText().toString().isEmpty()){
+            Toast.makeText(context, "No ha suministrado un nombre", Toast.LENGTH_LONG).show();
+            return false;
+        }
+        if(lastName.getText().toString().isEmpty()){
+            Toast.makeText(context, "No ha suministrado un apellido", Toast.LENGTH_LONG).show();
+            return false;
+        }
+
+        return true;
     }
 
 }

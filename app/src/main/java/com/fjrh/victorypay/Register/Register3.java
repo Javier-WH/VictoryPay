@@ -15,6 +15,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.fjrh.victorypay.R;
 
@@ -94,10 +95,13 @@ public class Register3 extends AppCompatActivity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(context, Register4.class);
-                data.putAll(getData());
-                i.putExtra("data", data);
-                startActivity(i);
+                if(isDataComplete()){
+                    Intent i = new Intent(context, Register4.class);
+                    data.putAll(getData());
+                    i.putExtra("data", data);
+                    startActivity(i);
+                }
+
             }
         });
 
@@ -178,6 +182,24 @@ public class Register3 extends AppCompatActivity {
 
 
         }
+    }
+
+    private boolean isDataComplete() {
+
+        if (rdbOther.isChecked()) {
+            if(tutorName.getText().toString().isEmpty()){
+                Toast.makeText(context, "No ha suministrado un nombre para el tutor", Toast.LENGTH_LONG).show();
+                return false;
+            }
+
+            if(tutorCi.getText().toString().isEmpty()){
+                Toast.makeText(context, "No ha suministrado una cédula para el tutor", Toast.LENGTH_LONG).show();
+                return false;
+            }
+
+        }
+
+        return true;
     }
 
 

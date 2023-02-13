@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.fjrh.victorypay.R;
 
@@ -61,10 +62,12 @@ public class Register4 extends AppCompatActivity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(context, Register5.class);
-                data.putAll(getData());
-                i.putExtra("data", data);
-                startActivity(i);
+                if(isDataComplete()) {
+                    Intent i = new Intent(context, Register5.class);
+                    data.putAll(getData());
+                    i.putExtra("data", data);
+                    startActivity(i);
+                }
             }
         });
     }
@@ -101,6 +104,15 @@ public class Register4 extends AppCompatActivity {
                 whatsaap2.setChecked(Boolean.parseBoolean(data.get("w2")));
             }
         }
+    }
+
+    private boolean isDataComplete() {
+
+        if(phone1.getText().toString().isEmpty()){
+            Toast.makeText(context, "No ha suministrado un teléfono de contacto", Toast.LENGTH_LONG).show();
+            return false;
+        }
+        return true;
     }
 
 }
