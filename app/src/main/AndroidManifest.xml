@@ -13,6 +13,14 @@
         android:theme="@style/Theme.VictoryPay"
         tools:targetApi="31">
         <activity
+            android:name=".payment.Payment1"
+            android:exported="false"
+            android:parentActivityName=".App">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".App" />
+        </activity>
+        <activity
             android:name=".Register.Register5"
             android:exported="false"
             android:parentActivityName=".App">

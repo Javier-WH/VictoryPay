@@ -57,7 +57,7 @@
 
     <TextView
         android:id="@+id/textView27"
-        android:layout_width="381dp"
+        android:layout_width="355dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="E-mail"
@@ -68,7 +68,7 @@
 
     <EditText
         android:id="@+id/TextPhone1"
-        android:layout_width="381dp"
+        android:layout_width="355dp"
         android:layout_height="50dp"
         android:ems="10"
         android:hint="Numero de teléfono"
@@ -79,7 +79,7 @@
 
     <EditText
         android:id="@+id/TextPhone2"
-        android:layout_width="381dp"
+        android:layout_width="355dp"
         android:layout_height="50dp"
         android:ems="10"
         android:hint="Numero de teléfono"
@@ -90,7 +90,7 @@
 
     <EditText
         android:id="@+id/TextEmailAddress"
-        android:layout_width="381dp"
+        android:layout_width="355dp"
         android:layout_height="50dp"
         android:ems="10"
         android:hint="Dirrección de correo electrónico"

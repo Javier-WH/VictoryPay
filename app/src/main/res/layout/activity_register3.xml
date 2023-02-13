@@ -39,7 +39,7 @@
 
     <ScrollView
         android:id="@+id/scrollView5"
-        android:layout_width="381dp"
+        android:layout_width="355dp"
         android:layout_height="257dp"
         android:layout_marginTop="100dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -120,7 +120,7 @@
                         android:text="Cédula del Representante" />
 
                     <ScrollView
-                        android:layout_width="404dp"
+                        android:layout_width="355dp"
                         android:layout_height="50dp">
 
                         <LinearLayout

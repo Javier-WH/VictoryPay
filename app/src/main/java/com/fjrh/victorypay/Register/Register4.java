@@ -107,7 +107,6 @@ public class Register4 extends AppCompatActivity {
     }
 
     private boolean isDataComplete() {
-
         if(phone1.getText().toString().isEmpty()){
             Toast.makeText(context, "No ha suministrado un teléfono de contacto", Toast.LENGTH_LONG).show();
             return false;

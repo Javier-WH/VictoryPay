@@ -29,7 +29,7 @@
 
     <TextView
         android:id="@+id/textView29"
-        android:layout_width="381dp"
+        android:layout_width="355dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
         android:text="Alumno"
@@ -40,7 +40,7 @@
 
     <TextView
         android:id="@+id/textView37"
-        android:layout_width="381dp"
+        android:layout_width="355dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:text="Nombre de la madre"
@@ -50,7 +50,7 @@
 
     <TextView
         android:id="@+id/textView41"
-        android:layout_width="381dp"
+        android:layout_width="355dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:text="Nombre del padre"
@@ -60,7 +60,7 @@
 
     <TextView
         android:id="@+id/textView39"
-        android:layout_width="381dp"
+        android:layout_width="355dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:text="Cédula de la madre"
@@ -71,7 +71,7 @@
 
     <TextView
         android:id="@+id/textView43"
-        android:layout_width="381dp"
+        android:layout_width="355dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:text="Cédula del padre"
@@ -81,7 +81,7 @@
 
     <TextView
         android:id="@+id/textView45"
-        android:layout_width="381dp"
+        android:layout_width="355dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:text="Representante"
@@ -91,7 +91,7 @@
 
     <TextView
         android:id="@+id/textView47"
-        android:layout_width="381dp"
+        android:layout_width="355dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:text="Cédula del representante"
@@ -172,7 +172,7 @@
 
     <TextView
         android:id="@+id/studentName5"
-        android:layout_width="381dp"
+        android:layout_width="355dp"
         android:layout_height="wrap_content"
         android:text="TextView"
         android:textColor="@color/purple_500"
@@ -184,7 +184,7 @@
 
     <TextView
         android:id="@+id/motherName5"
-        android:layout_width="381dp"
+        android:layout_width="355dp"
         android:layout_height="wrap_content"
         android:text="TextView"
         android:textColor="@color/purple_500"
@@ -195,7 +195,7 @@
 
     <TextView
         android:id="@+id/motherCi5"
-        android:layout_width="381dp"
+        android:layout_width="355dp"
         android:layout_height="wrap_content"
         android:text="TextView"
         android:textColor="@color/purple_500"
@@ -206,7 +206,7 @@
 
     <TextView
         android:id="@+id/fatherName5"
-        android:layout_width="381dp"
+        android:layout_width="355dp"
         android:layout_height="wrap_content"
         android:text="TextView"
         android:textColor="@color/purple_500"
@@ -216,7 +216,7 @@
 
     <TextView
         android:id="@+id/fatherCi5"
-        android:layout_width="381dp"
+        android:layout_width="355dp"
         android:layout_height="wrap_content"
         android:text="TextView"
         android:textColor="@color/purple_500"
@@ -226,7 +226,7 @@
 
     <TextView
         android:id="@+id/tutorName5"
-        android:layout_width="381dp"
+        android:layout_width="355dp"
         android:layout_height="wrap_content"
         android:text="TextView"
         android:textColor="@color/purple_500"
@@ -236,7 +236,7 @@
 
     <TextView
         android:id="@+id/tutorCi5"
-        android:layout_width="381dp"
+        android:layout_width="355dp"
         android:layout_height="wrap_content"
         android:text="TextView"
         android:textColor="@color/purple_500"

@@ -9,32 +9,45 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.fjrh.victorypay.Register.Register1;
+import com.fjrh.victorypay.payment.Payment1;
 
 public class App extends AppCompatActivity {
     private Context context;
+    private  ImageView register;
+    private ImageView payment;
+    private ImageView tickets ;
+    private ImageView currencyCalculator ;
+    private ImageView currency ;
+    private ImageView search ;
+    private ImageView prices ;
+    private ImageView sync ;
+    private ImageView config ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_app);
-        context = getBaseContext();
+        context = this;
 
         initComponents();
-
+        initEvents();
 
     }
 
     private void initComponents(){
-        ImageView register = findViewById(R.id.imgRegister);
-        ImageView payment = findViewById(R.id.imgPayment);
-        ImageView tickets = findViewById(R.id.imgTickets);
-        ImageView currencyCalculator = findViewById(R.id.imgCurrencyCalculator);
-        ImageView currency = findViewById(R.id.imgCurrency);
-        ImageView search = findViewById(R.id.imgSearch);
-        ImageView prices = findViewById(R.id.imgPrices);
-        ImageView sync = findViewById(R.id.imgSync);
-        ImageView config = findViewById(R.id.imgConfig);
+        register = findViewById(R.id.imgRegister);
+        payment = findViewById(R.id.imgPayment);
+        tickets = findViewById(R.id.imgTickets);
+        currencyCalculator = findViewById(R.id.imgCurrencyCalculator);
+        currency = findViewById(R.id.imgCurrency);
+        search = findViewById(R.id.imgSearch);
+        prices = findViewById(R.id.imgPrices);
+        sync = findViewById(R.id.imgSync);
+        config = findViewById(R.id.imgConfig);
 
+    }
+
+    private void initEvents(){
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -43,6 +56,13 @@ public class App extends AppCompatActivity {
             }
         });
 
+        payment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(context, Payment1.class);
+                startActivity(i);
+            }
+        });
 
 
     }

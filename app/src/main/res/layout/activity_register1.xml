@@ -8,7 +8,7 @@
 
     <ScrollView
         android:id="@+id/scrollView3"
-        android:layout_width="381dp"
+        android:layout_width="355dp"
         android:layout_height="155dp"
         android:layout_marginTop="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -145,7 +145,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
     <RadioGroup
-        android:layout_width="381dp"
+        android:layout_width="355dp"
         android:layout_height="50dp"
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="@+id/scrollView3"
