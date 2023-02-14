@@ -7,88 +7,56 @@
     tools:context=".Register.Register1">
 
     <ScrollView
-        android:id="@+id/scrollView3"
-        android:layout_width="355dp"
-        android:layout_height="155dp"
-        android:layout_marginTop="100dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/scrollView5"
+        android:layout_width="21dp"
+        android:layout_height="31dp"
+        android:layout_marginTop="40dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.476"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Nombre del estudiante" />
-
-            <EditText
-                android:id="@+id/student_name"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:ems="10"
-                android:hint="Nombres"
-                android:inputType="textPersonName" />
-
-            <TextView
-                android:id="@+id/textView8"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="Apellidos del estudiante" />
-
-            <EditText
-                android:id="@+id/student_last_name"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:ems="10"
-                android:hint="Apellidos"
-                android:inputType="textPersonName" />
-
-
-        </LinearLayout>
+            android:orientation="vertical" />
     </ScrollView>
 
     <TextView
         android:id="@+id/textView20"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
         android:text="Datos del estudiante"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
         android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="@+id/textCode"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btnNext"
-        android:layout_width="166dp"
+        android:layout_width="0dp"
         android:layout_height="59dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginStart="10dp"
         android:layoutDirection="rtl"
         android:text="Siguiente"
         app:icon="@android:drawable/ic_media_ff"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView3"
-        app:layout_constraintStart_toStartOf="@+id/scrollView3" />
+        app:layout_constraintBottom_toBottomOf="@+id/scrollView5"
+        app:layout_constraintEnd_toStartOf="@+id/scrollView5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/scrollView5" />
 
     <TextView
         android:id="@+id/textCode"
-        android:layout_width="199dp"
+        android:layout_width="0dp"
         android:layout_height="28dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginStart="10dp"
         android:text="A1-4546"
         android:textColor="@color/purple_500"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.017"
-        app:layout_constraintStart_toStartOf="@+id/scrollView3" />
+        app:layout_constraintBottom_toBottomOf="@+id/scrollView5"
+        app:layout_constraintEnd_toStartOf="@+id/scrollView5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/scrollView5" />
 
     <TextView
         android:id="@+id/textView22"
@@ -97,59 +65,65 @@
         android:text="Código"
         android:textSize="10sp"
         app:layout_constraintBottom_toTopOf="@+id/textCode"
-        app:layout_constraintEnd_toEndOf="@+id/textCode"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textCode" />
 
     <TextView
         android:id="@+id/textView14"
-        android:layout_width="178dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="Sección"
-        app:layout_constraintStart_toStartOf="@+id/scrollView3"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView3" />
+        app:layout_constraintBottom_toTopOf="@+id/seccion"
+        app:layout_constraintStart_toStartOf="@+id/seccion" />
 
     <TextView
         android:id="@+id/textView24"
         android:layout_width="178dp"
         android:layout_height="20dp"
-        android:layout_marginTop="10dp"
         android:text="Genero"
-        app:layout_constraintStart_toStartOf="@+id/scrollView3"
-        app:layout_constraintTop_toBottomOf="@+id/seccion" />
+        app:layout_constraintBottom_toTopOf="@+id/radioGroup"
+        app:layout_constraintStart_toStartOf="@+id/radioGroup" />
 
     <Spinner
         android:id="@+id/seccion"
-        android:layout_width="190dp"
+        android:layout_width="0dp"
         android:layout_height="50dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="190dp"
         android:entries="@array/seccions"
-        app:layout_constraintStart_toStartOf="@+id/scrollView3"
-        app:layout_constraintTop_toBottomOf="@+id/textView14" />
+        app:layout_constraintEnd_toStartOf="@+id/scrollView5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView5" />
 
     <TextView
         android:id="@+id/textView15"
-        android:layout_width="190dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="Grado"
-        app:layout_constraintEnd_toEndOf="@+id/scrollView3"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView3" />
+        app:layout_constraintBottom_toTopOf="@+id/grade"
+        app:layout_constraintStart_toStartOf="@+id/grade" />
 
     <Spinner
         android:id="@+id/grade"
-        android:layout_width="190dp"
+        android:layout_width="0dp"
         android:layout_height="50dp"
+        android:layout_marginTop="190dp"
+        android:layout_marginEnd="10dp"
         android:entries="@array/grades"
-        app:layout_constraintEnd_toEndOf="@+id/scrollView3"
-        app:layout_constraintTop_toBottomOf="@+id/textView15" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/scrollView5"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView5" />
 
     <RadioGroup
-        android:layout_width="355dp"
-        android:layout_height="50dp"
+        android:id="@+id/radioGroup"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="265dp"
+        android:layout_marginEnd="10dp"
         android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="@+id/scrollView3"
-        app:layout_constraintTop_toBottomOf="@+id/textView24">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView5">
 
         <RadioButton
             android:id="@+id/rdbMasculino"
@@ -166,5 +140,50 @@
             android:layout_weight="1"
             android:text="Femenino" />
     </RadioGroup>
+
+    <EditText
+        android:id="@+id/student_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="10dp"
+        android:ems="10"
+        android:hint="Nombres"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView5" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nombre del estudiante"
+        app:layout_constraintBottom_toTopOf="@+id/student_name"
+        app:layout_constraintStart_toStartOf="@+id/student_name" />
+
+    <EditText
+        android:id="@+id/student_last_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="120dp"
+        android:layout_marginEnd="10dp"
+        android:ems="10"
+        android:hint="Apellidos"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView5" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Apellidos del estudiante"
+        app:layout_constraintBottom_toTopOf="@+id/student_last_name"
+        app:layout_constraintStart_toStartOf="@+id/student_last_name" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

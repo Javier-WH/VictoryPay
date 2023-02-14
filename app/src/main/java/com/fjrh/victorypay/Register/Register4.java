@@ -7,11 +7,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.Toast;
-
 import com.fjrh.victorypay.R;
+
 
 import java.util.HashMap;
 
@@ -20,8 +20,8 @@ public class Register4 extends AppCompatActivity {
     private Context context;
     private Button back;
     private Button next;
-    private CheckBox whatsaap1;
-    private CheckBox whatsaap2;
+    private Switch whatsaap1;
+    private Switch whatsaap2;
     private EditText phone1;
     private EditText phone2;
     private EditText email;
@@ -62,6 +62,7 @@ public class Register4 extends AppCompatActivity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if(isDataComplete()) {
                     Intent i = new Intent(context, Register5.class);
                     data.putAll(getData());

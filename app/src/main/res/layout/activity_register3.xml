@@ -13,35 +13,149 @@
         android:text="Datos del representante"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
         android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="@+id/scrollView5"
+        app:layout_constraintStart_toStartOf="@+id/btnBack3"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btnNext3"
-        android:layout_width="166dp"
+        android:layout_width="0dp"
         android:layout_height="59dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginStart="10dp"
         android:layoutDirection="rtl"
         android:text="Siguiente"
         app:icon="@android:drawable/ic_media_ff"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView5"
-        app:layout_constraintStart_toStartOf="@+id/scrollView5" />
+        app:layout_constraintBottom_toBottomOf="@+id/scrollView5"
+        app:layout_constraintEnd_toStartOf="@+id/scrollView5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/scrollView5" />
 
     <Button
         android:id="@+id/btnBack3"
-        android:layout_width="166dp"
+        android:layout_width="0dp"
         android:layout_height="59dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginStart="10dp"
         android:text="Atras"
         app:icon="@android:drawable/ic_media_rew"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView5"
-        app:layout_constraintStart_toStartOf="@+id/scrollView5" />
+        app:layout_constraintBottom_toBottomOf="@+id/scrollView5"
+        app:layout_constraintEnd_toStartOf="@+id/scrollView5"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/scrollView5" />
+
+    <ScrollView
+        android:id="@+id/scrollView6"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="190dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView5">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textTutorNationality"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="V-"
+                android:textAlignment="center"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/textTutorCi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:ems="10"
+                android:hint="Cédula del representante"
+                android:inputType="number" />
+        </LinearLayout>
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/labelTutorCi"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Cédula del Representante"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView6"
+        app:layout_constraintStart_toStartOf="@+id/scrollView6" />
+
+    <EditText
+        android:id="@+id/textTutorName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="120dp"
+        android:layout_marginEnd="10dp"
+        android:ems="10"
+        android:hint="Nombre del representante"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView5" />
+
+    <TextView
+        android:id="@+id/labelTutorName"
+        android:layout_width="355dp"
+        android:layout_height="wrap_content"
+        android:text="Nombre del Representante"
+        app:layout_constraintBottom_toTopOf="@+id/textTutorName"
+        app:layout_constraintStart_toStartOf="@+id/textTutorName" />
+
+    <RadioGroup
+        android:id="@+id/tutorGroup"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="10dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView5">
+
+        <RadioButton
+            android:id="@+id/rdbMother"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checked="true"
+            android:text="La madre" />
+
+        <RadioButton
+            android:id="@+id/rdbFather"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="El padre" />
+
+        <RadioButton
+            android:id="@+id/rdbOther"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Otro" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/textView23"
+        android:layout_width="355dp"
+        android:layout_height="wrap_content"
+        android:text="¿Quién es el representante?"
+        app:layout_constraintBottom_toTopOf="@+id/tutorGroup"
+        app:layout_constraintStart_toStartOf="@+id/tutorGroup" />
 
     <ScrollView
         android:id="@+id/scrollView5"
-        android:layout_width="355dp"
-        android:layout_height="257dp"
-        android:layout_marginTop="100dp"
+        android:layout_width="21dp"
+        android:layout_height="31dp"
+        android:layout_marginTop="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -49,108 +163,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/textView23"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="¿Quién es el representante?" />
-
-            <RadioGroup
-                android:id="@+id/tutorGroup"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <RadioButton
-                    android:id="@+id/rdbMother"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:checked="true"
-                    android:text="La madre" />
-
-                <RadioButton
-                    android:id="@+id/rdbFather"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="El padre" />
-
-                <RadioButton
-                    android:id="@+id/rdbOther"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Otro" />
-            </RadioGroup>
-
-            <ScrollView
-                android:id="@+id/tutorPanelData"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <LinearLayout
-                    android:id="@+id/tutorLayoutData"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/labelTutorName"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="30dp"
-                        android:text="Nombre del Representante" />
-
-                    <EditText
-                        android:id="@+id/textTutorName"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:ems="10"
-                        android:hint="Nombre del representante"
-                        android:inputType="textPersonName" />
-
-                    <TextView
-                        android:id="@+id/labelTutorCi"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:text="Cédula del Representante" />
-
-                    <ScrollView
-                        android:layout_width="355dp"
-                        android:layout_height="50dp">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <TextView
-                                android:id="@+id/textTutorNationality"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="V-"
-                                android:textAlignment="center"
-                                android:textSize="16sp" />
-
-                            <EditText
-                                android:id="@+id/textTutorCi"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="3"
-                                android:ems="10"
-                                android:hint="Cédula del representante"
-                                android:inputType="number" />
-                        </LinearLayout>
-                    </ScrollView>
-
-                </LinearLayout>
-            </ScrollView>
-
-        </LinearLayout>
+            android:orientation="vertical" />
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
