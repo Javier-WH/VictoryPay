@@ -15,6 +15,7 @@
         <activity
             android:name=".payment.Payment1"
             android:exported="false"
+            android:windowSoftInputMode="adjustPan"
             android:parentActivityName=".App">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -23,6 +24,8 @@
         <activity
             android:name=".Register.Register5"
             android:exported="false"
+            android:windowSoftInputMode="adjustPan"
+            android:label="Datos a Inscribir"
             android:parentActivityName=".App">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -31,6 +34,8 @@
         <activity
             android:name=".Register.Register4"
             android:exported="false"
+            android:windowSoftInputMode="adjustPan"
+            android:label="Datos de Contacto"
             android:parentActivityName=".App">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -39,6 +44,8 @@
         <activity
             android:name=".Register.Register3"
             android:exported="false"
+            android:windowSoftInputMode="adjustPan"
+            android:label="Datos del Representante"
             android:parentActivityName=".App">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -47,6 +54,8 @@
         <activity
             android:name=".Register.Register2"
             android:exported="false"
+            android:windowSoftInputMode="adjustPan"
+            android:label="Datos de los Padres"
             android:parentActivityName=".App">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -55,12 +64,15 @@
         <activity
             android:name=".Register.Register1"
             android:exported="false"
-            android:parentActivityName=".App">
+            android:parentActivityName=".App"
+            android:windowSoftInputMode="adjustPan"
+            android:label="Datos del Estudiante">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".App" />
         </activity>
         <activity
+            android:theme="@style/Theme.VictoryPay.clean"
             android:name=".App"
             android:exported="false"
             android:parentActivityName=".MainActivity">
@@ -70,10 +82,10 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.VictoryPay.clean">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 

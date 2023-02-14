@@ -39,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
 
         InsertUsers iu =new InsertUsers(this);
 
+
+
         //agrega un usuario si no existe ***offline****
         int userCount = new GetUser(this).getUsers().size();
         if(userCount == 0){

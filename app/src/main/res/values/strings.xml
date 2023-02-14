@@ -2,14 +2,15 @@
     <string name="app_name">VictoryPay</string>
 
     <string-array name="seccions">
-        <item>Seccion A</item>
-        <item>Seccion B</item>
-        <item>Seccion C</item>
-        <item>Seccion D</item>
-        <item>Seccion E</item>
-        <item>Seccion F</item>
-        <item>Seccion G</item>
-        <item>Seccion H</item>
+        <item>-</item>
+        <item>Sección A</item>
+        <item>Sección B</item>
+        <item>Sección C</item>
+        <item>Sección D</item>
+        <item>Sección E</item>
+        <item>Sección F</item>
+        <item>Sección G</item>
+        <item>Sección H</item>
     </string-array>
 
     <string-array name="grades">

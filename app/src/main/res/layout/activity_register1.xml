@@ -21,17 +21,6 @@
             android:orientation="vertical" />
     </ScrollView>
 
-    <TextView
-        android:id="@+id/textView20"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:text="Datos del estudiante"
-        android:textAppearance="@style/TextAppearance.AppCompat.Small"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <Button
         android:id="@+id/btnNext"
         android:layout_width="0dp"
@@ -83,22 +72,39 @@
         app:layout_constraintBottom_toTopOf="@+id/radioGroup"
         app:layout_constraintStart_toStartOf="@+id/radioGroup" />
 
+    <TextView
+        android:id="@+id/textView20"
+        android:layout_width="178dp"
+        android:layout_height="20dp"
+        android:text="Fecha de nacimiento"
+        app:layout_constraintBottom_toTopOf="@+id/birthDate"
+        app:layout_constraintStart_toStartOf="@+id/birthDate" />
+
+    <TextView
+        android:id="@+id/textView28"
+        android:layout_width="178dp"
+        android:layout_height="20dp"
+        android:text="Edad"
+        app:layout_constraintBottom_toTopOf="@+id/student_old"
+        app:layout_constraintStart_toStartOf="@+id/student_old" />
+
     <Spinner
         android:id="@+id/seccion"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="190dp"
+        android:layout_marginTop="20dp"
         android:entries="@array/seccions"
         app:layout_constraintEnd_toStartOf="@+id/scrollView5"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView5" />
+        app:layout_constraintTop_toBottomOf="@+id/student_ci" />
 
     <TextView
         android:id="@+id/textView15"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Grado"
+        android:text="Curso"
         app:layout_constraintBottom_toTopOf="@+id/grade"
         app:layout_constraintStart_toStartOf="@+id/grade" />
 
@@ -106,24 +112,25 @@
         android:id="@+id/grade"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:layout_marginTop="190dp"
         android:layout_marginEnd="10dp"
         android:entries="@array/grades"
+        app:layout_constraintBottom_toTopOf="@+id/textView24"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/scrollView5"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView5" />
+        app:layout_constraintTop_toTopOf="@+id/seccion" />
 
     <RadioGroup
         android:id="@+id/radioGroup"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="265dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView5">
+        app:layout_constraintTop_toBottomOf="@+id/seccion">
 
         <RadioButton
             android:id="@+id/rdbMasculino"
@@ -152,7 +159,6 @@
         android:hint="Nombres"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scrollView5" />
 
@@ -169,14 +175,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
         android:ems="10"
         android:hint="Apellidos"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView5" />
+        app:layout_constraintTop_toBottomOf="@+id/student_name" />
 
     <TextView
         android:id="@+id/textView8"
@@ -185,5 +191,93 @@
         android:text="Apellidos del estudiante"
         app:layout_constraintBottom_toTopOf="@+id/student_last_name"
         app:layout_constraintStart_toStartOf="@+id/student_last_name" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cédula del estudiante"
+        app:layout_constraintBottom_toTopOf="@+id/student_ci"
+        app:layout_constraintStart_toStartOf="@+id/student_nationality" />
+
+    <TextView
+        android:id="@+id/student_nationality"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="V-"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/student_ci"
+        app:layout_constraintEnd_toStartOf="@+id/student_ci"
+        app:layout_constraintTop_toTopOf="@+id/student_ci" />
+
+    <EditText
+        android:id="@+id/student_ci"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/student_last_name" />
+
+    <androidx.constraintlayout.helper.widget.Flow
+        android:id="@+id/flow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="-61dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="-249dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="-73dp" />
+
+    <TextView
+        android:id="@+id/birthDate"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="Selecciona una fecha"
+        android:textAlignment="viewStart"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/scrollView5"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+
+    <TextView
+        android:id="@+id/student_old"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        android:gravity="center"
+        android:textAlignment="viewStart"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/scrollView5"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
