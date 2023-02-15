@@ -81,7 +81,7 @@ public class Register1 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(isDataComplete()){
-                    Intent i = new Intent(context, Register2.class);
+                    Intent i = new Intent(context, Register1_2.class);
                     data.putAll(getData());
                     i.putExtra("data", data);
                     startActivity(i);
@@ -103,24 +103,19 @@ public class Register1 extends AppCompatActivity {
             }
         });
         //
+        //evento de la fecha de nacimiento
         birthDate.setOnClickListener(new View.OnClickListener() {
 
             Calendar calendar = Calendar.getInstance();
-
-            
             int _day = calendar.get(Calendar.DAY_OF_MONTH);
             int _month = calendar.get(Calendar.MONTH);
             int _year = calendar.get(Calendar.YEAR);
-
 
             @Override
             public void onClick(View v) {
                 DatePickerDialog dpd = new DatePickerDialog(context, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-
-
-
                         birthDate.setText(dayOfMonth + " / " +  (month + 1) + " / " + year);
                         int age = getAge(dayOfMonth, month + 1, year, _day, _month, _year);
                         studentOld.setText(age+ " años");
@@ -146,7 +141,6 @@ public class Register1 extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 dpd.show();
-
             }
         });
 
@@ -181,6 +175,8 @@ public class Register1 extends AppCompatActivity {
         data.put("gender", rdbMasculino.isChecked() ? "Masculino" : "Femenino");
         data.put("studentCi", ci.getText().toString());
         data.put("studentNation", nationality.getText().toString());
+        data.put("birthDate", birthDate.getText().toString());
+        data.put("age", studentOld.getText().toString());
 
         return data;
     }
@@ -214,7 +210,12 @@ public class Register1 extends AppCompatActivity {
             if(data.containsKey("studentNation")){
                 nationality.setText(data.get("studentNation"));
             }
-
+            if(data.containsKey("birthDate")){
+                birthDate.setText(data.get("birthDate"));
+            }
+            if(data.containsKey("age")){
+                studentOld.setText(data.get("age"));
+            }
             if(data.containsKey("code")){
                 code.setText(data.get("code"));
             }
@@ -225,7 +226,7 @@ public class Register1 extends AppCompatActivity {
     private String generateCode(){
         Random random = new Random();
         int randomNumber = random.nextInt(999999999 - 100000000) + 100000000;
-        String sec = seccion.getSelectedItem().toString().replace("Seccion ", "");
+        String sec = seccion.getSelectedItem().toString().replace("Sección ", "");
         if(sec.equals("-")){
             sec = "N";
         }
@@ -258,6 +259,10 @@ public class Register1 extends AppCompatActivity {
 
         if(ci.getText().toString().isEmpty()){
             Toast.makeText(context, "No ha suministrado la cédula", Toast.LENGTH_LONG).show();
+            return false;
+        }
+        if(birthDate.getText().toString().equals("Selecciona una fecha")){
+            Toast.makeText(context, "No ha seleccionado una fecha de nacimiento", Toast.LENGTH_LONG).show();
             return false;
         }
 

@@ -15,10 +15,14 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.fjrh.victorypay.Libraries.Message;
+import com.fjrh.victorypay.Libraries.Venezuela;
 import com.fjrh.victorypay.dataBases.DbHelper;
 import com.fjrh.victorypay.dataBases.GetUser;
 import com.fjrh.victorypay.dataBases.InsertUsers;
 
+import org.json.JSONException;
+
+import java.io.IOException;
 import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
@@ -36,22 +40,7 @@ public class MainActivity extends AppCompatActivity {
         user = findViewById(R.id.txtUser);
         password = findViewById(R.id.txtPass);
         btnAcceptar.setOnClickListener(new btnAcceptEvent());
-
-        InsertUsers iu =new InsertUsers(this);
-
-
-
-        //agrega un usuario si no existe ***offline****
-        int userCount = new GetUser(this).getUsers().size();
-        if(userCount == 0){
-            try {
-                new InsertUsers(this).insertUsers(new HashMap<String, String>(){{put("user", "admin"); put("password", "admin");}});
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-
-
+        checkUsers();
 
     }
 
@@ -91,6 +80,19 @@ public class MainActivity extends AppCompatActivity {
                data.put("id", user.get("id"));
         }
         return data;
+    }
+
+    private void checkUsers(){
+        //agrega un usuario si no existe ***offline****
+
+        int userCount = new GetUser(currentContext).getUsers().size();
+        if(userCount == 0){
+            try {
+                new InsertUsers(this).insertUsers(new HashMap<String, String>(){{put("user", "admin"); put("password", "admin");}});
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
 

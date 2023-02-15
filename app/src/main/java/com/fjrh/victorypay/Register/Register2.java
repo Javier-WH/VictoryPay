@@ -61,7 +61,7 @@ public class Register2 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent i = new Intent(context, Register1.class);
+                Intent i = new Intent(context, Register1_2.class);
                 data.putAll(getData());
                 i.putExtra("data", data);
                 startActivity(i);
