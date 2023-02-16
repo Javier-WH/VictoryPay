@@ -12,13 +12,24 @@ import java.util.ArrayList;
 
 
 public class Venezuela {
+    Context context;
+    String jsonFileContent;
 
+    public Venezuela(Context context){
+        this.context = context;
 
-    public static ArrayList<String> getEstados(Context context) throws IOException, JSONException {
+        try {
+            jsonFileContent = ReadJson.readFile(context, "venezuela.json");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public ArrayList<String> getEstados() throws  JSONException {
 
         ArrayList<String> estados = new ArrayList<>();
 
-        String jsonFileContent = ReadJson.readFile(context, "venezuela.json");
         JSONArray jsonArray = new JSONArray(jsonFileContent);
 
         for (int i = 0; i < jsonArray.length(); i++) {
@@ -32,10 +43,10 @@ public class Venezuela {
 
     //
 
-    public static ArrayList<String> getMunicipios(Context context, String estado) throws IOException, JSONException {
+    public ArrayList<String> getMunicipios(String estado) throws  JSONException {
         ArrayList<String> municipios = new ArrayList<>();
         try {
-            String jsonFileContent = ReadJson.readFile(context, "venezuela.json");
+
             JSONArray jsonArray = new JSONArray(jsonFileContent);
 
             for (int i = 0; i < jsonArray.length(); i++) {
@@ -51,17 +62,17 @@ public class Venezuela {
                     }
                 }
             }
-        } catch (IOException | JSONException e) {
+        } catch (JSONException e) {
             e.printStackTrace();
         }
         return municipios;
     }
 
     //
-    public static ArrayList<String> getParroquias(Context context, String estado, String municipio) throws IOException, JSONException {
+    public ArrayList<String> getParroquias(String estado, String municipio) throws JSONException {
         ArrayList<String> parroquias = new ArrayList<>();
         try {
-            String jsonFileContent = ReadJson.readFile(context, "venezuela.json");
+
             JSONArray jsonArray = new JSONArray(jsonFileContent);
 
             for (int i = 0; i < jsonArray.length(); i++) {
@@ -85,17 +96,18 @@ public class Venezuela {
                     }
                 }
             }
-        } catch (IOException | JSONException e) {
+        } catch (JSONException e) {
             e.printStackTrace();
         }
         return parroquias;
     }
 
     //
-    public static ArrayList<String> getCiudades(Context context, String estado) throws IOException, JSONException {
+    public ArrayList<String> getCiudades(String estado) throws JSONException {
         ArrayList<String> ciudades = new ArrayList<>();
+
         try {
-            String jsonFileContent = ReadJson.readFile(context, "venezuela.json");
+
             JSONArray jsonArray = new JSONArray(jsonFileContent);
 
             for (int i = 0; i < jsonArray.length(); i++) {
@@ -108,7 +120,7 @@ public class Venezuela {
                     }
                 }
             }
-        } catch (IOException | JSONException e) {
+        } catch (JSONException e) {
             e.printStackTrace();
         }
         return ciudades;
