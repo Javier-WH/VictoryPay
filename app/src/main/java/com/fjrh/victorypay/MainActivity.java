@@ -19,6 +19,7 @@ import com.fjrh.victorypay.Libraries.Venezuela;
 import com.fjrh.victorypay.dataBases.DbHelper;
 import com.fjrh.victorypay.dataBases.GetUser;
 import com.fjrh.victorypay.dataBases.InsertUsers;
+import com.fjrh.victorypay.dataBases.schools.School;
 
 import org.json.JSONException;
 
@@ -41,6 +42,17 @@ public class MainActivity extends AppCompatActivity {
         password = findViewById(R.id.txtPass);
         btnAcceptar.setOnClickListener(new btnAcceptEvent());
         checkUsers();
+
+        /*School school = new School(this);
+        school.insertSchool("Unidad Educativa Colegio Batalla de la Victoria");
+        school.insertSchool("Unidad Educativa Colegio Padre Juan de Barnuevo");
+        school.insertSchool("Unidad Educativa Colegio Madre Candelaria");
+        school.insertSchool("Unidad Educativa Colegio José Ramón Camejo");
+        school.insertSchool("Unidad Educativa Liceo Nuestra Señora de Altagracia");
+        school.insertSchool("Unidad Educativa Liceo Ramón Buenahora");
+        school.insertSchool("Unidad Educativa Liceo José Francisco Torrealba");
+*/
+
 
     }
 

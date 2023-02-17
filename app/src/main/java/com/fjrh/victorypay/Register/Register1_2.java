@@ -45,6 +45,8 @@ public class Register1_2 extends AppCompatActivity {
     private ArrayAdapter<String> stateAdapter;
     private ArrayAdapter<String> fillerAdapter;
     private String[] indexs;
+    private boolean loading = false;
+    private int muniCounter = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +75,7 @@ public class Register1_2 extends AppCompatActivity {
         liveParroquia = findViewById(R.id.live_parroquia1_2);
 
         initBirthSpiners();
-        initLiveSpiners();
+        liveEstate.setSelection(10);
 
 
     }
@@ -93,7 +95,7 @@ public class Register1_2 extends AppCompatActivity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(context, Register2.class);
+                Intent i = new Intent(context, Register1_3.class);
                 data.putAll(getData());
                 i.putExtra("data", data);
                 startActivity(i);
@@ -106,6 +108,11 @@ public class Register1_2 extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 initBirthSpiners();
+
+                if(loading){
+                    birthEstate.setSelection(Integer.parseInt(indexs[1]));
+                }
+
             }
 
             @Override
@@ -117,17 +124,16 @@ public class Register1_2 extends AppCompatActivity {
         birthEstate.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (birthCountry.getSelectedItem().toString().equals("Venezuela")) {
+                birthMunicipio.setAdapter(getMunicipios(birthCountry, birthEstate));
 
-
-                    birthMunicipio.setAdapter(getMunicipios(birthEstate));
-                    if (birthEstate.getSelectedItem().toString().equals("Guárico")) {
-                        //selecciona municipio monagas cada vez que se selecciona el estado guarico
-                        birthMunicipio.setSelection(7);
-                    }
-
-
+                if(birthEstate.getSelectedItem().toString().equals("Guárico")){
+                    birthMunicipio.setSelection(7);
                 }
+
+                if(loading){
+                    birthMunicipio.setSelection(Integer.parseInt(indexs[2]));
+                }
+
             }
 
             @Override
@@ -135,13 +141,17 @@ public class Register1_2 extends AppCompatActivity {
 
             }
         });
+
         birthMunicipio.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (birthCountry.getSelectedItem().toString().equals("Venezuela")) {
-
-                    birthParroquia.setAdapter(getParroquias(birthEstate, birthMunicipio));
-
+                birthParroquia.setAdapter(getParroquias(birthCountry, birthEstate, birthMunicipio));
+                if(loading){
+                    birthParroquia.setSelection(Integer.parseInt(indexs[3]));
+                    muniCounter++;
+                    if(muniCounter >= 2){
+                        loading = false;
+                    }
                 }
             }
 
@@ -154,10 +164,14 @@ public class Register1_2 extends AppCompatActivity {
         liveEstate.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                liveMunicipio.setAdapter(getMunicipios(liveEstate));
-                //selecciona municipio monagas cada vez que se selecciona el estado guarico
-                if (liveEstate.getSelectedItem().toString().equals("Guárico")) {
+                liveMunicipio.setAdapter(getMunicipios(null, liveEstate));
+
+                if(liveEstate.getSelectedItem().toString().equals("Guárico")){
                     liveMunicipio.setSelection(7);
+                }
+
+                if(loading){
+                    liveMunicipio.setSelection(Integer.parseInt(indexs[5]));
                 }
 
             }
@@ -171,7 +185,12 @@ public class Register1_2 extends AppCompatActivity {
         liveMunicipio.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                liveParroquia.setAdapter(getParroquias(liveEstate, liveMunicipio));
+                liveParroquia.setAdapter(getParroquias(null, liveEstate, liveMunicipio));
+
+                if(loading){
+                    liveParroquia.setSelection(Integer.parseInt(indexs[6]));
+                }
+
             }
 
             @Override
@@ -217,39 +236,38 @@ public class Register1_2 extends AppCompatActivity {
         if (intentData.hasExtra("data")) {
             data = (HashMap<String, String>) intentData.getSerializableExtra("data");
             if (data.containsKey("spinerIndex")) {
+                loading = true;
                 indexs = data.get("spinerIndex").split("XXX");
-                int index1 = Integer.parseInt(indexs[0]);
-                birthCountry.setSelection(index1);
-
+                birthCountry.setSelection(Integer.parseInt(indexs[0]));
+                liveEstate.setSelection(Integer.parseInt(indexs[4]));
 
             }
         }
     }
 
     private void initBirthSpiners() {
+        birthEstate.setAdapter(getEstado(birthCountry));
+
         if (birthCountry.getSelectedItem().toString().equals("Venezuela")) {
-            birthEstate.setAdapter(stateAdapter);
-            birthMunicipio.setAdapter(getMunicipios(birthEstate));
-            birthParroquia.setAdapter(getParroquias(birthEstate, birthMunicipio));
             birthEstate.setSelection(10);
-
-
-        } else {
-            birthEstate.setAdapter(fillerAdapter);
-            birthMunicipio.setAdapter(fillerAdapter);
-            birthParroquia.setAdapter(fillerAdapter);
         }
     }
 
-    private void initLiveSpiners() {
-        liveEstate.setSelection(10);
-        liveMunicipio.setAdapter(getMunicipios(liveEstate));
-        liveParroquia.setAdapter(getParroquias(liveEstate, liveMunicipio));
-        liveMunicipio.setSelection(7);
+
+
+    private ArrayAdapter<String> getEstado(Spinner country) {
+        if (!country.getSelectedItem().toString().equals("Venezuela")) {
+            return fillerAdapter;
+        }
+        return stateAdapter;
+
     }
 
+    private ArrayAdapter<String> getMunicipios(Spinner country, Spinner estate) {
 
-    private ArrayAdapter<String> getMunicipios(Spinner estate) {
+        if (country != null && !country.getSelectedItem().toString().equals("Venezuela")) {
+            return fillerAdapter;
+        }
         String estado = estate.getSelectedItem().toString();
         try {
             List<String> arrayMunicipios = venezuela.getMunicipios(estado);
@@ -264,7 +282,11 @@ public class Register1_2 extends AppCompatActivity {
     }
 
 
-    private ArrayAdapter<String> getParroquias(Spinner estate, Spinner mun) {
+    private ArrayAdapter<String> getParroquias(Spinner country, Spinner estate, Spinner mun) {
+        if (country != null && !country.getSelectedItem().toString().equals("Venezuela")) {
+            return fillerAdapter;
+        }
+
         String estado = estate.getSelectedItem().toString();
         String municipio = mun.getSelectedItem().toString();
 

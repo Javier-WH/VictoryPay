@@ -63,6 +63,17 @@
                 android:value=".App" />
         </activity>
         <activity
+            android:name=".Register.Register1_3"
+            android:exported="false"
+            android:label="Datos Domiciliarios"
+            android:parentActivityName=".App"
+            android:windowSoftInputMode="adjustPan">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".App" />
+        </activity>
+
+        <activity
             android:name=".Register.Register1_2"
             android:exported="false"
             android:label="Datos Domiciliarios"

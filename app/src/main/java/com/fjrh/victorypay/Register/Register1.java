@@ -113,7 +113,7 @@ public class Register1 extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                DatePickerDialog dpd = new DatePickerDialog(context, new DatePickerDialog.OnDateSetListener() {
+                DatePickerDialog dpd = new DatePickerDialog(context,R.style.Theme_VictoryPay_datePicker, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         birthDate.setText(dayOfMonth + " / " +  (month + 1) + " / " + year);
@@ -140,6 +140,7 @@ public class Register1 extends AppCompatActivity {
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
+
                 dpd.show();
             }
         });

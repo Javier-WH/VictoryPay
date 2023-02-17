@@ -12,6 +12,10 @@ public class CreatorString {
     private static final String CreateTutorsString = "CREATE TABLE tutors (id INTEGER PRIMARY KEY AUTOINCREMENT, tutor_name TEXT NOT NULL, tutor_ci TEXT NOT NULL, tutor_nation TEXT NOT NULL)";
     //contact_info
     private static final String CreateContactInfoString = "CREATE TABLE contact_info (id INTEGER PRIMARY KEY AUTOINCREMENT, student_id INTEGER NOT NULL UNIQUE, phone1 TEXT NOT NULL, phone2 TEXT NOT NULL, email TEXT NOT NULL, whatsapp1 TEXT NOT NULL, whatsapp2 TEXT NOT NULL)";
+    //schools
+    private static final String CreateSchoolsString = "CREATE TABLE schools (id INTEGER PRIMARY KEY AUTOINCREMENT, school TEXT NOT NULL UNIQUE)";
+
+
 
     public static String getCreateUserString(){
         return CreateUserString;
@@ -22,4 +26,5 @@ public class CreatorString {
     public static String getCreateParentsString(){return CreateParentsString;}
     public static String getCreateTutorsString(){return CreateTutorsString;}
     public static String getCreateContactInfoString(){return CreateContactInfoString;}
+    public static String getCreateSchoolsString(){ return CreateSchoolsString;}
 }
