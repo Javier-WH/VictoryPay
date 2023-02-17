@@ -49,4 +49,11 @@
     <style name="Theme.VictoryPay.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.VictoryPay.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+    <style name="Button.White" parent="ThemeOverlay.AppCompat">
+        <item name="colorAccent">@android:color/white</item>
+    </style>
+
+
 </resources>

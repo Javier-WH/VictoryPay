@@ -73,7 +73,7 @@ public class Register5 extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(context, Register4.class);
+                Intent i = new Intent(context, Register4_1.class);
                 i.putExtra("data", data);
                 startActivity(i);
             }

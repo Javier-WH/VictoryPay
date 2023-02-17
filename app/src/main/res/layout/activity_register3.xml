@@ -156,4 +156,26 @@
             android:orientation="vertical" />
     </ScrollView>
 
+    <TextView
+        android:id="@+id/labelLinkk3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Vínculo con el representado"
+        app:layout_constraintBottom_toTopOf="@+id/link3"
+        app:layout_constraintStart_toStartOf="@+id/link3" />
+
+    <EditText
+        android:id="@+id/link3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="10dp"
+        android:ems="10"
+        android:hint="Vínculo"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView6" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

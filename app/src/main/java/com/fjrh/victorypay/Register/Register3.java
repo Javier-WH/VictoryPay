@@ -35,6 +35,8 @@ public class Register3 extends AppCompatActivity {
     private EditText tutorCi;
     private TextView tutorNationality;
     private Boolean tutorXeno;
+    private EditText link;
+    private TextView labelLink;
     private HashMap<String, String> data;
 
 
@@ -63,6 +65,8 @@ public class Register3 extends AppCompatActivity {
         tutorCi = findViewById(R.id.textTutorCi);
         tutorNationality = findViewById(R.id.textTutorNationality);
         tutorXeno = false;
+        link = findViewById(R.id.link3);
+        labelLink = findViewById(R.id.labelLinkk3);
 
 
     }
@@ -79,6 +83,10 @@ public class Register3 extends AppCompatActivity {
         tutorCi.setText("");
         tutorName.setHint(enabled ? "Nombre del representante" : "");
         tutorCi.setHint(enabled ? "Cédula del representante" : "");
+        labelLink.setEnabled(enabled);
+        link.setEnabled(enabled);
+        link.setHint(enabled ? "Vínculo" : "");
+
     }
 
     private void initEvents(){
@@ -139,16 +147,19 @@ public class Register3 extends AppCompatActivity {
             data.put("tutorName", this.data.get("motherName"));
             data.put("tutorCi", this.data.get("motherCi"));
             data.put("tutorNationality", this.data.get("motherNationality"));
+            data.put("link3", "Es la Madre");
         }else if(rdBFather.isChecked()){
             data.put("tutorSelected", "2");
             data.put("tutorName", this.data.get("fatherName"));
             data.put("tutorCi", this.data.get("fatherCi"));
             data.put("tutorNationality", this.data.get("fatherNationality"));
+            data.put("link3", "Es el Padre");
         }else if(rdbOther.isChecked()){
             data.put("tutorSelected", "3");
             data.put("tutorName", tutorName.getText().toString());
             data.put("tutorCi", tutorCi.getText().toString());
             data.put("tutorNationality", tutorNationality.getText().toString());
+            data.put("link3", link.getText().toString());
         }
 
         return data;
@@ -177,6 +188,7 @@ public class Register3 extends AppCompatActivity {
                     tutorName.setText(data.get("tutorName"));
                     tutorCi.setText(data.get("tutorCi"));
                     tutorNationality.setText(data.get("tutorNationality"));
+                    link.setText(data.get("link3"));
                 }
             }
 
@@ -194,6 +206,11 @@ public class Register3 extends AppCompatActivity {
 
             if(tutorCi.getText().toString().isEmpty()){
                 Toast.makeText(context, "No ha suministrado una cédula para el tutor", Toast.LENGTH_LONG).show();
+                return false;
+            }
+
+            if(link.getText().toString().isEmpty()){
+                Toast.makeText(context, "No ha suministrado un vinculo para el tutor", Toast.LENGTH_LONG).show();
                 return false;
             }
 

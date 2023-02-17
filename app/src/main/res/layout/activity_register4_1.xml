@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Register.Register4_1">
+
+    <Button
+        android:id="@+id/btnNext4_1"
+        android:layout_width="0dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="10dp"
+        android:layoutDirection="rtl"
+        android:text="Siguiente"
+        app:icon="@android:drawable/ic_media_ff"
+        app:layout_constraintBottom_toBottomOf="@+id/scrollView5"
+        app:layout_constraintEnd_toStartOf="@+id/scrollView5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/scrollView5" />
+
+    <ScrollView
+        android:id="@+id/scrollView5"
+        android:layout_width="21dp"
+        android:layout_height="31dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btnBack4_1"
+        android:layout_width="0dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="10dp"
+        android:text="Atras"
+        app:icon="@android:drawable/ic_media_rew"
+        app:layout_constraintBottom_toBottomOf="@+id/scrollView5"
+        app:layout_constraintEnd_toStartOf="@+id/scrollView5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/scrollView5" />
+
+    <TextView
+        android:id="@+id/textView79"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Preinscripción"
+        app:layout_constraintBottom_toTopOf="@+id/preInscription4_1"
+        app:layout_constraintStart_toStartOf="@+id/preInscription4_1" />
+
+    <TextView
+        android:id="@+id/textView82"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Inscripción"
+        app:layout_constraintBottom_toTopOf="@+id/inscription4_1"
+        app:layout_constraintStart_toStartOf="@+id/inscription4_1" />
+
+    <EditText
+        android:id="@+id/preInscription4_1"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="5dp"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintEnd_toStartOf="@+id/scrollView5"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView5" />
+
+    <EditText
+        android:id="@+id/inscription4_1"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="40dp"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="@+id/preInscription4_1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/scrollView5"
+        app:layout_constraintTop_toTopOf="@+id/preInscription4_1" />
+
+    <TextView
+        android:id="@+id/textView80"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="USD"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/preInscription4_1"
+        app:layout_constraintStart_toEndOf="@+id/preInscription4_1"
+        app:layout_constraintTop_toTopOf="@+id/preInscription4_1" />
+
+    <TextView
+        android:id="@+id/textView81"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="USD"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/inscription4_1"
+        app:layout_constraintStart_toEndOf="@+id/inscription4_1"
+        app:layout_constraintTop_toTopOf="@+id/inscription4_1" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup2"
+        android:layout_width="0dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/preInscription4_1">
+
+        <RadioButton
+            android:id="@+id/cash4_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checked="true"
+            android:text="Efectivo" />
+
+        <RadioButton
+            android:id="@+id/bank4_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Deposito" />
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/backAccount4_1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        android:ems="10"
+        android:hint="Numero de Cuenta"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup2" />
+
+    <TextView
+        android:id="@+id/textView84"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Numero de cuenta Bancaria"
+        app:layout_constraintBottom_toTopOf="@+id/backAccount4_1"
+        app:layout_constraintStart_toStartOf="@+id/backAccount4_1" />
+
+    <EditText
+        android:id="@+id/bankName4_1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="10dp"
+        android:ems="10"
+        android:hint="Nombre del banco"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/backAccount4_1" />
+
+    <TextView
+        android:id="@+id/textView85"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Banco"
+        app:layout_constraintBottom_toTopOf="@+id/bankName4_1"
+        app:layout_constraintStart_toStartOf="@+id/bankName4_1" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

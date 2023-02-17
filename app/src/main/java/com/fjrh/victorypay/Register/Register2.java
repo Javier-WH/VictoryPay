@@ -30,6 +30,8 @@ public class Register2 extends AppCompatActivity {
     private boolean motherXeno = false;
     private boolean fatherXeno = false;
     private HashMap<String, String> data;
+    private TextView motherWork;
+    private TextView fatherWork;
 
 
     @Override
@@ -52,7 +54,8 @@ public class Register2 extends AppCompatActivity {
         fatherCi = findViewById(R.id.textFatherCi);
         motherNationality = findViewById(R.id.textMotherNationality);
         fatherNationality = findViewById(R.id.textFatherNationality);
-
+        motherWork = findViewById(R.id.motherWork2);
+        fatherWork = findViewById(R.id.fatherWork2);
     }
 
     private void initEvents() {
@@ -126,6 +129,8 @@ public class Register2 extends AppCompatActivity {
         data.put("fatherName", fatherName.getText().toString());
         data.put("fatherCi", fatherCi.getText().toString());
         data.put("fatherNationality", fatherXeno ? "E-" : "V-");
+        data.put("motherWork", motherWork.getText().toString());
+        data.put("fatherWork", fatherWork.getText().toString());
         return data;
     }
 
@@ -163,6 +168,12 @@ public class Register2 extends AppCompatActivity {
                     fatherXeno = false;
                 }
             }
+            if(data.containsKey("motherWork")){
+                motherWork.setText(data.get("motherWork"));
+            }
+            if(data.containsKey("fatherWork")){
+                fatherWork.setText(data.get("fatherWork"));
+            }
 
         }
     }
@@ -186,6 +197,15 @@ public class Register2 extends AppCompatActivity {
             return false;
         }
 
+        if(motherWork.getText().toString().isEmpty()){
+            Toast.makeText(context, "No ha suministrado un oficio para la madre", Toast.LENGTH_LONG).show();
+            return false;
+        }
+
+        if(fatherWork.getText().toString().isEmpty()){
+            Toast.makeText(context, "No ha suministrado un oficio para el padre", Toast.LENGTH_LONG).show();
+            return false;
+        }
         return true;
     }
 

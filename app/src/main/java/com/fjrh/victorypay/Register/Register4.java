@@ -64,7 +64,7 @@ public class Register4 extends AppCompatActivity {
             public void onClick(View v) {
 
                 if(isDataComplete()) {
-                    Intent i = new Intent(context, Register5.class);
+                    Intent i = new Intent(context, Register4_1.class);
                     data.putAll(getData());
                     i.putExtra("data", data);
                     startActivity(i);

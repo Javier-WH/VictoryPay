@@ -66,10 +66,6 @@ public class Register1_3 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(context, Register1_2.class);
-                //con esto se prevee que almacene un registro en blanco en la base de datos1
-                if(isDataComplete()) {
-                    schoolDb.insertSchool(procedence.getText().toString());
-                }
                 data.putAll(getData());
                 i.putExtra("data", data);
                 startActivity(i);
@@ -80,11 +76,17 @@ public class Register1_3 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(isDataComplete()) {
-                    Intent i = new Intent(context, Register1_4.class);
-                    schoolDb.insertSchool(procedence.getText().toString());
-                    data.putAll(getData());
-                    i.putExtra("data", data);
-                    startActivity(i);
+                    if(isSchoolRegistered(procedence.getText().toString())) {
+                        Intent i = new Intent(context, Register1_4.class);
+                        data.putAll(getData());
+                        i.putExtra("data", data);
+                        startActivity(i);
+                    }else{
+                        Intent i = new Intent(context, Register1_3_1.class);
+                        data.putAll(getData());
+                        i.putExtra("data", data);
+                        startActivity(i);
+                    }
                 }
             }
         });
@@ -176,6 +178,12 @@ public class Register1_3 extends AppCompatActivity {
             }
         }
     }
+
+    private boolean isSchoolRegistered(String school){
+        return schoolsList.contains(school);
+    }
+
+
 
     private boolean isDataComplete(){
 
