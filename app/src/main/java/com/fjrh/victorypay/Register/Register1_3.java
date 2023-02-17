@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.fjrh.victorypay.R;
 import com.fjrh.victorypay.dataBases.schools.School;
@@ -65,6 +66,10 @@ public class Register1_3 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(context, Register1_2.class);
+                //con esto se prevee que almacene un registro en blanco en la base de datos1
+                if(isDataComplete()) {
+                    schoolDb.insertSchool(procedence.getText().toString());
+                }
                 data.putAll(getData());
                 i.putExtra("data", data);
                 startActivity(i);
@@ -74,10 +79,13 @@ public class Register1_3 extends AppCompatActivity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(context, Register2.class);
-                data.putAll(getData());
-                i.putExtra("data", data);
-                startActivity(i);
+                if(isDataComplete()) {
+                    Intent i = new Intent(context, Register1_4.class);
+                    schoolDb.insertSchool(procedence.getText().toString());
+                    data.putAll(getData());
+                    i.putExtra("data", data);
+                    startActivity(i);
+                }
             }
         });
 
@@ -145,7 +153,6 @@ public class Register1_3 extends AppCompatActivity {
         suggest.setPadding(0, 10, 0, 0);
         //suggest.setTypeface(suggest.getTypeface(), Typeface.BOLD_ITALIC);
 
-
         suggest.setLayoutParams(new LinearLayout.LayoutParams( LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
         suggestionsLayout.addView(suggest);
 
@@ -160,9 +167,7 @@ public class Register1_3 extends AppCompatActivity {
 
     private void refresSuggestionDialog(String filter){
         suggestionsLayout.removeAllViews();
-
         if(filter.length() > 0){
-
             for (int i = 0 ; i < schoolsList.size(); i++){
 
                 if(schoolsList.get(i).toLowerCase().contains(filter.toLowerCase())){
@@ -170,7 +175,23 @@ public class Register1_3 extends AppCompatActivity {
                 }
             }
         }
+    }
 
+    private boolean isDataComplete(){
+
+        if(address.getText().toString().isEmpty()){
+            Toast.makeText(context, "No ha suministrado una dirección para el estudiante", Toast.LENGTH_LONG).show();
+            return false;
+        }
+
+        if(procedence.getText().toString().isEmpty()){
+            Toast.makeText(context, "No ha suministrado un colegio de procedencia", Toast.LENGTH_LONG).show();
+            return false;
+        }
+
+        return true;
 
     }
+
+
 }
