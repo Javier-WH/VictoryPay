@@ -10,7 +10,7 @@ import com.fjrh.victorypay.dataBases.strings.CreatorString;
 
 public class DbHelper extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 8;
+    private static final int DATABASE_VERSION = 13;
     private static final String DATABASE_NAME = "batalla.db";
 
 
@@ -37,6 +37,15 @@ public class DbHelper extends SQLiteOpenHelper {
         //crea la base de datos contact_info
         db.execSQL(CreatorString.getCreateContactInfoString());
 
+        //crea la base de datos medical_info
+        db.execSQL(CreatorString.getCreateMedicalInfoString());
+
+        //crea la base de datos address
+        db.execSQL(CreatorString.getCreateAddressString());
+
+        //crea la base de datos inscription_payment
+        db.execSQL(CreatorString.getCreateInscriptionPaymentString());
+
         //crea la base de datos schools
         db.execSQL(CreatorString.getCreateSchoolsString());
 
@@ -49,6 +58,9 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS parents");
         db.execSQL("DROP TABLE IF EXISTS tutors");
         db.execSQL("DROP TABLE IF EXISTS contact_info");
+        db.execSQL("DROP TABLE IF EXISTS medical_info");
+        db.execSQL("DROP TABLE IF EXISTS address");
+        db.execSQL("DROP TABLE IF EXISTS inscription_payment");
         db.execSQL("DROP TABLE IF EXISTS schools");
         onCreate(db);
 

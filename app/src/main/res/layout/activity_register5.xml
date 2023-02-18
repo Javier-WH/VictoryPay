@@ -105,6 +105,21 @@
                 android:textSize="14sp"
                 android:textStyle="bold" />
 
+            <TextView
+                android:id="@+id/textView30"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Código" />
+
+            <TextView
+                android:id="@+id/code5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
             <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -283,7 +298,7 @@
                 android:id="@+id/textView29"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Pais de nacimiento" />
+                android:text="Pais" />
 
             <TextView
                 android:id="@+id/birthCountry5"
@@ -492,6 +507,7 @@
                                 android:textStyle="bold" />
                         </LinearLayout>
                     </ScrollView>
+
                 </LinearLayout>
             </ScrollView>
 
@@ -708,13 +724,13 @@
                             android:orientation="vertical">
 
                             <TextView
-                                android:id="@+id/asma5"
+                                android:id="@+id/asma500"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Asma" />
 
                             <TextView
-                                android:id="@+id/imp34"
+                                android:id="@+id/asma5"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="TextView"
@@ -736,13 +752,13 @@
                             android:orientation="vertical">
 
                             <TextView
-                                android:id="@+id/alergia5"
+                                android:id="@+id/alergia500"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Alergia" />
+                                android:text="Alergias" />
 
                             <TextView
-                                android:id="@+id/imp36"
+                                android:id="@+id/alergia5"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="TextView"
@@ -770,7 +786,7 @@
                                 android:text="TDAH" />
 
                             <TextView
-                                android:id="@+id/imp38"
+                                android:id="@+id/TDHA5"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="TextView"
@@ -789,7 +805,7 @@
                 android:text="Observaciones" />
 
             <TextView
-                android:id="@+id/textView98"
+                android:id="@+id/observations5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="TextView"
