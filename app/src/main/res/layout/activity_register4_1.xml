@@ -122,19 +122,20 @@
         app:layout_constraintTop_toBottomOf="@+id/preInscription4_1">
 
         <RadioButton
-            android:id="@+id/cash4_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:checked="true"
-            android:text="Efectivo" />
-
-        <RadioButton
             android:id="@+id/bank4_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:checked="true"
             android:text="Deposito" />
+
+        <RadioButton
+            android:id="@+id/cash4_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checked="false"
+            android:text="Efectivo" />
     </RadioGroup>
 
     <EditText
@@ -145,40 +146,37 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
         android:ems="10"
-        android:hint="Numero de Cuenta"
+        android:hint="Numero de Operación"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup2" />
 
     <TextView
-        android:id="@+id/textView84"
+        android:id="@+id/titleA4_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Numero de cuenta Bancaria"
         app:layout_constraintBottom_toTopOf="@+id/backAccount4_1"
         app:layout_constraintStart_toStartOf="@+id/backAccount4_1" />
 
-    <EditText
-        android:id="@+id/bankName4_1"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="10dp"
-        android:ems="10"
-        android:hint="Nombre del banco"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/backAccount4_1" />
-
     <TextView
-        android:id="@+id/textView85"
+        android:id="@+id/titleB4_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Banco"
-        app:layout_constraintBottom_toTopOf="@+id/bankName4_1"
-        app:layout_constraintStart_toStartOf="@+id/bankName4_1" />
+        android:text="Fecha del depósito"
+        app:layout_constraintBottom_toTopOf="@+id/date1_4"
+        app:layout_constraintStart_toStartOf="@+id/date1_4" />
+
+    <TextView
+        android:id="@+id/date1_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:text="Selecciona una fecha"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/backAccount4_1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

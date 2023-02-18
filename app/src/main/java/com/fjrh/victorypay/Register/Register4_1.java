@@ -1,7 +1,6 @@
 package com.fjrh.victorypay.Register;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,12 +9,18 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioButton;
-
+import android.widget.TextView;
+import com.fjrh.victorypay.Libraries.DateSelector;
 import com.fjrh.victorypay.R;
 import com.fjrh.victorypay.dataBases.Bank;
 
+import java.time.Month;
+import java.time.Year;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 
 public class Register4_1 extends AppCompatActivity {
@@ -28,7 +33,9 @@ public class Register4_1 extends AppCompatActivity {
     private EditText account;
     private EditText preisciption;
     private EditText inscription;
-    private EditText bankName;
+    private TextView date;
+    private TextView titleA;
+    private TextView titleB;
 
 
     @Override
@@ -49,7 +56,9 @@ public class Register4_1 extends AppCompatActivity {
         account = findViewById(R.id.backAccount4_1);
         preisciption = findViewById(R.id.preInscription4_1);
         inscription = findViewById(R.id.inscription4_1);
-        bankName = findViewById(R.id.bankName4_1);
+        date = findViewById(R.id.date1_4);
+        titleA = findViewById(R.id.titleA4_1);
+        titleB = findViewById(R.id.titleB4_1);
     }
 
     private void initEvents(){
@@ -58,6 +67,7 @@ public class Register4_1 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(context, Register4.class);
+                data.putAll(getData());
                 i.putExtra("data", data);
                 startActivity(i);
             }
@@ -66,33 +76,46 @@ public class Register4_1 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(context, Register5.class);
+                data.putAll(getData());
                 i.putExtra("data", data);
                 startActivity(i);
             }
         });
 
-        account.addTextChangedListener(new TextWatcher() {
+        int month = Calendar.getInstance().get(Calendar.MONTH) + 1;
+        int day = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
+        int year = Year.now().getValue();
+        date.setOnClickListener(new DateSelector(context, date, "01/01/"+(year -2), day+"/"+month+"/"+year));
+
+        //
+
+        bank.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                String accountNumber = account.getText().toString();
-                if(accountNumber.length() > 4){
-                    accountNumber = accountNumber.substring(0,4);
-                }
-                bankName.setText(Bank.getBankName(accountNumber));
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                enableImputs(isChecked);
             }
         });
 
+
     }
+
+    private void enableImputs(Boolean enabled){
+
+        if(enabled){
+            account.setVisibility(View.VISIBLE);
+            date.setVisibility(View.VISIBLE);
+            date.setText("Selecciona una fecha");
+            titleB.setVisibility(View.VISIBLE);
+            titleA.setVisibility(View.VISIBLE);
+        }else{
+            account.setVisibility(View.INVISIBLE);
+            date.setVisibility(View.INVISIBLE );
+            titleB.setVisibility(View.INVISIBLE);
+            titleA.setVisibility(View.INVISIBLE);
+        }
+        account.setText("");
+    }
+
 
 
     private void fillInputs() {
@@ -100,12 +123,36 @@ public class Register4_1 extends AppCompatActivity {
 
         if (intentData.hasExtra("data")) {
             data = (HashMap<String, String>) intentData.getSerializableExtra("data");
+            if(data.containsKey("payMethod")){
+                if(data.get("payMethod").equals("1")){
+                    cash.setChecked(true);
+                }else{
+                    bank.setChecked(true);
+                }
+            }
+            if(data.containsKey("account")){
+                account.setText(data.get("account"));
+            }
+            if(data.containsKey("date")){
+                date.setText(data.get("date"));
+            }
+            if(data.containsKey("preisciption")){
+                preisciption.setText(data.get("preisciption"));
+            }
+            if(data.containsKey("inscription")){
+                inscription.setText(data.get("inscription"));
+            }
+
         }
     }
 
     public HashMap<String, String> getData() {
         HashMap<String, String> data = new HashMap<>();
-        //data.put("motherName", motherName.getText().toString());
+        data.put("payMethod", cash.isChecked() ? "1" : "2");
+        data.put("account", account.getText().toString());
+        data.put("date", date.getText().toString());
+        data.put("preisciption", preisciption.getText().toString());
+        data.put("inscription", inscription.getText().toString());
         return data;
     }
 }
