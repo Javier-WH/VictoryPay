@@ -13,18 +13,19 @@ import java.util.HashMap;
 
 public class School extends DbHelper {
     Context context;
+    DbHelper dbHelper;
+    SQLiteDatabase db;
 
     public School(Context context){
         super(context);
         this.context = context;
+        dbHelper = new DbHelper(context);
+        db = dbHelper.getWritableDatabase();
     }
 
     public long insertSchool(String schoolName) throws SQLException {
         ContentValues values = new ContentValues();
         values.put("school", schoolName);
-
-        DbHelper dbHelper = new DbHelper(context);
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         return db.replace("schools", null, values);
     }
@@ -32,9 +33,6 @@ public class School extends DbHelper {
     public ArrayList<String> getList(){
 
         ArrayList<String> list = new ArrayList<>();
-
-        DbHelper dbHelper = new DbHelper(context);
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         Cursor cursor = db.rawQuery("SELECT * FROM schools", null);
 

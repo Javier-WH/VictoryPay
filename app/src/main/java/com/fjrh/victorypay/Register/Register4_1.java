@@ -4,9 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -15,12 +12,10 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import com.fjrh.victorypay.Libraries.DateSelector;
 import com.fjrh.victorypay.R;
-import com.fjrh.victorypay.dataBases.Bank;
+import com.fjrh.victorypay.dataBases.prices.Prices;
 
-import java.time.Month;
 import java.time.Year;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 
 public class Register4_1 extends AppCompatActivity {
@@ -31,11 +26,11 @@ public class Register4_1 extends AppCompatActivity {
     private RadioButton cash;
     private RadioButton bank;
     private EditText account;
-    private EditText preisciption;
-    private EditText inscription;
+    private EditText mount;
     private TextView date;
     private TextView titleA;
     private TextView titleB;
+    private TextView labelPrice;
 
 
     @Override
@@ -54,11 +49,12 @@ public class Register4_1 extends AppCompatActivity {
         cash = findViewById(R.id.cash4_1);
         bank = findViewById(R.id.bank4_1);
         account = findViewById(R.id.backAccount4_1);
-        preisciption = findViewById(R.id.preInscription4_1);
-        inscription = findViewById(R.id.inscription4_1);
+        mount = findViewById(R.id.mont4_1);
         date = findViewById(R.id.date1_4);
         titleA = findViewById(R.id.titleA4_1);
         titleB = findViewById(R.id.titleB4_1);
+        labelPrice = findViewById(R.id.price4_1);
+        labelPrice.setText(getMonthlyPrice() + " USD");
     }
 
     private void initEvents(){
@@ -136,12 +132,10 @@ public class Register4_1 extends AppCompatActivity {
             if(data.containsKey("date")){
                 date.setText(data.get("date"));
             }
-            if(data.containsKey("preisciption")){
-                preisciption.setText(data.get("preisciption"));
+            if(data.containsKey("mount")){
+                mount.setText(data.get("mount"));
             }
-            if(data.containsKey("inscription")){
-                inscription.setText(data.get("inscription"));
-            }
+
 
         }
     }
@@ -151,8 +145,18 @@ public class Register4_1 extends AppCompatActivity {
         data.put("payMethod", cash.isChecked() ? "1" : "2");
         data.put("account", account.getText().toString());
         data.put("date", date.getText().toString());
-        data.put("preisciption", preisciption.getText().toString());
-        data.put("inscription", inscription.getText().toString());
+        data.put("mount", mount.getText().toString());
         return data;
+    }
+
+    private float getMonthlyPrice(){
+
+        Prices prices = new Prices(context);
+
+        HashMap<String, String> list = prices.getPrices();
+
+        float monthPrice = Float.parseFloat(list.get("Inscripción"));
+
+        return monthPrice;
     }
 }

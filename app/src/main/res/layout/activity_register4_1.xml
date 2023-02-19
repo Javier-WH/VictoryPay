@@ -50,20 +50,13 @@
         android:id="@+id/textView79"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Preinscripción"
-        app:layout_constraintBottom_toTopOf="@+id/preInscription4_1"
-        app:layout_constraintStart_toStartOf="@+id/preInscription4_1" />
-
-    <TextView
-        android:id="@+id/textView82"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Inscripción"
-        app:layout_constraintBottom_toTopOf="@+id/inscription4_1"
-        app:layout_constraintStart_toStartOf="@+id/inscription4_1" />
+        android:text="Monto
+"
+        app:layout_constraintBottom_toTopOf="@+id/mont4_1"
+        app:layout_constraintStart_toStartOf="@+id/mont4_1" />
 
     <EditText
-        android:id="@+id/preInscription4_1"
+        android:id="@+id/mont4_1"
         android:layout_width="125dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -76,38 +69,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scrollView5" />
 
-    <EditText
-        android:id="@+id/inscription4_1"
-        android:layout_width="125dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="40dp"
-        android:ems="10"
-        android:inputType="number"
-        app:layout_constraintBottom_toBottomOf="@+id/preInscription4_1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/scrollView5"
-        app:layout_constraintTop_toTopOf="@+id/preInscription4_1" />
-
     <TextView
         android:id="@+id/textView80"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="USD"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/preInscription4_1"
-        app:layout_constraintStart_toEndOf="@+id/preInscription4_1"
-        app:layout_constraintTop_toTopOf="@+id/preInscription4_1" />
-
-    <TextView
-        android:id="@+id/textView81"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="USD"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/inscription4_1"
-        app:layout_constraintStart_toEndOf="@+id/inscription4_1"
-        app:layout_constraintTop_toTopOf="@+id/inscription4_1" />
+        app:layout_constraintBottom_toBottomOf="@+id/mont4_1"
+        app:layout_constraintStart_toEndOf="@+id/mont4_1"
+        app:layout_constraintTop_toTopOf="@+id/mont4_1" />
 
     <RadioGroup
         android:id="@+id/radioGroup2"
@@ -119,7 +89,7 @@
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/preInscription4_1">
+        app:layout_constraintTop_toBottomOf="@+id/mont4_1">
 
         <RadioButton
             android:id="@+id/bank4_1"
@@ -178,5 +148,27 @@
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/backAccount4_1" />
+
+    <TextView
+        android:id="@+id/textView31"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Precio"
+        app:layout_constraintBottom_toTopOf="@+id/price4_1"
+        app:layout_constraintStart_toStartOf="@+id/price4_1" />
+
+    <TextView
+        android:id="@+id/price4_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:text="6000 USD"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/mont4_1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/scrollView5"
+        app:layout_constraintTop_toTopOf="@+id/mont4_1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

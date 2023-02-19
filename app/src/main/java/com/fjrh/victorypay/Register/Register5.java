@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.fjrh.victorypay.App;
 import com.fjrh.victorypay.R;
+import com.fjrh.victorypay.dataBases.prices.Prices;
 import com.fjrh.victorypay.dataBases.students.InsertStuden;
 
 import java.util.HashMap;
@@ -57,11 +58,11 @@ public class Register5 extends AppCompatActivity {
     private TextView phoneA;
     private TextView phoneB;
     private TextView email;
-    private TextView preinscription;
-    private TextView inscription;
+    private TextView mount;
     private TextView operationNumber;
     private TextView operationDate;
     private TextView code;
+    private TextView inscriptionLabel;
 
     private HashMap<String, String> data;
 
@@ -115,8 +116,8 @@ public class Register5 extends AppCompatActivity {
         phoneA = findViewById(R.id.phoneA5);
         phoneB = findViewById(R.id.phoneb5);
         email = findViewById(R.id.email5);
-        preinscription = findViewById(R.id.preinscripcion5);
-        inscription = findViewById(R.id.inscripcion5);
+        mount = findViewById(R.id.mont5);
+        inscriptionLabel = findViewById(R.id.inscriptionLabel5);
         operationNumber = findViewById(R.id.bankOperationNumber5);
         operationDate  = findViewById(R.id.bankDate5);
         code = findViewById(R.id.code5);
@@ -276,14 +277,30 @@ public class Register5 extends AppCompatActivity {
             if(data.containsKey("date")){
                 operationDate.setText(data.get("date"));
             }
-            if(data.containsKey("preisciption")){
-                preinscription.setText(data.get("preisciption")+" USD");
+            if(data.containsKey("mount")){
+                mount.setText(data.get("mount")+" USD");
             }
-            if(data.containsKey("inscription")){
-                inscription.setText(data.get("inscription")+ "USD");
+
+            if( Float.parseFloat(data.get("mount"))  < getMonthlyPrice()){
+                inscriptionLabel.setText("Preinscripción");
+            }else{
+                inscriptionLabel.setText("Inscripción");
             }
 
         }
+
+
+    }
+
+    private float getMonthlyPrice(){
+
+        Prices prices = new Prices(context);
+
+        HashMap<String, String> list = prices.getPrices();
+
+        float monthPrice = Float.parseFloat(list.get("Inscripción"));
+
+        return monthPrice;
     }
 
 
