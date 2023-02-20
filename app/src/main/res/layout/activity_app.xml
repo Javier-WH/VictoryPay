@@ -179,7 +179,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imgPayment" />
 
     <TextView
-        android:id="@+id/textView11"
+        android:id="@+id/textUpdated"
         android:layout_width="191dp"
         android:layout_height="20dp"
         android:layout_marginEnd="10dp"

@@ -22,6 +22,7 @@ import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.fjrh.victorypay.dataBases.params.Params;
 import com.fjrh.victorypay.dataBases.users.Users;
 import com.fjrh.victorypay.dataBases.prices.Prices;
 
@@ -163,8 +164,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                         Intent i = new Intent(context, App.class);
-                        userData.put("mode", "online");
-                        i.putExtra("user", userData);
+                        new Params(context).insertPatam("mode", "online");
                         loading(false);
                         startActivity(i);
 
@@ -187,8 +187,7 @@ public class MainActivity extends AppCompatActivity {
                         if(localUserData.size() >0){
                             message = "No hay respuesta del servidor, iniciando en modo offline";
                             Intent i = new Intent(context, App.class);
-                            localUserData.put("mode", "offline");
-                            i.putExtra("user", localUserData);
+                            new Params(context).insertPatam("mode", "offline");
                             loading(false);
                             startActivity(i);
                         }else{

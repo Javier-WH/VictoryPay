@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.fjrh.victorypay.Register.Register1;
+import com.fjrh.victorypay.dataBases.params.Params;
 import com.fjrh.victorypay.payment.Payment1;
 
 import java.util.HashMap;
@@ -81,17 +82,13 @@ public class App extends AppCompatActivity {
     }
 
     private void fillElements() {
-        Intent intentData = getIntent();
-        if (intentData.hasExtra("user")) {
-            user = (HashMap<String, String>) intentData.getSerializableExtra("user");
-            if (user.containsKey("mode")) {
-                String mode = user.get("mode");
-                textOnline.setText(mode);
-                textOnline.setTextColor(mode.equals("online") ? Color.parseColor("#12CC03") :Color.parseColor("#CD1B0A"));
-                icon.setImageResource(mode.equals("online") ? android.R.drawable.presence_online : android.R.drawable.presence_busy);
-            }
+        HashMap<String, String> params = new Params(context).getParams();
+        if(params.containsKey("mode")){
+            String mode = params.get("mode");
+            textOnline.setText(mode);
+            textOnline.setTextColor(mode.equals("online") ? Color.parseColor("#12CC03") :Color.parseColor("#CD1B0A"));
+            icon.setImageResource(mode.equals("online") ? android.R.drawable.presence_online : android.R.drawable.presence_busy);
         }
-
     }
 
 

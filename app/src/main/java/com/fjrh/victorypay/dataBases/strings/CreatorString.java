@@ -22,7 +22,8 @@ public class CreatorString {
     private static final String CreateSchoolsString = "CREATE TABLE schools (id INTEGER PRIMARY KEY AUTOINCREMENT, school TEXT NOT NULL UNIQUE, updatedAT DATETIME DEFAULT CURRENT_TIMESTAMP)";
     //prices
     private static final String CreatePricesString = "CREATE TABLE prices (id INTEGER PRIMARY KEY AUTOINCREMENT, item TEXT NOT NULL UNIQUE, price TEXT NOT NULL, updatedAT DATETIME DEFAULT CURRENT_TIMESTAMP)";
-
+    //params
+    private static final String CreateParamsString = "CREATE TABLE params (id INTEGER PRIMARY KEY AUTOINCREMENT, param TEXT NOT NULL UNIQUE, value TEXT NOT NULL )";
 
     public static String getCreateUserString(){
         return CreateUserString;
@@ -38,6 +39,6 @@ public class CreatorString {
     public static String getCreateInscriptionPaymentString(){ return CreateInscriptionPaymentString;}
     public static String getCreateSchoolsString(){ return CreateSchoolsString;}
     public static String getCreatePricesString(){ return CreatePricesString;}
-
+    public static String getCreateParamsString(){return CreateParamsString;};
 
 }
