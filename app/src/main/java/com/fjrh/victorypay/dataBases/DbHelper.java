@@ -10,7 +10,7 @@ import com.fjrh.victorypay.dataBases.strings.CreatorString;
 
 public class DbHelper extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 19;
+    private static final int DATABASE_VERSION = 21;
     private static final String DATABASE_NAME = "batalla.db";
 
 

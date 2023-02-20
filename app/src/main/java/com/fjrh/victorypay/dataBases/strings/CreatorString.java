@@ -3,7 +3,7 @@ package com.fjrh.victorypay.dataBases.strings;
 public class CreatorString {
 
     //users
-    private static final String CreateUserString = "CREATE TABLE users (id INTEGER PRIMARY KEY AUTOINCREMENT, user TEXT NOT NULL, password TEXT NOT NULL, updatedAT DATETIME DEFAULT CURRENT_TIMESTAMP)";
+    private static final String CreateUserString = "CREATE TABLE users (id INTEGER PRIMARY KEY AUTOINCREMENT, user TEXT NOT NULL, password TEXT NOT NULL,  name TEXT NOT NULL, ci TEXT NOT NULL UNIQUE, updatedAT DATETIME DEFAULT CURRENT_TIMESTAMP)";
     //studens
     private static final String CreateStudensString = "CREATE TABLE students (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, lastName TEXT NOT NULL, ci TEXT NOT NULL, nation TEXT NOT NULL, seccion TEXT NOT NULL, grade TEXT NOT NULL, gender TEXT NOT NULL, code TEXT NOT NULL UNIQUE, birthdate TEXT NOT NULL UNIQUE, age TEXT NOT NULL UNIQUE, parent_id INTEGER NOT NULL, tutor_id INTEGER NOT NULL, updatedAT DATETIME DEFAULT CURRENT_TIMESTAMP)";
     //address

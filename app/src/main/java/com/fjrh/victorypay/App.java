@@ -4,24 +4,33 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.fjrh.victorypay.Register.Register1;
 import com.fjrh.victorypay.payment.Payment1;
 
+import java.util.HashMap;
+
 public class App extends AppCompatActivity {
     private Context context;
-    private  ImageView register;
+    private ImageView register;
     private ImageView payment;
-    private ImageView tickets ;
-    private ImageView currencyCalculator ;
-    private ImageView currency ;
-    private ImageView search ;
-    private ImageView prices ;
-    private ImageView sync ;
-    private ImageView config ;
+    private ImageView tickets;
+    private ImageView currencyCalculator;
+    private ImageView currency;
+    private ImageView search;
+    private ImageView prices;
+    private ImageView sync;
+    private ImageView config;
+    private TextView textOnline;
+    private ImageView icon;
+
+    private HashMap<String, String> user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,12 +38,15 @@ public class App extends AppCompatActivity {
         setContentView(R.layout.activity_app);
         context = this;
 
+
         initComponents();
         initEvents();
+        fillElements();
+
 
     }
 
-    private void initComponents(){
+    private void initComponents() {
         register = findViewById(R.id.imgRegister);
         payment = findViewById(R.id.imgPayment);
         tickets = findViewById(R.id.imgTickets);
@@ -44,10 +56,11 @@ public class App extends AppCompatActivity {
         prices = findViewById(R.id.imgPrices);
         sync = findViewById(R.id.imgSync);
         config = findViewById(R.id.imgConfig);
-
+        textOnline = findViewById(R.id.textOnline);
+        icon = findViewById(R.id.iconOnline);
     }
 
-    private void initEvents(){
+    private void initEvents() {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,6 +80,19 @@ public class App extends AppCompatActivity {
 
     }
 
+    private void fillElements() {
+        Intent intentData = getIntent();
+        if (intentData.hasExtra("user")) {
+            user = (HashMap<String, String>) intentData.getSerializableExtra("user");
+            if (user.containsKey("mode")) {
+                String mode = user.get("mode");
+                textOnline.setText(mode);
+                textOnline.setTextColor(mode.equals("online") ? Color.parseColor("#12CC03") :Color.parseColor("#CD1B0A"));
+                icon.setImageResource(mode.equals("online") ? android.R.drawable.presence_online : android.R.drawable.presence_busy);
+            }
+        }
+
+    }
 
 
 }

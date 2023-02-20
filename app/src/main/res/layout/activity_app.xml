@@ -180,14 +180,13 @@
 
     <TextView
         android:id="@+id/textView11"
-        android:layout_width="0dp"
-        android:layout_height="19dp"
+        android:layout_width="191dp"
+        android:layout_height="20dp"
         android:layout_marginEnd="10dp"
         android:text=" 02/11/2023 - 11:08 AM"
         android:textAlignment="viewEnd"
         android:textColor="@color/purple_200"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
@@ -199,4 +198,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/logo_vp" />
+
+    <TextView
+        android:id="@+id/textOnline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/iconOnline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/textOnline"
+        app:layout_constraintEnd_toStartOf="@+id/textOnline"
+        app:layout_constraintTop_toTopOf="@+id/textOnline"
+        app:srcCompat="@android:drawable/presence_busy" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
