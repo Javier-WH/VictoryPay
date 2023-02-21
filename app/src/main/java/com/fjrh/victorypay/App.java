@@ -13,7 +13,9 @@ import android.widget.Toast;
 
 import com.fjrh.victorypay.Register.Register1;
 import com.fjrh.victorypay.dataBases.params.Params;
+import com.fjrh.victorypay.dataBases.users.Users;
 import com.fjrh.victorypay.payment.Payment1;
+import com.fjrh.victorypay.sync.Sync;
 
 import java.util.HashMap;
 
@@ -30,6 +32,8 @@ public class App extends AppCompatActivity {
     private ImageView config;
     private TextView textOnline;
     private ImageView icon;
+    private TextView updated;
+    private TextView name;
 
     private HashMap<String, String> user;
 
@@ -59,6 +63,9 @@ public class App extends AppCompatActivity {
         config = findViewById(R.id.imgConfig);
         textOnline = findViewById(R.id.textOnline);
         icon = findViewById(R.id.iconOnline);
+        updated = findViewById(R.id.textUpdated);
+        name = findViewById(R.id.userNameApp);
+        user = new Users(context).getUsers();
     }
 
     private void initEvents() {
@@ -78,6 +85,13 @@ public class App extends AppCompatActivity {
             }
         });
 
+        sync.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(context, Sync.class);
+                startActivity(i);
+            }
+        });
 
     }
 
@@ -88,6 +102,10 @@ public class App extends AppCompatActivity {
             textOnline.setText(mode);
             textOnline.setTextColor(mode.equals("online") ? Color.parseColor("#12CC03") :Color.parseColor("#CD1B0A"));
             icon.setImageResource(mode.equals("online") ? android.R.drawable.presence_online : android.R.drawable.presence_busy);
+            updated.setVisibility(mode.equals("online") ? View.INVISIBLE : View.VISIBLE);
+        }
+        if(user.containsKey("name")){
+            name.setText(user.get("name"));
         }
     }
 

@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
@@ -31,7 +32,8 @@ public class Users extends DbHelper {
         Cursor cursor = db.rawQuery("SELECT * FROM users WHERE user = ? AND password = ? ",  new String[]{userName, password} );
 
         if(cursor.moveToFirst()){
-            user.put(cursor.getString(1), cursor.getString(2));
+            user.put("user", cursor.getString(1));
+            user.put("password", cursor.getString(2));
             user.put("id", cursor.getString(0));
         }
 
@@ -63,11 +65,17 @@ public class Users extends DbHelper {
         values.put("password", user.get("password"));
         values.put("name", user.get("name"));
         values.put("ci", user.get("ci"));
+        values.put("id", "1");
 
         return db.replace("users", null, values);
     }
 
+    public void deleteUsers(HashMap<String, String> user){
 
+
+        db.delete("users", "user = ? and password = ?", new String[]{user.get("user"), user.get("password")});
+
+    }
 
 }
 

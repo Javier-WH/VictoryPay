@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -37,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
     private EditText password;
     private Context context;
     private Users localUser;
+    private Switch rememberMe;
+    private Params params;
     private String URL = "http://192.168.1.105:4000/login";
 
     @Override
@@ -48,7 +51,10 @@ public class MainActivity extends AppCompatActivity {
         user = findViewById(R.id.txtUser);
         password = findViewById(R.id.txtPass);
         btnAcceptar.setOnClickListener(new btnAcceptEvent());
+        rememberMe = findViewById(R.id.remeberMe);
         localUser = new Users(context);
+        params = new Params(context);
+
         checkPrices();
         fillInputs();
 
@@ -62,8 +68,6 @@ public class MainActivity extends AppCompatActivity {
         school.insertSchool("Unidad Educativa Liceo Ramón Buenahora");
         school.insertSchool("Unidad Educativa Liceo José Francisco Torrealba");
 */
-
-
         /*
         String date = "2023-02-19 12:21:30";
         DbHelper dbHelper = new DbHelper(this);
@@ -77,12 +81,6 @@ public class MainActivity extends AppCompatActivity {
             }while (cursor.moveToNext());
         }
         */
-
-
-
-        
-
-
 
     }
 
@@ -98,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void fillInputs(){
         HashMap<String, String> localUserData = localUser.getUsers();
+        HashMap<String, String> params = this.params.getParams();
 
         if(localUserData.containsKey("user")){
             user.setText(localUserData.get("user"));
@@ -105,6 +104,11 @@ public class MainActivity extends AppCompatActivity {
         if(localUserData.containsKey("password")){
             password.setText(localUserData.get("password"));
         }
+        ////
+        if(params.containsKey("remember")){
+            rememberMe.setChecked(Boolean.parseBoolean(params.get("remember")));
+        }
+
 
     }
 
@@ -160,11 +164,16 @@ public class MainActivity extends AppCompatActivity {
                         userData.put("ci", response.getString("ci"));
 
 
-                        localUser.insertUsers(userData);
-
+                        if(rememberMe.isChecked()) {
+                            localUser.insertUsers(userData);
+                            params.insertPatam("remember", "true");
+                        }else{
+                            localUser.deleteUsers(userData);
+                            params.insertPatam("remember", "false");
+                        }
 
                         Intent i = new Intent(context, App.class);
-                        new Params(context).insertPatam("mode", "online");
+                        params.insertPatam("mode", "online");
                         loading(false);
                         startActivity(i);
 
@@ -185,13 +194,18 @@ public class MainActivity extends AppCompatActivity {
 
                         HashMap<String, String> localUserData = localUser.logUser(user, password);
                         if(localUserData.size() >0){
+                            if(!rememberMe.isChecked()) {
+                                localUser.deleteUsers(localUserData);
+
+                                params.insertPatam("remember", "false");
+                            }
+                            params.insertPatam("mode", "offline");
                             message = "No hay respuesta del servidor, iniciando en modo offline";
                             Intent i = new Intent(context, App.class);
-                            new Params(context).insertPatam("mode", "offline");
                             loading(false);
                             startActivity(i);
                         }else{
-                            message = "El servidor no responde, no hay ningun usuario validado";
+                            message = "El servidor no responde, y el usuario no está validado o los datos no son correctos";
                         }
 
                     } else if (error instanceof AuthFailureError) {

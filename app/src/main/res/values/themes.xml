@@ -14,6 +14,9 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="Theme.ProgressBar" parent="Theme.Material3.DynamicColors.Dark">
+        <item name="colorSecondary">@color/purple_500</item>
+    </style>
 
     <style name="Theme.VictoryPay.clean" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->

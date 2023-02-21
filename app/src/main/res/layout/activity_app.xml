@@ -163,10 +163,11 @@
         android:id="@+id/imgPayment"
         android:layout_width="70dp"
         android:layout_height="60dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="40dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView2"
         app:srcCompat="@mipmap/payment" />
 
     <TextView
@@ -178,43 +179,90 @@
         app:layout_constraintStart_toStartOf="@+id/imgPayment"
         app:layout_constraintTop_toBottomOf="@+id/imgPayment" />
 
-    <TextView
-        android:id="@+id/textUpdated"
-        android:layout_width="191dp"
-        android:layout_height="20dp"
-        android:layout_marginEnd="10dp"
-        android:text=" 02/11/2023 - 11:08 AM"
-        android:textAlignment="viewEnd"
-        android:textColor="@color/purple_200"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="172dp"
-        android:layout_height="117dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/logo_vp" />
-
-    <TextView
-        android:id="@+id/textOnline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="0dp"
+        android:layout_height="119dp"
         android:layout_marginStart="20dp"
-        android:text="TextView"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <ImageView
-        android:id="@+id/iconOnline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/textOnline"
-        app:layout_constraintEnd_toStartOf="@+id/textOnline"
-        app:layout_constraintTop_toTopOf="@+id/textOnline"
-        app:srcCompat="@android:drawable/presence_busy" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="300dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                app:srcCompat="@mipmap/logo_vp" />
+
+            <ScrollView
+                android:layout_width="521dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="2">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <HorizontalScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fillViewport="false">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <ImageView
+                                android:id="@+id/iconOnline"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="6"
+                                app:srcCompat="@android:drawable/presence_busy" />
+
+                            <TextView
+                                android:id="@+id/textOnline"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="0dp"
+                                android:layout_weight="6"
+                                android:text="TextView" />
+
+                        </LinearLayout>
+                    </HorizontalScrollView>
+
+                    <TextView
+                        android:id="@+id/textUpdated"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="1dp"
+                        android:text=" 02/11/2023 - 11:08 AM"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/purple_200"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/userNameApp"
+                        android:layout_width="match_parent"
+                        android:layout_height="63dp"
+                        android:layout_marginTop="10dp"
+                        android:gravity="bottom"
+                        android:text="Rodríguez Hernández Francisco Javier"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/purple_200"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </ScrollView>
+
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
