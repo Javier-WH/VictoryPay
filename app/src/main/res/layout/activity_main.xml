@@ -2,9 +2,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:textAlignment="center"
+    android:visibility="visible"
     tools:context=".MainActivity">
 
     <ImageView
@@ -24,18 +26,16 @@
         android:layout_width="match_parent"
         android:layout_height="57dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
         android:ems="10"
         android:hint="Usuario"
         android:inputType="textPersonName"
         android:textAlignment="center"
         android:theme="@style/Theme.VictoryPay.datePicker"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/btnAcept"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/progressBarrLogin" />
 
     <Button
         android:id="@+id/btnAcept"
@@ -75,6 +75,31 @@
         android:theme="@style/Theme.VictoryPay.datePicker"
         app:layout_constraintEnd_toEndOf="@+id/btnAcept"
         app:layout_constraintTop_toBottomOf="@+id/btnAcept" />
+
+    <ProgressBar
+        android:id="@+id/progressBarrLogin"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="0dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:indeterminate="true"
+        android:progress="0"
+        android:theme="@style/Theme.VictoryPay.datePicker"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+    <LinearLayout
+        android:id="@+id/testLayout"
+        android:layout_width="391dp"
+        android:layout_height="266dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="1dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"></LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

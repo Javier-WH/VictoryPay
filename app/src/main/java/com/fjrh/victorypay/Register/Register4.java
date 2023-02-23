@@ -74,9 +74,9 @@ public class Register4 extends AppCompatActivity {
     }
     public HashMap<String, String> getData(){
         HashMap<String, String> data = new HashMap<>();
-        data.put("phone1", phone1.getText().toString());
-        data.put("phone2", phone2.getText().toString());
-        data.put("email", email.getText().toString());
+        data.put("phone1", phone1.getText().toString().trim());
+        data.put("phone2", phone2.getText().toString().trim());
+        data.put("email", email.getText().toString().trim());
         data.put("whatsaap1", whatsaap1.isChecked() ? phone1.getText().toString() : "No suministrado");
         data.put("whatsaap2", whatsaap2.isChecked() ? phone2.getText().toString() : "No suministrado");
         data.put("w1", String.valueOf(whatsaap1.isChecked()));

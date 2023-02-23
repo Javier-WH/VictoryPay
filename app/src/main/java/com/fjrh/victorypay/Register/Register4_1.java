@@ -10,6 +10,8 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.fjrh.victorypay.Libraries.DateSelector;
 import com.fjrh.victorypay.R;
 import com.fjrh.victorypay.dataBases.prices.Prices;
@@ -71,10 +73,12 @@ public class Register4_1 extends AppCompatActivity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(context, Register5.class);
-                data.putAll(getData());
-                i.putExtra("data", data);
-                startActivity(i);
+                if(isDataComplete()) {
+                    Intent i = new Intent(context, Register5.class);
+                    data.putAll(getData());
+                    i.putExtra("data", data);
+                    startActivity(i);
+                }
             }
         });
 
@@ -143,9 +147,9 @@ public class Register4_1 extends AppCompatActivity {
     public HashMap<String, String> getData() {
         HashMap<String, String> data = new HashMap<>();
         data.put("payMethod", cash.isChecked() ? "1" : "2");
-        data.put("account", account.getText().toString());
+        data.put("account", account.getText().toString().trim());
         data.put("date", date.getText().toString());
-        data.put("mount", mount.getText().toString());
+        data.put("mount", mount.getText().toString().trim());
         return data;
     }
 
@@ -159,4 +163,24 @@ public class Register4_1 extends AppCompatActivity {
 
         return monthPrice;
     }
+
+    public boolean isDataComplete(){
+
+        if(mount.getText().toString().isEmpty()){
+            Toast.makeText(context, "Debe indicar un monto", Toast.LENGTH_LONG).show();
+            return false;
+        }
+        if(bank.isChecked() && account.getText().toString().isEmpty()){
+            Toast.makeText(context, "Debe indicar un numero de operación", Toast.LENGTH_LONG).show();
+            return false;
+        }
+
+        if(bank.isChecked() && date.getText().toString().equalsIgnoreCase("Selecciona una fecha")){
+            Toast.makeText(context, "Debe indicar la fecha de la operacion", Toast.LENGTH_LONG).show();
+            return false;
+        }
+
+        return true;
+    }
+
 }

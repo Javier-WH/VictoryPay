@@ -5,7 +5,7 @@ public class CreatorString {
     //users
     private static final String CreateUserString = "CREATE TABLE users (id INTEGER PRIMARY KEY AUTOINCREMENT, user TEXT NOT NULL, password TEXT NOT NULL UNIQUE,  name TEXT NOT NULL, ci TEXT NOT NULL UNIQUE, updatedAT DATETIME DEFAULT CURRENT_TIMESTAMP)";
     //studens
-    private static final String CreateStudensString = "CREATE TABLE students (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, lastName TEXT NOT NULL, ci TEXT NOT NULL, nation TEXT NOT NULL, seccion TEXT NOT NULL, grade TEXT NOT NULL, gender TEXT NOT NULL, code TEXT NOT NULL UNIQUE, birthdate TEXT NOT NULL UNIQUE, age TEXT NOT NULL UNIQUE, parent_id INTEGER NOT NULL, tutor_id INTEGER NOT NULL, updatedAT DATETIME DEFAULT CURRENT_TIMESTAMP)";
+    private static final String CreateStudensString = "CREATE TABLE students (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, lastName TEXT NOT NULL, ci TEXT NOT NULL UNIQUE, nation TEXT NOT NULL, seccion TEXT NOT NULL, grade TEXT NOT NULL, gender TEXT NOT NULL, code TEXT NOT NULL UNIQUE, birthdate TEXT NOT NULL, age TEXT NOT NULL, parent_id INTEGER NOT NULL, tutor_id INTEGER NOT NULL, updatedAT DATETIME DEFAULT CURRENT_TIMESTAMP)";
     //address
     private static final String CreateAddressString = "CREATE TABLE address (id INTEGER PRIMARY KEY AUTOINCREMENT, student_id TEXT NOT NULL UNIQUE, birth_country TEXT NOT NULL, birth_state TEXT NOT NULL, birth_municipio TEXT NOT NULL, birth_parroquia TEXT NOT NULL, live_state TEXT NOT NULL, live_municipio TEXT NOT NULL, live_parroquia TEXT NOT NULL, address TEXT NOT NULL, procedence_school TEXT NOT NULL, updatedAT DATETIME DEFAULT CURRENT_TIMESTAMP)";
     //medical_info

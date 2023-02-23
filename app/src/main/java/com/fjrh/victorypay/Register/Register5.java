@@ -142,6 +142,8 @@ public class Register5 extends AppCompatActivity {
                     Toast.makeText(context, "Se ha registrado conrrectamente al estudiante", Toast.LENGTH_LONG).show();
                     Intent i = new Intent(context, App.class);
                     startActivity(i);
+                }else{
+                    Toast.makeText(context, "Ha ocurrido un problema al registrar al estudiante", Toast.LENGTH_LONG).show();
                 }
             }
         });

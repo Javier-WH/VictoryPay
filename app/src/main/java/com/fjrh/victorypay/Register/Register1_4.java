@@ -125,7 +125,7 @@ public class Register1_4 extends AppCompatActivity {
         data.put("asma", String.valueOf(asma.isChecked()));
         data.put("alergia", String.valueOf(alergia.isChecked()));
         data.put("TDAH", String.valueOf(TDAH.isChecked()));
-        data.put("observations1_4", observations1_4.getText().toString());
+        data.put("observations1_4", observations1_4.getText().toString().trim());
         return data;
     }
 

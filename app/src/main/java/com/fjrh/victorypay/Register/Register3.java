@@ -156,10 +156,10 @@ public class Register3 extends AppCompatActivity {
             data.put("link3", "Es el Padre");
         }else if(rdbOther.isChecked()){
             data.put("tutorSelected", "3");
-            data.put("tutorName", tutorName.getText().toString());
-            data.put("tutorCi", tutorCi.getText().toString());
+            data.put("tutorName", tutorName.getText().toString().trim());
+            data.put("tutorCi", tutorCi.getText().toString().trim());
             data.put("tutorNationality", tutorNationality.getText().toString());
-            data.put("link3", link.getText().toString());
+            data.put("link3", link.getText().toString().trim());
         }
 
         return data;

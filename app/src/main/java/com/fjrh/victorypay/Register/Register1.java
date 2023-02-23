@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.fjrh.victorypay.R;
+import com.fjrh.victorypay.dataBases.students.FindStudent;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -42,6 +43,7 @@ public class Register1 extends AppCompatActivity {
     private TextView birthDate;
     private TextView studentOld;
     private HashMap<String, String> data = new HashMap<>();
+    private FindStudent findStudent;
 
 
 
@@ -72,7 +74,9 @@ public class Register1 extends AppCompatActivity {
         birthDate = findViewById(R.id.birthDate);
         studentOld = findViewById(R.id.student_old);
 
-        code.setText(generateCode());
+        //code.setText(generateCode());
+        code.setText("200");
+        findStudent = new FindStudent(context);
     }
 
     private void initEvents(){
@@ -80,6 +84,21 @@ public class Register1 extends AppCompatActivity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Revisa que la cédula no este ya registrada
+                if(findStudent.isCiRegistered(ci.getText().toString())){
+                    Toast.makeText(context, "La cédula ya está registrada", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                //si el código ya está registrado, genera otro código nuevo
+                if(findStudent.isCodeRegistered(code.getText().toString())){
+                    String newCode = generateCode();
+                    while (findStudent.isCodeRegistered(newCode)){
+                        newCode = generateCode();
+                    }
+                    code.setText(newCode);
+                }
+
                 if(isDataComplete()){
                     Intent i = new Intent(context, Register1_2.class);
                     data.putAll(getData());
@@ -169,12 +188,12 @@ public class Register1 extends AppCompatActivity {
         HashMap<String, String> data = new HashMap<>();
 
         data.put("code", code.getText().toString());
-        data.put("studentName", name.getText().toString());
-        data.put("studentLastName", lastName.getText().toString());
+        data.put("studentName", name.getText().toString().trim());
+        data.put("studentLastName", lastName.getText().toString().trim());
         data.put("seccion", seccion.getSelectedItem().toString());
         data.put("grade", "" + grade.getSelectedItem());
         data.put("gender", rdbMasculino.isChecked() ? "Masculino" : "Femenino");
-        data.put("studentCi", ci.getText().toString());
+        data.put("studentCi", ci.getText().toString().trim());
         data.put("studentNation", nationality.getText().toString());
         data.put("birthDate", birthDate.getText().toString());
         data.put("age", studentOld.getText().toString());
@@ -239,7 +258,10 @@ public class Register1 extends AppCompatActivity {
     class generateCodeOnSelection implements AdapterView.OnItemSelectedListener{
         @Override
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-            code.setText(generateCode());
+          //si el código ya fue generado con exito, no lo cambia
+           if(!data.containsKey("code")) {
+               code.setText(generateCode());
+           }
         }
         @Override
         public void onNothingSelected(AdapterView<?> parent) {

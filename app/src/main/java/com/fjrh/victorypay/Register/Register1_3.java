@@ -142,8 +142,8 @@ public class Register1_3 extends AppCompatActivity {
     public HashMap<String, String> getData() {
 
         HashMap<String, String> data = new HashMap<>();
-        data.put("address", address.getText().toString());
-        data.put("procedence", procedence.getText().toString());
+        data.put("address", address.getText().toString().trim());
+        data.put("procedence", procedence.getText().toString().trim());
         return data;
     }
 

@@ -6,6 +6,8 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.fjrh.victorypay.dataBases.DbHelper;
+import com.fjrh.victorypay.dataBases.params.Params;
+import com.fjrh.victorypay.onlineDataBases.students.OnlineInsertStudent;
 
 import java.util.HashMap;
 
@@ -13,12 +15,17 @@ public class InsertStuden extends DbHelper {
     private Context context;
     private DbHelper dbHelper;
     private SQLiteDatabase db;
+    private FindStudent findStudent;
+    private HashMap<String, String> params;
+
 
     public InsertStuden(Context context) {
         super(context);
         this.context = context;
         dbHelper = new DbHelper(context);
         db = dbHelper.getWritableDatabase();
+        findStudent = new FindStudent(context);
+        params = new Params(context).getParams();
     }
 
 
@@ -120,11 +127,10 @@ public class InsertStuden extends DbHelper {
     }
     private long insertPayment(HashMap<String, String> payment, String stdId) throws SQLException {
 
-        String money = String.valueOf(Float.parseFloat(payment.get("preisciption")) + Float.parseFloat(payment.get("inscription")));
 
         ContentValues values = new ContentValues();
         values.put("student_id", stdId);
-        values.put("inscription", money);
+        values.put("inscription", payment.get("mount"));
         values.put("cash", payment.get("payMethod").equals("1") ? "true" : "false");
         values.put("operation_number", payment.get("account"));
         values.put("date", payment.get("date"));
@@ -132,24 +138,46 @@ public class InsertStuden extends DbHelper {
         return db.insert("inscription_payment", null, values);
     }
 
-
     public boolean insert(HashMap<String, String> data) {
 
+        if(params.containsKey("mode")){
+            if(params.get("mode").equalsIgnoreCase("online")){
+                new OnlineInsertStudent().insetStudent(context, data);
+            }
+        }
+
+        //si ya está registrada la cédula del estudiante NO inscribe el estudiante
+        if(findStudent.isCiRegistered(data.get("studentCi"))){
+            return false;
+        }
+        //si ya está registrado el código del estudiante NO inscribe el estudiante
+        if(findStudent.isCodeRegistered(data.get("code"))){
+            return false;
+        }
+
         try {
-            long parentID = insertParent(data);
-            long tutorID = insertTutor(data);
+            //revisa que los padres no esten inscritos previamente, de estar inscritos, obtiene sus id
+            long parentID = findStudent.findStudentParents(data.get("motherCi"), data.get("fatherCi"));
+            if(parentID == -1){
+                parentID = insertParent(data);
+            }
+
+            //revissa que el tutor no esté previamente inscrito, de esta inscrito obtiene su id
+            long tutorID = findStudent.findStudentTutor(data.get("tutorCi"));
+            if(tutorID == -1) {
+                tutorID = insertTutor(data);
+            }
+
             String studentID = String.valueOf(insertStudent(data, String.valueOf(parentID), String.valueOf(tutorID)));
             insertContact(data, studentID);
             insertAddress(data, studentID);
             insertMedical(data, studentID);
             insertPayment(data, studentID);
             return true;
-
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
         }
     }
-
 
 }

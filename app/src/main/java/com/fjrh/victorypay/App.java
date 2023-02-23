@@ -20,7 +20,7 @@ import com.fjrh.victorypay.sync.Sync;
 import java.util.HashMap;
 
 public class App extends AppCompatActivity {
-    private Context context;
+    private static Context context;
     private ImageView register;
     private ImageView payment;
     private ImageView tickets;
@@ -30,11 +30,11 @@ public class App extends AppCompatActivity {
     private ImageView prices;
     private ImageView sync;
     private ImageView config;
-    private TextView textOnline;
-    private ImageView icon;
-    private TextView updated;
+    private static TextView textOnline;
+    private static ImageView icon;
+    private static TextView updated;
     private TextView name;
-
+    private static HashMap<String, String> params;
     private HashMap<String, String> user;
 
     @Override
@@ -42,12 +42,15 @@ public class App extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_app);
         context = this;
-
+        params = new Params(context).getParams();
 
         initComponents();
         initEvents();
         fillElements();
 
+        if(user.containsKey("name")){
+            name.setText(user.get("name"));
+        }
 
     }
 
@@ -95,17 +98,14 @@ public class App extends AppCompatActivity {
 
     }
 
-    private void fillElements() {
-        HashMap<String, String> params = new Params(context).getParams();
+    public static void fillElements() {
+        params = new Params(context).getParams();
         if(params.containsKey("mode")){
             String mode = params.get("mode");
             textOnline.setText(mode);
             textOnline.setTextColor(mode.equals("online") ? Color.parseColor("#12CC03") :Color.parseColor("#CD1B0A"));
             icon.setImageResource(mode.equals("online") ? android.R.drawable.presence_online : android.R.drawable.presence_busy);
             updated.setVisibility(mode.equals("online") ? View.INVISIBLE : View.VISIBLE);
-        }
-        if(user.containsKey("name")){
-            name.setText(user.get("name"));
         }
     }
 

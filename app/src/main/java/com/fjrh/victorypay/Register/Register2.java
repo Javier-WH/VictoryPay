@@ -123,14 +123,14 @@ public class Register2 extends AppCompatActivity {
 
     public HashMap<String, String> getData() {
         HashMap<String, String> data = new HashMap<>();
-        data.put("motherName", motherName.getText().toString());
-        data.put("motherCi", motherCi.getText().toString());
+        data.put("motherName", motherName.getText().toString().trim());
+        data.put("motherCi", motherCi.getText().toString().trim());
         data.put("motherNationality", motherXeno ? "E-" : "V-");
-        data.put("fatherName", fatherName.getText().toString());
-        data.put("fatherCi", fatherCi.getText().toString());
+        data.put("fatherName", fatherName.getText().toString().trim());
+        data.put("fatherCi", fatherCi.getText().toString().trim());
         data.put("fatherNationality", fatherXeno ? "E-" : "V-");
-        data.put("motherWork", motherWork.getText().toString());
-        data.put("fatherWork", fatherWork.getText().toString());
+        data.put("motherWork", motherWork.getText().toString().trim());
+        data.put("fatherWork", fatherWork.getText().toString().trim());
         return data;
     }
 
