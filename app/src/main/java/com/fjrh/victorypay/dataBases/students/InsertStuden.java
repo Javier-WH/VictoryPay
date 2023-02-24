@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.fjrh.victorypay.dataBases.DbHelper;
 import com.fjrh.victorypay.dataBases.params.Params;
-import com.fjrh.victorypay.onlineDataBases.students.OnlineInsertStudent;
+
 
 import java.util.HashMap;
 
@@ -140,11 +140,7 @@ public class InsertStuden extends DbHelper {
 
     public boolean insert(HashMap<String, String> data) {
 
-        if(params.containsKey("mode")){
-            if(params.get("mode").equalsIgnoreCase("online")){
-                new OnlineInsertStudent().insetStudent(context, data);
-            }
-        }
+
 
         //si ya está registrada la cédula del estudiante NO inscribe el estudiante
         if(findStudent.isCiRegistered(data.get("studentCi"))){

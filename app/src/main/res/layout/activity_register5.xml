@@ -1090,4 +1090,17 @@
         </LinearLayout>
     </ScrollView>
 
+    <ProgressBar
+        android:id="@+id/progress5"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:indeterminate="true"
+        android:theme="@style/Theme.VictoryPay.datePicker"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/btnNext5"
+        app:layout_constraintStart_toStartOf="@+id/btnBack5"
+        app:layout_constraintTop_toBottomOf="@+id/btnBack5" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

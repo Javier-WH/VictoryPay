@@ -3,17 +3,12 @@ package com.fjrh.victorypay;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Switch;
 import android.widget.Toast;
@@ -32,7 +27,6 @@ import com.android.volley.toolbox.Volley;
 import com.fjrh.victorypay.dataBases.params.Params;
 import com.fjrh.victorypay.dataBases.users.Users;
 import com.fjrh.victorypay.dataBases.prices.Prices;
-import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -100,8 +94,6 @@ public class MainActivity extends AppCompatActivity {
 
         //Snackbar message = Snackbar.make(findViewById(R.id.mainLayout), "esto es una prueba", Snackbar.LENGTH_LONG);
         //message.show();
-
-
 
 
 

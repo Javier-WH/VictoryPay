@@ -53,6 +53,14 @@ public class App extends AppCompatActivity {
         }
 
     }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        this.finish();
+        Intent i = new Intent(context, MainActivity.class);
+        startActivity(i);
+
+    }
 
     private void initComponents() {
         register = findViewById(R.id.imgRegister);

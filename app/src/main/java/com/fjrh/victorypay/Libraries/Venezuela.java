@@ -14,13 +14,17 @@ import java.util.ArrayList;
 public class Venezuela {
     Context context;
     String jsonFileContent;
+    JSONArray jsonArray;
 
     public Venezuela(Context context){
         this.context = context;
 
         try {
             jsonFileContent = ReadJson.readFile(context, "venezuela.json");
+            jsonArray = new JSONArray(jsonFileContent);
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
             e.printStackTrace();
         }
 
@@ -29,8 +33,6 @@ public class Venezuela {
     public ArrayList<String> getEstados() throws  JSONException {
 
         ArrayList<String> estados = new ArrayList<>();
-
-        JSONArray jsonArray = new JSONArray(jsonFileContent);
 
         for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject jsonObject = jsonArray.getJSONObject(i);
@@ -47,7 +49,7 @@ public class Venezuela {
         ArrayList<String> municipios = new ArrayList<>();
         try {
 
-            JSONArray jsonArray = new JSONArray(jsonFileContent);
+
 
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
@@ -72,8 +74,6 @@ public class Venezuela {
     public ArrayList<String> getParroquias(String estado, String municipio) throws JSONException {
         ArrayList<String> parroquias = new ArrayList<>();
         try {
-
-            JSONArray jsonArray = new JSONArray(jsonFileContent);
 
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
@@ -108,7 +108,6 @@ public class Venezuela {
 
         try {
 
-            JSONArray jsonArray = new JSONArray(jsonFileContent);
 
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
