@@ -353,48 +353,55 @@ public class Register5 extends AppCompatActivity {
 
             @Override
             public void onResponse(JSONObject response) {
-                try {
-                    //si existe un congflicto con la cedula
 
-                    if (response.getString("CONFLICT").equalsIgnoreCase("1")) {
-                        // Log.e("Debug", response.getString("CONFLICT") );
-                        String option1 = response.getString("name1") + " " + response.getString("ci1");
-                        String option2 = response.getString("name2") + " " + response.getString("ci2");
+                //revisa si existe un conflicto
+                if (response.has("CONFLICT")) {
 
+                    try {
+                        //si el conflito es con la cedula el codigo es 1
+                        if (response.getString("CONFLICT").equalsIgnoreCase("1")) {
 
-                        ///dialogo
+                            String option1 = response.getString("name1") + "-> código: " + response.getString("code1");
+                            String option2 = response.getString("name2") + "-> código: " + response.getString("code2");
+                            String title = "La cédula "+response.getString("ci1") +" ya está registrada, ¿Cúal de los dos registros debe preservarse?";
 
-                        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                        builder.setTitle("Existe un Conflicto");
-                        builder.setCancelable(false);
-                        builder.setItems(new String[]{option1, option2}, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
+                            /// abre un dialogo para escoger dialogo
+                            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                            builder.setTitle(title);
+                            builder.setCancelable(false);
+                            builder.setItems(new String[]{option1, option2}, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
 
-
-                                try {
-                                    if (which == 0) {
-                                        data.put("force", response.getString("id1"));
-                                    }else if(which == 1){
-                                        data.put("force", response.getString("id2"));
+                                    //añade el id para actualizar al objeto de la petición
+                                    try {
+                                        if (which == 0) {
+                                            data.put("force", response.getString("id1"));
+                                        } else if (which == 1) {
+                                            data.put("force", response.getString("id2"));
+                                        }
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
                                     }
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
+                                    //llama el metodo de petición nuevamente
+                                    insertStudent();
                                 }
+                            });
+                            AlertDialog dialog = builder.create();
+                            dialog.show();
+                        }
+                        //falta un metodo para cuando se repita el código
 
-                                insertStudent();
-                            }
-                        });
-                        AlertDialog dialog = builder.create();
-                        dialog.show();
+
+                    } catch (JSONException e) {
+                         e.printStackTrace();
                     }
-
-
-                } catch (JSONException e) {
+                }else{
+                    //si no hay conflictos muestra un mensaje
                     Toast.makeText(context, "Se ha actualizado la base de Datos Online", Toast.LENGTH_LONG).show();
+
                     ///insertar el registro offline
                     addJSONtoData(response);
-                    //insertOfflineStudent();
-                    // e.printStackTrace();
+                    insertOfflineStudent();
                 }
             }
         }, new Response.ErrorListener() {
