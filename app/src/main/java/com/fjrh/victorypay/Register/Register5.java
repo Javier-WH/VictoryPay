@@ -318,17 +318,17 @@ public class Register5 extends AppCompatActivity {
     }
 //////
 
-    public void insertStudent(){
+    public void insertStudent() {
         params = new Params(context).getParams();
         bar.setVisibility(View.VISIBLE);
-        if(params.get("mode").equalsIgnoreCase("offline")){
+        if (params.get("mode").equalsIgnoreCase("offline")) {
             insertOfflineStudent();
-        }else{
+        } else {
             insetOnlineStudent();
         }
     }
 
-    public void insertOfflineStudent(){
+    public void insertOfflineStudent() {
         InsertStuden is = new InsertStuden(context);
         bar.setVisibility(View.INVISIBLE);
         if (is.insert(data)) {
@@ -357,36 +357,44 @@ public class Register5 extends AppCompatActivity {
                     //si existe un congflicto con la cedula
 
                     if (response.getString("CONFLICT").equalsIgnoreCase("1")) {
-                       // Log.e("Debug", response.getString("CONFLICT") );
+                        // Log.e("Debug", response.getString("CONFLICT") );
                         String option1 = response.getString("name1") + " " + response.getString("ci1");
                         String option2 = response.getString("name2") + " " + response.getString("ci2");
-                        //String Problem = response.getString("problem");
-                        // ConflictMessage.show(context, new String[]{option1, option2});
+
 
                         ///dialogo
 
                         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-
                         builder.setTitle("Existe un Conflicto");
                         builder.setCancelable(false);
-
                         builder.setItems(new String[]{option1, option2}, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
 
-                                addJSONtoData(response);
-                                data.put("force", String.valueOf(which + 1));///escoge la opción a reenplazar
+
+                                try {
+                                    if (which == 0) {
+                                        data.put("force", response.getString("id1"));
+                                    }else if(which == 1){
+                                        data.put("force", response.getString("id2"));
+                                    }
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+
                                 insertStudent();
                             }
                         });
                         AlertDialog dialog = builder.create();
                         dialog.show();
                     }
+
+
                 } catch (JSONException e) {
                     Toast.makeText(context, "Se ha actualizado la base de Datos Online", Toast.LENGTH_LONG).show();
                     ///insertar el registro offline
                     addJSONtoData(response);
-                   //insertOfflineStudent();
-                   // e.printStackTrace();
+                    //insertOfflineStudent();
+                    // e.printStackTrace();
                 }
             }
         }, new Response.ErrorListener() {
@@ -425,7 +433,7 @@ public class Register5 extends AppCompatActivity {
 
     }
 
-    public void addJSONtoData(JSONObject response){
+    public void addJSONtoData(JSONObject response) {
         data.clear();
         Iterator<String> keys = response.keys();
         try {
@@ -434,7 +442,7 @@ public class Register5 extends AppCompatActivity {
                 String value = response.getString(key);
                 data.put(key, value);
             }
-        }catch (JSONException e){
+        } catch (JSONException e) {
             e.printStackTrace();
         }
 
