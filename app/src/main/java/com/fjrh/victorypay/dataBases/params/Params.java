@@ -36,7 +36,7 @@ public class Params extends DbHelper {
         return params;
     }
 
-    public long insertPatam(String paramName, String paramValue) throws SQLException {
+    public long insertParam(String paramName, String paramValue) throws SQLException {
 
         ContentValues values = new ContentValues();
         values.put("param", paramName);

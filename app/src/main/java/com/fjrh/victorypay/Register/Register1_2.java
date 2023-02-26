@@ -14,6 +14,7 @@ import android.widget.Spinner;
 
 import com.fjrh.victorypay.Libraries.ReadJson;
 import com.fjrh.victorypay.Libraries.Venezuela;
+import com.fjrh.victorypay.MainActivity;
 import com.fjrh.victorypay.R;
 
 import org.json.JSONArray;
@@ -53,7 +54,7 @@ public class Register1_2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register1_2);
         context = this;
-        venezuela = new Venezuela(context);
+        venezuela = MainActivity.getVenezuela();
         stateAdapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item, getResources().getStringArray(R.array.estados));
         fillerAdapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item, getResources().getStringArray(R.array.extranjero));
         initComponents();

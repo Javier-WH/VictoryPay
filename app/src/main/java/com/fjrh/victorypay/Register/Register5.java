@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -410,7 +409,7 @@ public class Register5 extends AppCompatActivity {
                 String message = "Ocurrió un error";
 
                 if (error instanceof TimeoutError || error instanceof NoConnectionError) {
-                    new Params(context).insertPatam("mode", "offline");
+                    new Params(context).insertParam("mode", "offline");
                     App.fillElements();
                     message = "Se perdió la conexión con el servidor";
 

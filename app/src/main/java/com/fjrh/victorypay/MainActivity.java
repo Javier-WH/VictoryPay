@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,6 +25,9 @@ import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.fjrh.victorypay.Config.ConfigFetchingAddress;
+import com.fjrh.victorypay.Libraries.FetchManager;
+import com.fjrh.victorypay.Libraries.Venezuela;
 import com.fjrh.victorypay.dataBases.params.Params;
 import com.fjrh.victorypay.dataBases.users.Users;
 import com.fjrh.victorypay.dataBases.prices.Prices;
@@ -43,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
     private Params params;
     private ProgressBar progressBar;
     private String URL = "http://192.168.1.105:4000/login";
+    private static Venezuela venezuela;
+    FetchManager fetchManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +63,10 @@ public class MainActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBarrLogin);
         localUser = new Users(context);
         params = new Params(context);
+        fetchManager = new FetchManager(context);
+        fetchManager.checkFetching();
+
+        URL = fetchManager.getFetchinAddress() + "/login";
 
         checkPrices();
         fillInputs();
@@ -96,62 +106,69 @@ public class MainActivity extends AppCompatActivity {
         //message.show();
 
 
-
-
-
-
     }
 
-
-
+    public static Venezuela getVenezuela() {
+        return venezuela;
+    }
 
 
     class btnAcceptEvent implements View.OnClickListener {
         @Override
         public void onClick(View v) {
-            loading(true);
-            validateUser(user.getText().toString().trim(), password.getText().toString().trim());
+            if (user.getText().toString().equals("CONFIG")) {
+                goToFetchingConfig();
+            } else {
+                loading(true);
+                validateUser(user.getText().toString().trim(), password.getText().toString().trim());
+            }
 
         }
     }
 
-    public void fillInputs(){
+    public void goToFetchingConfig() {
+        Intent i = new Intent(context, ConfigFetchingAddress.class);
+        startActivity(i);
+    }
+
+
+    public void fillInputs() {
         HashMap<String, String> localUserData = localUser.getUsers();
         HashMap<String, String> params = this.params.getParams();
 
-        if(localUserData.containsKey("user")){
+        if (localUserData.containsKey("user")) {
             user.setText(localUserData.get("user"));
         }
-        if(localUserData.containsKey("password")){
+        if (localUserData.containsKey("password")) {
             password.setText(localUserData.get("password"));
         }
         ////
-        if(params.containsKey("remember")){
+        if (params.containsKey("remember")) {
             rememberMe.setChecked(Boolean.parseBoolean(params.get("remember")));
         }
 
 
     }
 
-    private void loading(boolean isLoading){
-            btnAcceptar.setText(isLoading ? "Espere..." : "INGRESAR");
-            btnAcceptar.setEnabled(!isLoading);
-            user.setEnabled(!isLoading);
-            password.setEnabled(!isLoading);
-            progressBar.setVisibility(isLoading ? View.VISIBLE : View.INVISIBLE);
+    private void loading(boolean isLoading) {
+        btnAcceptar.setText(isLoading ? "Espere..." : "INGRESAR");
+        btnAcceptar.setEnabled(!isLoading);
+        user.setEnabled(!isLoading);
+        password.setEnabled(!isLoading);
+        progressBar.setVisibility(isLoading ? View.VISIBLE : View.INVISIBLE);
+
     }
 
 
-
-    private void checkPrices(){
+    private void checkPrices() {
         //agrega los precios si no existen ***offline****
         Prices prices = new Prices(context);
 
-        HashMap<String, String > pricesList = prices.getPrices();
+        HashMap<String, String> pricesList = prices.getPrices();
 
         int pricesCount = pricesList.size();
 
-        if(pricesCount <=0){
+        if (pricesCount <= 0) {
             prices.insertItem("Inscripción", "100");
             prices.insertItem("Mensualidad", "50");
         }
@@ -159,9 +176,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
     /////////////////////
-
 
 
     public void validateUser(String user, String password) {
@@ -190,16 +205,17 @@ public class MainActivity extends AppCompatActivity {
                         userData.put("ci", response.getString("ci"));
 
 
-                        if(rememberMe.isChecked()) {
+                        if (rememberMe.isChecked()) {
                             localUser.insertUsers(userData);
-                            params.insertPatam("remember", "true");
-                        }else{
+                            params.insertParam("remember", "true");
+                        } else {
                             localUser.deleteUsers(userData);
-                            params.insertPatam("remember", "false");
+                            params.insertParam("remember", "false");
                         }
 
                         Intent i = new Intent(context, App.class);
-                        params.insertPatam("mode", "online");
+                        params.insertParam("mode", "online");
+                        venezuela = new Venezuela(context);
                         loading(false);
                         startActivity(i);
 
@@ -219,18 +235,19 @@ public class MainActivity extends AppCompatActivity {
                     if (error instanceof TimeoutError || error instanceof NoConnectionError) {
 
                         HashMap<String, String> localUserData = localUser.logUser(user, password);
-                        if(localUserData.size() >0){
-                            if(!rememberMe.isChecked()) {
+                        if (localUserData.size() > 0) {
+                            if (!rememberMe.isChecked()) {
                                 localUser.deleteUsers(localUserData);
 
-                                params.insertPatam("remember", "false");
+                                params.insertParam("remember", "false");
                             }
-                            params.insertPatam("mode", "offline");
+                            params.insertParam("mode", "offline");
                             message = "No hay respuesta del servidor, iniciando en modo offline";
                             Intent i = new Intent(context, App.class);
-                            loading(false);
+                            // venezuela = new Venezuela(context);
+                            // loading(false);
                             startActivity(i);
-                        }else{
+                        } else {
                             message = "El servidor no responde, y el usuario no está validado o los datos no son correctos";
                         }
 
@@ -240,7 +257,7 @@ public class MainActivity extends AppCompatActivity {
 
                         if (error.networkResponse.statusCode == 412) {
                             message = "Datos incompletos";
-                        }else if (error.networkResponse.statusCode == 404) {
+                        } else if (error.networkResponse.statusCode == 404) {
                             message = "El usuario no está registrado";
                         }
 
@@ -251,18 +268,15 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     Toast.makeText(context, message, Toast.LENGTH_LONG).show();
+                    venezuela = new Venezuela(context);//carga el json con todos los estaods, provincias, parroquias y ciudades de venezuela
                     loading(false);
                     //error.printStackTrace();
                 }
             });
-
             Volley.newRequestQueue(context).add(request);
-
         } catch (JSONException ex) {
             ex.printStackTrace();
         }
-
     }
-
 }//
 
