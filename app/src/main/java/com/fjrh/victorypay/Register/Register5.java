@@ -25,6 +25,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.fjrh.victorypay.App;
+import com.fjrh.victorypay.Libraries.FetchManager;
 import com.fjrh.victorypay.R;
 import com.fjrh.victorypay.dataBases.params.Params;
 import com.fjrh.victorypay.dataBases.prices.Prices;
@@ -85,6 +86,8 @@ public class Register5 extends AppCompatActivity {
     private ProgressBar bar;
     private HashMap<String, String> params;
     private HashMap<String, String> data;
+    private FetchManager fetchManager;
+    private String URL;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -143,6 +146,8 @@ public class Register5 extends AppCompatActivity {
         code = findViewById(R.id.code5);
         params = new Params(context).getParams();
         bar = findViewById(R.id.progress5);
+        fetchManager = new FetchManager(context);
+        URL = fetchManager.getFetchinAddress();
     }
 
     private void initEvents() {
@@ -341,7 +346,7 @@ public class Register5 extends AppCompatActivity {
 
 
     public void insetOnlineStudent() {
-        String URL = "http://192.168.1.105:4000/addStudent";
+        String URL = this.URL+"/addStudent";
 
         // Make new json object and put params in it
         JSONObject jsonParams = new JSONObject(data);
