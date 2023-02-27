@@ -74,4 +74,27 @@ public class FindStudent extends DbHelper {
 
         return -1;
     }
+
+    ////
+
+    public Cursor searchStudentLikeCi(String ci){
+        String query = "SELECT * FROM students WHERE ci LIKE '%" + ci + "%'";
+        Cursor cursor = db.rawQuery(query, null);
+        return cursor;
+    }
+
+    public Cursor searchStudentLikeCode(String code){
+        String query = "SELECT * FROM students WHERE code LIKE '%" + code + "%'";
+        Cursor cursor = db.rawQuery(query, null);
+        return cursor;
+    }
+
+    public Cursor searchStudentLikeName(String name, String lastName){
+        String query = "SELECT * FROM students WHERE name LIKE '%" + name + "%' OR lastName LIKE '%" + lastName + "%'";
+        Cursor cursor = db.rawQuery(query, null);
+        return cursor;
+    }
+
+
+
 }
