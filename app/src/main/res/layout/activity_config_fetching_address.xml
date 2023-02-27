@@ -4,105 +4,294 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:contextClickable="false"
+    android:textAlignment="textStart"
     tools:context=".Config.ConfigFetchingAddress">
 
-    <TextView
-        android:id="@+id/textView45"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Protocolo"
-        app:layout_constraintBottom_toTopOf="@+id/protocol_FM"
-        app:layout_constraintStart_toStartOf="@+id/protocol_FM" />
-
-    <TextView
-        android:id="@+id/textView49"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="IP"
-        app:layout_constraintBottom_toTopOf="@+id/IP_FM"
-        app:layout_constraintStart_toStartOf="@+id/IP_FM" />
-
-    <TextView
-        android:id="@+id/textView50"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Puerto"
-        app:layout_constraintBottom_toTopOf="@+id/port_FM"
-        app:layout_constraintStart_toStartOf="@+id/port_FM" />
-
-    <EditText
-        android:id="@+id/protocol_FM"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="20dp"
-        android:ems="10"
-        android:hint="http"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
+    <ImageView
+        android:id="@+id/backButton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@color/purple_500"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_media_rew" />
+
+    <ImageView
+        android:id="@+id/configSearch"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@color/purple_500"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_manage" />
+
+    <TextView
+        android:id="@+id/textView39"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:background="@color/purple_500"
+        android:gravity="center_vertical"
+        android:padding="5dp"
+        android:paddingLeft="10dp"
+        android:text="Dirección del servidor"
+        android:textAlignment="inherit"
+        android:textColor="@color/ic_launcher_background"
+        android:textIsSelectable="false"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/configSearch"
+        app:layout_constraintStart_toEndOf="@+id/backButton"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/IP_FM"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/configLayout"
+        android:layout_width="353dp"
+        android:layout_height="346dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
-        android:ems="10"
-        android:hint="192.168.1.105"
-        android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/protocol_FM" />
+        app:layout_constraintTop_toBottomOf="@+id/textView39">
 
-    <EditText
-        android:id="@+id/port_FM"
+        <ProgressBar
+            android:id="@+id/fetcherProgressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:theme="@style/Theme.VictoryPay.datePicker"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/testMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textColor="@color/purple_200"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fetcherProgressBar" />
+
+        <EditText
+            android:id="@+id/protocol_FM"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:ems="10"
+            android:hint="Protocolo"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/testMessage" />
+
+        <TextView
+            android:id="@+id/textView45"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Protocolo"
+            app:layout_constraintBottom_toTopOf="@+id/protocol_FM"
+            app:layout_constraintStart_toStartOf="@+id/protocol_FM" />
+
+        <EditText
+            android:id="@+id/port_FM"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:ems="10"
+            android:hint="Puerto"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/IP_FM" />
+
+        <Button
+            android:id="@+id/accept_FM"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:text="Aceptar"
+            app:icon="@android:drawable/ic_menu_save"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/space"
+            app:layout_constraintTop_toTopOf="@+id/space" />
+
+        <TextView
+            android:id="@+id/textView49"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="IP"
+            app:layout_constraintBottom_toTopOf="@+id/IP_FM"
+            app:layout_constraintStart_toStartOf="@+id/IP_FM" />
+
+        <Button
+            android:id="@+id/test_FM"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:text="Buscar"
+            app:icon="@android:drawable/ic_dialog_dialer"
+            app:layout_constraintEnd_toStartOf="@+id/space"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/space" />
+
+        <Space
+            android:id="@+id/space"
+            android:layout_width="33dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/port_FM" />
+
+        <EditText
+            android:id="@+id/IP_FM"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:ems="10"
+            android:hint="Dirección IP"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/protocol_FM" />
+
+        <TextView
+            android:id="@+id/textView50"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Puerto"
+            app:layout_constraintBottom_toTopOf="@+id/port_FM"
+            app:layout_constraintStart_toStartOf="@+id/port_FM" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/confSearhLayout"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="249dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
-        android:ems="10"
-        android:hint="4000"
-        android:inputType="textPersonName"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/IP_FM" />
+        app:layout_constraintTop_toBottomOf="@+id/textView39">
 
-    <Space
-        android:id="@+id/space"
-        android:layout_width="33dp"
-        android:layout_height="26dp"
-        android:layout_marginTop="30dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/port_FM" />
+        <EditText
+            android:id="@+id/redSearch"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Red"
+            android:inputType="number"
+            android:text="1"
+            app:layout_constraintEnd_toStartOf="@+id/space2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/space2" />
 
-    <Button
-        android:id="@+id/test_FM"
-        android:layout_width="160dp"
-        android:layout_height="wrap_content"
-        android:text="Probar"
-        app:icon="@android:drawable/ic_dialog_dialer"
-        app:layout_constraintBottom_toBottomOf="@+id/space"
-        app:layout_constraintEnd_toStartOf="@+id/space"
-        app:layout_constraintStart_toStartOf="@+id/port_FM"
-        app:layout_constraintTop_toTopOf="@+id/space" />
+        <EditText
+            android:id="@+id/portSearch"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Puerto"
+            android:inputType="number"
+            android:text="4000"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/space2"
+            app:layout_constraintTop_toBottomOf="@+id/space2" />
 
-    <Button
-        android:id="@+id/accept_FM"
-        android:layout_width="160dp"
-        android:layout_height="wrap_content"
-        android:text="Aceptar"
-        app:icon="@android:drawable/ic_menu_save"
-        app:layout_constraintBottom_toBottomOf="@+id/space"
-        app:layout_constraintEnd_toEndOf="@+id/port_FM"
-        app:layout_constraintStart_toEndOf="@+id/space"
-        app:layout_constraintTop_toTopOf="@+id/space" />
+        <Space
+            android:id="@+id/space2"
+            android:layout_width="14dp"
+            android:layout_height="27dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView83" />
+
+        <EditText
+            android:id="@+id/minSearch"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:ems="10"
+            android:hint="minimo"
+            android:inputType="number"
+            android:text="1"
+            app:layout_constraintEnd_toEndOf="@+id/redSearch"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/redSearch" />
+
+        <EditText
+            android:id="@+id/maxSearch"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:ems="10"
+            android:hint="maximo"
+            android:inputType="number"
+            android:text="255"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/portSearch"
+            app:layout_constraintTop_toBottomOf="@+id/portSearch" />
+
+        <TextView
+            android:id="@+id/textView43"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Red"
+            app:layout_constraintBottom_toTopOf="@+id/redSearch"
+            app:layout_constraintStart_toStartOf="@+id/redSearch" />
+
+        <TextView
+            android:id="@+id/textView53"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="puerto"
+            app:layout_constraintBottom_toTopOf="@+id/portSearch"
+            app:layout_constraintStart_toStartOf="@+id/portSearch" />
+
+        <TextView
+            android:id="@+id/textView81"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Minimo"
+            app:layout_constraintBottom_toTopOf="@+id/minSearch"
+            app:layout_constraintStart_toStartOf="@+id/minSearch" />
+
+        <TextView
+            android:id="@+id/textView82"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Maximo"
+            app:layout_constraintBottom_toTopOf="@+id/maxSearch"
+            app:layout_constraintStart_toStartOf="@+id/maxSearch" />
+
+        <TextView
+            android:id="@+id/textView83"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Configuracion de busqueda"
+            android:textColor="@color/purple_200"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btnSetSearch"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Acceptar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/minSearch" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
