@@ -47,71 +47,73 @@
             android:orientation="vertical" />
     </ScrollView>
 
-    <EditText
-        android:id="@+id/address1_3"
+    <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="10dp"
-        android:ems="10"
-        android:gravity="start|top"
-        android:hint="Dirección"
-        android:inputType="textMultiLine"
-        android:maxLength="200"
-        android:maxLines="6"
-        android:textSize="16sp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView5" />
+        app:layout_constraintTop_toBottomOf="@+id/scrollView5"
+        app:layout_constraintVertical_bias="0.0">
 
-    <TextView
-        android:id="@+id/textView60"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Dirección"
-        app:layout_constraintBottom_toTopOf="@+id/address1_3"
-        app:layout_constraintStart_toStartOf="@+id/address1_3" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/procedencia1_3"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="35dp"
-        android:layout_marginEnd="10dp"
-        android:ems="10"
-        android:hint="Colegio de procedencia"
-        android:inputType="textPersonName"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/address1_3" />
+            <TextView
+                android:id="@+id/textView60"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dirección" />
 
-    <TextView
-        android:id="@+id/textView74"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Colegio de procedencia"
-        app:layout_constraintBottom_toTopOf="@+id/procedencia1_3"
-        app:layout_constraintStart_toStartOf="@+id/procedencia1_3" />
+            <EditText
+                android:id="@+id/address1_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:gravity="start|top"
+                android:hint="Dirección"
+                android:inputType="textMultiLine"
+                android:maxLength="200"
+                android:maxLines="6"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/textView74"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Colegio de procedencia" />
+
+            <EditText
+                android:id="@+id/procedencia1_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Colegio de procedencia"
+                android:inputType="textPersonName"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+    </ScrollView>
 
     <ScrollView
         android:id="@+id/suggestions1_3"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="45dp"
+        android:background="@color/purple_700"
+        android:maxHeight="100dp"
+        android:outlineProvider="bounds"
+        app:layout_constraintBottom_toBottomOf="@+id/scrollView2"
+        app:layout_constraintEnd_toEndOf="@+id/scrollView2"
         app:layout_constraintHeight_max="100dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:background="@color/purple_10"
-        android:outlineProvider="paddedBounds"
-        app:layout_constraintBottom_toTopOf="@+id/procedencia1_3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView5"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintStart_toStartOf="@+id/scrollView2">
 
         <LinearLayout
             android:id="@+id/sugestionLayout1_3"

@@ -46,129 +46,126 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/scrollView5" />
 
-    <TextView
-        android:id="@+id/textView79"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Monto
-"
-        app:layout_constraintBottom_toTopOf="@+id/mont4_1"
-        app:layout_constraintStart_toStartOf="@+id/mont4_1" />
-
-    <EditText
-        android:id="@+id/mont4_1"
-        android:layout_width="125dp"
-        android:layout_height="wrap_content"
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="50dp"
-        android:layout_marginEnd="5dp"
-        android:ems="10"
-        android:inputType="number"
-        app:layout_constraintEnd_toStartOf="@+id/scrollView5"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView5" />
-
-    <TextView
-        android:id="@+id/textView80"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="USD"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/mont4_1"
-        app:layout_constraintStart_toEndOf="@+id/mont4_1"
-        app:layout_constraintTop_toTopOf="@+id/mont4_1" />
-
-    <RadioGroup
-        android:id="@+id/radioGroup2"
-        android:layout_width="0dp"
-        android:layout_height="46dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
-        android:orientation="horizontal"
+        android:layout_marginBottom="10dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mont4_1">
+        app:layout_constraintTop_toBottomOf="@+id/scrollView5">
 
-        <RadioButton
-            android:id="@+id/bank4_1"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/mont4_1"
+                android:layout_width="125dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:ems="10"
+                android:inputType="number"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView80"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="USD"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/mont4_1"
+                app:layout_constraintStart_toEndOf="@+id/mont4_1"
+                app:layout_constraintTop_toTopOf="@+id/mont4_1" />
+
+            <TextView
+                android:id="@+id/textView79"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Monto
+        "
+                app:layout_constraintBottom_toTopOf="@+id/mont4_1"
+                app:layout_constraintStart_toStartOf="@+id/mont4_1" />
+
+            <TextView
+                android:id="@+id/price4_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="6000 USD"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/mont4_1"
+                app:layout_constraintStart_toEndOf="@+id/textView80"
+                app:layout_constraintTop_toTopOf="@+id/mont4_1" />
+
+            <TextView
+                android:id="@+id/textView31"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Precio"
+                app:layout_constraintBottom_toTopOf="@+id/price4_1"
+                app:layout_constraintStart_toStartOf="@+id/price4_1" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <RadioGroup
+            android:id="@+id/radioGroup2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/bank4_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="true"
+                android:text="Deposito" />
+
+            <RadioButton
+                android:id="@+id/cash4_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="false"
+                android:text="Efectivo" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/titleA4_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:checked="true"
-            android:text="Deposito" />
+            android:layout_marginTop="10dp"
+            android:text="Numero de la operación" />
 
-        <RadioButton
-            android:id="@+id/cash4_1"
+        <EditText
+            android:id="@+id/backAccount4_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Numero de Operación"
+            android:inputType="number" />
+
+        <TextView
+            android:id="@+id/titleB4_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:checked="false"
-            android:text="Efectivo" />
-    </RadioGroup>
+            android:layout_marginTop="10dp"
+            android:text="Fecha del depósito" />
 
-    <EditText
-        android:id="@+id/backAccount4_1"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="10dp"
-        android:ems="10"
-        android:hint="Numero de Operación"
-        android:inputType="number"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup2" />
-
-    <TextView
-        android:id="@+id/titleA4_1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Numero de la operación"
-        app:layout_constraintBottom_toTopOf="@+id/backAccount4_1"
-        app:layout_constraintStart_toStartOf="@+id/backAccount4_1" />
-
-    <TextView
-        android:id="@+id/titleB4_1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Fecha del depósito"
-        app:layout_constraintBottom_toTopOf="@+id/date1_4"
-        app:layout_constraintStart_toStartOf="@+id/date1_4" />
-
-    <TextView
-        android:id="@+id/date1_4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
-        android:text="Selecciona una fecha"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/backAccount4_1" />
-
-    <TextView
-        android:id="@+id/textView31"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Precio"
-        app:layout_constraintBottom_toTopOf="@+id/price4_1"
-        app:layout_constraintStart_toStartOf="@+id/price4_1" />
-
-    <TextView
-        android:id="@+id/price4_1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
-        android:text="6000 USD"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/mont4_1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/scrollView5"
-        app:layout_constraintTop_toTopOf="@+id/mont4_1" />
+        <TextView
+            android:id="@+id/date1_4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Selecciona una fecha"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -47,167 +47,128 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/scrollView5" />
 
-    <TextView
-        android:id="@+id/textView21"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Pais"
-        app:layout_constraintBottom_toTopOf="@+id/country1_2"
-        app:layout_constraintStart_toStartOf="@+id/country1_2" />
-
-    <Spinner
-        android:id="@+id/country1_2"
+    <ScrollView
         android:layout_width="0dp"
-        android:layout_height="25dp"
+        android:layout_height="0dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="10dp"
-        android:entries="@array/countries"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView65" />
+        app:layout_constraintTop_toBottomOf="@+id/scrollView5">
 
-    <Spinner
-        android:id="@+id/live_estado1_2"
-        android:layout_width="0dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="10dp"
-        android:entries="@array/estados"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView67" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <Spinner
-        android:id="@+id/live_municipio1_2"
-        android:layout_width="0dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/live_estado1_2" />
+            <TextView
+                android:id="@+id/textView65"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="Lugar de nacimiento"
+                android:textColor="@color/purple_500"
+                android:textSize="16sp" />
 
-    <Spinner
-        android:id="@+id/birth_estado1_2"
-        android:layout_width="0dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="10dp"
-        android:entries="@array/estados"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/country1_2" />
+            <TextView
+                android:id="@+id/textView21"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:text="Pais" />
 
-    <Spinner
-        android:id="@+id/birth_parroquia1_2"
-        android:layout_width="0dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/birth_municipio1_2" />
+            <Spinner
+                android:id="@+id/country1_2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:entries="@array/countries" />
 
-    <Spinner
-        android:id="@+id/birth_municipio1_2"
-        android:layout_width="0dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/birth_estado1_2" />
+            <TextView
+                android:id="@+id/textView40"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:text="Estado" />
 
-    <Spinner
-        android:id="@+id/live_parroquia1_2"
-        android:layout_width="0dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/live_municipio1_2" />
+            <Spinner
+                android:id="@+id/birth_estado1_2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:entries="@array/estados" />
 
-    <TextView
-        android:id="@+id/textView40"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Estado"
-        app:layout_constraintBottom_toTopOf="@+id/birth_estado1_2"
-        app:layout_constraintStart_toStartOf="@+id/birth_estado1_2" />
+            <TextView
+                android:id="@+id/textView55"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:text="Municipio" />
 
-    <TextView
-        android:id="@+id/textView68"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Estado"
-        app:layout_constraintBottom_toTopOf="@+id/live_estado1_2"
-        app:layout_constraintStart_toStartOf="@+id/live_estado1_2" />
+            <Spinner
+                android:id="@+id/birth_municipio1_2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
-    <TextView
-        android:id="@+id/textView55"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Municipio"
-        app:layout_constraintBottom_toTopOf="@+id/birth_municipio1_2"
-        app:layout_constraintStart_toStartOf="@+id/birth_municipio1_2" />
+            <TextView
+                android:id="@+id/textView57"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Parroquia" />
 
-    <TextView
-        android:id="@+id/textView72"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Municipio"
-        app:layout_constraintBottom_toTopOf="@+id/live_municipio1_2"
-        app:layout_constraintStart_toStartOf="@+id/live_municipio1_2" />
+            <Spinner
+                android:id="@+id/birth_parroquia1_2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
-    <TextView
-        android:id="@+id/textView57"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Parroquia"
-        app:layout_constraintBottom_toTopOf="@+id/birth_parroquia1_2"
-        app:layout_constraintStart_toStartOf="@+id/birth_parroquia1_2" />
+            <TextView
+                android:id="@+id/textView67"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="Lugar de recidencia"
+                android:textColor="@color/purple_500"
+                android:textSize="16sp" />
 
-    <TextView
-        android:id="@+id/textView73"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Parroquia"
-        app:layout_constraintBottom_toTopOf="@+id/live_parroquia1_2"
-        app:layout_constraintStart_toStartOf="@+id/live_parroquia1_2" />
+            <TextView
+                android:id="@+id/textView68"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Estado" />
 
-    <TextView
-        android:id="@+id/textView65"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="Lugar de nacimiento"
-        android:textColor="@color/purple_500"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView5" />
+            <Spinner
+                android:id="@+id/live_estado1_2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:entries="@array/estados" />
 
-    <TextView
-        android:id="@+id/textView67"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Lugar de recidencia"
-        android:textColor="@color/purple_500"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/birth_parroquia1_2" />
+            <TextView
+                android:id="@+id/textView72"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Municipio" />
+
+            <Spinner
+                android:id="@+id/live_municipio1_2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:id="@+id/textView73"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Parroquia" />
+
+            <Spinner
+                android:id="@+id/live_parroquia1_2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

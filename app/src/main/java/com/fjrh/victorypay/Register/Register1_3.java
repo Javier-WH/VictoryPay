@@ -151,7 +151,7 @@ public class Register1_3 extends AppCompatActivity {
         TextView suggest = new TextView(context);
         suggest.setText(text);
         suggest.setTextSize(15f);
-        suggest.setTextColor(getResources().getColor(R.color.black));
+        suggest.setTextColor(getResources().getColor(R.color.white));
         suggest.setPadding(0, 10, 0, 0);
         //suggest.setTypeface(suggest.getTypeface(), Typeface.BOLD_ITALIC);
 

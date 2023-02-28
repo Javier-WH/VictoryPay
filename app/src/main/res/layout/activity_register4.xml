@@ -48,94 +48,95 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/scrollView5" />
 
-    <TextView
-        android:id="@+id/textView25"
-        android:layout_width="190dp"
-        android:layout_height="wrap_content"
-        android:text="Teléfono de contacto"
-        app:layout_constraintBottom_toTopOf="@+id/TextPhone1"
-        app:layout_constraintStart_toStartOf="@+id/TextPhone1" />
-
-    <TextView
-        android:id="@+id/textView26"
-        android:layout_width="190dp"
-        android:layout_height="wrap_content"
-        android:text="Teléfono opcional"
-        app:layout_constraintBottom_toTopOf="@+id/TextPhone2"
-        app:layout_constraintStart_toStartOf="@+id/TextPhone2" />
-
-    <TextView
-        android:id="@+id/textView27"
-        android:layout_width="355dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="1dp"
-        android:text="E-mail"
-        app:layout_constraintBottom_toTopOf="@+id/TextEmailAddress"
-        app:layout_constraintStart_toStartOf="@+id/TextEmailAddress" />
-
-    <EditText
-        android:id="@+id/TextPhone1"
+    <LinearLayout
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="10dp"
-        android:ems="10"
-        android:hint="Numero de teléfono"
-        android:inputType="phone"
+        android:layout_marginBottom="10dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView5" />
+        app:layout_constraintTop_toBottomOf="@+id/scrollView5">
 
-    <EditText
-        android:id="@+id/TextPhone2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="120dp"
-        android:layout_marginEnd="10dp"
-        android:ems="10"
-        android:hint="Numero de teléfono"
-        android:inputType="phone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView5" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-    <EditText
-        android:id="@+id/TextEmailAddress"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="190dp"
-        android:layout_marginEnd="10dp"
-        android:ems="10"
-        android:hint="Dirrección de correo electrónico"
-        android:inputType="textEmailAddress"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView5" />
+            <TextView
+                android:id="@+id/textView25"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Teléfono de contacto" />
 
-    <Switch
-        android:id="@+id/chkWhatsaap1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:checked="false"
-        android:layoutDirection="rtl"
-        android:pointerIcon="context_menu"
-        android:text="Whatsaap"
-        android:textColor="@color/teal_700"
-        app:layout_constraintBottom_toTopOf="@+id/TextPhone1"
-        app:layout_constraintStart_toStartOf="@+id/TextPhone1" />
+            <Switch
+                android:id="@+id/chkWhatsaap1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:checked="false"
+                android:pointerIcon="context_menu"
+                android:text="Whatsaap"
+                android:textColor="@color/teal_700" />
+        </LinearLayout>
 
-    <Switch
-        android:id="@+id/chkWhatsaap2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layoutDirection="rtl"
-        android:pointerIcon="context_menu"
-        android:text="Whatsaap"
-        android:textColor="@color/teal_700"
-        app:layout_constraintBottom_toTopOf="@+id/TextPhone2"
-        app:layout_constraintStart_toStartOf="@+id/TextPhone2" />
+        <EditText
+            android:id="@+id/TextPhone1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Numero de teléfono"
+            android:inputType="phone" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView26"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Teléfono opcional" />
+
+            <Switch
+                android:id="@+id/chkWhatsaap2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:pointerIcon="context_menu"
+                android:text="Whatsaap"
+                android:textColor="@color/teal_700" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/TextPhone2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Numero de teléfono"
+            android:inputType="phone" />
+
+        <TextView
+            android:id="@+id/textView27"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="E-mail" />
+
+        <EditText
+            android:id="@+id/TextEmailAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Dirrección de correo electrónico"
+            android:inputType="textEmailAddress" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,9 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -26,6 +30,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.fjrh.victorypay.Config.ConfigFetchingAddress;
+import com.fjrh.victorypay.Libraries.AutoCompleteOption;
 import com.fjrh.victorypay.Libraries.FetchManager;
 import com.fjrh.victorypay.Libraries.Venezuela;
 import com.fjrh.victorypay.dataBases.params.Params;
@@ -35,6 +40,7 @@ import com.fjrh.victorypay.dataBases.prices.Prices;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
@@ -104,6 +110,12 @@ public class MainActivity extends AppCompatActivity {
 
         //Snackbar message = Snackbar.make(findViewById(R.id.mainLayout), "esto es una prueba", Snackbar.LENGTH_LONG);
         //message.show();
+
+
+        //Creating the instance of ArrayAdapter containing list of fruit names
+
+
+
 
 
     }

@@ -47,131 +47,125 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/scrollView5" />
 
-    <Switch
-        android:id="@+id/diabetes1_4"
+    <LinearLayout
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="50dp"
-        android:layout_marginEnd="34dp"
-        android:text="Díabetes"
-        app:layout_constraintEnd_toStartOf="@+id/scrollView5"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView5" />
-
-    <Switch
-        android:id="@+id/dislexia1_4"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="34dp"
-        android:text="Dislexia"
-        app:layout_constraintEnd_toStartOf="@+id/scrollView5"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/diabetes1_4" />
-
-    <Switch
-        android:id="@+id/epilepsia1_4"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="34dp"
-        android:text="Epilepsia"
-        app:layout_constraintEnd_toStartOf="@+id/scrollView5"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dislexia1_4" />
-
-    <Switch
-        android:id="@+id/alergia1_4"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="34dp"
-        android:text="Alergia"
-        app:layout_constraintEnd_toStartOf="@+id/scrollView5"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/epilepsia1_4" />
-
-    <Switch
-        android:id="@+id/hipertension1_4"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
         android:layout_marginEnd="10dp"
-        android:text="Hipertensión"
-        app:layout_constraintBottom_toBottomOf="@+id/diabetes1_4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/scrollView5"
-        app:layout_constraintTop_toTopOf="@+id/diabetes1_4" />
-
-    <Switch
-        android:id="@+id/daltonismo1_4"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
-        android:text="Daltonismo"
-        app:layout_constraintBottom_toBottomOf="@+id/dislexia1_4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/scrollView5"
-        app:layout_constraintTop_toTopOf="@+id/dislexia1_4"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <Switch
-        android:id="@+id/asma1_4"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
-        android:text="Asma"
-        app:layout_constraintBottom_toBottomOf="@+id/epilepsia1_4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/scrollView5"
-        app:layout_constraintTop_toTopOf="@+id/epilepsia1_4"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <Switch
-        android:id="@+id/TDAH1_4"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
-        android:text="Deficit de Atención"
-        app:layout_constraintBottom_toBottomOf="@+id/alergia1_4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/scrollView5"
-        app:layout_constraintTop_toTopOf="@+id/alergia1_4"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <EditText
-        android:id="@+id/observations1_4"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="10dp"
-        android:ems="10"
-        android:gravity="start|top"
-        android:inputType="textMultiLine"
-        android:maxLength="300"
-        android:maxLines="12"
+        android:layout_marginBottom="10dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/alergia1_4" />
+        app:layout_constraintTop_toBottomOf="@+id/scrollView5">
 
-    <TextView
-        android:id="@+id/textView75"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Observaciones"
-        app:layout_constraintBottom_toTopOf="@+id/observations1_4"
-        app:layout_constraintStart_toStartOf="@+id/observations1_4" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Switch
+                android:id="@+id/diabetes1_4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:layout_weight="1"
+                android:text="Díabetes" />
+
+            <Switch
+                android:id="@+id/hipertension1_4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_weight="1"
+                android:text="Hipertensión" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <Switch
+                android:id="@+id/dislexia1_4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:layout_weight="1"
+                android:text="Dislexia" />
+
+            <Switch
+                android:id="@+id/daltonismo1_4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_weight="1"
+                android:text="Daltonismo" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <Switch
+                android:id="@+id/epilepsia1_4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:layout_weight="1"
+                android:text="Epilepsia" />
+
+            <Switch
+                android:id="@+id/asma1_4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_weight="1"
+                android:text="Asma" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <Switch
+                android:id="@+id/alergia1_4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:layout_weight="1"
+                android:text="Alergia" />
+
+            <Switch
+                android:id="@+id/TDAH1_4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_weight="1"
+                android:text="Deficit de Atención" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView75"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Observaciones" />
+
+        <EditText
+            android:id="@+id/observations1_4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start|top"
+            android:inputType="textMultiLine"
+            android:maxLength="300"
+            android:maxLines="12" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
