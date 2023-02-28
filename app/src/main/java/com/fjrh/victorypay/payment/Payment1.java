@@ -3,6 +3,7 @@ package com.fjrh.victorypay.payment;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.text.Editable;
@@ -66,6 +67,18 @@ public class Payment1 extends AppCompatActivity {
     }
 
     private void initEvents() {
+        registerPayment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(areDataComplete()){
+                    Intent i = new Intent(context, Payment2.class);
+                    startActivity(i);
+                }
+            }
+        });
+
+
+
         ci.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -253,5 +266,26 @@ public class Payment1 extends AppCompatActivity {
         moreInfo.setEnabled(!isLoadig);
     }
 
+    private boolean areDataComplete(){
+        if(ci.getText().toString().isEmpty()){
+            Toast.makeText(context, "No ha suministrado una cédula", Toast.LENGTH_LONG).show();
+            return false;
+        }
+        if(code.getText().toString().isEmpty()){
+            Toast.makeText(context, "No ha suministrado un código", Toast.LENGTH_LONG).show();
+            return false;
+        }
+        if(name.getText().toString().isEmpty()){
+            Toast.makeText(context, "No ha suministrado un nombre", Toast.LENGTH_LONG).show();
+            return false;
+        }
+        if(!studentsData.isCodeRegistered(code.getText().toString())){
+            Toast.makeText(context, "El código no está registrado", Toast.LENGTH_LONG).show();
+            return false;
+        }
+
+
+        return true;
+    }
 
 }

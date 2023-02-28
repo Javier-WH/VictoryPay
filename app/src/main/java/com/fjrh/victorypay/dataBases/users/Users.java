@@ -18,6 +18,7 @@ public class Users extends DbHelper {
     Context context;
     DbHelper dbHelper;
     SQLiteDatabase db;
+
     public Users(@Nullable Context context) {
         super(context);
         this.context = context;
@@ -25,13 +26,13 @@ public class Users extends DbHelper {
         db = dbHelper.getWritableDatabase();
     }
 
-    public HashMap<String, String> logUser(String userName, String password){
+    public HashMap<String, String> logUser(String userName, String password) {
 
         HashMap<String, String> user = new HashMap<>();
 
-        Cursor cursor = db.rawQuery("SELECT * FROM users WHERE user = ? AND password = ? ",  new String[]{userName, password} );
+        Cursor cursor = db.rawQuery("SELECT * FROM users WHERE user = ? AND password = ? ", new String[]{userName, password});
 
-        if(cursor.moveToFirst()){
+        if (cursor.moveToFirst()) {
             user.put("user", cursor.getString(1));
             user.put("password", cursor.getString(2));
             user.put("id", cursor.getString(0));
@@ -41,19 +42,19 @@ public class Users extends DbHelper {
         return user;
     }
 
-    public HashMap<String, String> getUsers(){
+    public HashMap<String, String> getUsers() {
 
         HashMap<String, String> userData = new HashMap<>();
 
         Cursor cursor = db.rawQuery("SELECT * FROM users", null);
 
-        if(cursor.moveToFirst()){
+        if (cursor.moveToFirst()) {
             userData.put("user", cursor.getString(1));
             userData.put("password", cursor.getString(2));
             userData.put("name", cursor.getString(3));
             userData.put("ci", cursor.getString(4));
         }
-        return  userData;
+        return userData;
     }
 
 
@@ -70,12 +71,12 @@ public class Users extends DbHelper {
         return db.replace("users", null, values);
     }
 
-    public void deleteUsers(HashMap<String, String> user){
-
-
+    public void deleteUsers(HashMap<String, String> user) {
         db.delete("users", "user = ? and password = ?", new String[]{user.get("user"), user.get("password")});
-
     }
+
+
+
 
 }
 

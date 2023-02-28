@@ -16,6 +16,7 @@
         android:theme="@style/Theme.VictoryPay"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+
         <activity
             android:name=".Config.ConfigFetchingAddress"
             android:theme="@style/Theme.VictoryPay.clean">
@@ -30,6 +31,16 @@
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
+        </activity>
+        <activity
+            android:name=".payment.Payment2"
+            android:exported="false"
+            android:label="Pagos"
+            android:parentActivityName=".App"
+            android:windowSoftInputMode="stateVisible|adjustResize">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".App" />
         </activity>
         <activity
             android:name=".payment.Payment1"
