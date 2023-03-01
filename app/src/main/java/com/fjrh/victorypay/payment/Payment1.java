@@ -72,6 +72,7 @@ public class Payment1 extends AppCompatActivity {
             public void onClick(View v) {
                 if(areDataComplete()){
                     Intent i = new Intent(context, Payment2.class);
+                    i.putExtra("code", code.getText().toString());
                     startActivity(i);
                 }
             }

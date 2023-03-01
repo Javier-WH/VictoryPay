@@ -9,6 +9,8 @@ import androidx.annotation.Nullable;
 
 import com.fjrh.victorypay.dataBases.DbHelper;
 
+import java.util.HashMap;
+
 public class FindStudent extends DbHelper {
     Context context;
     private DbHelper dbHelper;
@@ -94,7 +96,30 @@ public class FindStudent extends DbHelper {
         Cursor cursor = db.rawQuery(query, null);
         return cursor;
     }
+    //
+    public HashMap<String, String> findStudentByCode(String code){
+        HashMap<String, String> response =  new HashMap<>();
 
 
+        String query = "SELECT * FROM students WHERE code = ?";
+
+        Cursor cursor = db.rawQuery(query, new String[]{code});
+
+        if(cursor.moveToFirst()){
+            response.put("name", cursor.getString(1));
+            response.put("lastName", cursor.getString(2));
+            response.put("ci", cursor.getString(3));
+            response.put("nation", cursor.getString(4));
+            response.put("seccion", cursor.getString(5));
+            response.put("grade", cursor.getString(6));
+            response.put("gender", cursor.getString(7));
+            response.put("code", cursor.getString(8));
+            response.put("birthdate", cursor.getString(9));
+            response.put("age", cursor.getString(10));
+            response.put("parent_id", cursor.getString(11));
+            response.put("tutor_id", cursor.getString(12));
+        }
+        return response;
+    }
 
 }
