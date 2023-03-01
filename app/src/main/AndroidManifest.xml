@@ -164,10 +164,11 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.VictoryPay.clean">
+            android:theme="@style/Theme.VictoryPay.clean"
+            android:windowSoftInputMode="stateVisible|adjustResize"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 

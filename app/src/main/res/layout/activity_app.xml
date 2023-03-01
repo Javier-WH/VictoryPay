@@ -4,180 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    app:flow_horizontalGap="10dp"
+    app:flow_verticalGap="10dp"
     tools:context=".App"
     tools:layout_editor_absoluteY="81dp">
-
-    <ImageView
-        android:id="@+id/imgSync"
-        android:layout_width="70dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="44dp"
-        app:layout_constraintEnd_toEndOf="@+id/imgCurrency"
-        app:layout_constraintStart_toStartOf="@+id/imgCurrency"
-        app:layout_constraintTop_toBottomOf="@+id/imgCurrency"
-        app:srcCompat="@mipmap/sync" />
-
-    <ImageView
-        android:id="@+id/imgConfig"
-        android:layout_width="70dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="40dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView10"
-        app:layout_constraintStart_toEndOf="@+id/imgSync"
-        app:layout_constraintTop_toTopOf="@+id/imgSync"
-        app:srcCompat="@mipmap/config" />
-
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Precios"
-        app:layout_constraintEnd_toEndOf="@+id/imgPrices"
-        app:layout_constraintStart_toStartOf="@+id/imgPrices"
-        app:layout_constraintTop_toBottomOf="@+id/imgPrices" />
-
-    <ImageView
-        android:id="@+id/imgPrices"
-        android:layout_width="70dp"
-        android:layout_height="59dp"
-        android:layout_marginEnd="40dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imgSync"
-        app:layout_constraintEnd_toStartOf="@+id/imgSync"
-        app:layout_constraintTop_toTopOf="@+id/imgSync"
-        app:srcCompat="@mipmap/prices" />
-
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sincronizar"
-        app:layout_constraintEnd_toEndOf="@+id/imgSync"
-        app:layout_constraintStart_toStartOf="@+id/imgSync"
-        app:layout_constraintTop_toBottomOf="@+id/imgSync" />
-
-    <TextView
-        android:id="@+id/textView12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Configuración"
-        app:layout_constraintEnd_toEndOf="@+id/imgConfig"
-        app:layout_constraintStart_toStartOf="@+id/imgConfig"
-        app:layout_constraintTop_toBottomOf="@+id/imgConfig" />
-
-    <ImageView
-        android:id="@+id/imgCurrencyCalculator"
-        android:layout_width="70dp"
-        android:layout_height="59dp"
-        android:layout_marginEnd="40dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imgCurrency"
-        app:layout_constraintEnd_toStartOf="@+id/imgCurrency"
-        app:layout_constraintTop_toTopOf="@+id/imgCurrency"
-        app:srcCompat="@mipmap/currency_calculator" />
-
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Calcular divisas"
-        app:layout_constraintEnd_toEndOf="@+id/imgCurrencyCalculator"
-        app:layout_constraintStart_toStartOf="@+id/imgCurrencyCalculator"
-        app:layout_constraintTop_toBottomOf="@+id/imgCurrencyCalculator" />
-
-    <ImageView
-        android:id="@+id/imgSearch"
-        android:layout_width="70dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="40dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imgCurrency"
-        app:layout_constraintStart_toEndOf="@+id/imgCurrency"
-        app:layout_constraintTop_toTopOf="@+id/imgCurrency"
-        app:srcCompat="@mipmap/search" />
-
-    <ImageView
-        android:id="@+id/imgCurrency"
-        android:layout_width="70dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="44dp"
-        app:layout_constraintEnd_toEndOf="@+id/imgPayment"
-        app:layout_constraintStart_toStartOf="@+id/imgPayment"
-        app:layout_constraintTop_toBottomOf="@+id/imgPayment"
-        app:srcCompat="@mipmap/currency" />
-
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Divisas"
-        app:layout_constraintEnd_toEndOf="@+id/imgCurrency"
-        app:layout_constraintStart_toStartOf="@+id/imgCurrency"
-        app:layout_constraintTop_toBottomOf="@+id/imgCurrency" />
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Buscar estudiante"
-        app:layout_constraintEnd_toEndOf="@+id/imgSearch"
-        app:layout_constraintStart_toStartOf="@+id/imgSearch"
-        app:layout_constraintTop_toBottomOf="@+id/imgSearch" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Facturas"
-        app:layout_constraintEnd_toEndOf="@+id/imgTickets"
-        app:layout_constraintStart_toStartOf="@+id/imgTickets"
-        app:layout_constraintTop_toBottomOf="@+id/imgTickets" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Registro"
-        app:layout_constraintEnd_toEndOf="@+id/imgRegister"
-        app:layout_constraintStart_toStartOf="@+id/imgRegister"
-        app:layout_constraintTop_toBottomOf="@+id/imgRegister" />
-
-    <ImageView
-        android:id="@+id/imgTickets"
-        android:layout_width="70dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="40dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imgPayment"
-        app:layout_constraintStart_toEndOf="@+id/imgPayment"
-        app:layout_constraintTop_toTopOf="@+id/imgPayment"
-        app:srcCompat="@mipmap/ticket" />
-
-    <ImageView
-        android:id="@+id/imgRegister"
-        android:layout_width="70dp"
-        android:layout_height="59dp"
-        android:layout_marginEnd="40dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imgPayment"
-        app:layout_constraintEnd_toStartOf="@+id/imgPayment"
-        app:layout_constraintTop_toTopOf="@+id/imgPayment"
-        app:srcCompat="@mipmap/register" />
-
-    <ImageView
-        android:id="@+id/imgPayment"
-        android:layout_width="70dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="40dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userNameApp"
-        app:srcCompat="@mipmap/payment" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Pagos"
-        app:layout_constraintEnd_toEndOf="@+id/imgPayment"
-        app:layout_constraintStart_toStartOf="@+id/imgPayment"
-        app:layout_constraintTop_toBottomOf="@+id/imgPayment" />
 
     <TextView
         android:id="@+id/textOnline"
@@ -244,5 +74,235 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:foregroundGravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userNameApp">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imgRegister"
+                        android:layout_width="70dp"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center"
+                        app:srcCompat="@mipmap/register" />
+
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Registro" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imgPayment"
+                        android:layout_width="70dp"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center"
+                        app:srcCompat="@mipmap/payment" />
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="Pagos" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imgTickets"
+                        android:layout_width="70dp"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center"
+                        app:srcCompat="@mipmap/ticket" />
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Facturas" />
+                </LinearLayout>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imgCurrencyCalculator"
+                        android:layout_width="70dp"
+                        android:layout_height="59dp"
+                        android:layout_gravity="center"
+                        app:srcCompat="@mipmap/currency_calculator" />
+
+                    <TextView
+                        android:id="@+id/textView6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Calcular divisas" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imgCurrency"
+                        android:layout_width="70dp"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center"
+                        app:srcCompat="@mipmap/currency" />
+
+                    <TextView
+                        android:id="@+id/textView7"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Divisas" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imgSearch"
+                        android:layout_width="70dp"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center"
+                        app:srcCompat="@mipmap/search" />
+
+                    <TextView
+                        android:id="@+id/textView5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Buscar estudiante" />
+                </LinearLayout>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imgPrices"
+                        android:layout_width="70dp"
+                        android:layout_height="59dp"
+                        android:layout_gravity="center"
+                        app:srcCompat="@mipmap/prices" />
+
+                    <TextView
+                        android:id="@+id/textView9"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Precios" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imgSync"
+                        android:layout_width="70dp"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center"
+                        app:srcCompat="@mipmap/sync" />
+
+                    <TextView
+                        android:id="@+id/textView10"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Sincronizar" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imgConfig"
+                        android:layout_width="70dp"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center"
+                        app:srcCompat="@mipmap/config" />
+
+                    <TextView
+                        android:id="@+id/textView12"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Configuración" />
+                </LinearLayout>
+
+            </TableRow>
+
+        </TableLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
