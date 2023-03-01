@@ -19,11 +19,12 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/back_payment2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Regresar" />
+            android:text="Regresar"
+            app:icon="@android:drawable/ic_media_rew" />
 
         <Space
             android:layout_width="wrap_content"
@@ -33,11 +34,13 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/next_payment2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Registar" />
+            android:layoutDirection="rtl"
+            android:text="Siguinete"
+            app:icon="@android:drawable/ic_media_ff" />
     </LinearLayout>
 
     <ProgressBar
@@ -56,12 +59,13 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="10dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progressBar">
+        app:layout_constraintTop_toBottomOf="@+id/textView61">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -86,10 +90,10 @@
                         android:text="Fecha del deposito" />
 
                     <TextView
-                        android:id="@+id/textView48"
+                        android:id="@+id/date_payment2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Fecha del deposito"
+                        android:text="Seleccione una fecha"
                         android:textSize="20sp" />
 
                     <TextView
@@ -100,16 +104,18 @@
                         android:text="Numero de la Operación" />
 
                     <EditText
-                        android:id="@+id/editTextTextPersonName3"
+                        android:id="@+id/operarion_payment2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
                         android:hint="Numero de la operación"
-                        android:inputType="textPersonName" />
+                        android:inputType="number"
+                        android:textSize="20sp"
+                        android:theme="@style/Theme.VictoryPay.datePicker" />
                 </LinearLayout>
 
                 <RadioGroup
-                    android:id="@+id/radioGroup3"
+                    android:id="@+id/paymentType_payment2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -118,21 +124,23 @@
                     android:gravity="center">
 
                     <RadioButton
-                        android:id="@+id/radioButton2"
+                        android:id="@+id/check_payment2"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:checked="true"
                         android:text="Depósito"
+                        android:theme="@style/Theme.VictoryPay.datePicker"
                         tools:layout_conversion_absoluteHeight="48dp"
                         tools:layout_conversion_absoluteWidth="88dp"
                         tools:layout_editor_absoluteX="232dp"
                         tools:layout_editor_absoluteY="87dp" />
 
                     <RadioButton
-                        android:id="@+id/radioButton3"
+                        android:id="@+id/cash_payment2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Efectivo"
+                        android:theme="@style/Theme.VictoryPay.datePicker"
                         tools:layout_conversion_absoluteHeight="48dp"
                         tools:layout_conversion_absoluteWidth="88dp"
                         tools:layout_editor_absoluteX="232dp"
@@ -140,36 +148,151 @@
                 </RadioGroup>
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/textView54"
-                android:layout_width="wrap_content"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="Monto" />
+                tools:layout_editor_absoluteY="141dp">
+
+                <LinearLayout
+                    android:id="@+id/linearLayout6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:minWidth="50dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_min="50dp">
+
+                    <EditText
+                        android:id="@+id/mount_payment2"
+                        android:layout_width="131dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="4"
+                        android:ems="10"
+                        android:inputType="number"
+                        android:textSize="20sp"
+                        android:theme="@style/Theme.VictoryPay.datePicker" />
+
+                    <TextView
+                        android:id="@+id/textView51"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="USD"
+                        android:textSize="20sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/textView54"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Monto"
+                    app:layout_constraintBottom_toTopOf="@+id/linearLayout6"
+                    app:layout_constraintStart_toStartOf="@+id/linearLayout6" />
+
+                <TextView
+                    android:id="@+id/montPrice_payment2"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="20dp"
+                    android:gravity="start|center_vertical"
+                    android:text="6000 USD"
+                    android:textColor="@color/purple_200"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/linearLayout6"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/linearLayout6"
+                    app:layout_constraintTop_toTopOf="@+id/linearLayout6"
+                    app:layout_constraintVertical_bias="0.53" />
+
+                <TextView
+                    android:id="@+id/textView42"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Precio"
+                    android:textColor="@color/purple_200"
+                    app:layout_constraintBottom_toTopOf="@+id/montPrice_payment2"
+                    app:layout_constraintStart_toStartOf="@+id/montPrice_payment2" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:orientation="horizontal">
 
-                <EditText
-                    android:id="@+id/editTextNumber"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:ems="10"
-                    android:inputType="number" />
-
                 <TextView
-                    android:id="@+id/textView51"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/messagePayment1"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="USD"
-                    android:textSize="20sp" />
+                    android:text="Paga 3 meses"
+                    android:textColor="@color/purple_200"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/messagePayment2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Enero - Marzo"
+                    android:textColor="@color/purple_200"
+                    android:textSize="16sp" />
             </LinearLayout>
 
         </LinearLayout>
     </ScrollView>
+
+    <TextView
+        android:id="@+id/textView48"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Daniela Angelica Arevalo Betancourt"
+        android:textColor="@color/purple_200"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/progressBar"
+        app:layout_constraintStart_toStartOf="@+id/progressBar"
+        app:layout_constraintTop_toBottomOf="@+id/textView59" />
+
+    <TextView
+        android:id="@+id/textView59"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="C.I. 154211454"
+        android:textColor="@color/purple_200"
+        app:layout_constraintStart_toStartOf="@+id/progressBar"
+        app:layout_constraintTop_toBottomOf="@+id/progressBar" />
+
+    <TextView
+        android:id="@+id/textView61"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:text="Sección A"
+        android:textColor="@color/purple_200"
+        app:layout_constraintBottom_toBottomOf="@+id/textView62"
+        app:layout_constraintStart_toEndOf="@+id/textView62"
+        app:layout_constraintTop_toTopOf="@+id/textView62" />
+
+    <TextView
+        android:id="@+id/textView62"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="5to año"
+        android:textColor="@color/purple_200"
+        app:layout_constraintStart_toStartOf="@+id/textView48"
+        app:layout_constraintTop_toBottomOf="@+id/textView48" />
+
+    <TextView
+        android:id="@+id/textView63"
+        android:layout_width="192dp"
+        android:layout_height="wrap_content"
+        android:text="Código: K1-12547885545"
+        android:textColor="@color/purple_200"
+        app:layout_constraintEnd_toEndOf="@+id/progressBar"
+        app:layout_constraintTop_toBottomOf="@+id/progressBar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
