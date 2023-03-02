@@ -91,7 +91,7 @@ public class App extends AppCompatActivity {
         payment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(context, Payment1.class);
+                Intent i = new Intent(context, Payment0.class);
                 startActivity(i);
             }
         });

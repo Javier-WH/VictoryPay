@@ -39,8 +39,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layoutDirection="rtl"
-            android:text="Siguinete"
-            app:icon="@android:drawable/ic_media_ff" />
+            android:text="Registrar"
+            app:icon="@android:drawable/ic_menu_save" />
     </LinearLayout>
 
     <ProgressBar
@@ -227,7 +227,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Seleccione una fecha"
-                        android:textSize="20sp" />
+                        android:textSize="20sp"
+                        android:visibility="visible" />
 
                     <TextView
                         android:id="@+id/operationTitle_payment2"
@@ -245,6 +246,33 @@
                         android:inputType="number"
                         android:textSize="20sp"
                         android:theme="@style/Theme.VictoryPay.datePicker" />
+
+                    <CheckBox
+                        android:id="@+id/chkVerified_payment2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:checked="false"
+                        android:text="Verificado"
+                        android:theme="@style/Theme.VictoryPay.datePicker" />
+
+                    <TextView
+                        android:id="@+id/textView33"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Observaciónes"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <EditText
+                        android:id="@+id/editTextTextMultiLine"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:gravity="start|top"
+                        android:inputType="textMultiLine"
+                        android:theme="@style/Theme.VictoryPay.datePicker" />
+
                 </LinearLayout>
 
             </LinearLayout>

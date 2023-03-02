@@ -2,13 +2,16 @@ package com.fjrh.victorypay.payment;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -19,6 +22,8 @@ import com.fjrh.victorypay.Libraries.DateSelector;
 import com.fjrh.victorypay.R;
 import com.fjrh.victorypay.dataBases.prices.Prices;
 import com.fjrh.victorypay.dataBases.students.FindStudent;
+
+import org.json.JSONException;
 
 import java.time.Year;
 import java.util.Calendar;
@@ -47,6 +52,7 @@ public class Payment2 extends AppCompatActivity {
     private TextView seccion;
     private TextView message1;
     private TextView message2;
+    private CheckBox verified;
 
 
     @Override
@@ -79,6 +85,8 @@ public class Payment2 extends AppCompatActivity {
         seccion = findViewById(R.id.seccion_payment2);
         message1 = findViewById(R.id.messagePayment1);
         message2 = findViewById(R.id.mount_payment2);
+        verified = findViewById(R.id.chkVerified_payment2);
+
     }
 
     private void initEvents(){
@@ -98,7 +106,29 @@ public class Payment2 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(areDataComplete()){
-                    Toast.makeText(context, "OK", Toast.LENGTH_LONG).show();
+                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                    builder.setTitle("ADVERTENCIA");
+                    builder.setMessage("¿Desea confirmar el pago de " + mount.getText().toString() + "USD para " + name.getText().toString() + " " + ci.getText().toString() + "?");
+                    builder.setCancelable(false);
+                    builder.setPositiveButton("Confirmar Pago", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            HashMap<String, String> data = new HashMap<>();
+
+                            Toast.makeText(context, "OK", Toast.LENGTH_LONG).show();
+                        }
+                    });
+
+                    builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+
                 }
             }
         });
@@ -106,10 +136,11 @@ public class Payment2 extends AppCompatActivity {
         check.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                date.setVisibility(isChecked ? View.VISIBLE : View.INVISIBLE);
-                operation.setVisibility(isChecked ? View.VISIBLE : View.INVISIBLE);
-                dateTitle.setVisibility(isChecked ? View.VISIBLE : View.INVISIBLE);
-                operationTitle.setVisibility(isChecked ? View.VISIBLE : View.INVISIBLE);
+                date.setVisibility(isChecked ? View.VISIBLE : View.GONE);
+                operation.setVisibility(isChecked ? View.VISIBLE : View.GONE);
+                dateTitle.setVisibility(isChecked ? View.VISIBLE : View.GONE);
+                operationTitle.setVisibility(isChecked ? View.VISIBLE : View.GONE);
+                verified.setVisibility(isChecked ? View.VISIBLE : View.GONE);
                 if(!isChecked){
                     date.setText("Seleccione una fecha");
                     operation.setText("");
@@ -131,7 +162,7 @@ public class Payment2 extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 String m = mount.getText().toString();
-                if(m.isEmpty()){
+                if(m.isEmpty() || Integer.parseInt(m) == 0){
                     message1.setText("No paga nada");
                     return;
                 }
@@ -149,13 +180,9 @@ public class Payment2 extends AppCompatActivity {
                     }else{
                         message1.setText("Paga " + countMount + " "+meses);
                     }
-
-
-
                 }
             }
         });
-
     }
 
     private void fillComponents(){

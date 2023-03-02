@@ -1,0 +1,498 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Payment0">
+
+    <LinearLayout
+        android:id="@+id/linearLayout7"
+        android:layout_width="0dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/btbAddStudent_payment0"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Agregar"
+            app:icon="@android:drawable/ic_menu_add" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1.8"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/btnNext_payment0"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layoutDirection="rtl"
+            android:text="Siguiente"
+            app:icon="@android:drawable/ic_media_ff"
+            app:layout_constraintTop_toTopOf="parent" />
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/scrollView4"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout7"
+        app:layout_constraintVertical_bias="0.0">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/student1_payment0"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/purple_500"
+                android:padding="5dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/name1_payment0"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:text="Simon Jose Antonio bolivar y palacios1"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/remove1_payment0"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/code1_payment0" />
+
+                <ImageView
+                    android:id="@+id/remove1_payment0"
+                    android:layout_width="52dp"
+                    android:layout_height="50dp"
+                    android:layout_marginEnd="2dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/name1_payment0"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/name1_payment0"
+                    app:srcCompat="@android:drawable/ic_menu_delete" />
+
+                <TextView
+                    android:id="@+id/ci1_payment0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="C.I. 161645644"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textStyle="italic"
+                    app:layout_constraintStart_toStartOf="@+id/name1_payment0"
+                    app:layout_constraintTop_toBottomOf="@+id/name1_payment0" />
+
+                <TextView
+                    android:id="@+id/code1_payment0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="Código: K-1651651541"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textStyle="italic"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/seccion1_payment0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="Seccion A"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textStyle="italic"
+                    app:layout_constraintBottom_toBottomOf="@+id/ci1_payment0"
+                    app:layout_constraintStart_toEndOf="@+id/ci1_payment0"
+                    app:layout_constraintTop_toTopOf="@+id/ci1_payment0" />
+
+                <TextView
+                    android:id="@+id/grade1_payment0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="5to año"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textStyle="italic"
+                    app:layout_constraintBottom_toBottomOf="@+id/seccion1_payment0"
+                    app:layout_constraintStart_toEndOf="@+id/seccion1_payment0"
+                    app:layout_constraintTop_toTopOf="@+id/seccion1_payment0" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/student2_payment0"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@color/purple_500"
+                android:padding="5dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/name2_payment0"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:text="Simon Jose Antonio bolivar y palacios2"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/remove2_payment0"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/code2_payment0" />
+
+                <ImageView
+                    android:id="@+id/remove2_payment0"
+                    android:layout_width="52dp"
+                    android:layout_height="50dp"
+                    android:layout_marginEnd="2dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/name2_payment0"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/name2_payment0"
+                    app:srcCompat="@android:drawable/ic_menu_delete" />
+
+                <TextView
+                    android:id="@+id/ci2_payment0"
+                    android:layout_width="91dp"
+                    android:layout_height="16dp"
+                    android:layout_marginTop="5dp"
+                    android:text="C.I. 156156"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textStyle="italic"
+                    app:layout_constraintStart_toStartOf="@+id/name2_payment0"
+                    app:layout_constraintTop_toBottomOf="@+id/name2_payment0" />
+
+                <TextView
+                    android:id="@+id/code2_payment0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="Código: K-1651651541"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textStyle="italic"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/seccion2_payment0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="Seccion A"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textStyle="italic"
+                    app:layout_constraintBottom_toBottomOf="@+id/ci2_payment0"
+                    app:layout_constraintStart_toEndOf="@+id/ci2_payment0"
+                    app:layout_constraintTop_toTopOf="@+id/ci2_payment0" />
+
+                <TextView
+                    android:id="@+id/grade2_payment0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="5to año"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textStyle="italic"
+                    app:layout_constraintBottom_toBottomOf="@+id/seccion2_payment0"
+                    app:layout_constraintStart_toEndOf="@+id/seccion2_payment0"
+                    app:layout_constraintTop_toTopOf="@+id/seccion2_payment0" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/student3_payment0"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@color/purple_500"
+                android:padding="5dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/name3_payment0"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:text="Simon Jose Antonio bolivar y palacios3"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="@+id/remove3_payment0"
+                    app:layout_constraintEnd_toStartOf="@+id/remove3_payment0"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/code3_payment0" />
+
+                <ImageView
+                    android:id="@+id/remove3_payment0"
+                    android:layout_width="52dp"
+                    android:layout_height="50dp"
+                    android:layout_marginEnd="2dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/name3_payment0"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/name3_payment0"
+                    app:srcCompat="@android:drawable/ic_menu_delete" />
+
+                <TextView
+                    android:id="@+id/ci3_payment0"
+                    android:layout_width="91dp"
+                    android:layout_height="18dp"
+                    android:layout_marginTop="5dp"
+                    android:text="C.I. 161645644"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textStyle="italic"
+                    app:layout_constraintStart_toStartOf="@+id/name3_payment0"
+                    app:layout_constraintTop_toBottomOf="@+id/name3_payment0" />
+
+                <TextView
+                    android:id="@+id/code3_payment0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="Código: K-1651651541"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textStyle="italic"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/seccion3_payment0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="Seccion A"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textStyle="italic"
+                    app:layout_constraintBottom_toBottomOf="@+id/ci3_payment0"
+                    app:layout_constraintStart_toEndOf="@+id/ci3_payment0"
+                    app:layout_constraintTop_toTopOf="@+id/ci3_payment0" />
+
+                <TextView
+                    android:id="@+id/grade3_payment0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="5to año"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textStyle="italic"
+                    app:layout_constraintBottom_toBottomOf="@+id/seccion3_payment0"
+                    app:layout_constraintStart_toEndOf="@+id/seccion3_payment0"
+                    app:layout_constraintTop_toTopOf="@+id/seccion3_payment0" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/student4_payment0"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@color/purple_500"
+                android:padding="5dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/name4_payment0"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:text="Simon Jose Antonio bolivar y palacios4"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/remove4_payment0"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/code4_payment0" />
+
+                <ImageView
+                    android:id="@+id/remove4_payment0"
+                    android:layout_width="52dp"
+                    android:layout_height="50dp"
+                    android:layout_marginEnd="2dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/name4_payment0"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/name4_payment0"
+                    app:srcCompat="@android:drawable/ic_menu_delete" />
+
+                <TextView
+                    android:id="@+id/ci4_payment0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="C.I. 161645644"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textStyle="italic"
+                    app:layout_constraintStart_toStartOf="@+id/name4_payment0"
+                    app:layout_constraintTop_toBottomOf="@+id/name4_payment0" />
+
+                <TextView
+                    android:id="@+id/code4_payment0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="Código: K-1651651541"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textStyle="italic"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/seccion4_payment0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="Seccion A"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textStyle="italic"
+                    app:layout_constraintBottom_toBottomOf="@+id/ci4_payment0"
+                    app:layout_constraintStart_toEndOf="@+id/ci4_payment0"
+                    app:layout_constraintTop_toTopOf="@+id/ci4_payment0" />
+
+                <TextView
+                    android:id="@+id/grade4_payment0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="5to año"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textStyle="italic"
+                    app:layout_constraintBottom_toBottomOf="@+id/seccion4_payment0"
+                    app:layout_constraintStart_toEndOf="@+id/seccion4_payment0"
+                    app:layout_constraintTop_toTopOf="@+id/seccion4_payment0" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/student5_payment0"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@color/purple_500"
+                android:padding="5dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/name5_payment0"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:text="Simon Jose Antonio bolivar y palacios5"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/remove5_payment0"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/code5_payment0" />
+
+                <ImageView
+                    android:id="@+id/remove5_payment0"
+                    android:layout_width="52dp"
+                    android:layout_height="50dp"
+                    android:layout_marginEnd="2dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/name5_payment0"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/name5_payment0"
+                    app:srcCompat="@android:drawable/ic_menu_delete" />
+
+                <TextView
+                    android:id="@+id/ci5_payment0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="C.I. 161645644"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textStyle="italic"
+                    app:layout_constraintStart_toStartOf="@+id/name5_payment0"
+                    app:layout_constraintTop_toBottomOf="@+id/name5_payment0" />
+
+                <TextView
+                    android:id="@+id/code5_payment0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="Código: K-1651651541"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textStyle="italic"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/seccion5_payment0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="Seccion A"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textStyle="italic"
+                    app:layout_constraintBottom_toBottomOf="@+id/ci5_payment0"
+                    app:layout_constraintStart_toEndOf="@+id/ci5_payment0"
+                    app:layout_constraintTop_toTopOf="@+id/ci5_payment0" />
+
+                <TextView
+                    android:id="@+id/grade5_payment0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="5to año"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textStyle="italic"
+                    app:layout_constraintBottom_toBottomOf="@+id/seccion5_payment0"
+                    app:layout_constraintStart_toEndOf="@+id/seccion5_payment0"
+                    app:layout_constraintTop_toTopOf="@+id/seccion5_payment0" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/textView61"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:text="de 5 Studiantes agregados"
+        app:layout_constraintBottom_toBottomOf="@+id/textStdNumber"
+        app:layout_constraintStart_toEndOf="@+id/textStdNumber"
+        app:layout_constraintTop_toTopOf="@+id/textStdNumber" />
+
+    <TextView
+        android:id="@+id/textStdNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:text="0"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView4"
+        app:layout_constraintStart_toStartOf="@+id/scrollView4" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
