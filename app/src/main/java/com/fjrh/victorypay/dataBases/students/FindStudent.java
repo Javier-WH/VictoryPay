@@ -9,6 +9,7 @@ import androidx.annotation.Nullable;
 
 import com.fjrh.victorypay.dataBases.DbHelper;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class FindStudent extends DbHelper {
@@ -99,12 +100,8 @@ public class FindStudent extends DbHelper {
     //
     public HashMap<String, String> findStudentByCode(String code){
         HashMap<String, String> response =  new HashMap<>();
-
-
         String query = "SELECT * FROM students WHERE code = ?";
-
         Cursor cursor = db.rawQuery(query, new String[]{code});
-
         if(cursor.moveToFirst()){
             response.put("name", cursor.getString(1));
             response.put("lastName", cursor.getString(2));
@@ -120,6 +117,38 @@ public class FindStudent extends DbHelper {
             response.put("tutor_id", cursor.getString(12));
         }
         return response;
+    }
+
+    public ArrayList<HashMap<String, String>> getBrothers(String tutor_id){
+
+        ArrayList<HashMap<String, String>> list = new ArrayList<>();
+
+        String query = "SELECT * FROM students WHERE tutor_id = ?";
+        Cursor cursor = db.rawQuery(query, new String[]{tutor_id});
+
+        if(cursor.moveToFirst()){
+            do{
+                HashMap<String, String> student = new HashMap<>();
+                student.put("name", cursor.getString(1));
+                student.put("lastName", cursor.getString(2));
+                student.put("ci", cursor.getString(3));
+                student.put("nation", cursor.getString(4));
+                student.put("seccion", cursor.getString(5));
+                student.put("grade", cursor.getString(6));
+                student.put("gender", cursor.getString(7));
+                student.put("code", cursor.getString(8));
+                student.put("birthdate", cursor.getString(9));
+                student.put("age", cursor.getString(10));
+                student.put("parent_id", cursor.getString(11));
+                student.put("tutor_id", cursor.getString(12));
+
+                list.add(student);
+            }while (cursor.moveToNext());
+        }
+
+
+
+        return list;
     }
 
 }

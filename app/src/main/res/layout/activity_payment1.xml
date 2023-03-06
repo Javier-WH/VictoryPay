@@ -6,85 +6,65 @@
     android:layout_height="match_parent"
     tools:context=".payment.Payment1">
 
-    <Space
-        android:id="@+id/space3"
-        android:layout_width="20dp"
-        android:layout_height="21dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/textView333"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cédula"
+        app:layout_constraintBottom_toTopOf="@+id/studentCi_search"
+        app:layout_constraintStart_toStartOf="@+id/studentCi_search" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout3"
-        android:layout_width="0dp"
-        android:layout_height="136dp"
+    <TextView
+        android:id="@+id/textView334"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Código"
+        app:layout_constraintBottom_toTopOf="@+id/studentCode_search"
+        app:layout_constraintStart_toStartOf="@+id/studentCode_search" />
+
+    <EditText
+        android:id="@+id/studentCi_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
-        android:orientation="horizontal"
+        android:ems="10"
+        android:hint="Cédula del alumno"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progressBar_payment1" />
+
+    <EditText
+        android:id="@+id/studentCode_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        android:ems="10"
+        android:hint="Código del alumno"
+        android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/space3">
-
-        <LinearLayout
-            android:id="@+id/linearLayout"
-            android:layout_width="176dp"
-            android:layout_height="132dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/textView333"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Cédula" />
-
-            <EditText
-                android:id="@+id/studentCi_search"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Cédula del alumno"
-                android:inputType="number" />
-
-            <TextView
-                android:id="@+id/textView334"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Código" />
-
-            <EditText
-                android:id="@+id/studentCode_search"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Código del alumno"
-                android:inputType="textPersonName" />
-
-        </LinearLayout>
-
-        <Button
-            android:id="@+id/btnRegister_search"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_weight="1"
-            android:text="Registrar Pago"
-            app:cornerRadius="20dp"
-            app:icon="@android:drawable/ic_menu_save" />
-    </LinearLayout>
+        app:layout_constraintTop_toBottomOf="@+id/studentCi_search" />
 
     <EditText
         android:id="@+id/studentName_search"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
         android:ems="10"
         android:hint="Nombre del Alumno"
         android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="@+id/linearLayout3"
-        app:layout_constraintStart_toStartOf="@+id/linearLayout3"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/studentCode_search" />
 
     <TextView
         android:id="@+id/textView34"
@@ -98,9 +78,9 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -235,45 +215,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/btnPaymientLis_search"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="0dp"
-                    android:layout_weight="1"
-                    android:text="Lista de pagos" />
-
-                <TextView
-                    android:id="@+id/textView38"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1.5" />
-
-                <Button
-                    android:id="@+id/btnMoreInfo_search"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="0dp"
-                    android:layout_weight="1"
-                    android:text="Mas informaricón" />
-            </LinearLayout>
+                android:orientation="horizontal" />
         </LinearLayout>
     </ScrollView>
 
     <ScrollView
+        android:id="@+id/scrollView9"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginEnd="10dp"
         android:background="@color/purple_700"
         android:maxHeight="100dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/studentCi_search"
         app:layout_constraintHeight_max="100dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/linearLayout3">
+        app:layout_constraintStart_toStartOf="@+id/studentCi_search"
+        app:layout_constraintTop_toBottomOf="@+id/studentCi_search">
 
         <LinearLayout
             android:id="@+id/ciHelper"
@@ -283,16 +238,15 @@
     </ScrollView>
 
     <ScrollView
+        android:id="@+id/scrollView6"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
         android:background="@color/purple_700"
         android:maxHeight="100dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/studentCode_search"
         app:layout_constraintHeight_max="100dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
+        app:layout_constraintStart_toStartOf="@+id/studentCode_search"
+        app:layout_constraintTop_toBottomOf="@+id/studentCode_search">
 
         <LinearLayout
             android:id="@+id/codeHelper"
@@ -306,10 +260,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
         android:background="@color/purple_700"
         android:maxHeight="100dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/studentName_search"
         app:layout_constraintHeight_max="100dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/studentName_search">
@@ -329,8 +282,48 @@
         android:indeterminate="true"
         android:theme="@style/Theme.VictoryPay.datePicker"
         android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="@+id/linearLayout3"
-        app:layout_constraintStart_toStartOf="@+id/linearLayout3"
-        app:layout_constraintTop_toBottomOf="@+id/space3" />
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/btnBack_search"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layoutDirection="inherit"
+            android:text="Atras"
+            app:icon="@android:drawable/ic_media_rew" />
+
+        <Space
+            android:id="@+id/wei"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1.9"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/btnRegister_search"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layoutDirection="rtl"
+            android:text="Agregar"
+            app:icon="@android:drawable/ic_menu_add" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

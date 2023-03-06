@@ -9,12 +9,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.fjrh.victorypay.Register.Register1;
 import com.fjrh.victorypay.dataBases.params.Params;
 import com.fjrh.victorypay.dataBases.users.Users;
-import com.fjrh.victorypay.payment.Payment1;
+import com.fjrh.victorypay.payment.Payment0;
+import com.fjrh.victorypay.payment.Payment2;
 import com.fjrh.victorypay.sync.Sync;
 
 import java.util.HashMap;
@@ -91,7 +91,7 @@ public class App extends AppCompatActivity {
         payment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(context, Payment0.class);
+                Intent i = new Intent(context, Payment2.class);
                 startActivity(i);
             }
         });

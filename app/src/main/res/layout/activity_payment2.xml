@@ -9,7 +9,7 @@
     <LinearLayout
         android:id="@+id/linearLayout5"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="65dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
@@ -18,29 +18,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <Button
-            android:id="@+id/back_payment2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Regresar"
-            app:icon="@android:drawable/ic_media_rew" />
-
         <Space
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/next_payment2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:layoutDirection="rtl"
-            android:text="Registrar"
-            app:icon="@android:drawable/ic_menu_save" />
+            android:text="Siguiente"
+            app:icon="@android:drawable/ic_media_ff" />
+
     </LinearLayout>
 
     <ProgressBar
@@ -59,13 +52,14 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/seccion_payment2">
+        app:layout_constraintTop_toBottomOf="@+id/progress_payment2">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -153,181 +147,75 @@
                     app:layout_constraintStart_toStartOf="@+id/linearLayout6" />
 
                 <TextView
-                    android:id="@+id/montPrice_payment2"
+                    android:id="@+id/date_payment2"
                     android:layout_width="0dp"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:gravity="start|center_vertical"
-                    android:text="6000 USD"
-                    android:textColor="@color/purple_200"
+                    android:text="Seleccione una fecha"
                     android:textSize="20sp"
+                    android:visibility="visible"
                     app:layout_constraintBottom_toBottomOf="@+id/linearLayout6"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.785"
                     app:layout_constraintStart_toEndOf="@+id/linearLayout6"
-                    app:layout_constraintTop_toTopOf="@+id/linearLayout6"
-                    app:layout_constraintVertical_bias="0.53" />
+                    app:layout_constraintTop_toTopOf="@+id/linearLayout6" />
 
                 <TextView
-                    android:id="@+id/textView42"
+                    android:id="@+id/dateTitle_payment2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Precio"
-                    android:textColor="@color/purple_200"
-                    app:layout_constraintBottom_toTopOf="@+id/montPrice_payment2"
-                    app:layout_constraintStart_toStartOf="@+id/montPrice_payment2" />
+                    android:text="Fecha del deposito"
+                    app:layout_constraintBottom_toTopOf="@+id/date_payment2"
+                    app:layout_constraintStart_toStartOf="@+id/date_payment2" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/operationTitle_payment2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Numero de la Operación"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <EditText
+                android:id="@+id/operarion_payment2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Numero de la operación"
+                android:inputType="number"
+                android:textSize="20sp"
+                android:theme="@style/Theme.VictoryPay.datePicker" />
+
+            <CheckBox
+                android:id="@+id/chkVerified_payment2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:orientation="horizontal">
+                android:checked="false"
+                android:text="Verificado"
+                android:theme="@style/Theme.VictoryPay.datePicker" />
 
-                <TextView
-                    android:id="@+id/messagePayment1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textColor="@color/purple_200"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/messagePayment2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="end"
-                    android:text="Enero - Marzo"
-                    android:textColor="@color/purple_200"
-                    android:textSize="16sp" />
-            </LinearLayout>
-
-            <LinearLayout
+            <TextView
+                android:id="@+id/textView33"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent">
+                android:layout_marginTop="10dp"
+                android:text="Observaciónes"
+                app:layout_constraintStart_toStartOf="parent" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/dateTitle_payment2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
-                        android:text="Fecha del deposito" />
-
-                    <TextView
-                        android:id="@+id/date_payment2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Seleccione una fecha"
-                        android:textSize="20sp"
-                        android:visibility="visible" />
-
-                    <TextView
-                        android:id="@+id/operationTitle_payment2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:text="Numero de la Operación" />
-
-                    <EditText
-                        android:id="@+id/operarion_payment2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:hint="Numero de la operación"
-                        android:inputType="number"
-                        android:textSize="20sp"
-                        android:theme="@style/Theme.VictoryPay.datePicker" />
-
-                    <CheckBox
-                        android:id="@+id/chkVerified_payment2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:checked="false"
-                        android:text="Verificado"
-                        android:theme="@style/Theme.VictoryPay.datePicker" />
-
-                    <TextView
-                        android:id="@+id/textView33"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:text="Observaciónes"
-                        app:layout_constraintStart_toStartOf="parent" />
-
-                    <EditText
-                        android:id="@+id/editTextTextMultiLine"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:gravity="start|top"
-                        android:inputType="textMultiLine"
-                        android:theme="@style/Theme.VictoryPay.datePicker" />
-
-                </LinearLayout>
-
-            </LinearLayout>
+            <EditText
+                android:id="@+id/editTextTextMultiLine"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:gravity="start|top"
+                android:inputType="textMultiLine"
+                android:theme="@style/Theme.VictoryPay.datePicker" />
 
         </LinearLayout>
     </ScrollView>
-
-    <TextView
-        android:id="@+id/name_payument2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Daniela Angelica Arevalo Betancourt"
-        android:textColor="@color/purple_200"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/progress_payment2"
-        app:layout_constraintStart_toStartOf="@+id/progress_payment2"
-        app:layout_constraintTop_toBottomOf="@+id/ci_payment2" />
-
-    <TextView
-        android:id="@+id/ci_payment2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="C.I. 154211454"
-        android:textColor="@color/purple_200"
-        app:layout_constraintStart_toStartOf="@+id/progress_payment2"
-        app:layout_constraintTop_toBottomOf="@+id/progress_payment2" />
-
-    <TextView
-        android:id="@+id/seccion_payment2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:text="Sección A"
-        android:textColor="@color/purple_200"
-        app:layout_constraintBottom_toBottomOf="@+id/grade_payment2"
-        app:layout_constraintStart_toEndOf="@+id/grade_payment2"
-        app:layout_constraintTop_toTopOf="@+id/grade_payment2" />
-
-    <TextView
-        android:id="@+id/grade_payment2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="5to año"
-        android:textColor="@color/purple_200"
-        app:layout_constraintStart_toStartOf="@+id/name_payument2"
-        app:layout_constraintTop_toBottomOf="@+id/name_payument2" />
-
-    <TextView
-        android:id="@+id/code_payment2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Código: K1-12547885545"
-        android:textColor="@color/purple_200"
-        app:layout_constraintEnd_toEndOf="@+id/progress_payment2"
-        app:layout_constraintTop_toBottomOf="@+id/progress_payment2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

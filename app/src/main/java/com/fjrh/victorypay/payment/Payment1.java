@@ -19,6 +19,9 @@ import android.widget.Toast;
 import com.fjrh.victorypay.R;
 import com.fjrh.victorypay.dataBases.students.FindStudent;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class Payment1 extends AppCompatActivity {
     private EditText ci;
     private EditText code;
@@ -29,14 +32,17 @@ public class Payment1 extends AppCompatActivity {
     private TextView lastPayment;
     private TextView paymentStatus;
     private Button registerPayment;
-    private Button paymentList;
-    private Button moreInfo;
+    private Button back;
     private Context context;
     private FindStudent studentsData;
     private LinearLayout ciHelper;
     private LinearLayout codeHelper;
     private LinearLayout nameHelper;
     private ProgressBar progressBar;
+    private ArrayList<HashMap<String, String>> studentList;
+    private HashMap<String, String> paymentData;
+
+    private boolean loadBrothers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,33 +63,55 @@ public class Payment1 extends AppCompatActivity {
         lastPayment = findViewById(R.id.lastPayment_search);
         paymentStatus = findViewById(R.id.paymentStatus_search);
         registerPayment = findViewById(R.id.btnRegister_search);
-        paymentList = findViewById(R.id.btnPaymientLis_search);
-        moreInfo = findViewById(R.id.btnMoreInfo_search);
+        back = findViewById(R.id.btnBack_search);
         studentsData = new FindStudent(context);
         ciHelper = findViewById(R.id.ciHelper);
         codeHelper = findViewById(R.id.codeHelper);
         nameHelper = findViewById(R.id.nameHelper);
         progressBar = findViewById(R.id.progressBar_payment1);
+        loadBrothers = true;
+
+        Intent i = getIntent();
+        if (i.hasExtra("studentList")) {
+            studentList = (ArrayList<HashMap<String, String>>) i.getSerializableExtra("studentList");
+        } else {
+            studentList = new ArrayList<>();
+        }
+
+        if (i.hasExtra("paymentData")) {
+            paymentData = (HashMap<String, String>) i.getSerializableExtra("paymentData");
+        } else {
+            paymentData = new HashMap<String, String>();
+        }
+
+
     }
 
     private void initEvents() {
         registerPayment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(areDataComplete()){
-                    Intent i = new Intent(context, Payment2.class);
-                    i.putExtra("code", code.getText().toString());
+                if (areDataComplete()) {
+                    Intent i = new Intent(context, Payment0.class);
+                    i.putExtra("studentList", studentList);
+                    i.putExtra("paymentData", paymentData);
                     startActivity(i);
                 }
             }
         });
 
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
 
         ci.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus){
+                if (hasFocus) {
                     cleanAllData();
                 }
             }
@@ -91,7 +119,7 @@ public class Payment1 extends AppCompatActivity {
         code.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus){
+                if (hasFocus) {
                     cleanAllData();
                 }
             }
@@ -99,7 +127,7 @@ public class Payment1 extends AppCompatActivity {
         name.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus){
+                if (hasFocus) {
                     cleanAllData();
                 }
             }
@@ -198,6 +226,7 @@ public class Payment1 extends AppCompatActivity {
                 int gradeIndex = student.getColumnIndex("grade");
                 int genderIndex = student.getColumnIndex("gender");
                 int seccionIndex = student.getColumnIndex("seccion");
+                int tutorIdIndex = student.getColumnIndex("tutor_id");
 
                 String _name = student.getString(nameIndex);
                 String _lastName = student.getString(lastNameIndex);
@@ -206,8 +235,9 @@ public class Payment1 extends AppCompatActivity {
                 String _grade = student.getString(gradeIndex);
                 String _gender = student.getString(genderIndex);
                 String _seccion = student.getString(seccionIndex);
+                String _tutorId = student.getString(tutorIdIndex);
 
-
+                //texto de la sugerencia
                 String text = _lastName + " " + _name + " ci: " + _ci;
 
                 TextView suggest = new TextView(context);
@@ -222,7 +252,7 @@ public class Payment1 extends AppCompatActivity {
                 suggest.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        fillData(_name, _lastName, _ci, _code, _seccion, _grade, _gender, "Marzo", "Al dia");
+                        fillData(_name, _lastName, _ci, _code, _seccion, _grade, _gender, "Marzo", "Al dia", _tutorId);
                     }
                 });
             } while (student.moveToNext());
@@ -230,7 +260,7 @@ public class Payment1 extends AppCompatActivity {
 
     }
 
-    private void fillData(String name, String lastName, String ci, String code, String seccion, String grade, String gender, String lastPayment, String paymentStatus) {
+    private void fillData(String name, String lastName, String ci, String code, String seccion, String grade, String gender, String lastPayment, String paymentStatus, String tutorID) {
         this.name.setText(name + " " + lastName);
         this.ci.setText(ci);
         this.code.setText(code);
@@ -239,11 +269,38 @@ public class Payment1 extends AppCompatActivity {
         this.gender.setText(gender);
         this.lastPayment.setText(lastPayment);
         this.paymentStatus.setText(paymentStatus);
+
+        if (loadBrothers) {
+            ArrayList<HashMap<String, String>> list = studentsData.getBrothers(tutorID);
+            for (int i = 0; i < list.size(); i++) {
+                HashMap<String, String> stdData = new HashMap<>();
+                stdData.put("name", list.get(i).get("name") + " " + list.get(i).get("lastName"));
+                stdData.put("ci", list.get(i).get("ci"));
+                stdData.put("code", list.get(i).get("code"));
+                stdData.put("seccion", list.get(i).get("seccion"));
+                stdData.put("grade", list.get(i).get("grade"));
+                stdData.put("gender", list.get(i).get("gender"));
+                stdData.put("tutorID", list.get(i).get("tutor_id"));
+                stdData.put("payment", "0");
+                studentList.add(stdData);
+            }
+        } else {
+            HashMap<String, String> stdData = new HashMap<>();
+            stdData.put("name", name + " " + lastName);
+            stdData.put("ci", ci);
+            stdData.put("code", code);
+            stdData.put("seccion", seccion);
+            stdData.put("grade", grade);
+            stdData.put("gender", gender);
+            stdData.put("tutorID", tutorID);
+            stdData.put("payment", "0");
+            studentList.add(stdData);
+        }
         cleanHelpers();
         loading(false);
     }
 
-    private void cleanAllData(){
+    private void cleanAllData() {
         this.name.setText("");
         this.ci.setText("");
         this.code.setText("");
@@ -263,24 +320,23 @@ public class Payment1 extends AppCompatActivity {
     private void loading(boolean isLoadig) {
         progressBar.setVisibility(isLoadig ? View.VISIBLE : View.INVISIBLE);
         registerPayment.setEnabled(!isLoadig);
-        paymentList.setEnabled(!isLoadig);
-        moreInfo.setEnabled(!isLoadig);
+
     }
 
-    private boolean areDataComplete(){
-        if(ci.getText().toString().isEmpty()){
+    private boolean areDataComplete() {
+        if (ci.getText().toString().isEmpty()) {
             Toast.makeText(context, "No ha suministrado una cédula", Toast.LENGTH_LONG).show();
             return false;
         }
-        if(code.getText().toString().isEmpty()){
+        if (code.getText().toString().isEmpty()) {
             Toast.makeText(context, "No ha suministrado un código", Toast.LENGTH_LONG).show();
             return false;
         }
-        if(name.getText().toString().isEmpty()){
+        if (name.getText().toString().isEmpty()) {
             Toast.makeText(context, "No ha suministrado un nombre", Toast.LENGTH_LONG).show();
             return false;
         }
-        if(!studentsData.isCodeRegistered(code.getText().toString())){
+        if (!studentsData.isCodeRegistered(code.getText().toString())) {
             Toast.makeText(context, "El código no está registrado", Toast.LENGTH_LONG).show();
             return false;
         }

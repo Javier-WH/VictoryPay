@@ -16,7 +16,13 @@
         android:theme="@style/Theme.VictoryPay"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-
+        <activity
+            android:name=".payment.Payment4"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
         <activity
             android:name=".payment.Payment2"
             android:exported="false"
@@ -38,7 +44,7 @@
                 android:value=".App" />
         </activity>
         <activity
-            android:name=".Payment0"
+            android:name=".payment.Payment0"
             android:exported="false"
             android:label="Pagos"
             android:parentActivityName=".App"
@@ -47,7 +53,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".App" />
         </activity>
-
         <activity
             android:name=".Config.ConfigFetchingAddress"
             android:theme="@style/Theme.VictoryPay.clean">
@@ -55,7 +60,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <activity
             android:name=".sync.Sync"
             android:exported="false"
@@ -64,7 +68,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <activity
             android:name=".Register.Register5"
             android:exported="false"

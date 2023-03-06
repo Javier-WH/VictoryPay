@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Payment0">
+    tools:context=".payment.Payment0">
 
     <LinearLayout
         android:id="@+id/linearLayout7"
         android:layout_width="0dp"
         android:layout_height="65dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -19,12 +19,14 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
-            android:id="@+id/btbAddStudent_payment0"
+            android:id="@+id/btnBack_payment0"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Agregar"
-            app:icon="@android:drawable/ic_menu_add" />
+            android:layoutDirection="inherit"
+            android:text="Atras"
+            app:icon="@android:drawable/ic_media_rew"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Space
             android:layout_width="match_parent"
@@ -39,8 +41,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:layoutDirection="rtl"
-            android:text="Siguiente"
-            app:icon="@android:drawable/ic_media_ff"
+            android:text="Registrar"
+            app:icon="@android:drawable/ic_menu_save"
             app:layout_constraintTop_toTopOf="parent" />
     </LinearLayout>
 
@@ -49,7 +51,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="90dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -63,13 +65,16 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/student1_payment0"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
                 android:background="@color/purple_500"
                 android:padding="5dp"
-                android:visibility="gone">
+                android:visibility="gone"
+                tools:visibility="visible">
 
                 <TextView
                     android:id="@+id/name1_payment0"
@@ -101,7 +106,7 @@
                     android:id="@+id/ci1_payment0"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="5dp"
                     android:text="C.I. 161645644"
                     android:textColor="@color/ic_launcher_background"
                     android:textStyle="italic"
@@ -141,7 +146,61 @@
                     android:textStyle="italic"
                     app:layout_constraintBottom_toBottomOf="@+id/seccion1_payment0"
                     app:layout_constraintStart_toEndOf="@+id/seccion1_payment0"
-                    app:layout_constraintTop_toTopOf="@+id/seccion1_payment0" />
+                    app:layout_constraintTop_toTopOf="@+id/seccion1_payment0"
+                    app:layout_constraintVertical_bias="1.0" />
+
+                <TextView
+                    android:id="@+id/grade1_payment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:text="Meses a pagar:"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textStyle="italic"
+                    app:layout_constraintBottom_toBottomOf="@+id/payment1"
+                    app:layout_constraintEnd_toStartOf="@+id/less1"
+                    app:layout_constraintTop_toTopOf="@+id/payment1" />
+
+                <EditText
+                    android:id="@+id/payment1"
+                    android:layout_width="68dp"
+                    android:layout_height="46dp"
+                    android:layout_marginEnd="40dp"
+                    android:background="@color/ic_launcher_background"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:text="0"
+                    android:textColor="@color/purple_500"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/grade1_payment0" />
+
+                <TextView
+                    android:id="@+id/less1"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:gravity="center"
+                    android:text="-"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/payment1"
+                    app:layout_constraintEnd_toStartOf="@+id/payment1"
+                    app:layout_constraintTop_toTopOf="@+id/payment1" />
+
+                <TextView
+                    android:id="@+id/plus1"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:gravity="center"
+                    android:text="+"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/payment1"
+                    app:layout_constraintStart_toEndOf="@+id/payment1"
+                    app:layout_constraintTop_toTopOf="@+id/payment1" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -149,10 +208,11 @@
                 android:id="@+id/student2_payment0"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
                 android:background="@color/purple_500"
                 android:padding="5dp"
-                android:visibility="gone">
+                android:visibility="gone"
+                tools:visibility="visible">
 
                 <TextView
                     android:id="@+id/name2_payment0"
@@ -161,7 +221,7 @@
                     android:layout_marginStart="5dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="5dp"
-                    android:text="Simon Jose Antonio bolivar y palacios2"
+                    android:text="Simon Jose Antonio bolivar y palacios1"
                     android:textColor="@color/ic_launcher_background"
                     android:textSize="18sp"
                     android:textStyle="bold"
@@ -182,10 +242,10 @@
 
                 <TextView
                     android:id="@+id/ci2_payment0"
-                    android:layout_width="91dp"
-                    android:layout_height="16dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:text="C.I. 156156"
+                    android:text="C.I. 161645644"
                     android:textColor="@color/ic_launcher_background"
                     android:textStyle="italic"
                     app:layout_constraintStart_toStartOf="@+id/name2_payment0"
@@ -224,17 +284,73 @@
                     android:textStyle="italic"
                     app:layout_constraintBottom_toBottomOf="@+id/seccion2_payment0"
                     app:layout_constraintStart_toEndOf="@+id/seccion2_payment0"
-                    app:layout_constraintTop_toTopOf="@+id/seccion2_payment0" />
+                    app:layout_constraintTop_toTopOf="@+id/seccion2_payment0"
+                    app:layout_constraintVertical_bias="1.0" />
+
+                <TextView
+                    android:id="@+id/grade2_payment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:text="Meses a pagar:"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textStyle="italic"
+                    app:layout_constraintBottom_toBottomOf="@+id/payment2"
+                    app:layout_constraintEnd_toStartOf="@+id/less2"
+                    app:layout_constraintTop_toTopOf="@+id/payment2" />
+
+                <EditText
+                    android:id="@+id/payment2"
+                    android:layout_width="68dp"
+                    android:layout_height="46dp"
+                    android:layout_marginEnd="40dp"
+                    android:background="@color/ic_launcher_background"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:text="0"
+                    android:textColor="@color/purple_500"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/grade2_payment0" />
+
+                <TextView
+                    android:id="@+id/less2"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:gravity="center"
+                    android:text="-"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/payment2"
+                    app:layout_constraintEnd_toStartOf="@+id/payment2"
+                    app:layout_constraintTop_toTopOf="@+id/payment2" />
+
+                <TextView
+                    android:id="@+id/plus2"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:gravity="center"
+                    android:text="+"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/payment2"
+                    app:layout_constraintStart_toEndOf="@+id/payment2"
+                    app:layout_constraintTop_toTopOf="@+id/payment2" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/student3_payment0"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
                 android:background="@color/purple_500"
                 android:padding="5dp"
-                android:visibility="gone">
+                android:visibility="gone"
+                tools:visibility="visible">
 
                 <TextView
                     android:id="@+id/name3_payment0"
@@ -243,11 +359,10 @@
                     android:layout_marginStart="5dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="5dp"
-                    android:text="Simon Jose Antonio bolivar y palacios3"
+                    android:text="Simon Jose Antonio bolivar y palacios1"
                     android:textColor="@color/ic_launcher_background"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="@+id/remove3_payment0"
                     app:layout_constraintEnd_toStartOf="@+id/remove3_payment0"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
@@ -265,8 +380,8 @@
 
                 <TextView
                     android:id="@+id/ci3_payment0"
-                    android:layout_width="91dp"
-                    android:layout_height="18dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:text="C.I. 161645644"
                     android:textColor="@color/ic_launcher_background"
@@ -307,17 +422,73 @@
                     android:textStyle="italic"
                     app:layout_constraintBottom_toBottomOf="@+id/seccion3_payment0"
                     app:layout_constraintStart_toEndOf="@+id/seccion3_payment0"
-                    app:layout_constraintTop_toTopOf="@+id/seccion3_payment0" />
+                    app:layout_constraintTop_toTopOf="@+id/seccion3_payment0"
+                    app:layout_constraintVertical_bias="1.0" />
+
+                <TextView
+                    android:id="@+id/grade3_payment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:text="Meses a pagar:"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textStyle="italic"
+                    app:layout_constraintBottom_toBottomOf="@+id/payment3"
+                    app:layout_constraintEnd_toStartOf="@+id/less3"
+                    app:layout_constraintTop_toTopOf="@+id/payment3" />
+
+                <EditText
+                    android:id="@+id/payment3"
+                    android:layout_width="68dp"
+                    android:layout_height="46dp"
+                    android:layout_marginEnd="40dp"
+                    android:background="@color/ic_launcher_background"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:text="0"
+                    android:textColor="@color/purple_500"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/grade3_payment0" />
+
+                <TextView
+                    android:id="@+id/less3"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:gravity="center"
+                    android:text="-"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/payment3"
+                    app:layout_constraintEnd_toStartOf="@+id/payment3"
+                    app:layout_constraintTop_toTopOf="@+id/payment3" />
+
+                <TextView
+                    android:id="@+id/plus3"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:gravity="center"
+                    android:text="+"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/payment3"
+                    app:layout_constraintStart_toEndOf="@+id/payment3"
+                    app:layout_constraintTop_toTopOf="@+id/payment3" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/student4_payment0"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
                 android:background="@color/purple_500"
                 android:padding="5dp"
-                android:visibility="gone">
+                android:visibility="gone"
+                tools:visibility="visible">
 
                 <TextView
                     android:id="@+id/name4_payment0"
@@ -326,7 +497,7 @@
                     android:layout_marginStart="5dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="5dp"
-                    android:text="Simon Jose Antonio bolivar y palacios4"
+                    android:text="Simon Jose Antonio bolivar y palacios1"
                     android:textColor="@color/ic_launcher_background"
                     android:textSize="18sp"
                     android:textStyle="bold"
@@ -371,7 +542,7 @@
                     android:id="@+id/seccion4_payment0"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
+                    android:layout_marginStart="10dp"
                     android:text="Seccion A"
                     android:textColor="@color/ic_launcher_background"
                     android:textStyle="italic"
@@ -389,17 +560,73 @@
                     android:textStyle="italic"
                     app:layout_constraintBottom_toBottomOf="@+id/seccion4_payment0"
                     app:layout_constraintStart_toEndOf="@+id/seccion4_payment0"
-                    app:layout_constraintTop_toTopOf="@+id/seccion4_payment0" />
+                    app:layout_constraintTop_toTopOf="@+id/seccion4_payment0"
+                    app:layout_constraintVertical_bias="1.0" />
+
+                <TextView
+                    android:id="@+id/grade4_payment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:text="Meses a pagar:"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textStyle="italic"
+                    app:layout_constraintBottom_toBottomOf="@+id/payment4"
+                    app:layout_constraintEnd_toStartOf="@+id/less4"
+                    app:layout_constraintTop_toTopOf="@+id/payment4" />
+
+                <EditText
+                    android:id="@+id/payment4"
+                    android:layout_width="68dp"
+                    android:layout_height="46dp"
+                    android:layout_marginEnd="40dp"
+                    android:background="@color/ic_launcher_background"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:text="0"
+                    android:textColor="@color/purple_500"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/grade4_payment0" />
+
+                <TextView
+                    android:id="@+id/less4"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:gravity="center"
+                    android:text="-"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/payment4"
+                    app:layout_constraintEnd_toStartOf="@+id/payment4"
+                    app:layout_constraintTop_toTopOf="@+id/payment4" />
+
+                <TextView
+                    android:id="@+id/plus4"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:gravity="center"
+                    android:text="+"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/payment4"
+                    app:layout_constraintStart_toEndOf="@+id/payment4"
+                    app:layout_constraintTop_toTopOf="@+id/payment4" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/student5_payment0"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
                 android:background="@color/purple_500"
                 android:padding="5dp"
-                android:visibility="gone">
+                android:visibility="gone"
+                tools:visibility="visible">
 
                 <TextView
                     android:id="@+id/name5_payment0"
@@ -408,7 +635,7 @@
                     android:layout_marginStart="5dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="5dp"
-                    android:text="Simon Jose Antonio bolivar y palacios5"
+                    android:text="Simon Jose Antonio bolivar y palacios1"
                     android:textColor="@color/ic_launcher_background"
                     android:textSize="18sp"
                     android:textStyle="bold"
@@ -453,7 +680,7 @@
                     android:id="@+id/seccion5_payment0"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
+                    android:layout_marginStart="10dp"
                     android:text="Seccion A"
                     android:textColor="@color/ic_launcher_background"
                     android:textStyle="italic"
@@ -471,8 +698,755 @@
                     android:textStyle="italic"
                     app:layout_constraintBottom_toBottomOf="@+id/seccion5_payment0"
                     app:layout_constraintStart_toEndOf="@+id/seccion5_payment0"
-                    app:layout_constraintTop_toTopOf="@+id/seccion5_payment0" />
+                    app:layout_constraintTop_toTopOf="@+id/seccion5_payment0"
+                    app:layout_constraintVertical_bias="1.0" />
+
+                <TextView
+                    android:id="@+id/grade5_payment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:text="Meses a pagar:"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textStyle="italic"
+                    app:layout_constraintBottom_toBottomOf="@+id/payment5"
+                    app:layout_constraintEnd_toStartOf="@+id/less5"
+                    app:layout_constraintTop_toTopOf="@+id/payment5" />
+
+                <EditText
+                    android:id="@+id/payment5"
+                    android:layout_width="68dp"
+                    android:layout_height="46dp"
+                    android:layout_marginEnd="40dp"
+                    android:background="@color/ic_launcher_background"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:text="0"
+                    android:textColor="@color/purple_500"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/grade5_payment0" />
+
+                <TextView
+                    android:id="@+id/less5"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:gravity="center"
+                    android:text="-"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/payment5"
+                    app:layout_constraintEnd_toStartOf="@+id/payment5"
+                    app:layout_constraintTop_toTopOf="@+id/payment5" />
+
+                <TextView
+                    android:id="@+id/plus5"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:gravity="center"
+                    android:text="+"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/payment5"
+                    app:layout_constraintStart_toEndOf="@+id/payment5"
+                    app:layout_constraintTop_toTopOf="@+id/payment5" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/student6_payment0"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="@color/purple_500"
+                android:padding="5dp"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <TextView
+                    android:id="@+id/name6_payment0"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:text="Simon Jose Antonio bolivar y palacios1"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/remove6_payment0"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/code6_payment0" />
+
+                <ImageView
+                    android:id="@+id/remove6_payment0"
+                    android:layout_width="52dp"
+                    android:layout_height="50dp"
+                    android:layout_marginEnd="2dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/name6_payment0"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/name6_payment0"
+                    app:srcCompat="@android:drawable/ic_menu_delete" />
+
+                <TextView
+                    android:id="@+id/ci6_payment0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="C.I. 161645644"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textStyle="italic"
+                    app:layout_constraintStart_toStartOf="@+id/name6_payment0"
+                    app:layout_constraintTop_toBottomOf="@+id/name6_payment0" />
+
+                <TextView
+                    android:id="@+id/code6_payment0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="Código: K-1651651541"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textStyle="italic"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/seccion6_payment0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="Seccion A"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textStyle="italic"
+                    app:layout_constraintBottom_toBottomOf="@+id/ci6_payment0"
+                    app:layout_constraintStart_toEndOf="@+id/ci6_payment0"
+                    app:layout_constraintTop_toTopOf="@+id/ci6_payment0" />
+
+                <TextView
+                    android:id="@+id/grade6_payment0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="5to año"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textStyle="italic"
+                    app:layout_constraintBottom_toBottomOf="@+id/seccion6_payment0"
+                    app:layout_constraintStart_toEndOf="@+id/seccion6_payment0"
+                    app:layout_constraintTop_toTopOf="@+id/seccion6_payment0"
+                    app:layout_constraintVertical_bias="1.0" />
+
+                <TextView
+                    android:id="@+id/grade6_payment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:text="Meses a pagar:"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textStyle="italic"
+                    app:layout_constraintBottom_toBottomOf="@+id/payment6"
+                    app:layout_constraintEnd_toStartOf="@+id/less6"
+                    app:layout_constraintTop_toTopOf="@+id/payment6" />
+
+                <EditText
+                    android:id="@+id/payment6"
+                    android:layout_width="68dp"
+                    android:layout_height="46dp"
+                    android:layout_marginEnd="40dp"
+                    android:background="@color/ic_launcher_background"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:text="0"
+                    android:textColor="@color/purple_500"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/grade6_payment0" />
+
+                <TextView
+                    android:id="@+id/less6"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:gravity="center"
+                    android:text="-"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/payment6"
+                    app:layout_constraintEnd_toStartOf="@+id/payment6"
+                    app:layout_constraintTop_toTopOf="@+id/payment6" />
+
+                <TextView
+                    android:id="@+id/plus6"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:gravity="center"
+                    android:text="+"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/payment6"
+                    app:layout_constraintStart_toEndOf="@+id/payment6"
+                    app:layout_constraintTop_toTopOf="@+id/payment6" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/student7_payment0"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="@color/purple_500"
+                android:padding="5dp"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <TextView
+                    android:id="@+id/name7_payment0"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:text="Simon Jose Antonio bolivar y palacios1"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/remove7_payment0"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/code7_payment0" />
+
+                <ImageView
+                    android:id="@+id/remove7_payment0"
+                    android:layout_width="52dp"
+                    android:layout_height="50dp"
+                    android:layout_marginEnd="2dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/name7_payment0"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/name7_payment0"
+                    app:srcCompat="@android:drawable/ic_menu_delete" />
+
+                <TextView
+                    android:id="@+id/ci7_payment0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="C.I. 161645644"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textStyle="italic"
+                    app:layout_constraintStart_toStartOf="@+id/name7_payment0"
+                    app:layout_constraintTop_toBottomOf="@+id/name7_payment0" />
+
+                <TextView
+                    android:id="@+id/code7_payment0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="Código: K-1651651541"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textStyle="italic"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/seccion7_payment0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="Seccion A"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textStyle="italic"
+                    app:layout_constraintBottom_toBottomOf="@+id/ci7_payment0"
+                    app:layout_constraintStart_toEndOf="@+id/ci7_payment0"
+                    app:layout_constraintTop_toTopOf="@+id/ci7_payment0" />
+
+                <TextView
+                    android:id="@+id/grade7_payment0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="5to año"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textStyle="italic"
+                    app:layout_constraintBottom_toBottomOf="@+id/seccion7_payment0"
+                    app:layout_constraintStart_toEndOf="@+id/seccion7_payment0"
+                    app:layout_constraintTop_toTopOf="@+id/seccion7_payment0"
+                    app:layout_constraintVertical_bias="1.0" />
+
+                <TextView
+                    android:id="@+id/grade7_payment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:text="Meses a pagar:"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textStyle="italic"
+                    app:layout_constraintBottom_toBottomOf="@+id/payment7"
+                    app:layout_constraintEnd_toStartOf="@+id/less7"
+                    app:layout_constraintTop_toTopOf="@+id/payment7" />
+
+                <EditText
+                    android:id="@+id/payment7"
+                    android:layout_width="68dp"
+                    android:layout_height="46dp"
+                    android:layout_marginEnd="40dp"
+                    android:background="@color/ic_launcher_background"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:text="0"
+                    android:textColor="@color/purple_500"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/grade7_payment0" />
+
+                <TextView
+                    android:id="@+id/less7"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:gravity="center"
+                    android:text="-"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/payment7"
+                    app:layout_constraintEnd_toStartOf="@+id/payment7"
+                    app:layout_constraintTop_toTopOf="@+id/payment7" />
+
+                <TextView
+                    android:id="@+id/plus7"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:gravity="center"
+                    android:text="+"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/payment7"
+                    app:layout_constraintStart_toEndOf="@+id/payment7"
+                    app:layout_constraintTop_toTopOf="@+id/payment7" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/student8_payment0"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="@color/purple_500"
+                android:padding="5dp"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <TextView
+                    android:id="@+id/name8_payment0"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:text="Simon Jose Antonio bolivar y palacios1"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/remove8_payment0"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/code8_payment0" />
+
+                <ImageView
+                    android:id="@+id/remove8_payment0"
+                    android:layout_width="52dp"
+                    android:layout_height="50dp"
+                    android:layout_marginEnd="2dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/name8_payment0"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/name8_payment0"
+                    app:srcCompat="@android:drawable/ic_menu_delete" />
+
+                <TextView
+                    android:id="@+id/ci8_payment0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="C.I. 161645644"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textStyle="italic"
+                    app:layout_constraintStart_toStartOf="@+id/name8_payment0"
+                    app:layout_constraintTop_toBottomOf="@+id/name8_payment0" />
+
+                <TextView
+                    android:id="@+id/code8_payment0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="Código: K-1651651541"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textStyle="italic"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/seccion8_payment0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="Seccion A"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textStyle="italic"
+                    app:layout_constraintBottom_toBottomOf="@+id/ci8_payment0"
+                    app:layout_constraintStart_toEndOf="@+id/ci8_payment0"
+                    app:layout_constraintTop_toTopOf="@+id/ci8_payment0" />
+
+                <TextView
+                    android:id="@+id/grade8_payment0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="5to año"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textStyle="italic"
+                    app:layout_constraintBottom_toBottomOf="@+id/seccion8_payment0"
+                    app:layout_constraintStart_toEndOf="@+id/seccion8_payment0"
+                    app:layout_constraintTop_toTopOf="@+id/seccion8_payment0"
+                    app:layout_constraintVertical_bias="1.0" />
+
+                <TextView
+                    android:id="@+id/grade8_payment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:text="Meses a pagar:"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textStyle="italic"
+                    app:layout_constraintBottom_toBottomOf="@+id/payment8"
+                    app:layout_constraintEnd_toStartOf="@+id/less8"
+                    app:layout_constraintTop_toTopOf="@+id/payment8" />
+
+                <EditText
+                    android:id="@+id/payment8"
+                    android:layout_width="68dp"
+                    android:layout_height="46dp"
+                    android:layout_marginEnd="40dp"
+                    android:background="@color/ic_launcher_background"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:text="0"
+                    android:textColor="@color/purple_500"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/grade8_payment0" />
+
+                <TextView
+                    android:id="@+id/less8"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:gravity="center"
+                    android:text="-"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/payment8"
+                    app:layout_constraintEnd_toStartOf="@+id/payment8"
+                    app:layout_constraintTop_toTopOf="@+id/payment8" />
+
+                <TextView
+                    android:id="@+id/plus8"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:gravity="center"
+                    android:text="+"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/payment8"
+                    app:layout_constraintStart_toEndOf="@+id/payment8"
+                    app:layout_constraintTop_toTopOf="@+id/payment8" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/student9_payment0"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="@color/purple_500"
+                android:padding="5dp"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <TextView
+                    android:id="@+id/name9_payment0"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:text="Simon Jose Antonio bolivar y palacios1"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/remove9_payment0"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/code9_payment0" />
+
+                <ImageView
+                    android:id="@+id/remove9_payment0"
+                    android:layout_width="52dp"
+                    android:layout_height="50dp"
+                    android:layout_marginEnd="2dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/name9_payment0"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/name9_payment0"
+                    app:srcCompat="@android:drawable/ic_menu_delete" />
+
+                <TextView
+                    android:id="@+id/ci9_payment0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="C.I. 161645644"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textStyle="italic"
+                    app:layout_constraintStart_toStartOf="@+id/name9_payment0"
+                    app:layout_constraintTop_toBottomOf="@+id/name9_payment0" />
+
+                <TextView
+                    android:id="@+id/code9_payment0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="Código: K-1651651541"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textStyle="italic"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/seccion9_payment0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="Seccion A"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textStyle="italic"
+                    app:layout_constraintBottom_toBottomOf="@+id/ci9_payment0"
+                    app:layout_constraintStart_toEndOf="@+id/ci9_payment0"
+                    app:layout_constraintTop_toTopOf="@+id/ci9_payment0" />
+
+                <TextView
+                    android:id="@+id/grade9_payment0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="5to año"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textStyle="italic"
+                    app:layout_constraintBottom_toBottomOf="@+id/seccion9_payment0"
+                    app:layout_constraintStart_toEndOf="@+id/seccion9_payment0"
+                    app:layout_constraintTop_toTopOf="@+id/seccion9_payment0"
+                    app:layout_constraintVertical_bias="1.0" />
+
+                <TextView
+                    android:id="@+id/grade9_payment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:text="Meses a pagar:"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textStyle="italic"
+                    app:layout_constraintBottom_toBottomOf="@+id/payment9"
+                    app:layout_constraintEnd_toStartOf="@+id/less9"
+                    app:layout_constraintTop_toTopOf="@+id/payment9" />
+
+                <EditText
+                    android:id="@+id/payment9"
+                    android:layout_width="68dp"
+                    android:layout_height="46dp"
+                    android:layout_marginEnd="40dp"
+                    android:background="@color/ic_launcher_background"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:text="0"
+                    android:textColor="@color/purple_500"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/grade9_payment0" />
+
+                <TextView
+                    android:id="@+id/less9"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:gravity="center"
+                    android:text="-"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/payment9"
+                    app:layout_constraintEnd_toStartOf="@+id/payment9"
+                    app:layout_constraintTop_toTopOf="@+id/payment9" />
+
+                <TextView
+                    android:id="@+id/plus9"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:gravity="center"
+                    android:text="+"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/payment9"
+                    app:layout_constraintStart_toEndOf="@+id/payment9"
+                    app:layout_constraintTop_toTopOf="@+id/payment9" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/student10_payment0"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="@color/purple_500"
+                android:padding="5dp"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <TextView
+                    android:id="@+id/name10_payment0"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:text="Simon Jose Antonio bolivar y palacios1"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/remove10_payment0"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/code10_payment0" />
+
+                <ImageView
+                    android:id="@+id/remove10_payment0"
+                    android:layout_width="52dp"
+                    android:layout_height="50dp"
+                    android:layout_marginEnd="2dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/name10_payment0"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/name10_payment0"
+                    app:srcCompat="@android:drawable/ic_menu_delete" />
+
+                <TextView
+                    android:id="@+id/ci10_payment0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="C.I. 161645644"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textStyle="italic"
+                    app:layout_constraintStart_toStartOf="@+id/name10_payment0"
+                    app:layout_constraintTop_toBottomOf="@+id/name10_payment0" />
+
+                <TextView
+                    android:id="@+id/code10_payment0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="Código: K-1651651541"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textStyle="italic"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/seccion10_payment0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="Seccion A"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textStyle="italic"
+                    app:layout_constraintBottom_toBottomOf="@+id/ci10_payment0"
+                    app:layout_constraintStart_toEndOf="@+id/ci10_payment0"
+                    app:layout_constraintTop_toTopOf="@+id/ci10_payment0" />
+
+                <TextView
+                    android:id="@+id/grade10_payment0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="5to año"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textStyle="italic"
+                    app:layout_constraintBottom_toBottomOf="@+id/seccion10_payment0"
+                    app:layout_constraintStart_toEndOf="@+id/seccion10_payment0"
+                    app:layout_constraintTop_toTopOf="@+id/seccion10_payment0"
+                    app:layout_constraintVertical_bias="1.0" />
+
+                <TextView
+                    android:id="@+id/grade10_payment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:text="Meses a pagar:"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textStyle="italic"
+                    app:layout_constraintBottom_toBottomOf="@+id/payment10"
+                    app:layout_constraintEnd_toStartOf="@+id/less10"
+                    app:layout_constraintTop_toTopOf="@+id/payment10" />
+
+                <EditText
+                    android:id="@+id/payment10"
+                    android:layout_width="68dp"
+                    android:layout_height="46dp"
+                    android:layout_marginEnd="40dp"
+                    android:background="@color/ic_launcher_background"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:text="0"
+                    android:textColor="@color/purple_500"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/grade10_payment0" />
+
+                <TextView
+                    android:id="@+id/less10"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:gravity="center"
+                    android:text="-"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/payment10"
+                    app:layout_constraintEnd_toStartOf="@+id/payment10"
+                    app:layout_constraintTop_toTopOf="@+id/payment10" />
+
+                <TextView
+                    android:id="@+id/plus10"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:gravity="center"
+                    android:text="+"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/payment10"
+                    app:layout_constraintStart_toEndOf="@+id/payment10"
+                    app:layout_constraintTop_toTopOf="@+id/payment10" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
         </LinearLayout>
     </ScrollView>
 
@@ -481,7 +1455,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
-        android:text="de 5 Studiantes agregados"
+        android:text="de 10 Estudiantes agregados"
+        android:textColor="@color/purple_200"
         app:layout_constraintBottom_toBottomOf="@+id/textStdNumber"
         app:layout_constraintStart_toEndOf="@+id/textStdNumber"
         app:layout_constraintTop_toTopOf="@+id/textStdNumber" />
@@ -492,7 +1467,85 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
         android:text="0"
+        android:textColor="@color/purple_200"
         app:layout_constraintBottom_toTopOf="@+id/scrollView4"
         app:layout_constraintStart_toStartOf="@+id/scrollView4" />
+
+    <Button
+        android:id="@+id/btbAddStudent_payment0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="Agregar"
+        android:textAlignment="center"
+        android:textSize="12sp"
+        app:icon="@android:drawable/ic_menu_add"
+        app:layout_constraintBottom_toBottomOf="@+id/textView61"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout7" />
+
+    <TextView
+        android:id="@+id/saldo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="6000"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/saldo2"
+        app:layout_constraintStart_toEndOf="@+id/saldo2"
+        app:layout_constraintTop_toTopOf="@+id/saldo2" />
+
+    <TextView
+        android:id="@+id/saldo2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:text="Saldo:"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/textView61"
+        app:layout_constraintStart_toStartOf="@+id/scrollView4" />
+
+    <TextView
+        android:id="@+id/saldo3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:text="USD"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/saldo"
+        app:layout_constraintStart_toEndOf="@+id/saldo"
+        app:layout_constraintTop_toTopOf="@+id/saldo" />
+
+    <TextView
+        android:id="@+id/saldo4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:text="USD"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/montPrice"
+        app:layout_constraintStart_toEndOf="@+id/montPrice"
+        app:layout_constraintTop_toTopOf="@+id/montPrice" />
+
+    <TextView
+        android:id="@+id/montPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="25"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/montPrice2"
+        app:layout_constraintStart_toEndOf="@+id/montPrice2"
+        app:layout_constraintTop_toTopOf="@+id/montPrice2" />
+
+    <TextView
+        android:id="@+id/montPrice2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:text="Mensualidad:"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/saldo2"
+        app:layout_constraintStart_toStartOf="@+id/saldo2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
