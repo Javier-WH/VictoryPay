@@ -183,6 +183,7 @@ public class MainActivity extends AppCompatActivity {
         if (pricesCount <= 0) {
             prices.insertItem("Inscripción", "100");
             prices.insertItem("Mensualidad", "50");
+            prices.insertItem("Dolar", "24");
         }
 
     }

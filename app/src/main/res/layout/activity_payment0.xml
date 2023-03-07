@@ -51,7 +51,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="90dp"
+        android:layout_marginTop="100dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -1312,10 +1312,10 @@
                 android:id="@+id/student10_payment0"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
                 android:background="@color/purple_500"
                 android:padding="5dp"
                 android:visibility="gone"
+                tools:layout_editor_absoluteY="1447dp"
                 tools:visibility="visible">
 
                 <TextView
@@ -1474,7 +1474,9 @@
     <Button
         android:id="@+id/btbAddStudent_payment0"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         android:layout_weight="1"
         android:gravity="center"
         android:text="Agregar"
@@ -1482,25 +1484,30 @@
         android:textSize="12sp"
         app:icon="@android:drawable/ic_menu_add"
         app:layout_constraintBottom_toBottomOf="@+id/textView61"
-        app:layout_constraintEnd_toEndOf="@+id/linearLayout7" />
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout7"
+        app:layout_constraintTop_toBottomOf="@+id/montPrice5" />
 
     <TextView
         android:id="@+id/saldo"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
         android:text="6000"
+        android:textColor="@color/dolar"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/saldo2"
-        app:layout_constraintStart_toEndOf="@+id/saldo2"
-        app:layout_constraintTop_toTopOf="@+id/saldo2" />
+        app:layout_constraintBottom_toBottomOf="@+id/saldo3"
+        app:layout_constraintEnd_toStartOf="@+id/btbAddStudent_payment0"
+        app:layout_constraintStart_toEndOf="@+id/saldo3"
+        app:layout_constraintTop_toTopOf="@+id/saldo3"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/saldo2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
-        android:text="Saldo:"
+        android:text="Saldo en USD:"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/textView61"
         app:layout_constraintStart_toStartOf="@+id/scrollView4" />
@@ -1511,10 +1518,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:text="USD"
+        android:textColor="@color/dolar"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/saldo"
-        app:layout_constraintStart_toEndOf="@+id/saldo"
-        app:layout_constraintTop_toTopOf="@+id/saldo" />
+        app:layout_constraintBottom_toBottomOf="@+id/saldo2"
+        app:layout_constraintStart_toEndOf="@+id/saldo2"
+        app:layout_constraintTop_toTopOf="@+id/saldo2" />
 
     <TextView
         android:id="@+id/saldo4"
@@ -1522,21 +1530,23 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:text="USD"
+        android:textColor="@color/dolar"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/montPrice"
-        app:layout_constraintStart_toEndOf="@+id/montPrice"
-        app:layout_constraintTop_toTopOf="@+id/montPrice" />
+        app:layout_constraintBottom_toBottomOf="@+id/montPrice2"
+        app:layout_constraintStart_toEndOf="@+id/montPrice2"
+        app:layout_constraintTop_toTopOf="@+id/montPrice2" />
 
     <TextView
         android:id="@+id/montPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="5dp"
         android:text="25"
+        android:textColor="@color/dolar"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/montPrice2"
-        app:layout_constraintStart_toEndOf="@+id/montPrice2"
-        app:layout_constraintTop_toTopOf="@+id/montPrice2" />
+        app:layout_constraintBottom_toBottomOf="@+id/saldo4"
+        app:layout_constraintStart_toEndOf="@+id/saldo4"
+        app:layout_constraintTop_toTopOf="@+id/saldo4" />
 
     <TextView
         android:id="@+id/montPrice2"
@@ -1545,7 +1555,75 @@
         android:layout_marginBottom="5dp"
         android:text="Mensualidad:"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/montPrice3"
+        app:layout_constraintStart_toStartOf="@+id/montPrice3" />
+
+    <TextView
+        android:id="@+id/montPrice5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
+        android:text="Tasa:"
+        android:textColor="@color/purple_200"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/textView42"
+        app:layout_constraintEnd_toStartOf="@+id/textView42"
+        app:layout_constraintTop_toTopOf="@+id/textView42" />
+
+    <TextView
+        android:id="@+id/tasa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="51"
+        android:textColor="@color/purple_200"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout7"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout7" />
+
+    <TextView
+        android:id="@+id/montPrice3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:text="Saldo en Bs:"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/saldo2"
         app:layout_constraintStart_toStartOf="@+id/saldo2" />
+
+    <TextView
+        android:id="@+id/saldoBs"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:text="3434334"
+        android:textColor="@color/bolivar"
+        app:layout_constraintBottom_toBottomOf="@+id/textView41"
+        app:layout_constraintEnd_toStartOf="@+id/btbAddStudent_payment0"
+        app:layout_constraintStart_toEndOf="@+id/textView41"
+        app:layout_constraintTop_toTopOf="@+id/textView41" />
+
+    <TextView
+        android:id="@+id/textView41"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:text="Bs."
+        android:textColor="@color/bolivar"
+        app:layout_constraintBottom_toBottomOf="@+id/montPrice3"
+        app:layout_constraintStart_toEndOf="@+id/montPrice3"
+        app:layout_constraintTop_toTopOf="@+id/montPrice3" />
+
+    <TextView
+        android:id="@+id/textView42"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
+        android:text="Bs."
+        android:textColor="@color/purple_200"
+        app:layout_constraintBottom_toBottomOf="@+id/tasa"
+        app:layout_constraintEnd_toStartOf="@+id/tasa"
+        app:layout_constraintTop_toTopOf="@+id/tasa" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

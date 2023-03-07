@@ -273,6 +273,11 @@ public class Payment1 extends AppCompatActivity {
         if (loadBrothers) {
             ArrayList<HashMap<String, String>> list = studentsData.getBrothers(tutorID);
             for (int i = 0; i < list.size(); i++) {
+                //si el alumno ya esta agregado a la lista, no lo agrega de nuevo
+                if(isStudentAlreadyPicked(list.get(i).get("ci"))){
+                    continue;
+                }
+
                 HashMap<String, String> stdData = new HashMap<>();
                 stdData.put("name", list.get(i).get("name") + " " + list.get(i).get("lastName"));
                 stdData.put("ci", list.get(i).get("ci"));
@@ -294,11 +299,27 @@ public class Payment1 extends AppCompatActivity {
             stdData.put("gender", gender);
             stdData.put("tutorID", tutorID);
             stdData.put("payment", "0");
-            studentList.add(stdData);
+
+            //si el alumno ya esta agregado a la lista, no lo agrega de nuevo
+            if(!isStudentAlreadyPicked(ci)) {
+                studentList.add(stdData);
+            }
         }
         cleanHelpers();
         loading(false);
     }
+
+    private boolean isStudentAlreadyPicked(String ci){
+        for(int i = 0 ; i < studentList.size() ; i++){
+            String currentCi = studentList.get(i).get("ci");
+            if(currentCi.equalsIgnoreCase(ci)){
+                return true;
+            }
+
+        }
+        return false;
+    }
+
 
     private void cleanAllData() {
         this.name.setText("");

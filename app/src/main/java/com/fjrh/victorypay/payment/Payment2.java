@@ -42,6 +42,7 @@ public class Payment2 extends AppCompatActivity {
     private RadioButton check;
     private RadioButton cash;
     private CheckBox verified;
+    private TextView currency;
 
 
     @Override
@@ -64,6 +65,7 @@ public class Payment2 extends AppCompatActivity {
         dateTitle =  findViewById(R.id.dateTitle_payment2);
         operationTitle = findViewById(R.id.operationTitle_payment2);
         verified = findViewById(R.id.chkVerified_payment2);
+        currency = findViewById(R.id.currency_payment2);
     }
 
     private void initEvents(){
@@ -98,8 +100,33 @@ public class Payment2 extends AppCompatActivity {
                     date.setText("Seleccione una fecha");
                     operation.setText("");
                 }
+
+                String curr = isChecked ? "Bs" : "USD";
+                togleBsDollar(curr);
+
             }
         });
+
+        currency.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String curr = currency.getText().toString().equals("USD") ? "Bs" : "USD";
+                togleBsDollar(curr);
+            }
+        });
+
+    }
+
+    public void togleBsDollar(String type){
+        if(type.equals("Bs")){
+            currency.setText("Bs");
+            currency.setTextColor(getResources().getColor(R.color.bolivar));
+            mount.setTextColor(getResources().getColor(R.color.bolivar));
+        }else{
+            currency.setText("USD");
+            currency.setTextColor(getResources().getColor(R.color.dolar));
+            mount.setTextColor(getResources().getColor(R.color.dolar));
+        }
     }
 
 
@@ -112,6 +139,8 @@ public class Payment2 extends AppCompatActivity {
         paymentData.put("operation", operation.getText().toString());
         paymentData.put("verified", verified.isChecked() ? "Si" : "No");
         paymentData.put("mount", mount.getText().toString());
+        paymentData.put("currency", currency.getText().toString());
+        paymentData.put("dolarPrice", new Prices(context).getPrices().get("Dolar"));
 
         return paymentData;
     }

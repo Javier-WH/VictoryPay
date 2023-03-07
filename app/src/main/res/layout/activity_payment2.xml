@@ -76,11 +76,24 @@
                 android:orientation="horizontal">
 
                 <RadioButton
+                    android:id="@+id/cash_payment2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checked="true"
+                    android:text="Efectivo"
+                    android:theme="@style/Theme.VictoryPay.datePicker"
+                    tools:layout_conversion_absoluteHeight="48dp"
+                    tools:layout_conversion_absoluteWidth="88dp"
+                    tools:layout_editor_absoluteX="232dp"
+                    tools:layout_editor_absoluteY="135dp" />
+
+                <RadioButton
                     android:id="@+id/check_payment2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:checked="true"
+                    android:checked="false"
                     android:text="Depósito"
                     android:theme="@style/Theme.VictoryPay.datePicker"
                     tools:layout_conversion_absoluteHeight="48dp"
@@ -88,17 +101,6 @@
                     tools:layout_editor_absoluteX="232dp"
                     tools:layout_editor_absoluteY="87dp" />
 
-                <RadioButton
-                    android:id="@+id/cash_payment2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Efectivo"
-                    android:theme="@style/Theme.VictoryPay.datePicker"
-                    tools:layout_conversion_absoluteHeight="48dp"
-                    tools:layout_conversion_absoluteWidth="88dp"
-                    tools:layout_editor_absoluteX="232dp"
-                    tools:layout_editor_absoluteY="135dp" />
             </RadioGroup>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -118,24 +120,29 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintWidth_min="50dp">
 
+                    <TextView
+                        android:id="@+id/currency_payment2"
+                        android:layout_width="45dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="USD"
+                        android:textColor="@color/dolar"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
                     <EditText
                         android:id="@+id/mount_payment2"
                         android:layout_width="131dp"
                         android:layout_height="50dp"
                         android:layout_weight="4"
                         android:ems="10"
-                        android:inputType="number"
+                        android:inputType="numberDecimal"
                         android:maxLength="9"
+                        android:textColor="@color/dolar"
                         android:textSize="20sp"
                         android:theme="@style/Theme.VictoryPay.datePicker" />
 
-                    <TextView
-                        android:id="@+id/textView51"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="USD"
-                        android:textSize="20sp" />
                 </LinearLayout>
 
                 <TextView
@@ -153,7 +160,7 @@
                     android:layout_marginStart="20dp"
                     android:text="Seleccione una fecha"
                     android:textSize="20sp"
-                    android:visibility="visible"
+                    android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="@+id/linearLayout6"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.785"
@@ -165,6 +172,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Fecha del deposito"
+                    android:visibility="gone"
                     app:layout_constraintBottom_toTopOf="@+id/date_payment2"
                     app:layout_constraintStart_toStartOf="@+id/date_payment2" />
 
@@ -176,6 +184,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="Numero de la Operación"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
@@ -187,7 +196,8 @@
                 android:hint="Numero de la operación"
                 android:inputType="number"
                 android:textSize="20sp"
-                android:theme="@style/Theme.VictoryPay.datePicker" />
+                android:theme="@style/Theme.VictoryPay.datePicker"
+                android:visibility="gone" />
 
             <CheckBox
                 android:id="@+id/chkVerified_payment2"
@@ -196,7 +206,8 @@
                 android:layout_marginTop="10dp"
                 android:checked="false"
                 android:text="Verificado"
-                android:theme="@style/Theme.VictoryPay.datePicker" />
+                android:theme="@style/Theme.VictoryPay.datePicker"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/textView33"

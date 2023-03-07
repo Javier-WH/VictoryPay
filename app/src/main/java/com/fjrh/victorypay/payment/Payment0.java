@@ -1,5 +1,7 @@
 package com.fjrh.victorypay.payment;
 
+import static java.lang.Math.round;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -11,6 +13,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -109,16 +112,18 @@ public class Payment0 extends AppCompatActivity {
 
     private TextView less1, less2, less3, less4, less5, less6, less7, less8, less9, less10;
     private TextView plus1, plus2, plus3, plus4, plus5, plus6, plus7, plus8, plus9, plus10;
-    private TextView payment1, payment2, payment3, payment4, payment5, payment6, payment7, payment8, payment9, payment10;
-    private ArrayList<TextView> payments;
+    private EditText payment1, payment2, payment3, payment4, payment5, payment6, payment7, payment8, payment9, payment10;
+    private ArrayList<EditText> payments;
 
     private ArrayList<HashMap<String, String>> studentList;
     private HashMap<String, String> paymentData;
     private HashMap<String, String> prices;
     private int montPriceInt = 0;
-    private int saldoInt = 0;
+    private double saldoInt = 0;
     private TextView montPrice;
     private TextView saldo;
+    private TextView saldoBs;
+    private TextView tasa;
 
     private ConstraintLayout[] containers;
     private TextView[] names;
@@ -126,6 +131,7 @@ public class Payment0 extends AppCompatActivity {
     private TextView[] codes;
     private TextView[] seccions;
     private TextView[] grades;
+
 
 
     @Override
@@ -137,7 +143,7 @@ public class Payment0 extends AppCompatActivity {
         initEvents();
         addStudents();
         checkStudents();
-       distrubutePayment();
+        distrubutePayment();
     }
 
     private void checkStudents() {
@@ -154,9 +160,9 @@ public class Payment0 extends AppCompatActivity {
         int value = 1;
         double saldo = Double.parseDouble(this.saldo.getText().toString());
 
-        while(saldo >= montPriceInt){
-            for (int i = 0 ; i < studentList.size() ; i++){
-                if(saldo >= montPriceInt){
+        while (saldo >= montPriceInt) {
+            for (int i = 0; i < studentList.size(); i++) {
+                if (saldo >= montPriceInt) {
                     studentList.get(i).put("payment", String.valueOf(value));
                 }
                 saldo -= montPriceInt;
@@ -283,7 +289,7 @@ public class Payment0 extends AppCompatActivity {
         payment8 = findViewById(R.id.payment8);
         payment9 = findViewById(R.id.payment9);
         payment10 = findViewById(R.id.payment10);
-        payments = new ArrayList<TextView>() {{
+        payments = new ArrayList<EditText>() {{
             add(payment1);
             add(payment2);
             add(payment3);
@@ -295,16 +301,21 @@ public class Payment0 extends AppCompatActivity {
             add(payment9);
             add(payment10);
         }};
+        saldoBs = findViewById(R.id.saldoBs);
+        tasa = findViewById(R.id.tasa);
+
+        paymentData = (HashMap<String, String>) getIntent().getSerializableExtra("paymentData");
+        prices = new Prices(context).getPrices();
 
         montPrice = findViewById(R.id.montPrice);
         saldo = findViewById(R.id.saldo);
 
         studentList = new ArrayList<>();
-        paymentData = (HashMap<String, String>) getIntent().getSerializableExtra("paymentData");
-        saldoInt = Integer.parseInt(paymentData.get("mount"));
-        saldo.setText(String.valueOf(saldoInt));
 
-        prices = new Prices(context).getPrices();
+        saldoInt = getMount();
+        saldo.setText( String.valueOf(saldoInt));
+
+
         montPriceInt = Integer.parseInt(prices.get("Mensualidad"));
         montPrice.setText(String.valueOf(montPriceInt));
 
@@ -316,6 +327,24 @@ public class Payment0 extends AppCompatActivity {
         grades = new TextView[]{grade1, grade2, grade3, grade4, grade5, grade6, grade7, grade8, grade9, grade10};
 
 
+    }
+    private double getMount(){
+        String currency = paymentData.get("currency");
+        double dolarPrice = Double.parseDouble(paymentData.get("dolarPrice"));
+        double mount = Double.parseDouble(paymentData.get("mount"));
+
+        tasa.setText(String.valueOf( Math.floor(dolarPrice * 100) / 100 ));
+
+        if(currency.equals("USD")){
+
+            //el precio en bolivares que se muestra al usuario
+            saldoBs.setText(String.valueOf( Math.floor((mount * dolarPrice) * 100) / 100 ));
+            return mount;
+        }
+
+        saldoBs.setText(String.valueOf(mount));
+        //regresa siempre el precio en dolares
+        return Math.floor((mount / dolarPrice) * 100) / 100;
     }
 
     private void initEvents() {
@@ -435,31 +464,18 @@ public class Payment0 extends AppCompatActivity {
             calculateCost();
         }
 
-      if(studentList.size() == 0){
-          calculateCost();
-      }
+        if (studentList.size() == 0) {
+            calculateCost();
+        }
 
     }
 
     private void calculateCost() {
-    /*
-        int value1 = Integer.parseInt(payment1.getText().toString());
-        int value2 = Integer.parseInt(payment2.getText().toString());
-        int value3 = Integer.parseInt(payment3.getText().toString());
-        int value4 = Integer.parseInt(payment4.getText().toString());
-        int value5 = Integer.parseInt(payment5.getText().toString());
-        int value6 = Integer.parseInt(payment6.getText().toString());
-        int value7 = Integer.parseInt(payment7.getText().toString());
-        int value8 = Integer.parseInt(payment8.getText().toString());
-        int value9 = Integer.parseInt(payment9.getText().toString());
-        int value10 = Integer.parseInt(payment10.getText().toString());
-    */
-      //  int months = value1 + value2 + value3 + value4 + value5 + value6 + value7 + value8 + value9 + value10;
 
         int months = 0;
 
-        for(int i = 0 ; i < studentList.size(); i++){
-            if(studentList.get(i).get("payment").isEmpty()){
+        for (int i = 0; i < studentList.size(); i++) {
+            if (studentList.get(i).get("payment").isEmpty()) {
                 continue;
             }
             months += Integer.parseInt(studentList.get(i).get("payment"));
@@ -536,16 +552,14 @@ public class Payment0 extends AppCompatActivity {
 
         @Override
         public void afterTextChanged(Editable s) {
-
-
             studentList.get(index).put("payment", s.toString());
             calculateCost();
-
             if (Double.parseDouble(saldo.getText().toString()) < 0) {
-                s.clear();
+                payments.get(index).setText("0");
+                payments.get(index).setSelection(payments.get(index).getText().length());
+                Toast.makeText(context, "No tiene saldo para asignar esa cantidad de meses", Toast.LENGTH_LONG).show();
+                //s.clear();
             }
-
         }
     }
-
 }//
