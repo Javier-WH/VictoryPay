@@ -33,6 +33,12 @@ public class Register4_1 extends AppCompatActivity {
     private TextView titleA;
     private TextView titleB;
     private TextView labelPrice;
+    private TextView labelPriceBs;
+    private TextView tasa;
+    private TextView currency;
+    private Prices prices;
+    private double monthlyPrice;
+    private HashMap<String, String> listPrices;
 
 
     @Override
@@ -46,6 +52,8 @@ public class Register4_1 extends AppCompatActivity {
     }
 
     private void initComponents(){
+        prices = new Prices(context);
+        listPrices = prices.getPrices();
         back = findViewById(R.id.btnBack4_1);
         next = findViewById(R.id.btnNext4_1);
         cash = findViewById(R.id.cash4_1);
@@ -56,7 +64,13 @@ public class Register4_1 extends AppCompatActivity {
         titleA = findViewById(R.id.titleA4_1);
         titleB = findViewById(R.id.titleB4_1);
         labelPrice = findViewById(R.id.price4_1);
-        labelPrice.setText(getMonthlyPrice() + " USD");
+        labelPriceBs = findViewById(R.id.price4_3);
+        tasa = findViewById(R.id.tasa4_5);
+        monthlyPrice = getMonthlyPrice();
+        labelPrice.setText(String.valueOf(monthlyPrice));//precio en dolares
+        labelPriceBs.setText(String.valueOf( Math.floor((monthlyPrice * Double.parseDouble(listPrices.get("Dolar")) * 100) /100)  )); //precio en bolivares
+        currency = findViewById(R.id.currency_register4_1);
+        tasa.setText(String.valueOf( Math.floor( Double.parseDouble( listPrices.get("Dolar") ) *100) / 100));// tasa de cambio expresada en Bs
     }
 
     private void initEvents(){
@@ -95,7 +109,26 @@ public class Register4_1 extends AppCompatActivity {
                 enableImputs(isChecked);
             }
         });
+        currency.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toggleCurrency(currency.getText().toString());
+            }
+        });
+    }
 
+    private void toggleCurrency(String curr){
+
+      if(curr.equals("USD")){
+          currency.setText("Bs");
+          currency.setTextColor(getResources().getColor(R.color.bolivar));
+          mount.setTextColor(getResources().getColor(R.color.bolivar));
+      }else{
+          currency.setText("USD");
+          currency.setTextColor(getResources().getColor(R.color.dolar));
+          mount.setTextColor(getResources().getColor(R.color.dolar));
+
+      }
 
     }
 
@@ -107,11 +140,13 @@ public class Register4_1 extends AppCompatActivity {
             date.setText("Selecciona una fecha");
             titleB.setVisibility(View.VISIBLE);
             titleA.setVisibility(View.VISIBLE);
+            toggleCurrency("USD");
         }else{
             account.setVisibility(View.INVISIBLE);
             date.setVisibility(View.INVISIBLE );
             titleB.setVisibility(View.INVISIBLE);
             titleA.setVisibility(View.INVISIBLE);
+            toggleCurrency("Bs");
         }
         account.setText("");
     }
@@ -141,25 +176,40 @@ public class Register4_1 extends AppCompatActivity {
             }
 
 
+
         }
     }
 
     public HashMap<String, String> getData() {
+        double pago = Double.parseDouble(mount.getText().toString().trim());
+        double pagoBolivares = pago * Double.parseDouble(listPrices.get("Dolar"));
+
+        //revisa si el pago es en bolivares, de hacerlo hace la conversion a dolares
+        if(!currency.getText().toString().equals("USD")){
+            pagoBolivares = pago;
+            pago = pago / Double.parseDouble(listPrices.get("Dolar"));
+        }
+
         HashMap<String, String> data = new HashMap<>();
         data.put("payMethod", cash.isChecked() ? "1" : "2");
         data.put("account", account.getText().toString().trim());
         data.put("date", date.getText().toString());
-        data.put("mount", mount.getText().toString().trim());
+        data.put("mount", String.valueOf( Math.floor(pago * 100) / 100));
+        data.put("currency", currency.getText().toString());
+        //el pago expresado en Bolivares
+        data.put("mountBS", String.valueOf( Math.floor(pagoBolivares * 100) / 100));
+        //si el pago es menor al precio del mes, entonces no está inscrito
+        data.put("payment_status", pago < monthlyPrice ? "false" : "true");
+
+        //si sobra dinero o no es suficiente para pagar el mes, entonces se debe abonar
+        data.put("abono", String.valueOf( pago % monthlyPrice));
+
         return data;
     }
 
-    private float getMonthlyPrice(){
+    private double getMonthlyPrice(){
 
-        Prices prices = new Prices(context);
-
-        HashMap<String, String> list = prices.getPrices();
-
-        float monthPrice = Float.parseFloat(list.get("Inscripción"));
+        double monthPrice = Float.parseFloat(listPrices.get("Inscripción"));
 
         return monthPrice;
     }

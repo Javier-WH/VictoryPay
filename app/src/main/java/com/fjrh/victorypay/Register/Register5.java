@@ -83,6 +83,7 @@ public class Register5 extends AppCompatActivity {
     private TextView operationDate;
     private TextView code;
     private TextView inscriptionLabel;
+    private TextView montBs;
     private ProgressBar bar;
     private HashMap<String, String> params;
     private HashMap<String, String> data;
@@ -148,6 +149,7 @@ public class Register5 extends AppCompatActivity {
         bar = findViewById(R.id.progress5);
         fetchManager = new FetchManager(context);
         URL = fetchManager.getFetchinAddress();
+        montBs = findViewById(R.id.montBs);
     }
 
     private void initEvents() {
@@ -300,11 +302,15 @@ public class Register5 extends AppCompatActivity {
                 operationDate.setText(data.get("date"));
             }
             if (data.containsKey("mount")) {
-                mount.setText(data.get("mount") + " USD");
+                mount.setText("USD " + data.get("mount"));
+
+            }
+            if(data.containsKey("mountBS")){
+                montBs.setText("(Bs "+data.get("mountBS")+")");
             }
 
             if (Float.parseFloat(data.get("mount")) < getMonthlyPrice()) {
-                inscriptionLabel.setText("Preinscripción");
+                inscriptionLabel.setText("Preinscripción (Abono)");
             } else {
                 inscriptionLabel.setText("Inscripción");
             }

@@ -17,16 +17,17 @@ public class CreatorString {
     //contact_info
     private static final String CreateContactInfoString = "CREATE TABLE contact_info (id INTEGER PRIMARY KEY AUTOINCREMENT, student_id INTEGER NOT NULL UNIQUE, phone1 TEXT NOT NULL, phone2 TEXT NOT NULL, email TEXT, whatsapp1 TEXT, whatsapp2 TEXT, updatedAT DATETIME DEFAULT CURRENT_TIMESTAMP)";
     //inscription_payment
-    private static  final String CreateInscriptionPaymentString = "CREATE TABLE inscription_payment (id INTEGER PRIMARY KEY AUTOINCREMENT, student_id INTEGER NOT NULL UNIQUE, inscription TEXT NOT NULL, cash TEXT NOT NULL, operation_number TEXT NOT NULL, date TEXT NOT NULL, updatedAT DATETIME DEFAULT CURRENT_TIMESTAMP)";
+    private static  final String CreateInscriptionPaymentString = "CREATE TABLE inscription_payment (id INTEGER PRIMARY KEY AUTOINCREMENT, student_id INTEGER NOT NULL UNIQUE, inscription TEXT NOT NULL, cash TEXT NOT NULL, operation_number TEXT NOT NULL, date TEXT NOT NULL, status TEXT NOT NULL, updatedAT DATETIME DEFAULT CURRENT_TIMESTAMP)";
     //schools
     private static final String CreateSchoolsString = "CREATE TABLE schools (id INTEGER PRIMARY KEY AUTOINCREMENT, school TEXT NOT NULL UNIQUE, updatedAT DATETIME DEFAULT CURRENT_TIMESTAMP)";
     //prices
     private static final String CreatePricesString = "CREATE TABLE prices (id INTEGER PRIMARY KEY AUTOINCREMENT, item TEXT NOT NULL UNIQUE, price TEXT NOT NULL, updatedAT DATETIME DEFAULT CURRENT_TIMESTAMP)";
     //params
     private static final String CreateParamsString = "CREATE TABLE params (id INTEGER PRIMARY KEY AUTOINCREMENT, param TEXT NOT NULL UNIQUE, value TEXT NOT NULL )";
-
-
-
+    //
+    private static final String CreateMonthControlString = "CREATE TABLE monthControl (id INTEGER PRIMARY KEY AUTOINCREMENT, student_code TEXT NOT NULL UNIQUE, control TEXT NOT NULL, updatedAT DATETIME DEFAULT CURRENT_TIMESTAMP)";
+    //
+    private static final String CreateAbonoString = " CREATE TABLE abono (id INTEGER PRIMARY KEY AUTOINCREMENT, tutor_id TEXT NOT NULL UNIQUE, abono TEXT NOT NULL UNIQUE, updatedAT DATETIME DEFAULT CURRENT_TIMESTAMP)";
 
     public static String getCreateUserString(){
         return CreateUserString;
@@ -42,6 +43,7 @@ public class CreatorString {
     public static String getCreateInscriptionPaymentString(){ return CreateInscriptionPaymentString;}
     public static String getCreateSchoolsString(){ return CreateSchoolsString;}
     public static String getCreatePricesString(){ return CreatePricesString;}
-    public static String getCreateParamsString(){return CreateParamsString;};
-
+    public static String getCreateParamsString(){return CreateParamsString;}
+    public static String getCreateMonthControlString(){return CreateMonthControlString;}
+    public static String getCreateAbonoString(){return  CreateAbonoString;}
 }

@@ -60,27 +60,28 @@
         app:layout_constraintTop_toBottomOf="@+id/scrollView5">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <EditText
                 android:id="@+id/mont4_1"
-                android:layout_width="125dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
                 android:ems="10"
-                android:inputType="number"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:inputType="numberDecimal"
+                android:textColor="@color/dolar"
+                app:layout_constraintStart_toEndOf="@+id/currency_register4_1"
+                app:layout_constraintTop_toBottomOf="@+id/textView79" />
 
             <TextView
-                android:id="@+id/textView80"
-                android:layout_width="wrap_content"
+                android:id="@+id/currency_register4_1"
+                android:layout_width="40dp"
                 android:layout_height="wrap_content"
                 android:text="USD"
+                android:textColor="@color/dolar"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="@+id/mont4_1"
-                app:layout_constraintStart_toEndOf="@+id/mont4_1"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/mont4_1" />
 
             <TextView
@@ -89,28 +90,100 @@
                 android:layout_height="wrap_content"
                 android:text="Monto
         "
-                app:layout_constraintBottom_toTopOf="@+id/mont4_1"
-                app:layout_constraintStart_toStartOf="@+id/mont4_1" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/price4_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:text="6000 USD"
+                android:layout_marginStart="5dp"
+                android:text="6000"
+                android:textColor="@color/purple_200"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/mont4_1"
-                app:layout_constraintStart_toEndOf="@+id/textView80"
-                app:layout_constraintTop_toTopOf="@+id/mont4_1" />
+                app:layout_constraintBottom_toBottomOf="@+id/price4_"
+                app:layout_constraintStart_toEndOf="@+id/price4_"
+                app:layout_constraintTop_toBottomOf="@+id/textView31" />
+
+            <TextView
+                android:id="@+id/price4_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:text="6000"
+                android:textColor="@color/purple_200"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/price4_2"
+                app:layout_constraintStart_toEndOf="@+id/price4_2"
+                app:layout_constraintTop_toTopOf="@+id/price4_2" />
+
+            <TextView
+                android:id="@+id/tasa4_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:text="6000"
+                android:textColor="@color/purple_200"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/price4_4"
+                app:layout_constraintStart_toEndOf="@+id/price4_4"
+                app:layout_constraintTop_toTopOf="@+id/price4_4" />
 
             <TextView
                 android:id="@+id/textView31"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Precio"
-                app:layout_constraintBottom_toTopOf="@+id/price4_1"
-                app:layout_constraintStart_toStartOf="@+id/price4_1" />
+                app:layout_constraintBottom_toTopOf="@+id/price4_"
+                app:layout_constraintStart_toStartOf="@+id/price4_" />
+
+            <TextView
+                android:id="@+id/textView38"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:text="Tasa"
+                app:layout_constraintStart_toEndOf="@+id/price4_1"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/price4_"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:text="USD"
+                android:textColor="@color/purple_200"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/mont4_1"
+                app:layout_constraintTop_toTopOf="@+id/mont4_1" />
+
+            <TextView
+                android:id="@+id/price4_2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Bs"
+                android:textColor="@color/purple_200"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/price4_"
+                app:layout_constraintStart_toStartOf="@+id/price4_"
+                app:layout_constraintTop_toBottomOf="@+id/price4_" />
+
+            <TextView
+                android:id="@+id/price4_4"
+                android:layout_width="35dp"
+                android:layout_height="wrap_content"
+                android:text="Bs"
+                android:textColor="@color/purple_200"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/textView38"
+                app:layout_constraintTop_toBottomOf="@+id/textView38" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <RadioGroup
@@ -125,7 +198,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:checked="true"
+                android:checked="false"
                 android:text="Deposito" />
 
             <RadioButton
@@ -133,7 +206,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:checked="false"
+                android:checked="true"
                 android:text="Efectivo" />
         </RadioGroup>
 
@@ -142,7 +215,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Numero de la operación" />
+            android:text="Numero de la operación"
+            android:visibility="gone" />
 
         <EditText
             android:id="@+id/backAccount4_1"
@@ -150,14 +224,16 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Numero de Operación"
-            android:inputType="number" />
+            android:inputType="number"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/titleB4_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Fecha del depósito" />
+            android:text="Fecha del depósito"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/date1_4"
@@ -165,7 +241,9 @@
             android:layout_height="wrap_content"
             android:text="Selecciona una fecha"
             android:textSize="20sp"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
