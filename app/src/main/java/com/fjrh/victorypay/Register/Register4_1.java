@@ -14,7 +14,9 @@ import android.widget.Toast;
 
 import com.fjrh.victorypay.Libraries.DateSelector;
 import com.fjrh.victorypay.R;
+import com.fjrh.victorypay.dataBases.abono.Abono;
 import com.fjrh.victorypay.dataBases.prices.Prices;
+import com.fjrh.victorypay.dataBases.students.FindStudent;
 
 import java.time.Year;
 import java.util.Calendar;
@@ -34,11 +36,15 @@ public class Register4_1 extends AppCompatActivity {
     private TextView titleB;
     private TextView labelPrice;
     private TextView labelPriceBs;
+    private TextView lblAbono;
     private TextView tasa;
     private TextView currency;
+
+    private double abonadoDouble;
     private Prices prices;
     private double monthlyPrice;
     private HashMap<String, String> listPrices;
+
 
 
     @Override
@@ -49,6 +55,7 @@ public class Register4_1 extends AppCompatActivity {
         initComponents();
         initEvents();
         fillInputs();
+        setAbonoText();
     }
 
     private void initComponents(){
@@ -65,6 +72,8 @@ public class Register4_1 extends AppCompatActivity {
         titleB = findViewById(R.id.titleB4_1);
         labelPrice = findViewById(R.id.price4_1);
         labelPriceBs = findViewById(R.id.price4_3);
+        lblAbono = findViewById(R.id.lblAbono);
+
         tasa = findViewById(R.id.tasa4_5);
         monthlyPrice = getMonthlyPrice();
         labelPrice.setText(String.valueOf(monthlyPrice));//precio en dolares
@@ -175,24 +184,42 @@ public class Register4_1 extends AppCompatActivity {
                 mount.setText(data.get("mount"));
             }
 
+            //esto se asegura de hacer la conversion a bolivares si se regresa a esta vista
+            if(data.containsKey("currency")){
+                String storedCurrency = data.get("currency");
+                toggleCurrency( storedCurrency.equals("USD") ? "Bs" : "USD");
+
+                if(storedCurrency.equals("Bs")){
+                    double storedMount = Double.parseDouble(data.get("mount"));
+                    double storedTas = Double.parseDouble(listPrices.get("Dolar"));
+                    double priceInBs = Math.floor((storedMount * storedTas) * 100) /100;
+                    mount.setText(String.valueOf(priceInBs));
+                }
+
+            }
 
 
         }
     }
 
     public HashMap<String, String> getData() {
-        double pago = Double.parseDouble(mount.getText().toString().trim());
-        double pagoBolivares = pago * Double.parseDouble(listPrices.get("Dolar"));
+        double dolarPrice = Double.parseDouble(listPrices.get("Dolar"));
+        double pago = 0;
+        //la condicional corrige el bug que ocuirre al regresar a la vista anterior.
+        if(!mount.getText().toString().isEmpty()){
+            pago = Double.parseDouble(mount.getText().toString().trim());
+        }
+        double pagoBolivares = pago * dolarPrice;
 
         //revisa si el pago es en bolivares, de hacerlo hace la conversion a dolares
         if(!currency.getText().toString().equals("USD")){
             pagoBolivares = pago;
-            pago = pago / Double.parseDouble(listPrices.get("Dolar"));
+            pago = pago /dolarPrice;
         }
 
         HashMap<String, String> data = new HashMap<>();
         data.put("payMethod", cash.isChecked() ? "1" : "2");
-        data.put("account", account.getText().toString().trim());
+        data.put("account",  account.getText().toString().trim());
         data.put("date", date.getText().toString());
         data.put("mount", String.valueOf( Math.floor(pago * 100) / 100));
         data.put("currency", currency.getText().toString());
@@ -204,6 +231,11 @@ public class Register4_1 extends AppCompatActivity {
         //si sobra dinero o no es suficiente para pagar el mes, entonces se debe abonar
         data.put("abono", String.valueOf( pago % monthlyPrice));
 
+        //agrega el precio del dolar al momento de hacer la inscripcion
+        data.put("dolarPrice", String.valueOf(dolarPrice));
+        //agrega el precio del mes al momento de hacer la transaccion
+        data.put("monthlyPrice", String.valueOf(monthlyPrice));
+
         return data;
     }
 
@@ -212,6 +244,25 @@ public class Register4_1 extends AppCompatActivity {
         double monthPrice = Float.parseFloat(listPrices.get("Inscripción"));
 
         return monthPrice;
+    }
+
+    private void setAbonoText(){
+        if(data.containsKey("savedAbono")){
+            lblAbono.setText(data.get("savedAbono"));
+            return;
+        }
+
+        FindStudent findStudent = new FindStudent(context);
+        long tutorID = findStudent.findStudentTutor(data.get("tutorCi"));
+        if(tutorID == -1) {
+            lblAbono.setText("0");
+            data.put("savedAbono", "0");
+        }else{
+            String id = String.valueOf(tutorID);
+            String savedAbono = String.valueOf(new Abono(context).getAbono(id));
+            lblAbono.setText(savedAbono);
+            data.put("savedAbono", savedAbono);
+        }
     }
 
     public boolean isDataComplete(){

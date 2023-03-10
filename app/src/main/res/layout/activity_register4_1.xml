@@ -47,6 +47,7 @@
         app:layout_constraintTop_toTopOf="@+id/scrollView5" />
 
     <LinearLayout
+        android:id="@+id/linearLayout3"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="10dp"
@@ -60,6 +61,10 @@
         app:layout_constraintTop_toBottomOf="@+id/scrollView5">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="391dp"
+            android:layout_height="wrap_content" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -70,6 +75,7 @@
                 android:ems="10"
                 android:inputType="numberDecimal"
                 android:textColor="@color/dolar"
+                android:theme="@style/Theme.VictoryPay.datePicker"
                 app:layout_constraintStart_toEndOf="@+id/currency_register4_1"
                 app:layout_constraintTop_toBottomOf="@+id/textView79" />
 
@@ -80,6 +86,7 @@
                 android:text="USD"
                 android:textColor="@color/dolar"
                 android:textSize="16sp"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/mont4_1"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/mont4_1" />
@@ -94,39 +101,14 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/price4_1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:text="6000"
-                android:textColor="@color/purple_200"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/price4_"
-                app:layout_constraintStart_toEndOf="@+id/price4_"
-                app:layout_constraintTop_toBottomOf="@+id/textView31" />
-
-            <TextView
-                android:id="@+id/price4_3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:text="6000"
-                android:textColor="@color/purple_200"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/price4_2"
-                app:layout_constraintStart_toEndOf="@+id/price4_2"
-                app:layout_constraintTop_toTopOf="@+id/price4_2" />
-
-            <TextView
                 android:id="@+id/tasa4_5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
+                android:background="@color/bolivar"
+                android:paddingHorizontal="2dp"
                 android:text="6000"
-                android:textColor="@color/purple_200"
-                android:textSize="18sp"
+                android:textColor="@color/ic_launcher_background"
+                android:textSize="14sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/price4_4"
                 app:layout_constraintStart_toEndOf="@+id/price4_4"
@@ -136,54 +118,95 @@
                 android:id="@+id/textView31"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
                 android:text="Precio"
-                app:layout_constraintBottom_toTopOf="@+id/price4_"
-                app:layout_constraintStart_toStartOf="@+id/price4_" />
+                app:layout_constraintStart_toEndOf="@+id/mont4_1"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/textView38"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="25dp"
+                android:layout_marginStart="5dp"
                 android:text="Tasa"
-                app:layout_constraintStart_toEndOf="@+id/price4_1"
+                app:layout_constraintStart_toEndOf="@+id/tableLayout"
                 app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/price4_"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="40dp"
-                android:text="USD"
-                android:textColor="@color/purple_200"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@+id/mont4_1"
-                app:layout_constraintTop_toTopOf="@+id/mont4_1" />
-
-            <TextView
-                android:id="@+id/price4_2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="Bs"
-                android:textColor="@color/purple_200"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@+id/price4_"
-                app:layout_constraintStart_toStartOf="@+id/price4_"
-                app:layout_constraintTop_toBottomOf="@+id/price4_" />
 
             <TextView
                 android:id="@+id/price4_4"
                 android:layout_width="35dp"
                 android:layout_height="wrap_content"
+                android:background="@color/bolivar"
+                android:paddingHorizontal="2dp"
                 android:text="Bs"
-                android:textColor="@color/purple_200"
-                android:textSize="18sp"
+                android:textColor="@color/ic_launcher_background"
+                android:textSize="14sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/textView38"
                 app:layout_constraintTop_toBottomOf="@+id/textView38" />
+
+            <TableLayout
+                android:id="@+id/tableLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@+id/textView31"
+                app:layout_constraintTop_toBottomOf="@+id/textView31">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/price4_"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/dolar"
+                        android:paddingHorizontal="2dp"
+                        android:text="USD"
+                        android:textColor="@color/ic_launcher_background"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/price4_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/dolar"
+                        android:paddingHorizontal="2dp"
+                        android:text="6000"
+                        android:textColor="@color/ic_launcher_background"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/price4_2"
+                        android:layout_width="32dp"
+                        android:layout_height="wrap_content"
+                        android:background="@color/bolivar"
+                        android:paddingHorizontal="2dp"
+                        android:text="Bs"
+                        android:textColor="@color/ic_launcher_background"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/price4_3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/bolivar"
+                        android:paddingHorizontal="2dp"
+                        android:text="6000"
+                        android:textColor="@color/ic_launcher_background"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+                </TableRow>
+
+            </TableLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <RadioGroup
@@ -194,20 +217,23 @@
             android:orientation="horizontal">
 
             <RadioButton
-                android:id="@+id/bank4_1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:checked="false"
-                android:text="Deposito" />
-
-            <RadioButton
                 android:id="@+id/cash4_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:checked="true"
-                android:text="Efectivo" />
+                android:text="Efectivo"
+                android:theme="@style/Theme.VictoryPay.datePicker" />
+
+            <RadioButton
+                android:id="@+id/bank4_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="false"
+                android:text="Deposito"
+                android:theme="@style/Theme.VictoryPay.datePicker" />
+
         </RadioGroup>
 
         <TextView
@@ -245,5 +271,30 @@
             app:layout_constraintStart_toStartOf="parent" />
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView46"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:background="@color/purple_200"
+        android:paddingHorizontal="2dp"
+        android:text="Abonado: USD"
+        android:textColor="@color/ic_launcher_background"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
+        app:layout_constraintStart_toStartOf="@+id/btnBack4_1" />
+
+    <TextView
+        android:id="@+id/lblAbono"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/purple_200"
+        android:paddingHorizontal="2dp"
+        android:text="0"
+        android:textColor="@color/ic_launcher_background"
+        app:layout_constraintBottom_toBottomOf="@+id/textView46"
+        app:layout_constraintEnd_toEndOf="@+id/btnNext4_1"
+        app:layout_constraintStart_toEndOf="@+id/textView46"
+        app:layout_constraintTop_toTopOf="@+id/textView46" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -24,9 +24,9 @@ public class CreatorString {
     private static final String CreatePricesString = "CREATE TABLE prices (id INTEGER PRIMARY KEY AUTOINCREMENT, item TEXT NOT NULL UNIQUE, price TEXT NOT NULL, updatedAT DATETIME DEFAULT CURRENT_TIMESTAMP)";
     //params
     private static final String CreateParamsString = "CREATE TABLE params (id INTEGER PRIMARY KEY AUTOINCREMENT, param TEXT NOT NULL UNIQUE, value TEXT NOT NULL )";
-    //
+    //monthControl
     private static final String CreateMonthControlString = "CREATE TABLE monthControl (id INTEGER PRIMARY KEY AUTOINCREMENT, student_code TEXT NOT NULL UNIQUE, control TEXT NOT NULL, updatedAT DATETIME DEFAULT CURRENT_TIMESTAMP)";
-    //
+    //abono
     private static final String CreateAbonoString = " CREATE TABLE abono (id INTEGER PRIMARY KEY AUTOINCREMENT, tutor_id TEXT NOT NULL UNIQUE, abono TEXT NOT NULL UNIQUE, updatedAT DATETIME DEFAULT CURRENT_TIMESTAMP)";
 
     public static String getCreateUserString(){

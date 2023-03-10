@@ -4,8 +4,11 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
+import android.widget.TextView;
 
 import com.fjrh.victorypay.dataBases.DbHelper;
+import com.fjrh.victorypay.dataBases.abono.Abono;
 import com.fjrh.victorypay.dataBases.params.Params;
 
 
@@ -17,6 +20,8 @@ public class InsertStuden extends DbHelper {
     private SQLiteDatabase db;
     private FindStudent findStudent;
     private HashMap<String, String> params;
+    private Abono abono;
+
 
 
     public InsertStuden(Context context) {
@@ -26,6 +31,8 @@ public class InsertStuden extends DbHelper {
         db = dbHelper.getWritableDatabase();
         findStudent = new FindStudent(context);
         params = new Params(context).getParams();
+        abono = new Abono(context);
+
     }
 
 
@@ -125,21 +132,46 @@ public class InsertStuden extends DbHelper {
 
         return db.insert("medical_info", null, values);
     }
-    private long insertPayment(HashMap<String, String> payment, String stdId) throws SQLException {
+
+    private long insertPayment(HashMap<String, String> payment, String stdId, String tutorId) throws SQLException {
+        boolean isPaymentComplete = Boolean.parseBoolean(payment.get("payment_status"));
+
+
+
+        double currentAbono = abono.getAbono(tutorId);
+        double abonoPlusPayment = currentAbono + Double.parseDouble(payment.get("mount"));
+        double total = abonoPlusPayment - Double.parseDouble(payment.get("monthlyPrice"));
+
+        //si despues de pagar la mensualidad queda dinero, lo registra en la tabla abono
+        if(total >= 0){
+            abono.insertAbono(tutorId, total);
+            isPaymentComplete = true;
+            payment.put("payment_status", "true");
+        }
+        // registra en la tabla abono, si lo depositado mas el monto no alcanza para pagar la mensualidad
+        else if(abonoPlusPayment > 0){
+            abono.insertAbono(tutorId, abonoPlusPayment);
+            isPaymentComplete = false;
+            payment.put("payment_status", "false");
+        }
 
 
         ContentValues values = new ContentValues();
         values.put("student_id", stdId);
-        values.put("inscription", payment.get("mount"));
+        values.put("inscription", isPaymentComplete ? payment.get("monthlyPrice") : "0");
         values.put("cash", payment.get("payMethod").equals("1") ? "true" : "false");
         values.put("operation_number", payment.get("account"));
         values.put("date", payment.get("date"));
+        values.put("status", payment.containsKey("payment_status") ? payment.get("payment_status") : "false"); ///<<<<<< corregir, el servidor deberia mandar el payment status
 
         return db.insert("inscription_payment", null, values);
     }
 
-    public boolean insert(HashMap<String, String> data) {
 
+
+
+
+    public boolean insert(HashMap<String, String> data) {
 
 
         //si ya está registrada la cédula del estudiante NO inscribe el estudiante
@@ -168,7 +200,9 @@ public class InsertStuden extends DbHelper {
             insertContact(data, studentID);
             insertAddress(data, studentID);
             insertMedical(data, studentID);
-            insertPayment(data, studentID);
+            insertPayment(data, studentID, String.valueOf(tutorID));
+
+
             return true;
         } catch (SQLException e) {
             e.printStackTrace();

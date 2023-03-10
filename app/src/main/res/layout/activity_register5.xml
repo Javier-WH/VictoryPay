@@ -133,7 +133,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginEnd="2dp"
-                        android:layout_weight="1">
+                        android:layout_weight="1"
+                        tools:visibility="gone">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -1041,7 +1042,15 @@
                 android:id="@+id/inscriptionLabel5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Preinscripción" />
+                android:text="Preinscripción"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/inscriptionLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Pago"
+                android:textStyle="italic" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -1071,7 +1080,41 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/textView127"
+                android:id="@+id/inscriptionLabel2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Abonado previamente"
+                android:textStyle="italic" />
+
+            <TextView
+                android:id="@+id/abono5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="TextView"
+                android:textColor="@color/dolar"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/inscriptionLabel3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="total"
+                android:textStyle="italic" />
+
+            <TextView
+                android:id="@+id/total5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="TextView"
+                android:textColor="@color/dolar"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/operationNumberTitle5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Número de la operación" />
@@ -1086,7 +1129,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/textView129"
+                android:id="@+id/operationDateTitle5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Fecha del deposito" />

@@ -84,6 +84,10 @@ public class Register5 extends AppCompatActivity {
     private TextView code;
     private TextView inscriptionLabel;
     private TextView montBs;
+    private TextView abono;
+    private TextView total;
+    private TextView operationNumberTitle;
+    private TextView operationDateTitle;
     private ProgressBar bar;
     private HashMap<String, String> params;
     private HashMap<String, String> data;
@@ -150,6 +154,10 @@ public class Register5 extends AppCompatActivity {
         fetchManager = new FetchManager(context);
         URL = fetchManager.getFetchinAddress();
         montBs = findViewById(R.id.montBs);
+        abono = findViewById(R.id.abono5);
+        total = findViewById(R.id.total5);
+        operationNumberTitle = findViewById(R.id.operationNumberTitle5);
+        operationDateTitle = findViewById(R.id.operationDateTitle5);
     }
 
     private void initEvents() {
@@ -309,10 +317,32 @@ public class Register5 extends AppCompatActivity {
                 montBs.setText("(Bs "+data.get("mountBS")+")");
             }
 
-            if (Float.parseFloat(data.get("mount")) < getMonthlyPrice()) {
-                inscriptionLabel.setText("Preinscripción (Abono)");
-            } else {
-                inscriptionLabel.setText("Inscripción");
+            if(data.containsKey("mount") && data.containsKey("savedAbono")) {
+                double monto = Double.parseDouble(data.get("mount"));
+                double savedAbono = Double.parseDouble(data.get("savedAbono"));
+
+                if ((monto + savedAbono) < getMonthlyPrice()) {
+                    inscriptionLabel.setText("Preinscripción (Abono)");
+                } else {
+                    inscriptionLabel.setText("Inscripción");
+                }
+            }
+
+            if(data.containsKey("savedAbono")){
+                abono.setText("USD " + data.get("savedAbono"));
+            }
+
+            if(data.containsKey("mount") && data.containsKey("savedAbono")){
+                double Tt = Double.parseDouble(data.get("mount")) + Double.parseDouble(data.get("savedAbono"));
+                total.setText("USD " + String.valueOf(Tt));
+            }
+
+            if(data.containsKey("payMethod")){
+                String payMethod = data.get("payMethod");
+                operationDateTitle.setVisibility( payMethod.equals("1") ? View.GONE : View.VISIBLE);
+                operationNumberTitle.setVisibility( payMethod.equals("1") ? View.GONE : View.VISIBLE);
+                operationNumber.setVisibility( payMethod.equals("1") ? View.GONE : View.VISIBLE);
+                operationDate.setVisibility( payMethod.equals("1") ? View.GONE : View.VISIBLE);
             }
 
         }
