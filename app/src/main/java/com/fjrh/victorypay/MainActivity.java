@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,6 +34,7 @@ import com.fjrh.victorypay.Config.ConfigFetchingAddress;
 import com.fjrh.victorypay.Libraries.AutoCompleteOption;
 import com.fjrh.victorypay.Libraries.FetchManager;
 import com.fjrh.victorypay.Libraries.Venezuela;
+import com.fjrh.victorypay.dataBases.DbHelper;
 import com.fjrh.victorypay.dataBases.params.Params;
 import com.fjrh.victorypay.dataBases.users.Users;
 import com.fjrh.victorypay.dataBases.prices.Prices;
@@ -54,7 +56,8 @@ public class MainActivity extends AppCompatActivity {
     private ProgressBar progressBar;
     private String URL = "http://192.168.1.105:4000/login";
     private static Venezuela venezuela;
-    FetchManager fetchManager;
+    private FetchManager fetchManager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
 
         checkPrices();
         fillInputs();
+
 
 /*
         School school = new School(this);
@@ -120,6 +124,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+    
+    
     public static Venezuela getVenezuela() {
         return venezuela;
     }

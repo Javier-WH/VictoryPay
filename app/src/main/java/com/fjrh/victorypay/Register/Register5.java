@@ -30,10 +30,12 @@ import com.fjrh.victorypay.R;
 import com.fjrh.victorypay.dataBases.params.Params;
 import com.fjrh.victorypay.dataBases.prices.Prices;
 import com.fjrh.victorypay.dataBases.students.InsertStuden;
+import com.fjrh.victorypay.dataBases.users.Users;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Iterator;
 
@@ -93,6 +95,7 @@ public class Register5 extends AppCompatActivity {
     private HashMap<String, String> data;
     private FetchManager fetchManager;
     private String URL;
+    private HashMap<String, String> user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -158,6 +161,7 @@ public class Register5 extends AppCompatActivity {
         total = findViewById(R.id.total5);
         operationNumberTitle = findViewById(R.id.operationNumberTitle5);
         operationDateTitle = findViewById(R.id.operationDateTitle5);
+        user = new Users(context).getUsers();
     }
 
     private void initEvents() {
@@ -359,8 +363,16 @@ public class Register5 extends AppCompatActivity {
 //////
 
     public void insertStudent() {
+        Calendar calendar = Calendar.getInstance();
+        String day = String.valueOf(calendar.get(Calendar.DATE));
+        String month = String.valueOf(calendar.get(Calendar.MONTH)+1);
+        String year = String.valueOf(calendar.get(Calendar.YEAR));
+
         params = new Params(context).getParams();
         bar.setVisibility(View.VISIBLE);
+        data.put("user", user.get(ci));
+        data.put("timeStamp", day+"/"+month+"/"+year);
+
         if (params.get("mode").equalsIgnoreCase("offline")) {
             insertOfflineStudent();
         } else {
@@ -393,52 +405,25 @@ public class Register5 extends AppCompatActivity {
 
             @Override
             public void onResponse(JSONObject response) {
-
                 //revisa si existe un conflicto
-                if (response.has("CONFLICT")) {
-
+                if (response.has("ERROR")) {
                     try {
-                        //si el conflito es con la cedula el codigo es 1
-                        if (response.getString("CONFLICT").equalsIgnoreCase("1")) {
+                        String error = response.getString("ERROR");
+                        String title = response.getString("title");
+                        String message = response.getString("message");
+                        String registerID = response.getString("registerID");
+                        String code = response.getString("code");
+                        JSONObject optionA = response.getJSONObject("optionA");
+                        JSONObject optionB = response.getJSONObject("optionB");
 
-                            String option1 = response.getString("name1") + "-> código: " + response.getString("code1");
-                            String option2 = response.getString("name2") + "-> código: " + response.getString("code2");
-                            String title = "La cédula "+response.getString("ci1") +" ya está registrada, ¿Cúal de los dos registros debe preservarse?";
-
-                            /// abre un dialogo para escoger dialogo
-                            AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                            builder.setTitle(title);
-                            builder.setCancelable(false);
-                            builder.setItems(new String[]{option1, option2}, new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
-
-                                    //añade el id para actualizar al objeto de la petición
-                                    try {
-                                        if (which == 0) {
-                                            data.put("force", response.getString("id1"));
-                                        } else if (which == 1) {
-                                            data.put("force", response.getString("id2"));
-                                        }
-                                    } catch (JSONException e) {
-                                        e.printStackTrace();
-                                    }
-                                    //llama el metodo de petición nuevamente
-                                    insertStudent();
-                                }
-                            });
-                            AlertDialog dialog = builder.create();
-                            dialog.show();
-                        }
-                        //falta un metodo para cuando se repita el código
-
-
+                        Toast.makeText(context,  optionA.getString("studentName"), Toast.LENGTH_LONG).show();
                     } catch (JSONException e) {
-                         e.printStackTrace();
+                        e.printStackTrace();
                     }
+
                 }else{
                     //si no hay conflictos muestra un mensaje
                     Toast.makeText(context, "Se ha actualizado la base de Datos Online", Toast.LENGTH_LONG).show();
-
                     ///insertar el registro offline
                     addJSONtoData(response);
                     insertOfflineStudent();
