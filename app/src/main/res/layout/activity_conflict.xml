@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".conflict.ConflictActivity">
+
+    <LinearLayout
+        android:id="@+id/linearLayout8"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/btnBack_conlifct"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Regresar"
+            app:icon="@android:drawable/ic_media_rew" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/btnNext_conflic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layoutDirection="rtl"
+            android:text="Enviar"
+            app:icon="@android:drawable/ic_menu_send" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView48"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="El servidor ha detectado el siguiente problema:"
+        android:textColor="@color/purple_200"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout8"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout8"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout8" />
+
+    <TextView
+        android:id="@+id/textView58"
+        android:layout_width="372dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Seleccione una opción"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="@+id/message_conflict"
+        app:layout_constraintStart_toStartOf="@+id/message_conflict"
+        app:layout_constraintTop_toBottomOf="@+id/message_conflict" />
+
+    <TextView
+        android:id="@+id/title_conflict"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Conflicto de cédulasX"
+        android:textColor="@color/purple_500"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout8"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout8"
+        app:layout_constraintTop_toBottomOf="@+id/textView48" />
+
+    <TextView
+        android:id="@+id/message_conflict"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="La cédula suministrada ya está en el sistemaX"
+        android:textColor="@color/purple_500"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout8"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout8"
+        app:layout_constraintTop_toBottomOf="@+id/title_conflict" />
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView58">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/optionA"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="@color/material_dynamic_neutral40"
+                android:paddingHorizontal="5dp"
+                android:paddingVertical="5dp">
+
+                <TextView
+                    android:id="@+id/nameA"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Jason y los argonautas"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/codeA" />
+
+                <TextView
+                    android:id="@+id/codeA"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="K-153154156"
+                    android:textColor="@color/ic_launcher_background"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/gradeA"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="3er año"
+                    android:textColor="@color/ic_launcher_background"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/nameA" />
+
+                <TextView
+                    android:id="@+id/seccionA"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:text="Seccion B"
+                    android:textColor="@color/ic_launcher_background"
+                    app:layout_constraintBottom_toBottomOf="@+id/gradeA"
+                    app:layout_constraintStart_toEndOf="@+id/gradeA"
+                    app:layout_constraintTop_toTopOf="@+id/gradeA" />
+
+                <TextView
+                    android:id="@+id/textView71"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="Genero:"
+                    android:textColor="@color/ic_launcher_background"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/gradeA" />
+
+                <TextView
+                    android:id="@+id/textView84"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="Edad: "
+                    android:textColor="@color/ic_launcher_background"
+                    app:layout_constraintBottom_toBottomOf="@+id/genderA"
+                    app:layout_constraintStart_toEndOf="@+id/genderA"
+                    app:layout_constraintTop_toTopOf="@+id/genderA" />
+
+                <TextView
+                    android:id="@+id/ageA"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="3dp"
+                    android:text="12 años"
+                    android:textColor="@color/ic_launcher_background"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView84"
+                    app:layout_constraintStart_toEndOf="@+id/textView84"
+                    app:layout_constraintTop_toTopOf="@+id/textView84"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <TextView
+                    android:id="@+id/genderA"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="3dp"
+                    android:text="Masculino"
+                    android:textColor="@color/ic_launcher_background"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView71"
+                    app:layout_constraintStart_toEndOf="@+id/textView71"
+                    app:layout_constraintTop_toTopOf="@+id/textView71" />
+
+                <TextView
+                    android:id="@+id/textView63"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:text="C.I."
+                    android:textColor="@color/ic_launcher_background"
+                    app:layout_constraintStart_toEndOf="@+id/codeA"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/nationalityA"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="3dp"
+                    android:text="V-"
+                    android:textColor="@color/ic_launcher_background"
+                    app:layout_constraintStart_toEndOf="@+id/textView63"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/ciA"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="12513521651"
+                    android:textColor="@color/ic_launcher_background"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/nationalityA"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/optionB"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="@color/material_dynamic_neutral40"
+                android:paddingHorizontal="5dp"
+                android:paddingVertical="5dp">
+
+                <TextView
+                    android:id="@+id/nameB"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Jason y los argonautas"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/codeB" />
+
+                <TextView
+                    android:id="@+id/codeB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="K-153154156"
+                    android:textColor="@color/ic_launcher_background"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/gradeB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="3er año"
+                    android:textColor="@color/ic_launcher_background"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/nameB" />
+
+                <TextView
+                    android:id="@+id/seccionB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:text="Seccion B"
+                    android:textColor="@color/ic_launcher_background"
+                    app:layout_constraintBottom_toBottomOf="@+id/gradeB"
+                    app:layout_constraintStart_toEndOf="@+id/gradeB"
+                    app:layout_constraintTop_toTopOf="@+id/gradeB" />
+
+                <TextView
+                    android:id="@+id/textView72"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="Genero:"
+                    android:textColor="@color/ic_launcher_background"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/gradeB" />
+
+                <TextView
+                    android:id="@+id/textView85"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="Edad: "
+                    android:textColor="@color/ic_launcher_background"
+                    app:layout_constraintBottom_toBottomOf="@+id/genderB"
+                    app:layout_constraintStart_toEndOf="@+id/genderB"
+                    app:layout_constraintTop_toTopOf="@+id/genderB" />
+
+                <TextView
+                    android:id="@+id/ageB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="3dp"
+                    android:text="12 años"
+                    android:textColor="@color/ic_launcher_background"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView85"
+                    app:layout_constraintStart_toEndOf="@+id/textView85"
+                    app:layout_constraintTop_toTopOf="@+id/textView85"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <TextView
+                    android:id="@+id/genderB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="3dp"
+                    android:text="Masculino"
+                    android:textColor="@color/ic_launcher_background"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView72"
+                    app:layout_constraintStart_toEndOf="@+id/textView72"
+                    app:layout_constraintTop_toTopOf="@+id/textView72" />
+
+                <TextView
+                    android:id="@+id/textView64"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:text="C.I."
+                    android:textColor="@color/ic_launcher_background"
+                    app:layout_constraintStart_toEndOf="@+id/codeB"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/nationalityB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="3dp"
+                    android:text="V-"
+                    android:textColor="@color/ic_launcher_background"
+                    app:layout_constraintStart_toEndOf="@+id/textView64"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/ciB"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="12513521651"
+                    android:textColor="@color/ic_launcher_background"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/nationalityB"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

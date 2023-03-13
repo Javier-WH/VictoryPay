@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.fjrh.victorypay.dataBases.DbHelper;
 import com.fjrh.victorypay.dataBases.abono.Abono;
 import com.fjrh.victorypay.dataBases.params.Params;
+import com.fjrh.victorypay.dataBases.prices.Prices;
 
 
 import java.util.HashMap;
@@ -140,7 +141,8 @@ public class InsertStuden extends DbHelper {
 
         double currentAbono = abono.getAbono(tutorId);
         double abonoPlusPayment = currentAbono + Double.parseDouble(payment.get("mount"));
-        double total = abonoPlusPayment - Double.parseDouble(payment.get("monthlyPrice"));
+        double monthlyPrice = Double.parseDouble(new Prices(context).getPrices().get("Dolar"));
+        double total = abonoPlusPayment - monthlyPrice;
 
         //si despues de pagar la mensualidad queda dinero, lo registra en la tabla abono
         if(total >= 0){
@@ -158,7 +160,7 @@ public class InsertStuden extends DbHelper {
 
         ContentValues values = new ContentValues();
         values.put("student_id", stdId);
-        values.put("inscription", isPaymentComplete ? payment.get("monthlyPrice") : "0");
+        values.put("inscription", isPaymentComplete ? String.valueOf(monthlyPrice) : "0");
         values.put("cash", payment.get("payMethod").equals("1") ? "true" : "false");
         values.put("operation_number", payment.get("account"));
         values.put("date", payment.get("date"));

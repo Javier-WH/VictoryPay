@@ -27,6 +27,7 @@ import com.android.volley.toolbox.Volley;
 import com.fjrh.victorypay.App;
 import com.fjrh.victorypay.Libraries.FetchManager;
 import com.fjrh.victorypay.R;
+import com.fjrh.victorypay.conflict.ConflictActivity;
 import com.fjrh.victorypay.dataBases.params.Params;
 import com.fjrh.victorypay.dataBases.prices.Prices;
 import com.fjrh.victorypay.dataBases.students.InsertStuden;
@@ -35,6 +36,7 @@ import com.fjrh.victorypay.dataBases.users.Users;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -392,7 +394,6 @@ public class Register5 extends AppCompatActivity {
         }
     }
 
-
     public void insetOnlineStudent() {
         String URL = this.URL+"/addStudent";
 
@@ -416,7 +417,31 @@ public class Register5 extends AppCompatActivity {
                         JSONObject optionA = response.getJSONObject("optionA");
                         JSONObject optionB = response.getJSONObject("optionB");
 
-                        Toast.makeText(context,  optionA.getString("studentName"), Toast.LENGTH_LONG).show();
+                        Intent i = new Intent(context, ConflictActivity.class);
+                        i.putExtra("error", error);
+                        i.putExtra("title", title);
+                        i.putExtra("message", message);
+                        i.putExtra("registerID", registerID);
+                        i.putExtra("code", code);
+                        i.putExtra("nameA",optionA.getString("studentLastName") +" "+  optionA.getString("studentName"));
+                        i.putExtra("codeA", optionA.getString("code"));
+                        i.putExtra("studentNationA", optionA.getString("studentNation"));
+                        i.putExtra("studentCiA", optionA.getString("studentCi"));
+                        i.putExtra("gradeA", optionA.getString("grade"));
+                        i.putExtra("seccionA", optionA.getString("seccion"));
+                        i.putExtra("genderA", optionA.getString("gender"));
+                        i.putExtra("ageA", optionA.getString("age"));
+                        i.putExtra("nameB",optionB.getString("studentLastName") +" "+  optionB.getString("studentName"));
+                        i.putExtra("codeB", optionB.getString("code"));
+                        i.putExtra("studentNationB", optionB.getString("studentNation"));
+                        i.putExtra("studentCiB", optionB.getString("studentCi"));
+                        i.putExtra("gradeB", optionB.getString("grade"));
+                        i.putExtra("seccionB", optionB.getString("seccion"));
+                        i.putExtra("genderB", optionB.getString("gender"));
+                        i.putExtra("ageB", optionB.getString("age"));
+
+                        startActivity(i);
+
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }

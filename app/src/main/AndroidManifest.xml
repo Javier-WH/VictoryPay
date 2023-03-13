@@ -17,12 +17,14 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".payment.Payment4"
+            android:name=".conflict.ConflictActivity"
+            android:label="Se ha encontrado un conflicto en los registros"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+
         <activity
             android:name=".payment.Payment2"
             android:exported="false"
