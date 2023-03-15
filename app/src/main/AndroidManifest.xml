@@ -16,10 +16,12 @@
         android:theme="@style/Theme.VictoryPay"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+
         <activity
             android:name=".conflict.ConflictActivity"
-            android:label="Se ha encontrado un conflicto en los registros"
-            android:exported="false">
+            android:label="Conflicto"
+            android:exported="false"
+            android:windowSoftInputMode="stateVisible|adjustResize">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

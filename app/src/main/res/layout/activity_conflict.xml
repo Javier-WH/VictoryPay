@@ -29,7 +29,7 @@
         <Space
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1.5"
+            android:layout_weight="1.8"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -55,14 +55,14 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout8" />
 
     <TextView
-        android:id="@+id/textView58"
-        android:layout_width="372dp"
+        android:id="@+id/lblSeleccioneunaopcion"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:text="Seleccione una opción"
         android:textStyle="italic"
-        app:layout_constraintEnd_toEndOf="@+id/message_conflict"
-        app:layout_constraintStart_toStartOf="@+id/message_conflict"
+        app:layout_constraintEnd_toEndOf="@+id/scrollView10"
+        app:layout_constraintStart_toStartOf="@+id/scrollView10"
         app:layout_constraintTop_toBottomOf="@+id/message_conflict" />
 
     <TextView
@@ -92,6 +92,7 @@
         app:layout_constraintTop_toBottomOf="@+id/title_conflict" />
 
     <ScrollView
+        android:id="@+id/scrollView10"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="10dp"
@@ -101,7 +102,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView58">
+        app:layout_constraintTop_toBottomOf="@+id/lblSeleccioneunaopcion">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -113,7 +114,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:background="@color/material_dynamic_neutral40"
+                android:background="@color/unselected"
                 android:paddingHorizontal="5dp"
                 android:paddingVertical="5dp">
 
@@ -160,7 +161,7 @@
                     app:layout_constraintTop_toTopOf="@+id/gradeA" />
 
                 <TextView
-                    android:id="@+id/textView71"
+                    android:id="@+id/lblgenderA"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -170,7 +171,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/gradeA" />
 
                 <TextView
-                    android:id="@+id/textView84"
+                    android:id="@+id/lblAgeA"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -187,9 +188,9 @@
                     android:layout_marginStart="3dp"
                     android:text="12 años"
                     android:textColor="@color/ic_launcher_background"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView84"
-                    app:layout_constraintStart_toEndOf="@+id/textView84"
-                    app:layout_constraintTop_toTopOf="@+id/textView84"
+                    app:layout_constraintBottom_toBottomOf="@+id/lblAgeA"
+                    app:layout_constraintStart_toEndOf="@+id/lblAgeA"
+                    app:layout_constraintTop_toTopOf="@+id/lblAgeA"
                     app:layout_constraintVertical_bias="0.0" />
 
                 <TextView
@@ -199,12 +200,12 @@
                     android:layout_marginStart="3dp"
                     android:text="Masculino"
                     android:textColor="@color/ic_launcher_background"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView71"
-                    app:layout_constraintStart_toEndOf="@+id/textView71"
-                    app:layout_constraintTop_toTopOf="@+id/textView71" />
+                    app:layout_constraintBottom_toBottomOf="@+id/lblgenderA"
+                    app:layout_constraintStart_toEndOf="@+id/lblgenderA"
+                    app:layout_constraintTop_toTopOf="@+id/lblgenderA" />
 
                 <TextView
-                    android:id="@+id/textView63"
+                    android:id="@+id/lblCiA"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="30dp"
@@ -220,7 +221,7 @@
                     android:layout_marginStart="3dp"
                     android:text="V-"
                     android:textColor="@color/ic_launcher_background"
-                    app:layout_constraintStart_toEndOf="@+id/textView63"
+                    app:layout_constraintStart_toEndOf="@+id/lblCiA"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
@@ -239,7 +240,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:background="@color/material_dynamic_neutral40"
+                android:background="@color/unselected"
                 android:paddingHorizontal="5dp"
                 android:paddingVertical="5dp">
 
@@ -286,7 +287,7 @@
                     app:layout_constraintTop_toTopOf="@+id/gradeB" />
 
                 <TextView
-                    android:id="@+id/textView72"
+                    android:id="@+id/lblgenderB"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -296,7 +297,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/gradeB" />
 
                 <TextView
-                    android:id="@+id/textView85"
+                    android:id="@+id/lblAgeB"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -313,9 +314,9 @@
                     android:layout_marginStart="3dp"
                     android:text="12 años"
                     android:textColor="@color/ic_launcher_background"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView85"
-                    app:layout_constraintStart_toEndOf="@+id/textView85"
-                    app:layout_constraintTop_toTopOf="@+id/textView85"
+                    app:layout_constraintBottom_toBottomOf="@+id/lblAgeB"
+                    app:layout_constraintStart_toEndOf="@+id/lblAgeB"
+                    app:layout_constraintTop_toTopOf="@+id/lblAgeB"
                     app:layout_constraintVertical_bias="0.0" />
 
                 <TextView
@@ -325,12 +326,12 @@
                     android:layout_marginStart="3dp"
                     android:text="Masculino"
                     android:textColor="@color/ic_launcher_background"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView72"
-                    app:layout_constraintStart_toEndOf="@+id/textView72"
-                    app:layout_constraintTop_toTopOf="@+id/textView72" />
+                    app:layout_constraintBottom_toBottomOf="@+id/lblgenderB"
+                    app:layout_constraintStart_toEndOf="@+id/lblgenderB"
+                    app:layout_constraintTop_toTopOf="@+id/lblgenderB" />
 
                 <TextView
-                    android:id="@+id/textView64"
+                    android:id="@+id/lblciB"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="30dp"
@@ -346,7 +347,7 @@
                     android:layout_marginStart="3dp"
                     android:text="V-"
                     android:textColor="@color/ic_launcher_background"
-                    app:layout_constraintStart_toEndOf="@+id/textView64"
+                    app:layout_constraintStart_toEndOf="@+id/lblciB"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView

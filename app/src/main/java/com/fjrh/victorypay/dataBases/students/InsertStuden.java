@@ -137,11 +137,15 @@ public class InsertStuden extends DbHelper {
     private long insertPayment(HashMap<String, String> payment, String stdId, String tutorId) throws SQLException {
         boolean isPaymentComplete = Boolean.parseBoolean(payment.get("payment_status"));
 
-
-
+/*
+        //obtiene almacenado el abono de la tabla
         double currentAbono = abono.getAbono(tutorId);
+
+        /// al abono le sumo el total de lo depositado
         double abonoPlusPayment = currentAbono + Double.parseDouble(payment.get("mount"));
+        //cuanto vale el mes
         double monthlyPrice = Double.parseDouble(new Prices(context).getPrices().get("Dolar"));
+
         double total = abonoPlusPayment - monthlyPrice;
 
         //si despues de pagar la mensualidad queda dinero, lo registra en la tabla abono
@@ -156,20 +160,25 @@ public class InsertStuden extends DbHelper {
             isPaymentComplete = false;
             payment.put("payment_status", "false");
         }
-
+*/
 
         ContentValues values = new ContentValues();
         values.put("student_id", stdId);
-        values.put("inscription", isPaymentComplete ? String.valueOf(monthlyPrice) : "0");
+        values.put("inscription", isPaymentComplete ? payment.get("monthlyPrice") : "0");
         values.put("cash", payment.get("payMethod").equals("1") ? "true" : "false");
         values.put("operation_number", payment.get("account"));
         values.put("date", payment.get("date"));
-        values.put("status", payment.containsKey("payment_status") ? payment.get("payment_status") : "false"); ///<<<<<< corregir, el servidor deberia mandar el payment status
+        values.put("status", payment.containsKey("payment_status") ? payment.get("payment_status") : "false");
 
         return db.insert("inscription_payment", null, values);
     }
 
+    private long insertAbono(HashMap<String, String> data, String tutorID){
+        double _abono = Double.parseDouble(data.get("abono"));
 
+        return abono.insertAbono(tutorID, _abono);
+
+    }
 
 
 
@@ -203,6 +212,7 @@ public class InsertStuden extends DbHelper {
             insertAddress(data, studentID);
             insertMedical(data, studentID);
             insertPayment(data, studentID, String.valueOf(tutorID));
+            insertAbono(data, String.valueOf(tutorID));
 
 
             return true;

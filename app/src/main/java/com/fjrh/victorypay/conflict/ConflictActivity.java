@@ -71,9 +71,9 @@ public class ConflictActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_conflict);
         context = this;
-        initComponents();
-        initEvents();
-        fillViews();
+       initComponents();
+       initEvents();
+       fillViews();
     }
 
     private void initComponents(){
@@ -147,8 +147,8 @@ public class ConflictActivity extends AppCompatActivity {
 
 
     private void unselect(){
-        optionA.setBackgroundColor(getResources().getColor(com.google.android.material.R.color.material_dynamic_neutral40));
-        optionB.setBackgroundColor(getResources().getColor(com.google.android.material.R.color.material_dynamic_neutral40));
+        optionA.setBackgroundColor(getResources().getColor(R.color.unselected));
+        optionB.setBackgroundColor(getResources().getColor(R.color.unselected));
         option = "";
     }
 

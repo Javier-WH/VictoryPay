@@ -39,6 +39,7 @@ public class Register4_1 extends AppCompatActivity {
     private TextView lblAbono;
     private TextView tasa;
     private TextView currency;
+    private double dblAbono;
 
     private double abonadoDouble;
     private Prices prices;
@@ -219,22 +220,35 @@ public class Register4_1 extends AppCompatActivity {
 
         HashMap<String, String> data = new HashMap<>();
         data.put("payMethod", cash.isChecked() ? "1" : "2");
-        data.put("account",  account.getText().toString().trim());
-        data.put("date", date.getText().toString());
-        data.put("mount", String.valueOf( Math.floor(pago * 100) / 100));
-        data.put("currency", currency.getText().toString());
+        data.put("account",  account.getText().toString().trim());//numero de operación
+        data.put("date", date.getText().toString());//fecha depósito
+        data.put("mount", String.valueOf( Math.floor(pago * 100) / 100));//pago depósito
+        data.put("currency", currency.getText().toString());//tipo de moneda
         //el pago expresado en Bolivares
         data.put("mountBS", String.valueOf( Math.floor(pagoBolivares * 100) / 100));
-        //si el pago es menor al precio del mes, entonces no está inscrito
-        data.put("payment_status", pago < monthlyPrice ? "false" : "true");
-
-        //si sobra dinero o no es suficiente para pagar el mes, entonces se debe abonar
-        data.put("abono", String.valueOf( pago % monthlyPrice));
 
         //agrega el precio del dolar al momento de hacer la inscripcion
         data.put("dolarPrice", String.valueOf(dolarPrice));
         //agrega el precio del mes al momento de hacer la transaccion
         data.put("monthlyPrice", String.valueOf(monthlyPrice));
+
+        /****/
+        // obtiene el pago y lo suma al abono guardado en la tabla, esto nos da la cantidad total de dinero del representante
+        double abonoPlusPayment = dblAbono + pago;
+        //se le resta el precio del mes y guardamos el resto en total
+        double total = abonoPlusPayment - monthlyPrice;
+
+        //si el total es positivo, se almacena en la tabla abono
+        if(total >= 0){
+            data.put("abono", String.valueOf(total));
+            data.put("payment_status", "true");
+
+        }
+        //si no es positivo, implica que no alcanza para pagar 1 mes, por lo tanto lo que queda es abonado
+        else if(abonoPlusPayment > 0){
+            data.put("abono", String.valueOf(abonoPlusPayment));
+            data.put("payment_status", "false");
+        }
 
         return data;
     }
@@ -257,11 +271,13 @@ public class Register4_1 extends AppCompatActivity {
         if(tutorID == -1) {
             lblAbono.setText("0");
             data.put("savedAbono", "0");
+            dblAbono = 0;
         }else{
             String id = String.valueOf(tutorID);
             String savedAbono = String.valueOf(new Abono(context).getAbono(id));
             lblAbono.setText(savedAbono);
             data.put("savedAbono", savedAbono);
+            dblAbono = Double.parseDouble(savedAbono);
         }
     }
 

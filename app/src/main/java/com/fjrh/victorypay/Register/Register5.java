@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -372,7 +373,8 @@ public class Register5 extends AppCompatActivity {
 
         params = new Params(context).getParams();
         bar.setVisibility(View.VISIBLE);
-        data.put("user", user.get(ci));
+
+        data.put("user", user.get("ci"));
         data.put("timeStamp", day+"/"+month+"/"+year);
 
         if (params.get("mode").equalsIgnoreCase("offline")) {

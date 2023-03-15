@@ -147,7 +147,7 @@
                 android:entries="@array/estados" />
 
             <TextView
-                android:id="@+id/textView72"
+                android:id="@+id/lblgenderB"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
