@@ -38,7 +38,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 
@@ -366,16 +368,15 @@ public class Register5 extends AppCompatActivity {
 //////
 
     public void insertStudent() {
-        Calendar calendar = Calendar.getInstance();
-        String day = String.valueOf(calendar.get(Calendar.DATE));
-        String month = String.valueOf(calendar.get(Calendar.MONTH)+1);
-        String year = String.valueOf(calendar.get(Calendar.YEAR));
+        String pattern = "MM-dd-yyyy hh:mm:ss";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        String date = simpleDateFormat.format(new Date());
 
         params = new Params(context).getParams();
         bar.setVisibility(View.VISIBLE);
 
         data.put("user", user.get("ci"));
-        data.put("timeStamp", day+"/"+month+"/"+year);
+        data.put("timeStamp", date.toString());
 
         if (params.get("mode").equalsIgnoreCase("offline")) {
             insertOfflineStudent();

@@ -151,4 +151,35 @@ public class FindStudent extends DbHelper {
         return list;
     }
 
+    public ArrayList<HashMap<String, String>> getOfflineStudentList(){
+
+        ArrayList<HashMap<String, String>> list = new ArrayList<>();
+
+        String query = "SELECT * FROM students";
+        Cursor cursor = db.rawQuery(query, null);
+
+        if(cursor.moveToFirst()){
+            do{
+                HashMap<String, String> student = new HashMap<>();
+                student.put("name", cursor.getString(1));
+                student.put("lastName", cursor.getString(2));
+                student.put("ci", cursor.getString(3));
+                student.put("nation", cursor.getString(4));
+                student.put("seccion", cursor.getString(5));
+                student.put("grade", cursor.getString(6));
+                student.put("gender", cursor.getString(7));
+                student.put("code", cursor.getString(8));
+                student.put("birthdate", cursor.getString(9));
+                student.put("age", cursor.getString(10));
+                student.put("parent_id", cursor.getString(11));
+                student.put("tutor_id", cursor.getString(12));
+                student.put("updatedAt", cursor.getString(13));
+                list.add(student);
+            }while (cursor.moveToNext());
+        }
+
+        return list;
+
+    }
+
 }

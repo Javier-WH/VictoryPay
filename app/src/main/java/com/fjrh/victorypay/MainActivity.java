@@ -2,7 +2,6 @@ package com.fjrh.victorypay;
 
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
@@ -18,7 +17,6 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Switch;
 import android.widget.Toast;
-
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkError;
 import com.android.volley.NoConnectionError;
@@ -38,11 +36,12 @@ import com.fjrh.victorypay.dataBases.DbHelper;
 import com.fjrh.victorypay.dataBases.params.Params;
 import com.fjrh.victorypay.dataBases.users.Users;
 import com.fjrh.victorypay.dataBases.prices.Prices;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
@@ -79,46 +78,6 @@ public class MainActivity extends AppCompatActivity {
 
         checkPrices();
         fillInputs();
-
-
-/*
-        School school = new School(this);
-        school.insertSchool("Unidad Educativa Colegio Batalla de la Victoria");
-        school.insertSchool("Unidad Educativa Colegio Padre Juan de Barnuevo");
-        school.insertSchool("Unidad Educativa Colegio Madre Candelaria");
-        school.insertSchool("Unidad Educativa Colegio José Ramón Camejo");
-        school.insertSchool("Unidad Educativa Liceo Nuestra Señora de Altagracia");
-        school.insertSchool("Unidad Educativa Liceo Ramón Buenahora");
-        school.insertSchool("Unidad Educativa Liceo José Francisco Torrealba");
-*/
-        /*
-        String date = "2023-02-19 12:21:30";
-        DbHelper dbHelper = new DbHelper(this);
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-
-        Cursor cursor = db.rawQuery("SELECT * FROM schools WHERE updatedAT < ?", new String[]{date});
-
-        if(cursor.moveToFirst()){
-            do {
-                Log.e("registro", cursor.getString(1));
-            }while (cursor.moveToNext());
-        }
-        */
-
-        /*
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        TestFragment fragment = new TestFragment();
-        fragmentTransaction.replace(R.id.reemplace, fragment);
-        fragmentTransaction.commit();
-         */
-
-        //Snackbar message = Snackbar.make(findViewById(R.id.mainLayout), "esto es una prueba", Snackbar.LENGTH_LONG);
-        //message.show();
-
-
-        //Creating the instance of ArrayAdapter containing list of fruit names
-
-
 
 
 

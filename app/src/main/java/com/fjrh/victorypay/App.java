@@ -52,7 +52,9 @@ public class App extends AppCompatActivity {
             name.setText(user.get("name"));
         }
 
+        callUpdate();
     }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();
@@ -117,5 +119,15 @@ public class App extends AppCompatActivity {
         }
     }
 
+    public void callUpdate(){
+
+        if(params.containsKey("mode")){
+            if(params.get("mode").equals("online")){
+                Intent i = new Intent(context, Sync.class);
+                startActivity(i);
+            }
+
+        }
+    }
 
 }
