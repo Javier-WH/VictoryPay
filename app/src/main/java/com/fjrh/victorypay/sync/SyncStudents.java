@@ -5,6 +5,9 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.text.style.IconMarginSpan;
 import android.util.Log;
+import android.widget.Toast;
+
+import com.fjrh.victorypay.App;
 import com.fjrh.victorypay.dataBases.students.FindStudent;
 import com.fjrh.victorypay.dataBases.students.UpdateStudentList;
 import com.fjrh.victorypay.dataBases.users.Users;
@@ -40,17 +43,16 @@ public class SyncStudents extends AsyncTask <String, Void, String> {
 
     @Override
     protected void onPreExecute() {
-        Sync.setMessage("Se está actualizando la lista de estudiantes...");
+        Sync.setMessage("Empaquetando lista de estudiantes offline...");
         studentList = new FindStudent(context).getOfflineStudentList();
-        Log.i("XXX", "45 StudentSize " + studentList.size());
         user = new Users(context).getUsers().get("ci");
-
+        Sync.addPercent(5);
     }
 
     @Override
     protected String doInBackground(String... strings) {
 
-
+        Sync.setMessage("Obteniendo lista de estudiantes online...");
             try {
 
                 URL url = new URL(urlString + "/syncStudents");
@@ -85,11 +87,12 @@ public class SyncStudents extends AsyncTask <String, Void, String> {
                 int responseCode = connection.getResponseCode();
                 return String.valueOf(responseCode); // 2xx codes indicate successful response
             } catch (IOException e) {
+
                 e.printStackTrace();
                 return "error";
             } catch (JSONException e) {
                 e.printStackTrace();
-                return "error2";
+                return "error";
             }
 
 
@@ -100,12 +103,20 @@ public class SyncStudents extends AsyncTask <String, Void, String> {
         if(Objects.isNull(result)){
             return;
         }
+        if(result.equals("error")){
+            App.fillElements();
+            Toast.makeText(context, "Se ha perdido la conexion con el servidor", Toast.LENGTH_LONG).show();
+            return;
+        }
 
 
         int code = Integer.parseInt(result);
         if(code >= 300 || code < 200){
             return;
         }
+
+        Sync.addPercent(5);
+        Sync.setMessage("Actualizando la lista de estudiantes...");
 
         ArrayList<JSONObject> list = new ArrayList<JSONObject>();
         try {
@@ -123,9 +134,8 @@ public class SyncStudents extends AsyncTask <String, Void, String> {
             new UpdateStudentList(context).update(list);
         }
 
-        Sync.addPercent(20);
-
-
+        Sync.addPercent(10);
+        Sync.startLoad(2);
 
     }
 

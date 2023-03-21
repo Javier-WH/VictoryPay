@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.fjrh.victorypay.Libraries.FetchManager;
 import com.fjrh.victorypay.R;
@@ -18,22 +19,26 @@ import java.util.HashMap;
 
 public class Sync extends AppCompatActivity {
 
-    private Context context;
+    private static Context context;
     private static TextView message;
     private TextView cancelSync;
     private ProgressBar progressBar;
     private static TextView percent;
     private static int percentInt = 0;
+    private static Sync syncActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sync);
         context = this;
+        syncActivity = this;
         initComponets();
         initEvents();
-        startLoad();
+        startLoad(1);
     }
+
+
 
     private void initComponets(){
         message = findViewById(R.id.message_sync);
@@ -59,13 +64,21 @@ public class Sync extends AppCompatActivity {
         percent.setText(String.valueOf( percentInt) + "%");
     }
 
-    private void startLoad(){
+    public static void startLoad(int stept){
 
-        String URL = new FetchManager(context).getFetchinAddress();
-
-        SyncStudents syncStudents = new SyncStudents(context, URL);
-        syncStudents.execute();
-
+        switch (stept){
+            case 1:
+                String URL = new FetchManager(context).getFetchinAddress();
+                SyncStudents syncStudents = new SyncStudents(context, URL);
+                syncStudents.execute();
+                break;
+            default:
+                if (syncActivity != null) {
+                    Toast.makeText(syncActivity, "Datos actualizados correctamente", Toast.LENGTH_LONG).show();
+                    percentInt = 0;
+                    syncActivity.finish();
+                }
+        }
 
     }
 

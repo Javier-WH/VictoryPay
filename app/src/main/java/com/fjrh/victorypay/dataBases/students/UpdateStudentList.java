@@ -36,7 +36,6 @@ public class UpdateStudentList extends DbHelper {
         db.execSQL("DELETE FROM abono");
         db.execSQL("VACUUM");
 
-        Log.i("XXX", "30 ListSize: " + list.size()  );
             list.forEach(student -> {
                 try {
                     HashMap<String, String> data = new HashMap<>();

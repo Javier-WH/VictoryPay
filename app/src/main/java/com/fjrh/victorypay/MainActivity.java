@@ -79,6 +79,8 @@ public class MainActivity extends AppCompatActivity {
         checkPrices();
         fillInputs();
 
+        params.insertParam("needLoad", "true");
+        params.insertParam("loadAtStart", "true");
     }
 
 

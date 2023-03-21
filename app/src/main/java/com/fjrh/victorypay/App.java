@@ -52,7 +52,11 @@ public class App extends AppCompatActivity {
             name.setText(user.get("name"));
         }
 
-       callUpdate();
+        //solo carga la primera vez en cargar la activiti
+        if(params.get("mode").equals("online") && params.get("needLoad").equals("true") && params.get("loadAtStart").equals("true")){
+            callUpdate();
+            new Params(context).insertParam("needLoad", "false");
+        }
     }
 
     @Override

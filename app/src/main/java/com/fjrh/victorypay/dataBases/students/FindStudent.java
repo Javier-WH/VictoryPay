@@ -161,7 +161,7 @@ public class FindStudent extends DbHelper {
                 "contact_info.phone1, contact_info.phone2, contact_info.email, contact_info.whatsapp1, contact_info.whatsapp2, contact_info.updatedAT as contactDate, " +
                 "medical_info.diabetes, medical_info.hipertension, medical_info.dislexia, medical_info.daltonismo, medical_info.epilepsia, medical_info.asma, medical_info.alergias, medical_info.TDAH, medical_info.observations, medical_info.updatedAT as medicalDate, " +
                 "inscription_payment.inscription, inscription_payment.cash, inscription_payment.operation_number, inscription_payment.date, inscription_payment.status, inscription_payment.updatedAT as paymentDate, " +
-                "abono.abono " +
+                "abono.abono, abono.updatedAT as abonoDate " +
                 "FROM students " +
                 "JOIN tutors ON tutors.id = students.tutor_id " +
                 "JOIN parents ON parents.id = students.parent_id " +
