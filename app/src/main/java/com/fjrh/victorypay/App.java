@@ -52,7 +52,7 @@ public class App extends AppCompatActivity {
             name.setText(user.get("name"));
         }
 
-        callUpdate();
+       callUpdate();
     }
 
     @Override

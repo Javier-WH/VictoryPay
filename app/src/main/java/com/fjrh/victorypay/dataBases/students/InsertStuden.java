@@ -137,31 +137,6 @@ public class InsertStuden extends DbHelper {
     private long insertPayment(HashMap<String, String> payment, String stdId, String tutorId) throws SQLException {
         boolean isPaymentComplete = Boolean.parseBoolean(payment.get("payment_status"));
 
-/*
-        //obtiene almacenado el abono de la tabla
-        double currentAbono = abono.getAbono(tutorId);
-
-        /// al abono le sumo el total de lo depositado
-        double abonoPlusPayment = currentAbono + Double.parseDouble(payment.get("mount"));
-        //cuanto vale el mes
-        double monthlyPrice = Double.parseDouble(new Prices(context).getPrices().get("Dolar"));
-
-        double total = abonoPlusPayment - monthlyPrice;
-
-        //si despues de pagar la mensualidad queda dinero, lo registra en la tabla abono
-        if(total >= 0){
-            abono.insertAbono(tutorId, total);
-            isPaymentComplete = true;
-            payment.put("payment_status", "true");
-        }
-        // registra en la tabla abono, si lo depositado mas el monto no alcanza para pagar la mensualidad
-        else if(abonoPlusPayment > 0){
-            abono.insertAbono(tutorId, abonoPlusPayment);
-            isPaymentComplete = false;
-            payment.put("payment_status", "false");
-        }
-*/
-
         ContentValues values = new ContentValues();
         values.put("student_id", stdId);
         values.put("inscription", isPaymentComplete ? payment.get("monthlyPrice") : "0");

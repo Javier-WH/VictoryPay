@@ -62,9 +62,8 @@ public class Sync extends AppCompatActivity {
     private void startLoad(){
 
         String URL = new FetchManager(context).getFetchinAddress();
-        ArrayList<HashMap<String, String>> studentsList = new FindStudent(context).getOfflineStudentList();
 
-        SyncStudents syncStudents = new SyncStudents(URL, studentsList);
+        SyncStudents syncStudents = new SyncStudents(context, URL);
         syncStudents.execute();
 
 
