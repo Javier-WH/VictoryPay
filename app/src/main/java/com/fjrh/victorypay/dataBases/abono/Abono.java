@@ -34,11 +34,15 @@ public class Abono extends DbHelper {
 
     }
 
-    public long insertAbono(String tutorId, double abono){
+    public long insertAbono(String tutorId, double abono, String abonoDate){
 
         ContentValues values = new ContentValues();
         values.put("tutor_id", tutorId);
         values.put("abono", abono);
+
+        if(abonoDate != null){
+            values.put("abonoDate", abonoDate);
+        }
 
         return db.replace("abono", null, values);
     }

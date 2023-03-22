@@ -53,6 +53,11 @@ public class InsertStuden extends DbHelper {
         values.put("parent_id", parent_id);
         values.put("tutor_id", tutor_id);
 
+            //esto para que mantenga las misma fecha
+        if(user.containsKey("updatedAt")){
+            values.put("updatedAT", user.get("updatedAt"));
+        }
+
         return db.insert("students", null, values);
     }
 
@@ -69,6 +74,10 @@ public class InsertStuden extends DbHelper {
         values.put("father_nation", parent.get("fatherNationality"));
         values.put("father_work", parent.get("fatherWork"));
 
+        if(parent.containsKey("parentsDate")){
+            values.put("updatedAT", parent.get("parentsDate"));
+        }
+
 
         return db.insert("parents", null, values);
     }
@@ -81,6 +90,9 @@ public class InsertStuden extends DbHelper {
         values.put("tutor_nation", tutor.get("tutorNationality"));
         values.put("tutor_link", tutor.get("link3"));
 
+        if(tutor.containsKey("tutorDate")){
+            values.put("updatedAT", tutor.get("tutorDate"));
+        }
 
         return db.insert("tutors", null, values);
     }
@@ -96,6 +108,9 @@ public class InsertStuden extends DbHelper {
         values.put("whatsapp1", contact.get("w1"));
         values.put("whatsapp2", contact.get("w2"));
 
+        if(contact.containsKey("contactDate")){
+            values.put("updatedAT", contact.get("contactDate"));
+        }
 
         return db.insert("contact_info", null, values);
     }
@@ -115,6 +130,10 @@ public class InsertStuden extends DbHelper {
         values.put("address", address.get("address"));
         values.put("procedence_school", address.get("procedence"));
 
+        if(address.containsKey("addressDate")){
+            values.put("updatedAT", address.get("addressDate"));
+        }
+
         return db.insert("address", null, values);
     }
     private long insertMedical(HashMap<String, String> medical, String stdId) throws SQLException {
@@ -131,6 +150,10 @@ public class InsertStuden extends DbHelper {
         values.put("TDAH", medical.get("TDAH"));
         values.put("observations", medical.get("observations1_4"));
 
+        if(medical.containsKey("medicalDate")){
+            values.put("updatedAT", medical.get("medicalDate"));
+        }
+
         return db.insert("medical_info", null, values);
     }
 
@@ -145,13 +168,19 @@ public class InsertStuden extends DbHelper {
         values.put("date", payment.get("date"));
         values.put("status", payment.containsKey("payment_status") ? payment.get("payment_status") : "false");
 
+        if(payment.containsKey("paymentDate")){
+            values.put("updatedAT", payment.get("paymentDate"));
+        }
+
         return db.insert("inscription_payment", null, values);
     }
 
     private long insertAbono(HashMap<String, String> data, String tutorID){
         double _abono = Double.parseDouble(data.get("abono"));
+        String abonoDate = data.containsKey("updatedAT") ? data.get("abonoDate") : null;
 
-        return abono.insertAbono(tutorID, _abono);
+
+        return abono.insertAbono(tutorID, _abono, abonoDate);
 
     }
 

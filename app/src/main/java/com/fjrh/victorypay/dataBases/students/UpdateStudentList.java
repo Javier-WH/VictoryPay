@@ -104,19 +104,17 @@ public class UpdateStudentList extends DbHelper {
                     data.put("date", student.getString("date"));
                     data.put("payment_status", student.getString("status"));
                     data.put("paymentDate", student.getString("paymentDate"));
+
                     data.put("abono", student.getString("abono"));
+                    data.put("abonoDate", student.getString("abonoDate"));
 
                     new InsertStuden(context).insert(data);
 
                 } catch (JSONException e) {
-                    Log.e("XXX", "104 error " + e.getMessage());
+                    Log.e("XXX", "114 UpdateStudent error " + e.getMessage());
                     e.printStackTrace();
                 }
             });
-
-
-
-
 
         return true;
     }

@@ -451,9 +451,13 @@ public class Payment0 extends AppCompatActivity {
 
     private void refreshContainer() {
         hideAllStudents();
+
+
         stdCount_text.setText(String.valueOf(studentList.size()));
 
-        for (int i = 0; i < studentList.size(); i++) {
+        Log.i("XXX", "455 payment0 stuydentlist.size " + studentList.size());
+
+        for (int i = 0; i < studentList.size() && i < 10; i++) {
             names[i].setText(studentList.get(i).get("name"));
             cis[i].setText("C.I. " + studentList.get(i).get("ci"));
             codes[i].setText(studentList.get(i).get("code"));
