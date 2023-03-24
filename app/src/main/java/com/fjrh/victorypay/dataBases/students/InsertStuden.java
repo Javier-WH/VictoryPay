@@ -89,7 +89,11 @@ public class InsertStuden extends DbHelper {
         values.put("tutor_ci", tutor.get("tutorCi"));
         values.put("tutor_nation", tutor.get("tutorNationality"));
         values.put("tutor_link", tutor.get("link3"));
-
+        if(tutor.containsKey("tutor_code")) {
+            values.put("tutor_code", tutor.get("tutor_code"));
+        }else{
+            Log.i("XXX", "tutor sin codigo ");
+        }
         if(tutor.containsKey("tutorDate")){
             values.put("updatedAT", tutor.get("tutorDate"));
         }

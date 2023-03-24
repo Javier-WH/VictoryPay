@@ -63,6 +63,7 @@ public class UpdateStudentList extends DbHelper {
                     data.put("fatherWork", student.getString("father_work"));
                     data.put("parentsDate", student.getString("parentsDate"));
 
+                    data.put("tutor_code", student.getString("tutor_code"));
                     data.put("tutorName", student.getString("tutor_name"));
                     data.put("tutorCi", student.getString("tutor_ci"));
                     data.put("tutorNationality", student.getString("tutor_nation"));

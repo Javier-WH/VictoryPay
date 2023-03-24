@@ -26,6 +26,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.fjrh.victorypay.App;
+import com.fjrh.victorypay.Libraries.CodeGenerator;
 import com.fjrh.victorypay.Libraries.FetchManager;
 import com.fjrh.victorypay.R;
 import com.fjrh.victorypay.conflict.ConflictActivity;
@@ -377,6 +378,7 @@ public class Register5 extends AppCompatActivity {
 
         data.put("user", user.get("ci"));
         data.put("timeStamp", date.toString());
+        data.put("tutor_code", CodeGenerator.getNewCode('T'));
 
         if (params.get("mode").equalsIgnoreCase("offline")) {
             insertOfflineStudent();

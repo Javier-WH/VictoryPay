@@ -13,7 +13,7 @@ public class CreatorString {
     //parents
     private static final String CreateParentsString = "CREATE TABLE parents (id INTEGER PRIMARY KEY AUTOINCREMENT, mother_name TEXT NOT NULL, mother_ci TEXT NOT NULL,  mother_nation TEXT NOT NULL, mother_work TEXT NOT NULL, father_name TEXT NOT NULL, father_ci TEXT NOT NULL, father_nation TEXT NOT NULL, father_work TEXT NOT NULL, updatedAT TEXT DEFAULT (strftime('%m/%d/%Y %H:%M:%S', 'now', 'localtime')))";
     //tutors
-    private static final String CreateTutorsString = "CREATE TABLE tutors (id INTEGER PRIMARY KEY AUTOINCREMENT, tutor_name TEXT NOT NULL, tutor_ci TEXT NOT NULL, tutor_nation TEXT NOT NULL, tutor_link TEXT NOT NULL, updatedAT TEXT DEFAULT (strftime('%m/%d/%Y %H:%M:%S', 'now', 'localtime')))";
+    private static final String CreateTutorsString = "CREATE TABLE tutors (id INTEGER PRIMARY KEY AUTOINCREMENT, tutor_code TEXT NOT NULL UNIQUE, tutor_name TEXT NOT NULL, tutor_ci TEXT NOT NULL, tutor_nation TEXT NOT NULL, tutor_link TEXT NOT NULL, updatedAT TEXT DEFAULT (strftime('%m/%d/%Y %H:%M:%S', 'now', 'localtime')))";
     //contact_info
     private static final String CreateContactInfoString = "CREATE TABLE contact_info (id INTEGER PRIMARY KEY AUTOINCREMENT, student_id INTEGER NOT NULL UNIQUE, phone1 TEXT NOT NULL, phone2 TEXT NOT NULL, email TEXT, whatsapp1 TEXT, whatsapp2 TEXT, updatedAT TEXT DEFAULT (strftime('%m/%d/%Y %H:%M:%S', 'now', 'localtime')))";
     //inscription_payment

@@ -219,6 +219,8 @@ public class Register4_1 extends AppCompatActivity {
         }
 
         HashMap<String, String> data = new HashMap<>();
+
+
         data.put("payMethod", cash.isChecked() ? "1" : "2");
         data.put("account",  account.getText().toString().trim());//numero de operación
         data.put("date", date.getText().toString());//fecha depósito

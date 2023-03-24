@@ -155,7 +155,7 @@ public class FindStudent extends DbHelper {
 
         ArrayList<HashMap<String, String>> list = new ArrayList<>();
 
-        String query = "SELECT students.*, tutors.tutor_name, tutors.tutor_ci, tutors.tutor_nation, tutor_link, tutors.updatedAT as tutorDate, " +
+        String query = "SELECT students.*, tutors.tutor_code, tutors.tutor_name, tutors.tutor_ci, tutors.tutor_nation, tutor_link, tutors.updatedAT as tutorDate, " +
                 "parents.mother_name, parents.mother_ci, parents.mother_nation, parents.mother_work, parents.father_name, parents.father_ci, parents.father_nation, parents.father_work, parents.updatedAT as parentsDate, " +
                 "address.birth_country, address.birth_state, address.birth_municipio, address.birth_parroquia, address.live_state, address.live_municipio, address.live_parroquia, address.address, address.procedence_school, address.updatedAT as addressDate, " +
                 "contact_info.phone1, contact_info.phone2, contact_info.email, contact_info.whatsapp1, contact_info.whatsapp2, contact_info.updatedAT as contactDate, " +

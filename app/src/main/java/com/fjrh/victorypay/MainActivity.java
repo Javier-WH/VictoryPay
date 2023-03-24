@@ -30,6 +30,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.fjrh.victorypay.Config.ConfigFetchingAddress;
 import com.fjrh.victorypay.Libraries.AutoCompleteOption;
+import com.fjrh.victorypay.Libraries.CodeGenerator;
 import com.fjrh.victorypay.Libraries.FetchManager;
 import com.fjrh.victorypay.Libraries.Venezuela;
 import com.fjrh.victorypay.dataBases.DbHelper;
@@ -124,6 +125,7 @@ public class MainActivity extends AppCompatActivity {
         if (params.containsKey("remember")) {
             rememberMe.setChecked(Boolean.parseBoolean(params.get("remember")));
         }
+
 
 
     }
