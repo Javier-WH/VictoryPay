@@ -133,8 +133,8 @@ public class Register1_3 extends AppCompatActivity {
             if(data.containsKey("address")){
                 address.setText(data.get("address"));
             }
-            if(data.containsKey("procedence")){
-                procedence.setText(data.get("procedence"));
+            if(data.containsKey("procedence_school")){
+                procedence.setText(data.get("procedence_school"));
             }
 
         }
@@ -143,7 +143,7 @@ public class Register1_3 extends AppCompatActivity {
 
         HashMap<String, String> data = new HashMap<>();
         data.put("address", address.getText().toString().trim());
-        data.put("procedence", procedence.getText().toString().trim());
+        data.put("procedence_school", procedence.getText().toString().trim());
         return data;
     }
 

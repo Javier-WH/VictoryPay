@@ -1,6 +1,5 @@
 package com.fjrh.victorypay.dataBases.students;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -64,18 +63,18 @@ public class FindStudent extends DbHelper {
         return -1;
     }
 
-    public long findStudentTutor(String tutorCi) {
+    public String findStudentTutor(String tutor_ci) {
 
         String query = "SELECT * FROM tutors WHERE tutor_ci = ?";
 
-        Cursor cursor = db.rawQuery(query, new String[]{tutorCi});
+        Cursor cursor = db.rawQuery(query, new String[]{tutor_ci});
 
         if (cursor.moveToFirst()) {
-            long id = cursor.getInt(0);
-            return id;
+            String code = cursor.getString(cursor.getColumnIndex("tutor_code"));
+            return code;
         }
 
-        return -1;
+        return "-1";
     }
 
     ////

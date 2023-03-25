@@ -123,14 +123,14 @@ public class Register2 extends AppCompatActivity {
 
     public HashMap<String, String> getData() {
         HashMap<String, String> data = new HashMap<>();
-        data.put("motherName", motherName.getText().toString().trim());
-        data.put("motherCi", motherCi.getText().toString().trim());
-        data.put("motherNationality", motherXeno ? "E-" : "V-");
-        data.put("fatherName", fatherName.getText().toString().trim());
-        data.put("fatherCi", fatherCi.getText().toString().trim());
-        data.put("fatherNationality", fatherXeno ? "E-" : "V-");
-        data.put("motherWork", motherWork.getText().toString().trim());
-        data.put("fatherWork", fatherWork.getText().toString().trim());
+        data.put("mother_name", motherName.getText().toString().trim());
+        data.put("mother_ci", motherCi.getText().toString().trim());
+        data.put("mother_nation", motherXeno ? "E-" : "V-");
+        data.put("mother_work", motherWork.getText().toString().trim());
+        data.put("father_name", fatherName.getText().toString().trim());
+        data.put("father_ci", fatherCi.getText().toString().trim());
+        data.put("father_nation", fatherXeno ? "E-" : "V-");
+        data.put("father_work", fatherWork.getText().toString().trim());
         return data;
     }
 
@@ -140,39 +140,39 @@ public class Register2 extends AppCompatActivity {
         if (intentData.hasExtra("data")) {
             data = (HashMap<String, String>) intentData.getSerializableExtra("data");
 
-            if (data.containsKey("motherName")) {
-                motherName.setText(data.get("motherName"));
+            if (data.containsKey("mother_name")) {
+                motherName.setText(data.get("mother_name"));
             }
-            if (data.containsKey("motherCi")) {
-                motherCi.setText(data.get("motherCi"));
+            if (data.containsKey("mother_ci")) {
+                motherCi.setText(data.get("mother_ci"));
             }
-            if (data.containsKey("motherNationality")) {
-                motherNationality.setText(data.get("motherNationality"));
+            if (data.containsKey("mother_nation")) {
+                motherNationality.setText(data.get("mother_nation"));
                 if (motherNationality.getText().toString().equals("E-")) {
                     motherXeno = true;
                 } else {
                     motherXeno = false;
                 }
             }
-            if (data.containsKey("fatherName")) {
-                fatherName.setText(data.get("fatherName"));
+            if (data.containsKey("father_name")) {
+                fatherName.setText(data.get("father_name"));
             }
-            if (data.containsKey("fatherCi")) {
-                fatherCi.setText(data.get("fatherCi"));
+            if (data.containsKey("father_ci")) {
+                fatherCi.setText(data.get("father_ci"));
             }
-            if (data.containsKey("fatherNationality")) {
-                fatherNationality.setText(data.get("fatherNationality"));
+            if (data.containsKey("father_nation")) {
+                fatherNationality.setText(data.get("father_nation"));
                 if (fatherNationality.getText().toString().equals("E-")) {
                     fatherXeno = true;
                 } else {
                     fatherXeno = false;
                 }
             }
-            if(data.containsKey("motherWork")){
-                motherWork.setText(data.get("motherWork"));
+            if(data.containsKey("mother_work")){
+                motherWork.setText(data.get("mother_work"));
             }
-            if(data.containsKey("fatherWork")){
-                fatherWork.setText(data.get("fatherWork"));
+            if(data.containsKey("father_work")){
+                fatherWork.setText(data.get("father_work"));
             }
 
         }

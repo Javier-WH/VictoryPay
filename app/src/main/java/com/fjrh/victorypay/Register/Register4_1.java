@@ -168,21 +168,22 @@ public class Register4_1 extends AppCompatActivity {
 
         if (intentData.hasExtra("data")) {
             data = (HashMap<String, String>) intentData.getSerializableExtra("data");
-            if(data.containsKey("payMethod")){
-                if(data.get("payMethod").equals("1")){
+
+            if(data.containsKey("cash")){
+                if(data.get("cash").equals("1")){
                     cash.setChecked(true);
                 }else{
                     bank.setChecked(true);
                 }
             }
-            if(data.containsKey("account")){
-                account.setText(data.get("account"));
+            if(data.containsKey("operation_number")){
+                account.setText(data.get("operation_number"));
             }
             if(data.containsKey("date")){
                 date.setText(data.get("date"));
             }
-            if(data.containsKey("mount")){
-                mount.setText(data.get("mount"));
+            if(data.containsKey("inscription")){
+                mount.setText(data.get("inscription"));
             }
 
             //esto se asegura de hacer la conversion a bolivares si se regresa a esta vista
@@ -191,7 +192,7 @@ public class Register4_1 extends AppCompatActivity {
                 toggleCurrency( storedCurrency.equals("USD") ? "Bs" : "USD");
 
                 if(storedCurrency.equals("Bs")){
-                    double storedMount = Double.parseDouble(data.get("mount"));
+                    double storedMount = Double.parseDouble(data.get("inscription"));
                     double storedTas = Double.parseDouble(listPrices.get("Dolar"));
                     double priceInBs = Math.floor((storedMount * storedTas) * 100) /100;
                     mount.setText(String.valueOf(priceInBs));
@@ -206,10 +207,12 @@ public class Register4_1 extends AppCompatActivity {
     public HashMap<String, String> getData() {
         double dolarPrice = Double.parseDouble(listPrices.get("Dolar"));
         double pago = 0;
+
         //la condicional corrige el bug que ocuirre al regresar a la vista anterior.
         if(!mount.getText().toString().isEmpty()){
             pago = Double.parseDouble(mount.getText().toString().trim());
         }
+
         double pagoBolivares = pago * dolarPrice;
 
         //revisa si el pago es en bolivares, de hacerlo hace la conversion a dolares
@@ -221,10 +224,10 @@ public class Register4_1 extends AppCompatActivity {
         HashMap<String, String> data = new HashMap<>();
 
 
-        data.put("payMethod", cash.isChecked() ? "1" : "2");
-        data.put("account",  account.getText().toString().trim());//numero de operación
+        data.put("cash", cash.isChecked() ? "1" : "2");
+        data.put("operation_number",  account.getText().toString().trim());//numero de operación
         data.put("date", date.getText().toString());//fecha depósito
-        data.put("mount", String.valueOf( Math.floor(pago * 100) / 100));//pago depósito
+        data.put("inscription", String.valueOf( Math.floor(pago * 100) / 100));//pago depósito
         data.put("currency", currency.getText().toString());//tipo de moneda
         //el pago expresado en Bolivares
         data.put("mountBS", String.valueOf( Math.floor(pagoBolivares * 100) / 100));
@@ -243,13 +246,13 @@ public class Register4_1 extends AppCompatActivity {
         //si el total es positivo, se almacena en la tabla abono
         if(total >= 0){
             data.put("abono", String.valueOf(total));
-            data.put("payment_status", "true");
+            data.put("status", "true");
 
         }
         //si no es positivo, implica que no alcanza para pagar 1 mes, por lo tanto lo que queda es abonado
         else if(abonoPlusPayment > 0){
             data.put("abono", String.valueOf(abonoPlusPayment));
-            data.put("payment_status", "false");
+            data.put("status", "false");
         }
 
         return data;
@@ -269,14 +272,14 @@ public class Register4_1 extends AppCompatActivity {
         }
 
         FindStudent findStudent = new FindStudent(context);
-        long tutorID = findStudent.findStudentTutor(data.get("tutorCi"));
-        if(tutorID == -1) {
+        String tutorCode = findStudent.findStudentTutor(data.get("tutor_ci"));
+        if(tutorCode.equals("-1")) {
             lblAbono.setText("0");
             data.put("savedAbono", "0");
             dblAbono = 0;
         }else{
-            String id = String.valueOf(tutorID);
-            String savedAbono = String.valueOf(new Abono(context).getAbono(id));
+
+            String savedAbono = String.valueOf(new Abono(context).getAbono(tutorCode));
             lblAbono.setText(savedAbono);
             data.put("savedAbono", savedAbono);
             dblAbono = Double.parseDouble(savedAbono);

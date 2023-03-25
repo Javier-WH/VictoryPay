@@ -199,8 +199,8 @@ public class Register5 extends AppCompatActivity {
             if (data.containsKey("code")) {
                 code.setText(data.get("code"));
             }
-            if (data.containsKey("studentName") && data.containsKey("studentLastName")) {
-                name.setText(data.get("studentName") + " " + data.get("studentLastName"));
+            if (data.containsKey("name") && data.containsKey("lastName")) {
+                name.setText(data.get("name") + " " + data.get("lastName"));
             }
             if (data.containsKey("seccion")) {
                 seccion.setText(data.get("seccion"));
@@ -211,41 +211,41 @@ public class Register5 extends AppCompatActivity {
             if (data.containsKey("gender")) {
                 genero.setText(data.get("gender"));
             }
-            if (data.containsKey("studentCi") && data.containsKey("studentNation")) {
-                ci.setText(data.get("studentNation") + data.get("studentCi"));
+            if (data.containsKey("ci") && data.containsKey("nation")) {
+                ci.setText(data.get("nation") + data.get("ci"));
             }
-            if (data.containsKey("birthDate")) {
-                birthDate.setText(data.get("birthDate"));
+            if (data.containsKey("birthdate")) {
+                birthDate.setText(data.get("birthdate"));
             }
             if (data.containsKey("age")) {
                 age.setText(data.get("age"));
             }
-            if (data.containsKey("birthCountry")) {
-                birthCountry.setText(data.get("birthCountry"));
+            if (data.containsKey("birth_country")) {
+                birthCountry.setText(data.get("birth_country"));
             }
-            if (data.containsKey("birthEstado")) {
-                birthState.setText(data.get("birthEstado"));
+            if (data.containsKey("birth_state")) {
+                birthState.setText(data.get("birth_state"));
             }
-            if (data.containsKey("birthMunicipio")) {
-                birthMunicipio.setText(data.get("birthMunicipio"));
+            if (data.containsKey("birth_municipio")) {
+                birthMunicipio.setText(data.get("birth_municipio"));
             }
-            if (data.containsKey("birthParroquia")) {
-                birthParroquia.setText(data.get("birthParroquia"));
+            if (data.containsKey("birth_parroquia")) {
+                birthParroquia.setText(data.get("birth_parroquia"));
             }
-            if (data.containsKey("liveEstate")) {
-                liveState.setText(data.get("liveEstate"));
+            if (data.containsKey("live_state")) {
+                liveState.setText(data.get("live_state"));
             }
-            if (data.containsKey("liveMunicipio")) {
-                liveMunicipio.setText(data.get("liveMunicipio"));
+            if (data.containsKey("live_municipio")) {
+                liveMunicipio.setText(data.get("live_municipio"));
             }
-            if (data.containsKey("liveParroquia")) {
-                liveParroquia.setText(data.get("liveParroquia"));
+            if (data.containsKey("live_parroquia")) {
+                liveParroquia.setText(data.get("live_parroquia"));
             }
             if (data.containsKey("address")) {
                 address.setText(data.get("address"));
             }
-            if (data.containsKey("procedence")) {
-                procedence.setText(data.get("procedence"));
+            if (data.containsKey("procedence_school")) {
+                procedence.setText(data.get("procedence_school"));
             }
             if (data.containsKey("diabetes")) {
                 diabetes.setText(data.get("diabetes").equals("true") ? "Si" : "No");
@@ -256,9 +256,7 @@ public class Register5 extends AppCompatActivity {
             if (data.containsKey("dislexia")) {
                 dislexia.setText(data.get("dislexia").equals("true") ? "Si" : "No");
             }
-            if (data.containsKey("dislexia")) {
-                dislexia.setText(data.get("dislexia").equals("true") ? "Si" : "No");
-            }
+
             if (data.containsKey("daltonismo")) {
                 daltonismo.setText(data.get("daltonismo").equals("true") ? "Si" : "No");
             }
@@ -268,41 +266,41 @@ public class Register5 extends AppCompatActivity {
             if (data.containsKey("asma")) {
                 asma.setText(data.get("asma").equals("true") ? "Si" : "No");
             }
-            if (data.containsKey("alergia")) {
-                alergia.setText(data.get("alergia").equals("true") ? "Si" : "No");
+            if (data.containsKey("alergias")) {
+                alergia.setText(data.get("alergias").equals("true") ? "Si" : "No");
             }
             if (data.containsKey("TDAH")) {
                 TDAH.setText(data.get("TDAH").equals("true") ? "Si" : "No");
             }
-            if (data.containsKey("observations1_4")) {
-                observations.setText(data.get("observations1_4"));
+            if (data.containsKey("observations")) {
+                observations.setText(data.get("observations"));
             }
-            if (data.containsKey("motherName")) {
-                motherName.setText(data.get("motherName"));
+            if (data.containsKey("mother_name")) {
+                motherName.setText(data.get("mother_name"));
             }
-            if (data.containsKey("motherCi") && data.containsKey("motherNationality")) {
-                motherCi.setText(data.get("motherNationality") + data.get("motherCi"));
+            if (data.containsKey("mother_ci") && data.containsKey("mother_nation")) {
+                motherCi.setText(data.get("mother_nation") + data.get("mother_ci"));
             }
-            if (data.containsKey("fatherName")) {
-                fatherName.setText(data.get("fatherName"));
+            if (data.containsKey("father_name")) {
+                fatherName.setText(data.get("father_name"));
             }
-            if (data.containsKey("fatherCi") && data.containsKey("fatherCi")) {
-                fatherCi.setText(data.get("fatherNationality") + data.get("fatherCi"));
+            if (data.containsKey("father_ci") && data.containsKey("father_nation")) {
+                fatherCi.setText(data.get("father_nation") + data.get("father_ci"));
             }
-            if (data.containsKey("motherWork")) {
-                motherWork.setText(data.get("motherWork"));
+            if (data.containsKey("mother_work")) {
+                motherWork.setText(data.get("mother_work"));
             }
-            if (data.containsKey("fatherWork")) {
-                fatherWork.setText(data.get("fatherWork"));
+            if (data.containsKey("father_work")) {
+                fatherWork.setText(data.get("father_work"));
             }
-            if (data.containsKey("tutorName")) {
-                tutorName.setText(data.get("tutorName"));
+            if (data.containsKey("tutor_name")) {
+                tutorName.setText(data.get("tutor_name"));
             }
-            if (data.containsKey("tutorCi") && data.containsKey("tutorNationality")) {
-                tutorCi.setText(data.get("tutorNationality") + data.get("tutorCi"));
+            if (data.containsKey("tutor_ci") && data.containsKey("tutor_nation")) {
+                tutorCi.setText(data.get("tutor_nation") + data.get("tutor_ci"));
             }
-            if (data.containsKey("link3")) {
-                tutorLink.setText(data.get("link3"));
+            if (data.containsKey("tutor_link")) {
+                tutorLink.setText(data.get("tutor_link"));
             }
             if (data.containsKey("phone1")) {
                 phoneA.setText(data.get("phone1"));
@@ -313,22 +311,22 @@ public class Register5 extends AppCompatActivity {
             if (data.containsKey("email")) {
                 email.setText(data.get("email"));
             }
-            if (data.containsKey("account")) {
-                operationNumber.setText(data.get("account"));
+            if (data.containsKey("operation_number")) {
+                operationNumber.setText(data.get("operation_number"));
             }
             if (data.containsKey("date")) {
                 operationDate.setText(data.get("date"));
             }
-            if (data.containsKey("mount")) {
-                mount.setText("USD " + data.get("mount"));
+            if (data.containsKey("inscription")) {
+                mount.setText("USD " + data.get("inscription"));
 
             }
-            if(data.containsKey("mountBS")){
-                montBs.setText("(Bs "+data.get("mountBS")+")");
+            if(data.containsKey("inscription")){
+                montBs.setText("(Bs "+data.get("inscription")+")");
             }
 
-            if(data.containsKey("mount") && data.containsKey("savedAbono")) {
-                double monto = Double.parseDouble(data.get("mount"));
+            if(data.containsKey("inscription") && data.containsKey("savedAbono")) {
+                double monto = Double.parseDouble(data.get("inscription"));
                 double savedAbono = Double.parseDouble(data.get("savedAbono"));
 
                 if ((monto + savedAbono) < getMonthlyPrice()) {
@@ -342,13 +340,13 @@ public class Register5 extends AppCompatActivity {
                 abono.setText("USD " + data.get("savedAbono"));
             }
 
-            if(data.containsKey("mount") && data.containsKey("savedAbono")){
-                double Tt = Double.parseDouble(data.get("mount")) + Double.parseDouble(data.get("savedAbono"));
+            if(data.containsKey("inscription") && data.containsKey("savedAbono")){
+                double Tt = Double.parseDouble(data.get("inscription")) + Double.parseDouble(data.get("savedAbono"));
                 total.setText("USD " + String.valueOf(Tt));
             }
 
-            if(data.containsKey("payMethod")){
-                String payMethod = data.get("payMethod");
+            if(data.containsKey("cash")){
+                String payMethod = data.get("cash");
                 operationDateTitle.setVisibility( payMethod.equals("1") ? View.GONE : View.VISIBLE);
                 operationNumberTitle.setVisibility( payMethod.equals("1") ? View.GONE : View.VISIBLE);
                 operationNumber.setVisibility( payMethod.equals("1") ? View.GONE : View.VISIBLE);

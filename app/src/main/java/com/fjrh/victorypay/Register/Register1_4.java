@@ -102,14 +102,14 @@ public class Register1_4 extends AppCompatActivity {
             if(data.containsKey("asma")){
                 asma.setChecked( Boolean.parseBoolean(data.get("asma")));
             }
-            if(data.containsKey("alergia")){
-                alergia.setChecked( Boolean.parseBoolean(data.get("alergia")));
+            if(data.containsKey("alergias")){
+                alergia.setChecked( Boolean.parseBoolean(data.get("alergias")));
             }
             if(data.containsKey("TDAH")){
                 TDAH.setChecked( Boolean.parseBoolean(data.get("TDAH")));
             }
-            if(data.containsKey("observations1_4")){
-                observations1_4.setText(data.get("observations1_4"));
+            if(data.containsKey("observations")){
+                observations1_4.setText(data.get("observations"));
             }
 
         }
@@ -123,9 +123,9 @@ public class Register1_4 extends AppCompatActivity {
         data.put("daltonismo", String.valueOf(daltonismo.isChecked()));
         data.put("epilepsia", String.valueOf(epilepsia.isChecked()));
         data.put("asma", String.valueOf(asma.isChecked()));
-        data.put("alergia", String.valueOf(alergia.isChecked()));
+        data.put("alergias", String.valueOf(alergia.isChecked()));
         data.put("TDAH", String.valueOf(TDAH.isChecked()));
-        data.put("observations1_4", observations1_4.getText().toString().trim());
+        data.put("observations", observations1_4.getText().toString().trim());
         return data;
     }
 

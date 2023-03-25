@@ -82,6 +82,25 @@ public class MainActivity extends AppCompatActivity {
 
         params.insertParam("needLoad", "true");
         params.insertParam("loadAtStart", "true");
+
+
+        //***////
+        HashMap<String, String> userData = new HashMap<>();
+        userData.put("user", "Xaver");
+        userData.put("password", "123");
+        userData.put("name", "Francisco Javier Rodríguez Hernández");
+        userData.put("ci", "16193765");
+
+            try {
+                localUser.insertUsers(userData);
+                params.insertParam("remember", "true");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+
+        ///****//
+
     }
 
 
@@ -225,8 +244,6 @@ public class MainActivity extends AppCompatActivity {
                             params.insertParam("mode", "offline");
                             message = "No hay respuesta del servidor, iniciando en modo offline";
                             Intent i = new Intent(context, App.class);
-                            // venezuela = new Venezuela(context);
-                            // loading(false);
                             startActivity(i);
                         } else {
                             message = "El servidor no responde, y el usuario no está validado o los datos no son correctos";

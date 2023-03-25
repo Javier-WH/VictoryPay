@@ -20,15 +20,15 @@ public class Abono extends DbHelper {
 
     }
 
-    public double getAbono(String tutorId){
+    public double getAbono(String tutor_code){
         double abono = 0;
 
-        String query = "SELECT * FROM abono WHERE tutor_id = ?";
+        String query = "SELECT * FROM abonos WHERE tutor_code = ?";
 
-        Cursor cursor = db.rawQuery(query, new String[]{tutorId});
+        Cursor cursor = db.rawQuery(query, new String[]{ tutor_code});
 
         if(cursor.moveToFirst()){
-            abono = Double.parseDouble(cursor.getString(2));
+            abono = Double.parseDouble(cursor.getString(cursor.getColumnIndex("abono")));
         }
         return abono;
 

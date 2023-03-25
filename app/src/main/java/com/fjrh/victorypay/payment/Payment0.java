@@ -455,8 +455,6 @@ public class Payment0 extends AppCompatActivity {
 
         stdCount_text.setText(String.valueOf(studentList.size()));
 
-        Log.i("XXX", "455 payment0 stuydentlist.size " + studentList.size());
-
         for (int i = 0; i < studentList.size() && i < 10; i++) {
             names[i].setText(studentList.get(i).get("name"));
             cis[i].setText("C.I. " + studentList.get(i).get("ci"));

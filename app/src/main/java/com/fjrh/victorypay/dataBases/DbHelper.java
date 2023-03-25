@@ -10,7 +10,7 @@ import com.fjrh.victorypay.dataBases.strings.CreatorString;
 
 public class DbHelper extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 46;
+    private static final int DATABASE_VERSION = 52;
     private static final String DATABASE_NAME = "batalla.db";
 
 
@@ -22,6 +22,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+
         //crea la base de datos users
         db.execSQL(CreatorString.getCreateUserString());
 
@@ -68,14 +69,15 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS students");
         db.execSQL("DROP TABLE IF EXISTS parents");
         db.execSQL("DROP TABLE IF EXISTS tutors");
-        db.execSQL("DROP TABLE IF EXISTS contact_info");
-        db.execSQL("DROP TABLE IF EXISTS medical_info");
-        db.execSQL("DROP TABLE IF EXISTS address");
-        db.execSQL("DROP TABLE IF EXISTS inscription_payment");
+        db.execSQL("DROP TABLE IF EXISTS contact_infos");
+        db.execSQL("DROP TABLE IF EXISTS medical_infos");
+        db.execSQL("DROP TABLE IF EXISTS addresses");
+        db.execSQL("DROP TABLE IF EXISTS inscription_payments");
         db.execSQL("DROP TABLE IF EXISTS schools");
         db.execSQL("DROP TABLE IF EXISTS prices");
         db.execSQL("DROP TABLE IF EXISTS params");
-        db.execSQL("DROP TABLE IF EXISTS monthControl");
+        db.execSQL("DROP TABLE IF EXISTS monthControls");
+        db.execSQL("DROP TABLE IF EXISTS abonos");
         db.execSQL("DROP TABLE IF EXISTS abono");
         onCreate(db);
 

@@ -85,6 +85,7 @@ public class Register3 extends AppCompatActivity {
         tutorCi.setHint(enabled ? "Cédula del representante" : "");
         labelLink.setEnabled(enabled);
         link.setEnabled(enabled);
+        link.setText("");
         link.setHint(enabled ? "Vínculo" : "");
 
     }
@@ -144,22 +145,22 @@ public class Register3 extends AppCompatActivity {
 
         if(rdbMother.isChecked()){
             data.put("tutorSelected", "1");
-            data.put("tutorName", this.data.get("motherName"));
-            data.put("tutorCi", this.data.get("motherCi"));
-            data.put("tutorNationality", this.data.get("motherNationality"));
-            data.put("link3", "Es la Madre");
+            data.put("tutor_name", this.data.get("mother_name"));
+            data.put("tutor_ci", this.data.get("mother_ci"));
+            data.put("tutor_nation", this.data.get("mother_nation"));
+            data.put("tutor_link", "Es la Madre");
         }else if(rdBFather.isChecked()){
             data.put("tutorSelected", "2");
-            data.put("tutorName", this.data.get("fatherName"));
-            data.put("tutorCi", this.data.get("fatherCi"));
-            data.put("tutorNationality", this.data.get("fatherNationality"));
-            data.put("link3", "Es el Padre");
+            data.put("tutor_name", this.data.get("father_name"));
+            data.put("tutor_ci", this.data.get("father_ci"));
+            data.put("tutor_nation", this.data.get("father_nation"));
+            data.put("tutor_link", "Es el Padre");
         }else if(rdbOther.isChecked()){
             data.put("tutorSelected", "3");
-            data.put("tutorName", tutorName.getText().toString().trim());
-            data.put("tutorCi", tutorCi.getText().toString().trim());
-            data.put("tutorNationality", tutorNationality.getText().toString());
-            data.put("link3", link.getText().toString().trim());
+            data.put("tutor_name", tutorName.getText().toString().trim());
+            data.put("tutor_ci", tutorCi.getText().toString().trim());
+            data.put("tutor_nation", tutorNationality.getText().toString());
+            data.put("tutor_link", link.getText().toString().trim());
         }
 
         return data;
@@ -185,10 +186,10 @@ public class Register3 extends AppCompatActivity {
                     tutorNationality.setText("V-");
                 }else if(data.get("tutorSelected").equals("3")){
                     rdbOther.setChecked(true);
-                    tutorName.setText(data.get("tutorName"));
-                    tutorCi.setText(data.get("tutorCi"));
-                    tutorNationality.setText(data.get("tutorNationality"));
-                    link.setText(data.get("link3"));
+                    tutorName.setText(data.get("tutor_name"));
+                    tutorCi.setText(data.get("tutor_ci"));
+                    tutorNationality.setText(data.get("tutor_nation"));
+                    link.setText(data.get("tutor_link"));
                 }
             }
 

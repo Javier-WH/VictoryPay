@@ -55,7 +55,7 @@ public class Register1_3_1 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 School school = new School(context);
-                school.insertSchool(data.get("procedence"));
+                school.insertSchool(data.get("procedence_school"));
                 goForward();
             }
         });
@@ -83,8 +83,8 @@ public class Register1_3_1 extends AppCompatActivity {
         Intent intentData = getIntent();
         if (intentData.hasExtra("data")) {
             data = (HashMap<String, String>) intentData.getSerializableExtra("data");
-            if(data.containsKey("procedence")){
-                school.setText(data.get("procedence"));
+            if(data.containsKey("procedence_school")){
+                school.setText(data.get("procedence_school"));
             }
         }
     }

@@ -187,15 +187,16 @@ public class Register1 extends AppCompatActivity {
     private HashMap<String, String> getData(){
         HashMap<String, String> data = new HashMap<>();
 
-        data.put("code", code.getText().toString());
-        data.put("studentName", name.getText().toString().trim());
-        data.put("studentLastName", lastName.getText().toString().trim());
+
+        data.put("name", name.getText().toString().trim());
+        data.put("lastName", lastName.getText().toString().trim());
+        data.put("ci", ci.getText().toString().trim());
+        data.put("nation", nationality.getText().toString());
         data.put("seccion", seccion.getSelectedItem().toString());
         data.put("grade", "" + grade.getSelectedItem());
         data.put("gender", rdbMasculino.isChecked() ? "Masculino" : "Femenino");
-        data.put("studentCi", ci.getText().toString().trim());
-        data.put("studentNation", nationality.getText().toString());
-        data.put("birthDate", birthDate.getText().toString());
+        data.put("code", code.getText().toString());
+        data.put("birthdate", birthDate.getText().toString());
         data.put("age", studentOld.getText().toString());
 
         return data;
@@ -207,11 +208,11 @@ public class Register1 extends AppCompatActivity {
         if(intentData.hasExtra("data")){
             data = (HashMap<String, String>) intentData.getSerializableExtra("data");
 
-            if(data.containsKey("studentName")){
-                name.setText(data.get("studentName"));
+            if(data.containsKey("name")){
+                name.setText(data.get("name"));
             }
-            if(data.containsKey("studentLastName")){
-                lastName.setText(data.get("studentLastName"));
+            if(data.containsKey("lastName")){
+                lastName.setText(data.get("lastName"));
             }
             if(data.containsKey("seccion")){
                 seccion.setSelection(((ArrayAdapter) seccion.getAdapter()).getPosition(data.get("seccion")));
@@ -224,14 +225,14 @@ public class Register1 extends AppCompatActivity {
                     rdbFemenino.setChecked(true);
                 }
             }
-            if(data.containsKey("studentCi")){
-                ci.setText(data.get("studentCi"));
+            if(data.containsKey("ci")){
+                ci.setText(data.get("ci"));
             }
-            if(data.containsKey("studentNation")){
-                nationality.setText(data.get("studentNation"));
+            if(data.containsKey("nation")){
+                nationality.setText(data.get("nation"));
             }
-            if(data.containsKey("birthDate")){
-                birthDate.setText(data.get("birthDate"));
+            if(data.containsKey("birthdate")){
+                birthDate.setText(data.get("birthdate"));
             }
             if(data.containsKey("age")){
                 studentOld.setText(data.get("age"));

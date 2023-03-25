@@ -205,14 +205,13 @@ public class Register1_2 extends AppCompatActivity {
 
     public HashMap<String, String> getData() {
         HashMap<String, String> data = new HashMap<>();
-        data.put("birthCountry", birthCountry.getSelectedItem().toString());
-        data.put("birthEstado", birthEstate.getSelectedItem().toString());
-        data.put("birthMunicipio", birthMunicipio.getSelectedItem().toString());
-        data.put("birthParroquia", birthParroquia.getSelectedItem().toString());
-
-        data.put("liveEstate", liveEstate.getSelectedItem().toString());
-        data.put("liveMunicipio", liveMunicipio.getSelectedItem().toString());
-        data.put("liveParroquia", liveParroquia.getSelectedItem().toString());
+        data.put("birth_country", birthCountry.getSelectedItem().toString());
+        data.put("birth_state", birthEstate.getSelectedItem().toString());
+        data.put("birth_municipio", birthMunicipio.getSelectedItem().toString());
+        data.put("birth_parroquia", birthParroquia.getSelectedItem().toString());
+        data.put("live_state", liveEstate.getSelectedItem().toString());
+        data.put("live_municipio", liveMunicipio.getSelectedItem().toString());
+        data.put("live_parroquia", liveParroquia.getSelectedItem().toString());
 
         //los indices de los spiners
         String spinersIndex = "" +
