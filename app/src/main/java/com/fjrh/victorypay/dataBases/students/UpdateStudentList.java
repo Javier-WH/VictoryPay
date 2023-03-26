@@ -109,7 +109,7 @@ public class UpdateStudentList extends DbHelper {
                     data.put("abono", student.getString("abono"));
                     data.put("abonoDate", student.getString("abonoDate"));
 
-                    new InsertStuden(context).insert(data);
+                    //new InsertStuden(context).insert(data);
 
                 } catch (JSONException e) {
                     Log.e("XXX", "114 UpdateStudent error " + e.getMessage());

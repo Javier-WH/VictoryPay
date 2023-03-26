@@ -248,14 +248,14 @@ public class ConflictActivity extends AppCompatActivity {
                     Toast.makeText(context, "Se ha actualizado la base de Datos Online", Toast.LENGTH_LONG).show();
 
                     InsertStuden is = new InsertStuden(context);
-                    if (is.insert(parseResponse(response))) {
+                  /*  if (is.insert(parseResponse(response))) {
                         Toast.makeText(context, "Se ha registrado localmente al estudiante", Toast.LENGTH_LONG).show();
                         Intent i = new Intent(context, App.class);
                         startActivity(i);
                     } else {
                         Toast.makeText(context, "Ha ocurrido un problema al registrar al estudiante", Toast.LENGTH_LONG).show();
                     }
-
+*/
                 }
 
             }

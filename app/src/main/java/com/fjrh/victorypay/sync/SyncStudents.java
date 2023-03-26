@@ -8,6 +8,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.fjrh.victorypay.App;
+import com.fjrh.victorypay.dataBases.register.GetRegister;
 import com.fjrh.victorypay.dataBases.students.FindStudent;
 import com.fjrh.victorypay.dataBases.students.UpdateStudentList;
 import com.fjrh.victorypay.dataBases.users.Users;
@@ -21,6 +22,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
+import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -32,11 +34,11 @@ public class SyncStudents extends AsyncTask <String, Void, String> {
     private ArrayList<HashMap<String, String>> studentList;
     private JSONArray arrayResponse;
     private Context context;
-    private String user;
+
 
 
     public SyncStudents(Context context, String urlString){
-        this.urlString = urlString;
+        this.urlString = urlString + "/syncStudents";
         this.studentList = studentList;
         this.context = context;
     }
@@ -44,8 +46,8 @@ public class SyncStudents extends AsyncTask <String, Void, String> {
     @Override
     protected void onPreExecute() {
         Sync.setMessage("Empaquetando lista de estudiantes offline...");
-        studentList = new FindStudent(context).getOfflineStudentList();
-        user = new Users(context).getUsers().get("ci");
+        studentList = new GetRegister(context).getRegisterList();
+
         Sync.addPercent(5);
     }
 
@@ -55,7 +57,7 @@ public class SyncStudents extends AsyncTask <String, Void, String> {
         Sync.setMessage("Obteniendo lista de estudiantes online...");
             try {
 
-                URL url = new URL(urlString + "/syncStudents");
+                URL url = new URL(urlString);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("POST");
                 connection.setRequestProperty("Content-Type", "application/json");
@@ -63,13 +65,10 @@ public class SyncStudents extends AsyncTask <String, Void, String> {
                 connection.setConnectTimeout(10000); // 10 seconds timeout
 
                 JSONArray jsonArray = new JSONArray(studentList);
-                JSONObject jsonObject = new JSONObject();
-                jsonObject.put("datos", jsonArray);
-                jsonObject.put("user", user);
-                jsonObject.put("date", 0);
+
 
                 OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
-                writer.write(jsonObject.toString());
+                writer.write(jsonArray.toString());
                 writer.flush();
 
                 //obtener respuesta
@@ -85,14 +84,17 @@ public class SyncStudents extends AsyncTask <String, Void, String> {
                 arrayResponse = jsonResponse.getJSONArray("data");
 
                 int responseCode = connection.getResponseCode();
-                return String.valueOf(responseCode); // 2xx codes indicate successful response
-            } catch (IOException e) {
+                return String.valueOf(responseCode);
 
+            }catch (SocketTimeoutException e){
                 e.printStackTrace();
-                return "error";
+                return "timeout";
+            } catch (IOException e) {
+                e.printStackTrace();
+                return "package";
             } catch (JSONException e) {
                 e.printStackTrace();
-                return "error";
+                return "write";
             }
 
 
@@ -100,6 +102,7 @@ public class SyncStudents extends AsyncTask <String, Void, String> {
 
     @Override
     protected void onPostExecute(String result) {
+        /*
         if(Objects.isNull(result)){
             return;
         }
@@ -137,6 +140,10 @@ public class SyncStudents extends AsyncTask <String, Void, String> {
         Sync.addPercent(10);
         Sync.startLoad(2);
 
+         */
+
     }
+
+
 
 }

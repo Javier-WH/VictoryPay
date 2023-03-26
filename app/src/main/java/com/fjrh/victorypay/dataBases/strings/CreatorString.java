@@ -29,6 +29,12 @@ public class CreatorString {
     //abono
     private static final String CreateAbonoString = " CREATE TABLE abonos (id INTEGER PRIMARY KEY AUTOINCREMENT, tutor_code TEXT NOT NULL UNIQUE, abono TEXT NOT NULL UNIQUE, updatedAT TEXT DEFAULT (strftime('%m/%d/%Y %H:%M:%S', 'now', 'localtime')))";
 
+    //registers
+    private static final String CreateRegisterString = "CREATE TABLE registers (register_code TEXT NOT NULL UNIQUE, user TEXT NOT NULL, description TEXT NOT NULL, type TEXT NOT NULL, insertion_query TEXT NOT NULL, rollback_query TEXT NOT NULL, metadata TEXT NOT NULL, updatedAT TEXT DEFAULT (strftime('%m/%d/%Y %H:%M:%S', 'now', 'localtime')))";
+
+
+
+
     public static String getCreateUserString(){
         return CreateUserString;
     }
@@ -46,4 +52,5 @@ public class CreatorString {
     public static String getCreateParamsString(){return CreateParamsString;}
     public static String getCreateMonthControlString(){return CreateMonthControlString;}
     public static String getCreateAbonoString(){return  CreateAbonoString;}
+    public static String getCreateRegisterString(){return  CreateRegisterString;}
 }

@@ -2,6 +2,9 @@ package com.fjrh.victorypay.dataBases.register;
 
 import com.fjrh.victorypay.Libraries.CodeGenerator;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -35,6 +38,8 @@ public class Register {
     }
 
 
+
+
     private String register_code;
     private String user;
     private String description;
@@ -42,12 +47,48 @@ public class Register {
     private String type;
     private String insertion_query;
     private String rollback_query;
+    private JSONObject metadata;
 
+    private JSONObject JSONdata;
+
+    public JSONObject getJSONdata(){
+        JSONObject jsonObject = new JSONObject();
+
+        try {
+            jsonObject.put("register_code", getRegister_code());
+            jsonObject.put("user", getUser());
+            jsonObject.put("description", getDescription());
+            jsonObject.put("date", getDate());
+            jsonObject.put("type", getType());
+            jsonObject.put("metadata", getMetadata());
+            jsonObject.put("insertion_query", getInsertion_query());
+            jsonObject.put("rollback_query", getRollback_query());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return jsonObject;
+    }
+
+    public void setRegister_code(String register_code) {
+        this.register_code = register_code;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public JSONObject getMetadata() {
+        return metadata;
+    }
+
+    public void setMetadata(JSONObject metadata) {
+        this.metadata = metadata;
+    }
 
     public String getRegister_code() {
         return register_code;
     }
-
 
     public String getUser() {
         return user;

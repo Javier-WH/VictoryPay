@@ -119,28 +119,20 @@ public class FindStudent extends DbHelper {
         return response;
     }
 
-    public ArrayList<HashMap<String, String>> getBrothers(String tutor_id) {
+    public ArrayList<HashMap<String, String>> getBrothers(String tutor_code) {
 
         ArrayList<HashMap<String, String>> list = new ArrayList<>();
 
-        String query = "SELECT * FROM students WHERE tutor_id = ?";
-        Cursor cursor = db.rawQuery(query, new String[]{tutor_id});
+        String query = "SELECT * FROM students WHERE tutor_code = ?";
+        Cursor cursor = db.rawQuery(query, new String[]{tutor_code});
+
 
         if (cursor.moveToFirst()) {
             do {
                 HashMap<String, String> student = new HashMap<>();
-                student.put("name", cursor.getString(1));
-                student.put("lastName", cursor.getString(2));
-                student.put("ci", cursor.getString(3));
-                student.put("nation", cursor.getString(4));
-                student.put("seccion", cursor.getString(5));
-                student.put("grade", cursor.getString(6));
-                student.put("gender", cursor.getString(7));
-                student.put("code", cursor.getString(8));
-                student.put("birthdate", cursor.getString(9));
-                student.put("age", cursor.getString(10));
-                student.put("parent_id", cursor.getString(11));
-                student.put("tutor_id", cursor.getString(12));
+                for(int i = 0 ; i < cursor.getColumnCount() ; i++){
+                    student.put(cursor.getColumnName(i), cursor.getString(i));
+                }
 
                 list.add(student);
             } while (cursor.moveToNext());

@@ -32,6 +32,8 @@ import com.fjrh.victorypay.R;
 import com.fjrh.victorypay.conflict.ConflictActivity;
 import com.fjrh.victorypay.dataBases.params.Params;
 import com.fjrh.victorypay.dataBases.prices.Prices;
+import com.fjrh.victorypay.dataBases.register.CreateRegister;
+import com.fjrh.victorypay.dataBases.register.Register;
 import com.fjrh.victorypay.dataBases.students.InsertStuden;
 import com.fjrh.victorypay.dataBases.users.Users;
 
@@ -46,7 +48,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 public class Register5 extends AppCompatActivity {
-    private Context context;
+    private static Context context;
     private Button back;
     private Button next;
     private TextView name;
@@ -102,6 +104,7 @@ public class Register5 extends AppCompatActivity {
     private FetchManager fetchManager;
     private String URL;
     private HashMap<String, String> user;
+    private static Register5 registerActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,6 +114,17 @@ public class Register5 extends AppCompatActivity {
         initComponets();
         initEvents();
         fillInputs();
+        registerActivity = this;
+    }
+
+    public static void closeActivity(){
+        Intent i = new Intent(context, App.class);
+        context.startActivity(i);
+    }
+
+
+    public static Register5 getAcrivity(){
+        return registerActivity;
     }
 
     private void initComponets() {
@@ -367,145 +381,14 @@ public class Register5 extends AppCompatActivity {
 //////
 
     public void insertStudent() {
-        String pattern = "MM-dd-yyyy hh:mm:ss";
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-        String date = simpleDateFormat.format(new Date());
-
         params = new Params(context).getParams();
         bar.setVisibility(View.VISIBLE);
+        Register register = new CreateRegister(context, data).getRegister();
 
-        data.put("user", user.get("ci"));
-        data.put("timeStamp", date.toString());
-        data.put("tutor_code", CodeGenerator.getNewCode('T'));
-
-        if (params.get("mode").equalsIgnoreCase("offline")) {
-            insertOfflineStudent();
-        } else {
-            insetOnlineStudent();
-        }
-    }
-
-    public void insertOfflineStudent() {
         InsertStuden is = new InsertStuden(context);
-        bar.setVisibility(View.INVISIBLE);
-        if (is.insert(data)) {
-            Toast.makeText(context, "Se ha registrado localmente al estudiante", Toast.LENGTH_LONG).show();
-            Intent i = new Intent(context, App.class);
-            startActivity(i);
-        } else {
-            Toast.makeText(context, "Ha ocurrido un problema al registrar al estudiante", Toast.LENGTH_LONG).show();
-        }
-    }
-
-    public void insetOnlineStudent() {
-        String URL = this.URL+"/addStudent";
-
-        // Make new json object and put params in it
-        JSONObject jsonParams = new JSONObject(data);
-
-
-        // Building a request
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, URL, jsonParams, new Response.Listener<JSONObject>() {
-
-            @Override
-            public void onResponse(JSONObject response) {
-                //revisa si existe un conflicto
-                if (response.has("ERROR")) {
-                    try {
-                        String error = response.getString("ERROR");
-                        String title = response.getString("title");
-                        String message = response.getString("message");
-                        String registerID = response.getString("registerID");
-                        String code = response.getString("code");
-                        JSONObject optionA = response.getJSONObject("optionA");
-                        JSONObject optionB = response.getJSONObject("optionB");
-
-                        Intent i = new Intent(context, ConflictActivity.class);
-                        i.putExtra("error", error);
-                        i.putExtra("title", title);
-                        i.putExtra("message", message);
-                        i.putExtra("registerID", registerID);
-                        i.putExtra("code", code);
-                        i.putExtra("nameA",optionA.getString("studentLastName") +" "+  optionA.getString("studentName"));
-                        i.putExtra("codeA", optionA.getString("code"));
-                        i.putExtra("studentNationA", optionA.getString("studentNation"));
-                        i.putExtra("studentCiA", optionA.getString("studentCi"));
-                        i.putExtra("gradeA", optionA.getString("grade"));
-                        i.putExtra("seccionA", optionA.getString("seccion"));
-                        i.putExtra("genderA", optionA.getString("gender"));
-                        i.putExtra("ageA", optionA.getString("age"));
-                        i.putExtra("nameB",optionB.getString("studentLastName") +" "+  optionB.getString("studentName"));
-                        i.putExtra("codeB", optionB.getString("code"));
-                        i.putExtra("studentNationB", optionB.getString("studentNation"));
-                        i.putExtra("studentCiB", optionB.getString("studentCi"));
-                        i.putExtra("gradeB", optionB.getString("grade"));
-                        i.putExtra("seccionB", optionB.getString("seccion"));
-                        i.putExtra("genderB", optionB.getString("gender"));
-                        i.putExtra("ageB", optionB.getString("age"));
-
-                        startActivity(i);
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-
-                }else{
-                    //si no hay conflictos muestra un mensaje
-                    Toast.makeText(context, "Se ha actualizado la base de Datos Online", Toast.LENGTH_LONG).show();
-                    ///insertar el registro offline
-                    addJSONtoData(response);
-                    insertOfflineStudent();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                String message = "Ocurrió un error";
-
-                if (error instanceof TimeoutError || error instanceof NoConnectionError) {
-                    new Params(context).insertParam("mode", "offline");
-                    App.fillElements();
-                    message = "Se perdió la conexión con el servidor";
-
-                } else if (error instanceof AuthFailureError) {
-                    message = "El servidor no puede autenticar al cliente";
-                } else if (error instanceof ServerError) {
-                    //aqui se manejan los errores con los codigos
-                    if (error.networkResponse.statusCode == 412) {
-                        message = "Datos incompletos";
-                    } else if (error.networkResponse.statusCode == 404) {
-                        message = "El usuario no está registrado";
-                    }
-
-                } else if (error instanceof NetworkError) {
-                    message = "Error con la red de datos";
-                } else if (error instanceof ParseError) {
-                    message = "Error al intentar convertir los datos";
-                }
-
-                Toast.makeText(context, message, Toast.LENGTH_LONG).show();
-                insertStudent();
-                //error.printStackTrace();
-            }
-        });
-
-        Volley.newRequestQueue(context).add(request);
+        is.insert(register);
 
     }
 
-    public void addJSONtoData(JSONObject response) {
-        data.clear();
-        Iterator<String> keys = response.keys();
-        try {
-            while (keys.hasNext()) {
-                String key = keys.next();
-                String value = response.getString(key);
-                data.put(key, value);
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
 
-
-    }
 }

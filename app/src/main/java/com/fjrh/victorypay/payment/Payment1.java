@@ -226,7 +226,7 @@ public class Payment1 extends AppCompatActivity {
                 int gradeIndex = student.getColumnIndex("grade");
                 int genderIndex = student.getColumnIndex("gender");
                 int seccionIndex = student.getColumnIndex("seccion");
-                int tutorIdIndex = student.getColumnIndex("tutor_id");
+                int tutor_code = student.getColumnIndex("tutor_code");
 
                 String _name = student.getString(nameIndex);
                 String _lastName = student.getString(lastNameIndex);
@@ -235,7 +235,7 @@ public class Payment1 extends AppCompatActivity {
                 String _grade = student.getString(gradeIndex);
                 String _gender = student.getString(genderIndex);
                 String _seccion = student.getString(seccionIndex);
-                String _tutorId = student.getString(tutorIdIndex);
+                String _tutor_code = student.getString(tutor_code);
 
                 //texto de la sugerencia
                 String text = _lastName + " " + _name + " ci: " + _ci;
@@ -252,7 +252,7 @@ public class Payment1 extends AppCompatActivity {
                 suggest.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        fillData(_name, _lastName, _ci, _code, _seccion, _grade, _gender, "Marzo", "Al dia", _tutorId);
+                        fillData(_name, _lastName, _ci, _code, _seccion, _grade, _gender, "Marzo", "Al dia", _tutor_code);
                     }
                 });
             } while (student.moveToNext());
@@ -260,7 +260,7 @@ public class Payment1 extends AppCompatActivity {
 
     }
 
-    private void fillData(String name, String lastName, String ci, String code, String seccion, String grade, String gender, String lastPayment, String paymentStatus, String tutorID) {
+    private void fillData(String name, String lastName, String ci, String code, String seccion, String grade, String gender, String lastPayment, String paymentStatus, String tutor_code) {
         this.name.setText(name + " " + lastName);
         this.ci.setText(ci);
         this.code.setText(code);
@@ -271,7 +271,7 @@ public class Payment1 extends AppCompatActivity {
         this.paymentStatus.setText(paymentStatus);
 
         if (loadBrothers) {
-            ArrayList<HashMap<String, String>> list = studentsData.getBrothers(tutorID);
+            ArrayList<HashMap<String, String>> list = studentsData.getBrothers(tutor_code);
             for (int i = 0; i < list.size(); i++) {
                 //si el alumno ya esta agregado a la lista, no lo agrega de nuevo
                 if(isStudentAlreadyPicked(list.get(i).get("ci"))){
@@ -285,7 +285,7 @@ public class Payment1 extends AppCompatActivity {
                 stdData.put("seccion", list.get(i).get("seccion"));
                 stdData.put("grade", list.get(i).get("grade"));
                 stdData.put("gender", list.get(i).get("gender"));
-                stdData.put("tutorID", list.get(i).get("tutor_id"));
+                stdData.put("tutor_code", list.get(i).get("tutor_code"));
                 stdData.put("payment", "0");
                 studentList.add(stdData);
             }
@@ -297,7 +297,7 @@ public class Payment1 extends AppCompatActivity {
             stdData.put("seccion", seccion);
             stdData.put("grade", grade);
             stdData.put("gender", gender);
-            stdData.put("tutorID", tutorID);
+            stdData.put("tutor_code", tutor_code);
             stdData.put("payment", "0");
 
             //si el alumno ya esta agregado a la lista, no lo agrega de nuevo

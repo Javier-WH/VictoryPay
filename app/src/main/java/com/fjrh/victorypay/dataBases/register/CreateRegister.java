@@ -5,6 +5,9 @@ import android.content.Context;
 import com.fjrh.victorypay.Libraries.CodeGenerator;
 import com.fjrh.victorypay.dataBases.users.Users;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.HashMap;
 
 public class CreateRegister {
@@ -16,6 +19,7 @@ public class CreateRegister {
     private String type;
     private String insertion_query;
     private String rollback_query;
+    private JSONObject metadata;
     private String name, lastName, ci, nation, seccion, grade, gender, code, birthdate, age, parents_code, tutor_code,
             student_code, birth_country,  birth_state, birth_municipio, birth_parroquia, live_state, live_municipio, live_parroquia, address, procedence_school,
             phone1, phone2, email, whatsaap1, whatsaap2, diabetes, hipertension, dislexia, daltonismo, epilepsia, asma, alergias, TDAH, observations,
@@ -33,6 +37,7 @@ public class CreateRegister {
         this.type = "1";
         this.insertion_query = createInsertionQuery();
         this.rollback_query = createRollbackQuery();
+        this.metadata = createMetadata();
     }
 
     private void initFields() {
@@ -117,6 +122,22 @@ public class CreateRegister {
 
     }
 
+    private JSONObject createMetadata(){
+        JSONObject data = new JSONObject();
+        try {
+            data.put("name", name);
+            data.put("lastname", lastName);
+            data.put("ci", nation+ci);
+            data.put("seccion", seccion);
+            data.put("gender", gender);
+            data.put("age", age);
+            data.put("grade", grade);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return  data;
+    }
+
     public Register getRegister(){
         Register student = new Register();
         student.setUser(user);
@@ -124,6 +145,7 @@ public class CreateRegister {
         student.setType(type);
         student.setInsertion_query(insertion_query);
         student.setRollback_query(rollback_query);
+        student.setMetadata(metadata);
         return student;
     }
 

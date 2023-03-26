@@ -409,6 +409,7 @@ public class Payment0 extends AppCompatActivity {
         plus9.setOnClickListener(new LessAdd(9, 2));
         plus10.setOnClickListener(new LessAdd(10, 2));
 
+        /*
         payment1.addTextChangedListener(new calculateEvent(1));
         payment2.addTextChangedListener(new calculateEvent(2));
         payment3.addTextChangedListener(new calculateEvent(3));
@@ -419,7 +420,7 @@ public class Payment0 extends AppCompatActivity {
         payment8.addTextChangedListener(new calculateEvent(8));
         payment9.addTextChangedListener(new calculateEvent(9));
         payment10.addTextChangedListener(new calculateEvent(10));
-
+*/
 
     }
 
