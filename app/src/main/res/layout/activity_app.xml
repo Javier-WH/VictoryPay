@@ -28,7 +28,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingEnd="20dp"
-        android:text=" 02/11/2023 - 11:08 AM"
         android:textAlignment="viewEnd"
         android:textColor="@color/purple_500"
         android:textSize="12sp"

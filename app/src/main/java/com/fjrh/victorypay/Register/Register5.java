@@ -28,6 +28,7 @@ import com.android.volley.toolbox.Volley;
 import com.fjrh.victorypay.App;
 import com.fjrh.victorypay.Libraries.CodeGenerator;
 import com.fjrh.victorypay.Libraries.FetchManager;
+import com.fjrh.victorypay.Libraries.NumberFormater;
 import com.fjrh.victorypay.R;
 import com.fjrh.victorypay.conflict.ConflictActivity;
 import com.fjrh.victorypay.dataBases.params.Params;
@@ -41,6 +42,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.Serializable;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -332,11 +334,14 @@ public class Register5 extends AppCompatActivity {
                 operationDate.setText(data.get("date"));
             }
             if (data.containsKey("inscription")) {
-                mount.setText("USD " + data.get("inscription"));
+                double cuantity = Double.parseDouble(data.get("inscription"));
+                mount.setText("USD "+NumberFormater.setFormat(cuantity, 2));
+
 
             }
-            if(data.containsKey("inscription")){
-                montBs.setText("(Bs "+data.get("inscription")+")");
+            if(data.containsKey("mountBS")){
+                double cuantity = Double.parseDouble(data.get("mountBS"));
+                montBs.setText("(Bs "+NumberFormater.setFormat(cuantity, 2)+")");
             }
 
             if(data.containsKey("inscription") && data.containsKey("savedAbono")) {
@@ -356,7 +361,7 @@ public class Register5 extends AppCompatActivity {
 
             if(data.containsKey("inscription") && data.containsKey("savedAbono")){
                 double Tt = Double.parseDouble(data.get("inscription")) + Double.parseDouble(data.get("savedAbono"));
-                total.setText("USD " + String.valueOf(Tt));
+                total.setText("USD " +  NumberFormater.setFormat(Tt, 2));
             }
 
             if(data.containsKey("cash")){

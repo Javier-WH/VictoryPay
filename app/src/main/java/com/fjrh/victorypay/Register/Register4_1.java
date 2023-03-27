@@ -4,6 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -13,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.fjrh.victorypay.Libraries.DateSelector;
+import com.fjrh.victorypay.Libraries.NumberFormater;
 import com.fjrh.victorypay.R;
 import com.fjrh.victorypay.dataBases.abono.Abono;
 import com.fjrh.victorypay.dataBases.prices.Prices;
@@ -40,11 +44,12 @@ public class Register4_1 extends AppCompatActivity {
     private TextView tasa;
     private TextView currency;
     private double dblAbono;
-
     private double abonadoDouble;
     private Prices prices;
     private double monthlyPrice;
     private HashMap<String, String> listPrices;
+
+    private boolean editFlag = false;
 
 
 
@@ -74,13 +79,12 @@ public class Register4_1 extends AppCompatActivity {
         labelPrice = findViewById(R.id.price4_1);
         labelPriceBs = findViewById(R.id.price4_3);
         lblAbono = findViewById(R.id.lblAbono);
-
         tasa = findViewById(R.id.tasa4_5);
         monthlyPrice = getMonthlyPrice();
         labelPrice.setText(String.valueOf(monthlyPrice));//precio en dolares
-        labelPriceBs.setText(String.valueOf( Math.floor((monthlyPrice * Double.parseDouble(listPrices.get("Dolar")) * 100) /100)  )); //precio en bolivares
+        labelPriceBs.setText(NumberFormater.setFormat(monthlyPrice * Double.parseDouble(listPrices.get("Dolar")), 2)); //precio en bolivares
         currency = findViewById(R.id.currency_register4_1);
-        tasa.setText(String.valueOf( Math.floor( Double.parseDouble( listPrices.get("Dolar") ) *100) / 100));// tasa de cambio expresada en Bs
+        tasa.setText( NumberFormater.setFormat(Double.parseDouble( listPrices.get("Dolar")), 2));// tasa de cambio expresada en Bs
     }
 
     private void initEvents(){
@@ -125,6 +129,37 @@ public class Register4_1 extends AppCompatActivity {
                 toggleCurrency(currency.getText().toString());
             }
         });
+
+        mount.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+               if(!editFlag) {
+                   data.put("pago", s.toString());
+               }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (s.length() > 0) {
+                    String str = s.toString();
+                    if (str.contains(".")) {
+                        editFlag = true;
+                        int index = str.indexOf(".");
+                        if (str.length() - index - 1 > 2) {
+                            s.replace(index + 3, s.length(), "");
+                        }
+                    }
+                }
+                editFlag = false;
+            }
+        });
+
+
     }
 
     private void toggleCurrency(String curr){
@@ -183,10 +218,11 @@ public class Register4_1 extends AppCompatActivity {
                 date.setText(data.get("date"));
             }
             if(data.containsKey("inscription")){
-                mount.setText(data.get("inscription"));
+                mount.setText(String.valueOf(data.get("inscription")));
             }
 
             //esto se asegura de hacer la conversion a bolivares si se regresa a esta vista
+
             if(data.containsKey("currency")){
                 String storedCurrency = data.get("currency");
                 toggleCurrency( storedCurrency.equals("USD") ? "Bs" : "USD");
@@ -194,7 +230,7 @@ public class Register4_1 extends AppCompatActivity {
                 if(storedCurrency.equals("Bs")){
                     double storedMount = Double.parseDouble(data.get("inscription"));
                     double storedTas = Double.parseDouble(listPrices.get("Dolar"));
-                    double priceInBs = Math.floor((storedMount * storedTas) * 100) /100;
+                    double priceInBs = storedMount * storedTas;
                     mount.setText(String.valueOf(priceInBs));
                 }
 
@@ -209,9 +245,10 @@ public class Register4_1 extends AppCompatActivity {
         double pago = 0;
 
         //la condicional corrige el bug que ocuirre al regresar a la vista anterior.
-        if(!mount.getText().toString().isEmpty()){
-            pago = Double.parseDouble(mount.getText().toString().trim());
+        if(data.containsKey("pago")){
+            pago = Double.parseDouble(data.get("pago"));
         }
+
 
         double pagoBolivares = pago * dolarPrice;
 
@@ -227,15 +264,15 @@ public class Register4_1 extends AppCompatActivity {
         data.put("cash", cash.isChecked() ? "1" : "2");
         data.put("operation_number",  account.getText().toString().trim());//numero de operación
         data.put("date", date.getText().toString());//fecha depósito
-        data.put("inscription", String.valueOf( Math.floor(pago * 100) / 100));//pago depósito
+        data.put("inscription", String.valueOf(pago));//pago depósito
         data.put("currency", currency.getText().toString());//tipo de moneda
         //el pago expresado en Bolivares
-        data.put("mountBS", String.valueOf( Math.floor(pagoBolivares * 100) / 100));
-
+        data.put("mountBS", String.valueOf(pagoBolivares));
         //agrega el precio del dolar al momento de hacer la inscripcion
         data.put("dolarPrice", String.valueOf(dolarPrice));
         //agrega el precio del mes al momento de hacer la transaccion
         data.put("monthlyPrice", String.valueOf(monthlyPrice));
+
 
         /****/
         // obtiene el pago y lo suma al abono guardado en la tabla, esto nos da la cantidad total de dinero del representante

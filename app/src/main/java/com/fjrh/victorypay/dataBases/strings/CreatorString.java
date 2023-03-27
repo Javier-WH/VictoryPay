@@ -17,7 +17,7 @@ public class CreatorString {
     //contact_info
     private static final String CreateContactInfoString = "CREATE TABLE contact_infos (id INTEGER PRIMARY KEY AUTOINCREMENT, student_code TEXT NOT NULL UNIQUE, phone1 TEXT NOT NULL, phone2 TEXT NOT NULL, email TEXT, whatsaap1 TEXT, whatsaap2 TEXT, updatedAT TEXT DEFAULT (strftime('%m/%d/%Y %H:%M:%S', 'now', 'localtime')))";
     //inscription_payment
-    private static  final String CreateInscriptionPaymentString = "CREATE TABLE inscription_payments (id INTEGER PRIMARY KEY AUTOINCREMENT, student_code TEXT NOT NULL UNIQUE, inscription TEXT NOT NULL, cash TEXT NOT NULL, operation_number TEXT NOT NULL, date TEXT NOT NULL, status TEXT NOT NULL, updatedAT TEXT DEFAULT (strftime('%m/%d/%Y %H:%M:%S', 'now', 'localtime')))";
+    private static  final String CreateInscriptionPaymentString = "CREATE TABLE inscription_payments (id INTEGER PRIMARY KEY AUTOINCREMENT, student_code TEXT NOT NULL UNIQUE, inscription TEXT NOT NULL, cash TEXT NOT NULL, operation_number TEXT NOT NULL, date TEXT NOT NULL, monthlyPrice TEXT NOT NULL, status TEXT NOT NULL, updatedAT TEXT DEFAULT (strftime('%m/%d/%Y %H:%M:%S', 'now', 'localtime')))";
     //schools
     private static final String CreateSchoolsString = "CREATE TABLE schools (id INTEGER PRIMARY KEY AUTOINCREMENT, school TEXT NOT NULL UNIQUE, updatedAT TEXT DEFAULT (strftime('%m/%d/%Y %H:%M:%S', 'now', 'localtime')))";
     //prices

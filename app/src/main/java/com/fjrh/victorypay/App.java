@@ -117,6 +117,9 @@ public class App extends AppCompatActivity {
 
     public static void fillElements() {
         params = new Params(context).getParams();
+        if(params.containsKey("lastUpdatedDate")){
+            updated.setText(params.get("lastUpdatedDate"));
+        }
         if(params.containsKey("mode")){
             String mode = params.get("mode");
             textOnline.setText(mode);

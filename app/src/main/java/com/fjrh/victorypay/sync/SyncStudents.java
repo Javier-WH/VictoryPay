@@ -7,7 +7,6 @@ import android.os.AsyncTask;
 import android.text.style.IconMarginSpan;
 import android.util.Log;
 import android.widget.Toast;
-
 import com.fjrh.victorypay.App;
 import com.fjrh.victorypay.Register.Register5;
 import com.fjrh.victorypay.dataBases.params.Params;
@@ -16,11 +15,9 @@ import com.fjrh.victorypay.dataBases.students.FindStudent;
 import com.fjrh.victorypay.dataBases.students.InsertStuden;
 import com.fjrh.victorypay.dataBases.students.UpdateStudentList;
 import com.fjrh.victorypay.dataBases.users.Users;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -28,7 +25,9 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.SocketTimeoutException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Objects;
@@ -40,11 +39,13 @@ public class SyncStudents extends AsyncTask<String, Void, String> {
     private JSONArray arrayResponse;
     private Context context;
     private InsertStuden insertStuden;
+    private Params params;
 
     public SyncStudents(Context context, String urlString) {
         this.urlString = urlString + "/SyncRegister";
         this.studentList = studentList;
         this.context = context;
+        params = new Params(context);
     }
 
     @Override
@@ -115,7 +116,7 @@ public class SyncStudents extends AsyncTask<String, Void, String> {
         }
 
         if (result.equals("timeout")) {
-            new Params(context).insertParam("mode", "offline");
+          params.insertParam("mode", "offline");
             App.fillElements();
             Toast.makeText(context, "Se ha perdido la conexion con el servidor", Toast.LENGTH_LONG).show();
             Sync.startLoad(0);
@@ -132,7 +133,7 @@ public class SyncStudents extends AsyncTask<String, Void, String> {
             return;
         }
 
-        new Params(context).insertParam("mode", "online");
+        params.insertParam("mode", "online");
         App.fillElements();
 
         Sync.addPercent(20); ///////////////////////////
@@ -181,6 +182,11 @@ public class SyncStudents extends AsyncTask<String, Void, String> {
             Toast.makeText(context, "Datos actualizados correctamente", Toast.LENGTH_LONG).show();
             Sync.setMessage("registros sincronizados");///////////////////////
             Sync.addPercent(20); ///////////////////////////
+
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+            Date date = new Date();
+            String currentDate = dateFormat.format(date);
+            params.insertParam("lastUpdatedDate", currentDate);
             Sync.startLoad(0);
         }
 
