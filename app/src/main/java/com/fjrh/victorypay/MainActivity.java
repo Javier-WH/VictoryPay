@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
         params.insertParam("loadAtStart", "true");
 
 
-        //***////
+        /***
         HashMap<String, String> userData = new HashMap<>();
         userData.put("user", "Xaver");
         userData.put("password", "123");
@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
 
-        ///****//
+        ****/
 
     }
 

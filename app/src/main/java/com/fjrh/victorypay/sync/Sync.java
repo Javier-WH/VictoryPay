@@ -74,7 +74,6 @@ public class Sync extends AppCompatActivity {
                 break;
             default:
                 if (syncActivity != null) {
-                    Toast.makeText(syncActivity, "Datos actualizados correctamente", Toast.LENGTH_LONG).show();
                     percentInt = 0;
                     syncActivity.finish();
                 }

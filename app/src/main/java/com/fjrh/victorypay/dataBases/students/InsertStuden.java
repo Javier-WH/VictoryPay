@@ -2,27 +2,21 @@ package com.fjrh.victorypay.dataBases.students;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.fjrh.victorypay.App;
 import com.fjrh.victorypay.Libraries.FetchManager;
 import com.fjrh.victorypay.Register.Register5;
 import com.fjrh.victorypay.dataBases.DbHelper;
-import com.fjrh.victorypay.dataBases.abono.Abono;
 import com.fjrh.victorypay.dataBases.params.Params;
-import com.fjrh.victorypay.dataBases.prices.Prices;
-import com.fjrh.victorypay.dataBases.register.CreateRegister;
 import com.fjrh.victorypay.dataBases.register.Register;
-import com.fjrh.victorypay.dataBases.users.Users;
-import com.fjrh.victorypay.sync.Sync;
 
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -35,7 +29,7 @@ import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 import java.util.Objects;
 
 public class InsertStuden extends DbHelper {
@@ -60,7 +54,6 @@ public class InsertStuden extends DbHelper {
 
     public void insert(Register register) {
 
-
         db.beginTransaction();
 
         try {
@@ -72,11 +65,12 @@ public class InsertStuden extends DbHelper {
             values.put("insertion_query", register.getInsertion_query());
             values.put("rollback_query", register.getRollback_query());
             values.put("metadata", register.getMetadata().toString());
-            db.insert("registers",null, values) ;
-            db.execSQL(register.getInsertion_query());
+
+            insertRegister(values);
+            String sql = register.getInsertion_query();
+            execSQList(sql);
+
             db.setTransactionSuccessful();
-
-
 
         } catch (SQLException e) {
             Log.e("XXX", e.getMessage() );
@@ -92,12 +86,9 @@ public class InsertStuden extends DbHelper {
                 SendStudent sendStudent = new SendStudent(register);
                 sendStudent.execute();
             }
-
         }
-
-
-
     }
+
 
 
    private class SendStudent extends AsyncTask<String, Void, String> {
@@ -203,6 +194,46 @@ public class InsertStuden extends DbHelper {
 
     }
 
+    ////
+
+    public void insertRegister(ContentValues values) throws SQLException{
+        //obtiene el código del registro a ingresar
+        String register_code = values.getAsString("register_code");
+
+        //comprueba si ese registro no ha sido ingresado
+        Cursor cursor = db.rawQuery("SELECT * FROM registers WHERE register_code = ?", new String[]{ register_code});
+
+        //si el registro no ha sido ingresado, entonces lo ingresa
+        if(cursor.getCount() <= 0){
+            db.insert("registers",null, values) ;
+        }
+
+    }
+
+    public void execSQList(String sql) throws SQLException {
+        //convierte el String de statements a un array de statements
+        String[] statements = sql.split(";");
+
+        // Eliminar cualquier espacio en blanco o saltos de línea al principio o al final de cada instrucción
+        for (int i = 0; i < statements.length; i++) {
+            statements[i] = statements[i].trim();
+        }
+
+        // Eliminar cualquier instrucción SQL vacía
+        List<String> statementList = new ArrayList<>();
+        for (String statement : statements) {
+            if (!statement.isEmpty()) {
+                statementList.add(statement);
+            }
+        }
+
+        //ejecuta las instrucciones SQL
+        for (String statement : statementList) {
+            db.execSQL(statement);
+
+        }
+
+    }
 
 
 }

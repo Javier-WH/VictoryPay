@@ -43,9 +43,7 @@ public class GetRegister extends DbHelper {
               list.add(data);
             }while (cursor.moveToNext());
 
-
         }
-
         return list;
     }
 
