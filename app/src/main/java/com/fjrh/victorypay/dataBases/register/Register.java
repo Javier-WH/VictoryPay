@@ -48,7 +48,7 @@ public class Register {
     private String insertion_query;
     private String rollback_query;
     private JSONObject metadata;
-
+    private String tutor_code;
     private JSONObject JSONdata;
 
     public JSONObject getJSONdata(){
@@ -68,6 +68,14 @@ public class Register {
         }
 
         return jsonObject;
+    }
+
+    public String getTutor_code() {
+        return tutor_code;
+    }
+
+    public void setTutor_code(String tutor_code) {
+        this.tutor_code = tutor_code;
     }
 
     public void setRegister_code(String register_code) {

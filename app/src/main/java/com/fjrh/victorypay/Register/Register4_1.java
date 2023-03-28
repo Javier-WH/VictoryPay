@@ -303,10 +303,6 @@ public class Register4_1 extends AppCompatActivity {
     }
 
     private void setAbonoText(){
-        if(data.containsKey("savedAbono")){
-            lblAbono.setText(data.get("savedAbono"));
-            return;
-        }
 
         FindStudent findStudent = new FindStudent(context);
         String tutorCode = findStudent.findStudentTutor(data.get("tutor_ci"));

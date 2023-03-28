@@ -31,8 +31,10 @@ import com.fjrh.victorypay.Libraries.FetchManager;
 import com.fjrh.victorypay.Libraries.NumberFormater;
 import com.fjrh.victorypay.R;
 import com.fjrh.victorypay.conflict.ConflictActivity;
+import com.fjrh.victorypay.dataBases.abono.Abono;
 import com.fjrh.victorypay.dataBases.params.Params;
 import com.fjrh.victorypay.dataBases.prices.Prices;
+import com.fjrh.victorypay.dataBases.register.CreateInscriptionRegister;
 import com.fjrh.victorypay.dataBases.register.CreateRegister;
 import com.fjrh.victorypay.dataBases.register.Register;
 import com.fjrh.victorypay.dataBases.students.InsertStuden;
@@ -388,10 +390,13 @@ public class Register5 extends AppCompatActivity {
     public void insertStudent() {
         params = new Params(context).getParams();
         bar.setVisibility(View.VISIBLE);
-        Register register = new CreateRegister(context, data).getRegister();
+        CreateRegister cr = new CreateRegister(context, data);
+        Register register = cr.getRegister();
+        Register paymentRegister = cr.getInscriptionPaymentRegister();
+
 
         InsertStuden is = new InsertStuden(context);
-        is.insert(register);
+        is.insert(register, paymentRegister);
 
     }
 

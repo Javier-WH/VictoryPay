@@ -31,19 +31,20 @@ public class CreateRegister {
     public CreateRegister(Context context, HashMap<String, String> data) {
         this.context = context;
         this.data = data;
-        initFields();
         this.user = new Users(context).getUsers().get("ci");
+        initFields();
         this.description = "Registro de nuevo estudiante";
         this.type = "1";
         this.insertion_query = createInsertionQuery();
         this.rollback_query = createRollbackQuery();
         this.metadata = createMetadata();
+
+
     }
 
     private void initFields() {
         tutor_code = CodeGenerator.getNewCode('T');
         parents_code = CodeGenerator.getNewCode('P');
-
         name = data.get("name");
         lastName = data.get("lastName");
         ci = data.get("ci");
@@ -86,10 +87,10 @@ public class CreateRegister {
         father_ci = data.get("father_ci");
         father_nation = data.get("father_nation");
         father_work = data.get("father_work");
-        tutor_name = data.get("birth_country");
-        tutor_ci = data.get("birth_country");
-        tutor_nation = data.get("birth_country");
-        tutor_link = data.get("birth_country");
+        tutor_name = data.get("tutor_name");
+        tutor_ci = data.get("tutor_ci");
+        tutor_nation = data.get("tutor_nation");
+        tutor_link = data.get("tutor_link");
     }
 
     private String createInsertionQuery() {
@@ -146,7 +147,13 @@ public class CreateRegister {
         student.setInsertion_query(insertion_query);
         student.setRollback_query(rollback_query);
         student.setMetadata(metadata);
+        student.setTutor_code(tutor_code);
         return student;
+    }
+
+    public Register getInscriptionPaymentRegister(){
+        Register inscriptionRegister = new CreateInscriptionRegister(context, data, tutor_code).getRegister();
+        return inscriptionRegister;
     }
 
 }

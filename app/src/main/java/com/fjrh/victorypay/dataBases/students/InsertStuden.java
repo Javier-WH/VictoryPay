@@ -14,6 +14,7 @@ import com.fjrh.victorypay.Libraries.FetchManager;
 import com.fjrh.victorypay.Register.Register5;
 import com.fjrh.victorypay.dataBases.DbHelper;
 import com.fjrh.victorypay.dataBases.params.Params;
+import com.fjrh.victorypay.dataBases.register.CreateInscriptionRegister;
 import com.fjrh.victorypay.dataBases.register.Register;
 
 
@@ -52,11 +53,12 @@ public class InsertStuden extends DbHelper {
     }
 
 
-    public void insert(Register register) {
+    public void insert(Register register, Register paymentRegister) {
 
         db.beginTransaction();
 
         try {
+            //inserta datos del estudiante
             ContentValues values = new ContentValues();
             values.put("register_code", register.getRegister_code());
             values.put("user", register.getUser());
@@ -69,6 +71,23 @@ public class InsertStuden extends DbHelper {
             insertRegister(values);
             String sql = register.getInsertion_query();
             execSQList(sql);
+
+
+            //insereta datos del pago de la inscripción
+            ContentValues paymentValues = new ContentValues();
+            paymentValues.put("register_code", paymentRegister.getRegister_code());
+            paymentValues.put("user", paymentRegister.getUser());
+            paymentValues.put("description", paymentRegister.getDescription());
+            paymentValues.put("type", paymentRegister.getType());
+            paymentValues.put("insertion_query", paymentRegister.getInsertion_query());
+            paymentValues.put("rollback_query", paymentRegister.getRollback_query());
+            paymentValues.put("metadata", paymentRegister.getMetadata().toString());
+
+
+            insertRegister(paymentValues);
+            String paymentSql = paymentRegister.getInsertion_query();
+            execSQList(paymentSql);
+
 
             db.setTransactionSuccessful();
 
@@ -83,7 +102,7 @@ public class InsertStuden extends DbHelper {
             if(params.get("mode").equalsIgnoreCase("offline")){
                 Register5.closeActivity();
             }else{
-                SendStudent sendStudent = new SendStudent(register);
+                SendStudent sendStudent = new SendStudent(register, paymentRegister);
                 sendStudent.execute();
             }
         }
@@ -94,9 +113,11 @@ public class InsertStuden extends DbHelper {
    private class SendStudent extends AsyncTask<String, Void, String> {
 
         private Register register;
+       private Register paymentRegister;
 
-        public SendStudent(Register register){
+        public SendStudent(Register register, Register paymentRegister){
             this.register = register;
+            this.paymentRegister = paymentRegister;
         }
 
         @Override
@@ -118,7 +139,12 @@ public class InsertStuden extends DbHelper {
                 connection.setDoOutput(true);
                 connection.setConnectTimeout(10000); // 10 seconds timeout
 
-                JSONObject jsonObject = register.getJSONdata();
+                //JSONObject jsonObject = register.getJSONdata();
+                JSONObject jsonObject = new JSONObject();
+                JSONObject studentData = register.getJSONdata();
+                JSONObject paymentData = paymentRegister.getJSONdata();
+                jsonObject.put("studentData", studentData);
+                jsonObject.put("paymentData", paymentData);
 
                 OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
                 writer.write(jsonObject.toString());
@@ -189,9 +215,7 @@ public class InsertStuden extends DbHelper {
 
             Toast.makeText(context, "Se han registrado los datos de manera remota correctamente", Toast.LENGTH_LONG).show();
             Register5.closeActivity();
-
         }
-
     }
 
     ////

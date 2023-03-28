@@ -23,6 +23,7 @@ public class FetchManager {
     }
 
     public void checkFetching(){
+        params = paramsTable.getParams();
         //si no existe una dirección de servidor. entonces genera una por defecto
         if(!params.containsKey("serverProtocol")){
             setServerProtocol(defaultProtocol);

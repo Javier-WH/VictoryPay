@@ -21,18 +21,24 @@ public class Abono extends DbHelper {
     }
 
     public double getAbono(String tutor_code){
+        if(tutor_code.equals("-1")){
+            return 0;
+        }
+
         double abono = 0;
 
-        String query = "SELECT * FROM abonos WHERE tutor_code = ?";
+        String query = "SELECT abono FROM abonos WHERE tutor_code = ?";
 
-        Cursor cursor = db.rawQuery(query, new String[]{ tutor_code});
+        Cursor cursor = db.rawQuery(query, new String[]{tutor_code});
 
-        if(cursor.moveToFirst()){
+        if(cursor.getCount() > 0){
             abono = Double.parseDouble(cursor.getString(cursor.getColumnIndex("abono")));
         }
         return abono;
 
     }
+
+
 
     public long insertAbono(String tutorId, double abono, String abonoDate){
 

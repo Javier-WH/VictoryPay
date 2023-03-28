@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
     private Switch rememberMe;
     private Params params;
     private ProgressBar progressBar;
-    private String URL = "http://192.168.1.105:4000/login";
+    private String URL;
     private static Venezuela venezuela;
     private FetchManager fetchManager;
 
@@ -74,8 +74,8 @@ public class MainActivity extends AppCompatActivity {
         params = new Params(context);
         fetchManager = new FetchManager(context);
         fetchManager.checkFetching();
+        URL = fetchManager.getFetchinAddress();
 
-        URL = fetchManager.getFetchinAddress() + "/login";
 
         checkPrices();
         fillInputs();
@@ -180,7 +180,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void validateUser(String user, String password) {
-
+        URL = fetchManager.getFetchinAddress() + "/login";
         HashMap<String, String> userData = new HashMap<>();
 
         try {

@@ -27,7 +27,7 @@ public class CreatorString {
     //monthControl
     private static final String CreateMonthControlString = "CREATE TABLE monthControls (id INTEGER PRIMARY KEY AUTOINCREMENT, student_code TEXT NOT NULL UNIQUE, control TEXT NOT NULL, updatedAT TEXT DEFAULT (strftime('%m/%d/%Y %H:%M:%S', 'now', 'localtime')))";
     //abono
-    private static final String CreateAbonoString = " CREATE TABLE abonos (id INTEGER PRIMARY KEY AUTOINCREMENT, tutor_code TEXT NOT NULL UNIQUE, abono TEXT NOT NULL UNIQUE, updatedAT TEXT DEFAULT (strftime('%m/%d/%Y %H:%M:%S', 'now', 'localtime')))";
+    private static final String CreateAbonoString = " CREATE TABLE abonos (id INTEGER PRIMARY KEY AUTOINCREMENT, tutor_code TEXT NOT NULL UNIQUE, abono TEXT NOT NULL, updatedAT TEXT DEFAULT (strftime('%m/%d/%Y %H:%M:%S', 'now', 'localtime')))";
 
     //registers
     private static final String CreateRegisterString = "CREATE TABLE registers (register_code TEXT NOT NULL UNIQUE, user TEXT NOT NULL, description TEXT NOT NULL, type TEXT NOT NULL, insertion_query TEXT NOT NULL, rollback_query TEXT NOT NULL, metadata TEXT NOT NULL, updatedAT TEXT DEFAULT (strftime('%m/%d/%Y %H:%M:%S', 'now', 'localtime')))";
