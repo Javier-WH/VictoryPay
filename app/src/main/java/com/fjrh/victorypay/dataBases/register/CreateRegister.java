@@ -10,6 +10,7 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 
+//esta clase crea el registro de inscripción de un estuidiante (sin el pago de la inscripción)
 public class CreateRegister {
 
     private Context context;

@@ -36,24 +36,15 @@ import java.util.Objects;
 public class SyncStudents extends AsyncTask<String, Void, String> {
     private String urlString;
     private ArrayList<HashMap<String, String>> studentList;
-    private JSONArray arrayResponse;
-    private Context context;
-    private InsertStuden insertStuden;
-    private Params params;
 
-    public SyncStudents(Context context, String urlString) {
+    public SyncStudents(String urlString, ArrayList<HashMap<String, String>> studentList) {
         this.urlString = urlString + "/SyncRegister";
         this.studentList = studentList;
-        this.context = context;
-        params = new Params(context);
     }
 
     @Override
     protected void onPreExecute() {
-        Sync.setMessage("Empaquetando lista de registros offline...");
-        studentList = new GetRegister(context).getRegisterList();
-        insertStuden = new InsertStuden(context);
-        Sync.addPercent(10);
+
     }
 
     @Override
@@ -87,59 +78,27 @@ public class SyncStudents extends AsyncTask<String, Void, String> {
             }
             reader.close();
 
-            arrayResponse = new JSONArray(response.toString());
 
             int responseCode = connection.getResponseCode();
-
 
             return String.valueOf(responseCode);
 
         } catch (SocketTimeoutException e) {
             e.printStackTrace();
-            return "timeout";
+            return "E-100"; //"Se ha perdido la conexion con el servidor";
         } catch (IOException e) {
             e.printStackTrace();
-            return "package";
+            return "E-200";  //"No se ha podido crear el paquete a enviar";
         } catch (JSONException e) {
             e.printStackTrace();
-            return "write";
+            return "E-300"; // "No se ha podido escribir el objeto de envío";
         }
-
 
     }
 
     @Override
     protected void onPostExecute(String result) {
-        Sync.addPercent(50); ///////////////////////////
-        if (Objects.isNull(result)) {
-            return;
-        }
-
-        if (result.equals("timeout")) {
-          params.insertParam("mode", "offline");
-            App.fillElements();
-            Toast.makeText(context, "Se ha perdido la conexion con el servidor", Toast.LENGTH_LONG).show();
-            Sync.startLoad(0);
-            return;
-        }
-        if (result.equals("package")) {
-            Toast.makeText(context, "No se ha podido crear el paquete a enviar", Toast.LENGTH_LONG).show();
-            Sync.startLoad(0);
-            return;
-        }
-        if (result.equals("write")) {
-            Toast.makeText(context, "No se ha podido escribir el objeto de envío", Toast.LENGTH_LONG).show();
-            Sync.startLoad(0);
-            return;
-        }
-
-        params.insertParam("mode", "online");
-        App.fillElements();
-
-        Sync.addPercent(20); ///////////////////////////
-        Sync.setMessage("intentando sincronizar los registros");///////////////////////
-
-
+        /*
 
         try {
             for (int i = 0; i < arrayResponse.length(); i++) {
@@ -187,9 +146,9 @@ public class SyncStudents extends AsyncTask<String, Void, String> {
             Date date = new Date();
             String currentDate = dateFormat.format(date);
             params.insertParam("lastUpdatedDate", currentDate);
-            Sync.startLoad(0);
-        }
 
+        }
+*/
 
     }
 

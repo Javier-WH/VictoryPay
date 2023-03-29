@@ -15,6 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 
+//esta clase crea el registro del pago de la inscripción (solamente el registro del pago de la inscripción)
 public class CreateInscriptionRegister {
 
     private Context context;
@@ -94,7 +95,7 @@ public class CreateInscriptionRegister {
         if (_tutor_code.equals("-1")) {
             return "REPLACE INTO inscription_payments (student_code, inscription, cash, operation_number, monthlyPrice, date, status, updatedAT) " +
                     "VALUES ('" + student_code + "', '" + inscription + "', '" + cash + "', '" + operation_number + "', '" + monthlyPrice + "', '" + date + "', '" + status + "', '" + updatedAT + "' ); " +
-                    "REPLACE INTO abonos (tutor_code, abono, updatedAT) VALUES ('" + _tutor_code + "', '" + abono + "' , '" + updatedAT + "');";
+                    "REPLACE INTO abonos (tutor_code, abono, updatedAT) VALUES ('" + tutor_code + "', '" + abono + "' , '" + updatedAT + "');";
 
         } else {
 
@@ -119,7 +120,7 @@ public class CreateInscriptionRegister {
         JSONObject data = new JSONObject();
         try {
             data.put("student_code", student_code);
-            data.put("inscription", inscription);
+            data.put("inscription", mount);
             data.put("cash", cash);
             data.put("operation_number", operation_number);
             data.put("monthlyPrice", monthlyPrice);

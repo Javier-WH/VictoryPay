@@ -14,7 +14,6 @@ import com.fjrh.victorypay.Libraries.FetchManager;
 import com.fjrh.victorypay.Register.Register5;
 import com.fjrh.victorypay.dataBases.DbHelper;
 import com.fjrh.victorypay.dataBases.params.Params;
-import com.fjrh.victorypay.dataBases.register.CreateInscriptionRegister;
 import com.fjrh.victorypay.dataBases.register.Register;
 
 
@@ -32,6 +31,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.ExecutionException;
 
 public class InsertStuden extends DbHelper {
     private Context context;
@@ -40,7 +40,7 @@ public class InsertStuden extends DbHelper {
     private HashMap<String, String> params;
     private String urlString;
     private String requestMessage;
-
+    private Thread thread = null;
 
     public InsertStuden(Context context) {
         super(context);
@@ -92,59 +92,84 @@ public class InsertStuden extends DbHelper {
             db.setTransactionSuccessful();
 
         } catch (SQLException e) {
-            Log.e("XXX", e.getMessage() );
+            Log.e("XXX", e.getMessage());
             // Manejar cualquier excepción aquí
         } finally {
             // Finalizar la transacción
 
             db.endTransaction();
 
-            if(params.get("mode").equalsIgnoreCase("offline")){
+            if (params.get("mode").equalsIgnoreCase("offline")) {
                 Register5.closeActivity();
-            }else{
-                SendStudent sendStudent = new SendStudent(register, paymentRegister);
-                sendStudent.execute();
+            } else {
+
+                thread = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            SendRegister sendStudent = new SendRegister(register, "/addStudent");
+                            sendStudent.execute();
+                            String studetResponse = sendStudent.get();
+                            if(!studetResponse.equals("200")){
+                                thread.interrupt();
+                            }
+
+                            SendRegister sendPayment = new SendRegister(paymentRegister, "/addStudent/inscriptionPayment");
+                            sendPayment.execute();
+                            String paymentResponse = sendPayment.toString();
+                            if(!paymentResponse.equals("200")){
+                                thread.interrupt();
+                            }
+
+                        } catch (ExecutionException e) {
+                            e.printStackTrace();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        } finally {
+                            Register5.closeActivity();
+                        }
+
+
+                    }
+                });
+                thread.start();
+
+
             }
         }
     }
 
 
-
-   private class SendStudent extends AsyncTask<String, Void, String> {
+    private class SendRegister extends AsyncTask<String, Void, String> {
 
         private Register register;
-       private Register paymentRegister;
+        private String endPoint;
 
-        public SendStudent(Register register, Register paymentRegister){
+        public SendRegister(Register register, String endPoint) {
             this.register = register;
-            this.paymentRegister = paymentRegister;
+            this.endPoint = endPoint;
         }
 
         @Override
         protected void onPreExecute() {
 
 
-
         }
 
         @Override
-        protected String doInBackground(String... strings) {
+        protected String doInBackground(String... strings)  {
 
             try {
 
-                URL url = new URL(urlString + "/addStudent");
+                URL url = new URL(urlString + endPoint);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("POST");
                 connection.setRequestProperty("Content-Type", "application/json");
                 connection.setDoOutput(true);
                 connection.setConnectTimeout(10000); // 10 seconds timeout
 
-                //JSONObject jsonObject = register.getJSONdata();
-                JSONObject jsonObject = new JSONObject();
-                JSONObject studentData = register.getJSONdata();
-                JSONObject paymentData = paymentRegister.getJSONdata();
-                jsonObject.put("studentData", studentData);
-                jsonObject.put("paymentData", paymentData);
+                JSONObject jsonObject = register.getJSONdata();
+
 
                 OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
                 writer.write(jsonObject.toString());
@@ -160,7 +185,7 @@ public class InsertStuden extends DbHelper {
                 reader.close();
 
                 JSONObject jsonResponse = new JSONObject(response.toString());
-                if(jsonResponse.has("error")){
+                if (jsonResponse.has("error")) {
                     requestMessage = jsonResponse.getString("error");
                 }
 
@@ -168,7 +193,7 @@ public class InsertStuden extends DbHelper {
 
                 return String.valueOf(responseCode);
 
-            }catch (SocketTimeoutException e){
+            } catch (SocketTimeoutException e) {
                 e.printStackTrace();
                 return "timeout";
             } catch (IOException e) {
@@ -183,23 +208,23 @@ public class InsertStuden extends DbHelper {
 
         @Override
         protected void onPostExecute(String result) {
-            if(Objects.isNull(result)){
+            if (Objects.isNull(result)) {
                 return;
             }
 
-            if(result.equals("timeout")){
+            if (result.equals("timeout")) {
                 new Params(context).insertParam("mode", "offline");
                 App.fillElements();
                 Toast.makeText(Register5.getAcrivity(), "Se ha perdido la conexion con el servidor", Toast.LENGTH_LONG).show();
                 Register5.closeActivity();
                 return;
             }
-            if(result.equals("package")){
+            if (result.equals("package")) {
                 Toast.makeText(context, "No se ha podido crear el paquete a enviar", Toast.LENGTH_LONG).show();
                 Register5.closeActivity();
                 return;
             }
-            if(result.equals("write")){
+            if (result.equals("write")) {
                 Toast.makeText(context, "No se ha podido escribir el objeto de envío", Toast.LENGTH_LONG).show();
                 Register5.closeActivity();
                 return;
@@ -207,29 +232,30 @@ public class InsertStuden extends DbHelper {
 
             int code = Integer.parseInt(result);
 
-            if(code >= 300 || code < 200){
+            if (code >= 300 || code < 200) {
                 Toast.makeText(context, requestMessage, Toast.LENGTH_LONG).show();
                 Register5.closeActivity();
                 return;
             }
 
             Toast.makeText(context, "Se han registrado los datos de manera remota correctamente", Toast.LENGTH_LONG).show();
-            Register5.closeActivity();
+
         }
+
     }
 
     ////
 
-    public void insertRegister(ContentValues values) throws SQLException{
+    public void insertRegister(ContentValues values) throws SQLException {
         //obtiene el código del registro a ingresar
         String register_code = values.getAsString("register_code");
 
         //comprueba si ese registro no ha sido ingresado
-        Cursor cursor = db.rawQuery("SELECT * FROM registers WHERE register_code = ?", new String[]{ register_code});
+        Cursor cursor = db.rawQuery("SELECT * FROM registers WHERE register_code = ?", new String[]{register_code});
 
         //si el registro no ha sido ingresado, entonces lo ingresa
-        if(cursor.getCount() <= 0){
-            db.insert("registers",null, values) ;
+        if (cursor.getCount() <= 0) {
+            db.insert("registers", null, values);
         }
 
     }
