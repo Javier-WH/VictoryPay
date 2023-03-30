@@ -2,6 +2,7 @@ package com.fjrh.victorypay.sync;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
@@ -18,9 +19,17 @@ import com.fjrh.victorypay.R;
 import com.fjrh.victorypay.dataBases.params.Params;
 import com.fjrh.victorypay.dataBases.register.GetRegister;
 import com.fjrh.victorypay.dataBases.students.FindStudent;
+import com.fjrh.victorypay.dataBases.students.InsertStuden;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.concurrent.ExecutionException;
 
 
@@ -36,7 +45,7 @@ public class Sync extends AppCompatActivity {
     private Thread syncThread;
     private static Handler handler;
     private static Params params;
-
+    private static InsertStuden insertStuden;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +58,7 @@ public class Sync extends AppCompatActivity {
         startLoad(1);
         handler = new Handler(Looper.getMainLooper());
         params = new Params(context);
+        insertStuden = new InsertStuden(context);
     }
 
 
@@ -100,16 +110,19 @@ public class Sync extends AppCompatActivity {
             public void run() {
                 if(mode) {
                     Toast.makeText(context, "Se ha perdido la conexión con el servidor", Toast.LENGTH_LONG).show();
-                    params.insertParam("mode", "offline");
+                   // params.insertParam("mode", "offline");
+                    App.fillElements("offline");
                 }else{
-                    params.insertParam("mode", "online");
+                   // params.insertParam("mode", "online");
+                    App.fillElements("online");
                 }
-                App.fillElements();
+
             }
         });
     }
 
     public void startLoad(int stept) {
+        String Date = "01/01/1998 01:01:01";
         int sleepTime = 2000;
         String URL = new FetchManager(context).getFetchinAddress();
 
@@ -129,7 +142,7 @@ public class Sync extends AppCompatActivity {
                     //sube los registros del servidor de 50 en 50
                     setMessage("...");
                     for (int i = 0 ; i < list.size() ; i++){
-                       // Thread.sleep(sleepTime);
+                        //Thread.sleep(sleepTime);
                         setMessage("Subiendo lista de registros " + (i+1) + " de " + list.size());
                         SyncStudents syncStudents = new SyncStudents( URL, list.get(i));
                         syncStudents.execute();
@@ -147,13 +160,60 @@ public class Sync extends AppCompatActivity {
                         addPercent(studentPercent);
                     }
 
-                    /////falta descargar los registros.
+                    /////descarga de registros
+                    setMessage("Obteniendo numero de paginas...");
+                    //pide la primera pagina de registros
+                    DownloadRegister downloadRegister = new DownloadRegister(URL, "1", Date);
+                    downloadRegister.execute();
+                    String downloadResponse =  downloadRegister.get();
+                    JSONObject response = new JSONObject(downloadResponse);
+
+                    //si el objeto de respuesta tiene la clave error
+                    if(response.has("error")){
+                        setOffline(true);
+                        setMessage("Ocurrió un error -> " + response.getString("error"));
+                        Thread.sleep(sleepTime);
+                        syncThread.interrupt();
+                    }
+
+                    //obtiene la meta data de las paginas de registro
+                    int totalPages = Integer.parseInt( response.getString("totalPages"));
+                    int downloadPercent = 50 / totalPages; //el numero de porcentaje que aumenta con cada descarga de una nueva pagina
+
+                    //el contenido de la pagina
+                    JSONArray pageData = response.getJSONArray("pageData");
+                    insertJSONregister(pageData);
+                    addPercent(downloadPercent);
+
+                    //lo mismo que lo anterior, pero iterando las paginas desde el indice 2 hasta el total de las paginas
+                    for (int i = 2 ; i <= totalPages ; i++){
+
+                        setMessage("Descargando pagina de registros " + i + " de " + totalPages);
+
+                        downloadRegister = new DownloadRegister(URL, String.valueOf(i), Date);
+                        downloadRegister.execute();
+                        downloadResponse =  downloadRegister.get();
+                        response = new JSONObject(downloadResponse);
+                        if(response.has("error")){
+                            setOffline(true);
+                            setMessage("Ocurrió un error -> " + response.getString("error"));
+                            Thread.sleep(sleepTime);
+                            syncThread.interrupt();
+                        }
+
+                        pageData = response.getJSONArray("pageData");
+                        insertJSONregister(pageData);
+                        addPercent(downloadPercent);
+
+                    }
 
                 } catch (ExecutionException e) {
                     e.printStackTrace();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
-                }finally {
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                } finally {
                     addPercent(0);
                     syncActivity.finish();
                 }
@@ -183,5 +243,53 @@ public class Sync extends AppCompatActivity {
 
         return subLists;
     }
+
+    //esta funcion convierte un JSON en valor y crea el registro
+    public static void insertJSONregister(JSONArray arrayResponse){
+
+        try {
+            for (int i = 0; i < arrayResponse.length(); i++) {
+                JSONObject student = arrayResponse.getJSONObject(i);
+
+                ContentValues contentValues = new ContentValues();
+                Iterator<String> keys = student.keys();
+
+                while (keys.hasNext()) {
+                    String key = keys.next();
+                    if(key.equalsIgnoreCase("id")){
+                        continue;
+                    }
+
+                    Object value = student.get(key);
+
+                    if (value instanceof String) {
+                        contentValues.put(key, (String) value);
+                    } else if (value instanceof Integer) {
+                        contentValues.put(key, (Integer) value);
+                    } else if (value instanceof Long) {
+                        contentValues.put(key, (Long) value);
+                    } else if (value instanceof Double) {
+                        contentValues.put(key, (Double) value);
+                    } else if (value instanceof Boolean) {
+                        contentValues.put(key, (Boolean) value);
+                    }else if (value instanceof JSONObject) { // Comprobamos si la variable es un JSONObject
+                        contentValues.put(key, value.toString());
+                    } else {
+                        contentValues.putNull(key);
+                    }
+                }
+                //inserta el registro
+                insertStuden.insertRegister(contentValues);
+                insertStuden.execSQList((String) contentValues.get("insertion_query"));
+
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+
 
 }

@@ -34,7 +34,7 @@ public class App extends AppCompatActivity {
     private static ImageView icon;
     private static TextView updated;
     private TextView name;
-    private static HashMap<String, String> params;
+    private static Params params;
     private HashMap<String, String> user;
 
     @Override
@@ -42,11 +42,12 @@ public class App extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_app);
         context = this;
-        params = new Params(context).getParams();
+        params = new Params(context);
 
         initComponents();
         initEvents();
-        fillElements();
+
+        fillElements(params.getParams().get("mode"));
 
         if(user.containsKey("name")){
             name.setText(user.get("name"));
@@ -54,7 +55,7 @@ public class App extends AppCompatActivity {
 
         /**/
         //solo carga la primera vez en cargar la activiti
-        if(params.get("mode").equals("online") && params.get("needLoad").equals("true") && params.get("loadAtStart").equals("true")){
+        if(params.getParams().get("mode").equals("online") && params.getParams().get("needLoad").equals("true") && params.getParams().get("loadAtStart").equals("true")){
             callUpdate();
             new Params(context).insertParam("needLoad", "false");
         }
@@ -86,6 +87,7 @@ public class App extends AppCompatActivity {
         updated = findViewById(R.id.textUpdated);
         name = findViewById(R.id.userNameApp);
         user = new Users(context).getUsers();
+
     }
 
     private void initEvents() {
@@ -115,13 +117,15 @@ public class App extends AppCompatActivity {
 
     }
 
-    public static void fillElements() {
-        params = new Params(context).getParams();
-        if(params.containsKey("lastUpdatedDate")){
-            updated.setText(params.get("lastUpdatedDate"));
+    public static void fillElements(String _mode) {
+
+        params.insertParam("mode", _mode);
+
+        if(params.getParams().containsKey("lastUpdatedDate")){
+            updated.setText(params.getParams().get("lastUpdatedDate"));
         }
-        if(params.containsKey("mode")){
-            String mode = params.get("mode");
+        if(params.getParams().containsKey("mode")){
+            String mode = params.getParams().get("mode");
             textOnline.setText(mode);
             textOnline.setTextColor(mode.equals("online") ? Color.parseColor("#12CC03") :Color.parseColor("#CD1B0A"));
             icon.setImageResource(mode.equals("online") ? android.R.drawable.presence_online : android.R.drawable.presence_busy);
@@ -131,8 +135,8 @@ public class App extends AppCompatActivity {
 
     public void callUpdate(){
 
-        if(params.containsKey("mode")){
-            if(params.get("mode").equals("online")){
+        if(params.getParams().containsKey("mode")){
+            if(params.getParams().get("mode").equals("online")){
                 Intent i = new Intent(context, Sync.class);
                 startActivity(i);
             }

@@ -213,8 +213,8 @@ public class InsertStuden extends DbHelper {
             }
 
             if (result.equals("timeout")) {
-                new Params(context).insertParam("mode", "offline");
-                App.fillElements();
+                //new Params(context).insertParam("mode", "offline");
+                App.fillElements("offline");
                 Toast.makeText(Register5.getAcrivity(), "Se ha perdido la conexion con el servidor", Toast.LENGTH_LONG).show();
                 Register5.closeActivity();
                 return;
