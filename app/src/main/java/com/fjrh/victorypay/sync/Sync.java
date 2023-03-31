@@ -18,6 +18,7 @@ import com.fjrh.victorypay.Libraries.FetchManager;
 import com.fjrh.victorypay.R;
 import com.fjrh.victorypay.dataBases.params.Params;
 import com.fjrh.victorypay.dataBases.register.GetRegister;
+import com.fjrh.victorypay.dataBases.schools.School;
 import com.fjrh.victorypay.dataBases.students.FindStudent;
 import com.fjrh.victorypay.dataBases.students.InsertStuden;
 
@@ -46,6 +47,7 @@ public class Sync extends AppCompatActivity {
     private static Handler handler;
     private static Params params;
     private static InsertStuden insertStuden;
+    private static School school;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +61,7 @@ public class Sync extends AppCompatActivity {
         handler = new Handler(Looper.getMainLooper());
         params = new Params(context);
         insertStuden = new InsertStuden(context);
+        school = new School(context);
     }
 
 
@@ -73,6 +76,7 @@ public class Sync extends AppCompatActivity {
         cancelSync.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                syncThread.interrupt();
                 finish();
             }
         });
@@ -91,8 +95,8 @@ public class Sync extends AppCompatActivity {
     public static void addPercent(int plus) {
 
         percentInt += plus;
-        if(plus == 0){
-            percentInt = 0;
+        if(plus == 0 || plus == 100){
+            percentInt = plus;
         }
         handler.post(new Runnable() {
             @Override
@@ -133,7 +137,7 @@ public class Sync extends AppCompatActivity {
         ArrayList<ArrayList<HashMap<String, String>>> list = splitArrayList(studentList);
 
         //dependiendo del tamaño de la lista, obtiene el porcentaje a mostrar en cada bucle
-        int studentPercent = 50 / list.size();
+        int studentPercent = 45 / list.size();
 
         syncThread = new Thread(new Runnable() {
             @Override
@@ -178,7 +182,7 @@ public class Sync extends AppCompatActivity {
 
                     //obtiene la meta data de las paginas de registro
                     int totalPages = Integer.parseInt( response.getString("totalPages"));
-                    int downloadPercent = 50 / totalPages; //el numero de porcentaje que aumenta con cada descarga de una nueva pagina
+                    int downloadPercent = 45 / totalPages; //el numero de porcentaje que aumenta con cada descarga de una nueva pagina
 
                     //el contenido de la pagina
                     JSONArray pageData = response.getJSONArray("pageData");
@@ -206,6 +210,37 @@ public class Sync extends AppCompatActivity {
                         addPercent(downloadPercent);
 
                     }
+                    //syncroniza los colegios
+                    setMessage("Obteniendo lista de colegios");
+                    SyncSchools syncSchools = new SyncSchools(URL, school.getList());
+                    syncSchools.execute();
+                    String responseSchoolData = syncSchools.get();
+
+                    if(getTypeOfJson(responseSchoolData).equals("JSONObject")){
+                        JSONObject jsonResponse = new JSONObject(responseSchoolData);
+                        if(jsonResponse.has("error")){
+                            setOffline(true);
+                            setMessage("Ocurrió un error -> " + jsonResponse.getString("error"));
+                            Thread.sleep(sleepTime);
+                            syncThread.interrupt();
+
+                        }
+                    }else {
+
+                        JSONArray responseArray = new JSONArray(responseSchoolData);
+
+                        for (int i = 0; i < responseArray.length(); i++) {
+
+                            JSONObject register = responseArray.getJSONObject(i);
+                            String schollname = register.getString("school");
+                            school.insertSchool(schollname);
+
+                        }
+                        addPercent(10);
+                    }
+
+                    addPercent(100);
+                    setMessage("Iniciando...");
 
                 } catch (ExecutionException e) {
                     e.printStackTrace();
@@ -290,6 +325,21 @@ public class Sync extends AppCompatActivity {
     }
 
 
+    public static String getTypeOfJson(String jsonString) {
+        try {
+            Object json = new JSONObject(jsonString);
+            if (json instanceof JSONObject) {
+                return "JSONObject";
+            } else if (json instanceof JSONArray) {
+                return "JSONArray";
+            }
+        } catch (JSONException e) {
+            // La cadena de texto no es un objeto JSON válido
+        }
 
-
+        return "No es un objeto JSON válido";
+    }
 }
+
+
+

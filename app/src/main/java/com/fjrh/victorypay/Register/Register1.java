@@ -23,6 +23,8 @@ import com.fjrh.victorypay.dataBases.students.FindStudent;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -46,7 +48,6 @@ public class Register1 extends AppCompatActivity {
     private FindStudent findStudent;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,7 +60,7 @@ public class Register1 extends AppCompatActivity {
 
     }
 
-    private void initComponents(){
+    private void initComponents() {
         code = findViewById(R.id.textCode);
 
         next = findViewById(R.id.btnNext);
@@ -79,27 +80,27 @@ public class Register1 extends AppCompatActivity {
         findStudent = new FindStudent(context);
     }
 
-    private void initEvents(){
+    private void initEvents() {
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Revisa que la cédula no este ya registrada
-                if(findStudent.isCiRegistered(ci.getText().toString())){
+                if (findStudent.isCiRegistered(ci.getText().toString())) {
                     Toast.makeText(context, "La cédula ya está registrada", Toast.LENGTH_LONG).show();
                     return;
                 }
 
                 //si el código ya está registrado, genera otro código nuevo
-                if(findStudent.isCodeRegistered(code.getText().toString())){
+                if (findStudent.isCodeRegistered(code.getText().toString())) {
                     String newCode = generateCode();
-                    while (findStudent.isCodeRegistered(newCode)){
+                    while (findStudent.isCodeRegistered(newCode)) {
                         newCode = generateCode();
                     }
                     code.setText(newCode);
                 }
 
-                if(isDataComplete()){
+                if (isDataComplete()) {
                     Intent i = new Intent(context, Register1_2.class);
                     data.putAll(getData());
                     i.putExtra("data", data);
@@ -114,9 +115,9 @@ public class Register1 extends AppCompatActivity {
         nationality.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(nationality.getText().toString().equals("V-")){
+                if (nationality.getText().toString().equals("V-")) {
                     nationality.setText("E-");
-                }else{
+                } else {
                     nationality.setText("V-");
                 }
             }
@@ -132,14 +133,14 @@ public class Register1 extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                DatePickerDialog dpd = new DatePickerDialog(context,R.style.Theme_VictoryPay_datePicker, new DatePickerDialog.OnDateSetListener() {
+                DatePickerDialog dpd = new DatePickerDialog(context, R.style.Theme_VictoryPay_datePicker, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        birthDate.setText(dayOfMonth + " / " +  (month + 1) + " / " + year);
+                        birthDate.setText(dayOfMonth + " / " + (month + 1) + " / " + year);
                         int age = getAge(dayOfMonth, month + 1, year, _day, _month, _year);
-                        studentOld.setText(age+ " años");
+                        studentOld.setText(age + " años");
                     }
-                }, _day, _month, _year );
+                }, _day, _month, _year);
 
                 //Establece la fecha maxima del calendario, que es la fecha actual
                 calendar.setTime(new Date());
@@ -148,9 +149,9 @@ public class Register1 extends AppCompatActivity {
 
                 //establece la fecha minima del calendario
 
-                String minDate="31/12/"+(_year - 20);
+                String minDate = "31/12/" + (_year - 20);
                 try {
-                    Date initDate= new SimpleDateFormat("dd/MM/yyyy").parse(minDate);
+                    Date initDate = new SimpleDateFormat("dd/MM/yyyy").parse(minDate);
                     Calendar caMinDate = Calendar.getInstance();
                     caMinDate.setTime(initDate);
                     caMinDate.add(Calendar.DATE, 7);
@@ -167,14 +168,14 @@ public class Register1 extends AppCompatActivity {
     }
 //
 
-    private int getAge(int day, int month, int year, int currentDay, int currentMonth, int currentYear){
+    private int getAge(int day, int month, int year, int currentDay, int currentMonth, int currentYear) {
 
         int age = currentYear - year;
 
-        if((currentMonth + 1) > month){
+        if ((currentMonth + 1) > month) {
             age--;
-        }else if( (currentMonth + 1) == month){
-            if(currentDay > day){
+        } else if ((currentMonth + 1) == month) {
+            if (currentDay > day) {
                 age--;
             }
         }
@@ -184,7 +185,7 @@ public class Register1 extends AppCompatActivity {
 
 
     //
-    private HashMap<String, String> getData(){
+    private HashMap<String, String> getData() {
         HashMap<String, String> data = new HashMap<>();
 
 
@@ -202,90 +203,100 @@ public class Register1 extends AppCompatActivity {
         return data;
     }
 
-    private void fillInputs(){
-        Intent intentData =getIntent();
+    private void fillInputs() {
+        Intent intentData = getIntent();
 
-        if(intentData.hasExtra("data")){
+        if (intentData.hasExtra("data")) {
             data = (HashMap<String, String>) intentData.getSerializableExtra("data");
 
-            if(data.containsKey("name")){
+            if (data.containsKey("name")) {
                 name.setText(data.get("name"));
             }
-            if(data.containsKey("lastName")){
+            if (data.containsKey("lastName")) {
                 lastName.setText(data.get("lastName"));
             }
-            if(data.containsKey("seccion")){
+            if (data.containsKey("seccion")) {
                 seccion.setSelection(((ArrayAdapter) seccion.getAdapter()).getPosition(data.get("seccion")));
             }
-            if(data.containsKey("grade")){
+            if (data.containsKey("grade")) {
                 grade.setSelection(((ArrayAdapter) grade.getAdapter()).getPosition(data.get("grade")));
             }
-            if(data.containsKey("gender")){
-                if(data.get("gender").equals("Femenino")){
+            if (data.containsKey("gender")) {
+                if (data.get("gender").equals("Femenino")) {
                     rdbFemenino.setChecked(true);
                 }
             }
-            if(data.containsKey("ci")){
+            if (data.containsKey("ci")) {
                 ci.setText(data.get("ci"));
             }
-            if(data.containsKey("nation")){
+            if (data.containsKey("nation")) {
                 nationality.setText(data.get("nation"));
             }
-            if(data.containsKey("birthdate")){
+            if (data.containsKey("birthdate")) {
                 birthDate.setText(data.get("birthdate"));
             }
-            if(data.containsKey("age")){
+            if (data.containsKey("age")) {
                 studentOld.setText(data.get("age"));
             }
-            if(data.containsKey("code")){
+            if (data.containsKey("code")) {
                 code.setText(data.get("code"));
             }
 
         }
     }
 
-    private String generateCode(){
-        Random random = new Random();
-        int randomNumber = random.nextInt(999999999 - 100000000) + 100000000;
-        String sec = seccion.getSelectedItem().toString().replace("Sección ", "");
-        if(sec.equals("-")){
-            sec = "N";
+    private String generateCode() {
+
+        String letra = seccion.getSelectedItem().toString().replace("Sección ", "");
+        if(letra.equals("-")){
+            letra = "0";
         }
         char gra = grade.getSelectedItem().toString().charAt(0);
-        String code = sec + gra +"-"+ randomNumber;
-        return code;
+        String cadena = "";
+        Random rand = new Random();
+        LocalDate fechaActual = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMddyy");
+        String fechaFormateada = fechaActual.format(formatter);
+
+        int numeroAleatorio = rand.nextInt(10000);
+        String numeroAleatorioFormateado = String.format("%04d", numeroAleatorio);
+
+        cadena = "E-" + fechaFormateada + "-"+ letra  + gra + "-"+ numeroAleatorioFormateado;
+        return cadena;
+
     }
 
-    class generateCodeOnSelection implements AdapterView.OnItemSelectedListener{
+    class generateCodeOnSelection implements AdapterView.OnItemSelectedListener {
         @Override
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-          //si el código ya fue generado con exito, no lo cambia
-           if(!data.containsKey("code")) {
-               code.setText(generateCode());
-           }
+            //si el código ya fue generado con exito, no lo cambia
+            if (!data.containsKey("code")) {
+                code.setText(generateCode());
+            }
         }
+
         @Override
         public void onNothingSelected(AdapterView<?> parent) {
 
         }
     }
 
-    private boolean isDataComplete(){
+    private boolean isDataComplete() {
 
-        if(name.getText().toString().isEmpty()){
+        if (name.getText().toString().isEmpty()) {
             Toast.makeText(context, "No ha suministrado el nombre", Toast.LENGTH_LONG).show();
             return false;
         }
-        if(lastName.getText().toString().isEmpty()){
+        if (lastName.getText().toString().isEmpty()) {
             Toast.makeText(context, "No ha suministrado el apellido", Toast.LENGTH_LONG).show();
             return false;
         }
 
-        if(ci.getText().toString().isEmpty()){
+        if (ci.getText().toString().isEmpty()) {
             Toast.makeText(context, "No ha suministrado la cédula", Toast.LENGTH_LONG).show();
             return false;
         }
-        if(birthDate.getText().toString().equals("Selecciona una fecha")){
+        if (birthDate.getText().toString().equals("Selecciona una fecha")) {
             Toast.makeText(context, "No ha seleccionado una fecha de nacimiento", Toast.LENGTH_LONG).show();
             return false;
         }
