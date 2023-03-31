@@ -8,6 +8,8 @@ import com.fjrh.victorypay.dataBases.users.Users;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 
 //esta clase crea el registro de inscripción de un estuidiante (sin el pago de la inscripción)
@@ -25,7 +27,7 @@ public class CreateRegister {
             student_code, birth_country,  birth_state, birth_municipio, birth_parroquia, live_state, live_municipio, live_parroquia, address, procedence_school,
             phone1, phone2, email, whatsaap1, whatsaap2, diabetes, hipertension, dislexia, daltonismo, epilepsia, asma, alergias, TDAH, observations,
             mother_name, mother_ci, mother_nation, mother_work, father_name, father_ci, father_nation, father_work,
-            tutor_name, tutor_ci, tutor_nation, tutor_link;
+            tutor_name, tutor_ci, tutor_nation, tutor_link, updatedAT;
 
 
 
@@ -92,26 +94,31 @@ public class CreateRegister {
         tutor_ci = data.get("tutor_ci");
         tutor_nation = data.get("tutor_nation");
         tutor_link = data.get("tutor_link");
+
+        Date fecha = new Date();
+        SimpleDateFormat formato = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+        updatedAT= formato.format(fecha);
+
     }
 
     private String createInsertionQuery() {
-        return "REPLACE INTO students (name, lastName, ci, nation, seccion, grade, gender, code, birthdate, age, parents_code, tutor_code) " +
-                "VALUES ('"+name+"', '"+lastName+"', '"+ci+"', '"+nation+"', '"+seccion+"', '"+grade+"', '"+gender+"', '"+code+"', '"+birthdate+"', '"+age+"', '"+parents_code+"', '"+tutor_code+"');  " +
+        return "REPLACE INTO students (name, lastName, ci, nation, seccion, grade, gender, code, birthdate, age, parents_code, tutor_code, updatedAT) " +
+                "VALUES ('"+name+"', '"+lastName+"', '"+ci+"', '"+nation+"', '"+seccion+"', '"+grade+"', '"+gender+"', '"+code+"', '"+birthdate+"', '"+age+"', '"+parents_code+"', '"+tutor_code+"', '"+updatedAT+"');  " +
 
-                "REPLACE INTO addresses (student_code, birth_country, birth_state, birth_municipio, birth_parroquia, live_state, live_municipio, live_parroquia, address, procedence_school) " +
-                "VALUES ('"+student_code+"', '"+birth_country+"', '"+birth_state+"', '"+birth_municipio+"', '"+birth_parroquia+"', '"+live_state+"', '"+live_municipio+"', '"+live_parroquia+"', '"+address+"', '"+procedence_school+"'); " +
+                "REPLACE INTO addresses (student_code, birth_country, birth_state, birth_municipio, birth_parroquia, live_state, live_municipio, live_parroquia, address, procedence_school, updatedAT) " +
+                "VALUES ('"+student_code+"', '"+birth_country+"', '"+birth_state+"', '"+birth_municipio+"', '"+birth_parroquia+"', '"+live_state+"', '"+live_municipio+"', '"+live_parroquia+"', '"+address+"', '"+procedence_school+"', '"+updatedAT+"'); " +
 
-                "REPLACE INTO contact_infos (student_code, phone1, phone2, email, whatsaap1, whatsaap2) " +
-                "VALUES ('"+student_code+"', '"+phone1+"', '"+phone2+"', '"+email+"', '"+whatsaap1+"', '"+whatsaap2+"'); " +
+                "REPLACE INTO contact_infos (student_code, phone1, phone2, email, whatsaap1, whatsaap2, updatedAT) " +
+                "VALUES ('"+student_code+"', '"+phone1+"', '"+phone2+"', '"+email+"', '"+whatsaap1+"', '"+whatsaap2+"', '"+updatedAT+"' ); " +
 
-                "REPLACE INTO medical_infos (student_code, diabetes, hipertension, dislexia, daltonismo, epilepsia, asma, alergias, TDAH, observations) " +
-                "VALUES ('"+student_code+"', '"+diabetes+"', '"+hipertension+"', '"+dislexia+"', '"+daltonismo+"', '"+epilepsia+"', '"+asma+"', '"+alergias+"', '"+TDAH+"', '"+observations+"'); " +
+                "REPLACE INTO medical_infos (student_code, diabetes, hipertension, dislexia, daltonismo, epilepsia, asma, alergias, TDAH, observations, updatedAT) " +
+                "VALUES ('"+student_code+"', '"+diabetes+"', '"+hipertension+"', '"+dislexia+"', '"+daltonismo+"', '"+epilepsia+"', '"+asma+"', '"+alergias+"', '"+TDAH+"', '"+observations+"', '"+updatedAT+"'); " +
 
-                "REPLACE INTO parents (parents_code, mother_name, mother_ci, mother_nation, mother_work, father_name, father_ci, father_nation, father_work) " +
-                "VALUES ('"+parents_code+"', '"+mother_name+"', '"+mother_ci+"', '"+mother_nation+"', '"+mother_work+"', '"+father_name+"', '"+father_ci+"', '"+father_nation+"', '"+father_work+"'); " +
+                "REPLACE INTO parents (parents_code, mother_name, mother_ci, mother_nation, mother_work, father_name, father_ci, father_nation, father_work, updatedAT) " +
+                "VALUES ('"+parents_code+"', '"+mother_name+"', '"+mother_ci+"', '"+mother_nation+"', '"+mother_work+"', '"+father_name+"', '"+father_ci+"', '"+father_nation+"', '"+father_work+"', '"+updatedAT+"'); " +
 
-                "REPLACE INTO tutors (tutor_code, tutor_name, tutor_ci, tutor_nation, tutor_link) " +
-                "VALUES ('"+tutor_code+"', '"+tutor_name+"', '"+tutor_ci+"', '"+tutor_nation+"', '"+tutor_link+"');";
+                "REPLACE INTO tutors (tutor_code, tutor_name, tutor_ci, tutor_nation, tutor_link, updatedAT) " +
+                "VALUES ('"+tutor_code+"', '"+tutor_name+"', '"+tutor_ci+"', '"+tutor_nation+"', '"+tutor_link+"', '"+updatedAT+"');";
 
     }
 
