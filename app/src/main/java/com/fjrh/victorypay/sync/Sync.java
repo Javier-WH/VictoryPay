@@ -127,6 +127,10 @@ public class Sync extends AppCompatActivity {
     }
 
     public void startLoad(int stept) {
+        int UploadPercent = 30;
+        int stdPercent = 30;
+        int abnPercent = 30;
+        int schoolPercern = 10;
         String Date = "01/01/1998 01:01:01";
         int sleepTime = 2000;
         String URL = new FetchManager(context).getFetchinAddress();
@@ -138,7 +142,7 @@ public class Sync extends AppCompatActivity {
         ArrayList<ArrayList<HashMap<String, String>>> list = splitArrayList(studentList);
 
         //dependiendo del tamaño de la lista, obtiene el porcentaje a mostrar en cada bucle
-        int studentPercent = 45 / list.size();
+        int studentPercent = UploadPercent / list.size();
 
         syncThread = new Thread(new Runnable() {
             @Override
@@ -168,7 +172,7 @@ public class Sync extends AppCompatActivity {
                     /////descarga de registros
                     setMessage("Obteniendo numero de paginas...");
                     //pide la primera pagina de registros
-                    DownloadRegister downloadRegister = new DownloadRegister(URL, "1", Date);
+                    DownloadRegister downloadRegister = new DownloadRegister(URL  + "/SyncRegister/getPage", "1", Date);
                     downloadRegister.execute();
                     String downloadResponse =  downloadRegister.get();
                     JSONObject response = new JSONObject(downloadResponse);
@@ -185,13 +189,11 @@ public class Sync extends AppCompatActivity {
                     int totalPages = Integer.parseInt( response.getString("totalPages"));
 
 
-                    int downloadPercent = totalPages == 0 ? 45 : (45 / totalPages); //el numero de porcentaje que aumenta con cada descarga de una nueva pagina
+                    int downloadPercent = totalPages == 0 ? stdPercent : (stdPercent / totalPages); //el numero de porcentaje que aumenta con cada descarga de una nueva pagina
 
 
                     ////limpiar base de datos antes de agregar los registros
                     new CleanDatabases(context).cleanDB();
-
-
 
                     //el contenido de la pagina
                     JSONArray pageData = response.getJSONArray("pageData");
@@ -203,7 +205,7 @@ public class Sync extends AppCompatActivity {
 
                         setMessage("Descargando pagina de registros " + i + " de " + totalPages);
 
-                        downloadRegister = new DownloadRegister(URL, String.valueOf(i), Date);
+                        downloadRegister = new DownloadRegister(URL + "/SyncRegister/getPage", String.valueOf(i), Date);
                         downloadRegister.execute();
                         downloadResponse =  downloadRegister.get();
                         response = new JSONObject(downloadResponse);
@@ -219,6 +221,57 @@ public class Sync extends AppCompatActivity {
                         addPercent(downloadPercent);
 
                     }
+//////////syctroniza los abonos
+
+                    setMessage("Obteniendo numero de paginas...");
+                    //pide la primera pagina de registros
+                    DownloadRegister downloadAbonosRegister = new DownloadRegister(URL  + "/SyncRegister/getAbonoPage", "1", Date);
+                    downloadAbonosRegister.execute();
+                    String downloadAbonosResponse =  downloadAbonosRegister.get();
+                    JSONObject abonosResponse = new JSONObject(downloadAbonosResponse);
+
+                    //si el objeto de respuesta tiene la clave error
+                    if(abonosResponse.has("error")){
+                        setOffline(true);
+                        setMessage("Ocurrió un error -> " + abonosResponse.getString("error"));
+                        Thread.sleep(sleepTime);
+                        syncThread.interrupt();
+                    }
+
+                    //obtiene la meta data de las paginas de registro
+                    int totalAbonosPages = Integer.parseInt( abonosResponse.getString("totalPages"));
+
+
+                    int downloadAbonosPercent = totalAbonosPages == 0 ? abnPercent : (abnPercent / totalAbonosPages); //el numero de porcentaje que aumenta con cada descarga de una nueva pagina
+
+                    //el contenido de la pagina
+                    JSONArray pageAbonoData = abonosResponse.getJSONArray("pageData");
+                    insertJSONregister(pageAbonoData);
+                    addPercent(downloadAbonosPercent);
+
+                    //lo mismo que lo anterior, pero iterando las paginas desde el indice 2 hasta el total de las paginas
+                    for (int i = 2 ; i <= totalAbonosPages ; i++){
+
+                        setMessage("Descargando pagina de registros " + i + " de " + totalAbonosPages);
+
+                        downloadAbonosRegister = new DownloadRegister(URL + "/SyncRegister/getAbonoPage", String.valueOf(i), Date);
+                        downloadAbonosRegister.execute();
+                        downloadAbonosResponse =  downloadAbonosRegister.get();
+                        abonosResponse = new JSONObject(downloadAbonosResponse);
+                        if(abonosResponse.has("error")){
+                            setOffline(true);
+                            setMessage("Ocurrió un error -> " + abonosResponse.getString("error"));
+                            Thread.sleep(sleepTime);
+                            syncThread.interrupt();
+                        }
+
+                        pageAbonoData = abonosResponse.getJSONArray("pageData");
+                        insertJSONregister(pageAbonoData);
+                        addPercent(downloadPercent);
+
+                    }
+
+
                     //syncroniza los colegios
                     setMessage("Obteniendo lista de colegios");
                     SyncSchools syncSchools = new SyncSchools(URL, school.getList());
@@ -237,19 +290,22 @@ public class Sync extends AppCompatActivity {
                     }else {
 
                         JSONArray responseArray = new JSONArray(responseSchoolData);
+                        int shoolpercert = schoolPercern / (responseArray.length() == 0 ? 1 : responseArray.length());
+
+                        setMessage("Actualizando la lista es colegios");
 
                         for (int i = 0; i < responseArray.length(); i++) {
 
                             JSONObject register = responseArray.getJSONObject(i);
                             String schollname = register.getString("school");
                             school.insertSchool(schollname);
-
+                            addPercent(shoolpercert);
                         }
                         addPercent(10);
                     }
 
                     addPercent(100);
-                    setMessage("Iniciando...");
+                    setMessage("Actualizacón de las bases de datos completa...");
 
                 } catch (ExecutionException e) {
                     e.printStackTrace();

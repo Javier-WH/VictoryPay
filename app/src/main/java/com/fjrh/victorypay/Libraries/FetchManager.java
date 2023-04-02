@@ -9,7 +9,7 @@ import java.util.HashMap;
 public class FetchManager {
     // "http://192.168.1.105:4000";
     private  String defaultProtocol = "http";
-    private  String defaultAddress = "192.168.1.105";
+    private  String defaultAddress = "192.168.1.102";
     private  String defaultPort = "4000";
 
     private Context context;

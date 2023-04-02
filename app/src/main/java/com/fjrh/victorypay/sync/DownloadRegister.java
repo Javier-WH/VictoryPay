@@ -21,7 +21,7 @@ public class DownloadRegister extends AsyncTask<String, Void, String> {
     private String date;
 
     public DownloadRegister(String urlString, String page, String date) {
-        this.urlString = urlString + "/SyncRegister/getPage";
+        this.urlString = urlString;
         this.page = page;
         this.date = date;
     }

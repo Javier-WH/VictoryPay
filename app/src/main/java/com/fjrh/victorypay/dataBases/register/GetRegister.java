@@ -31,19 +31,32 @@ public class GetRegister extends DbHelper {
 
         Cursor cursor = db.rawQuery("SELECT register_code, user, description, type, insertion_query, rollback_query, metadata FROM registers", null);
 
-        if(cursor.moveToFirst()){
-
+        if (cursor.moveToFirst()) {
             do {
-              HashMap<String, String> data = new HashMap<>();
+                HashMap<String, String> data = new HashMap<>();
+                for (int i = 0; i < cursor.getColumnCount(); i++) {
+                    String columnName = cursor.getColumnName(i);
+                    String columnValue = cursor.getString(i);
 
-              for (int i = 0 ; i < cursor.getColumnCount() ; i++){
-                  data.put(cursor.getColumnName(i), cursor.getString(i));
-              }
+                    //el metadata es un JSON
+                    if (columnName.equals("metadata")) {
+                        JSONObject json = null;
+                        try {
+                            json = new JSONObject(columnValue);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        if (json != null) {
+                            columnValue = json.toString();
 
-              list.add(data);
-            }while (cursor.moveToNext());
-
+                        }
+                    }
+                    data.put(columnName, columnValue);
+                }
+                list.add(data);
+            } while (cursor.moveToNext());
         }
+
         return list;
     }
 
