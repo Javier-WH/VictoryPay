@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.fjrh.victorypay.App;
 import com.fjrh.victorypay.Libraries.FetchManager;
 import com.fjrh.victorypay.R;
+import com.fjrh.victorypay.dataBases.CleanDatabases;
 import com.fjrh.victorypay.dataBases.params.Params;
 import com.fjrh.victorypay.dataBases.register.GetRegister;
 import com.fjrh.victorypay.dataBases.schools.School;
@@ -182,7 +183,15 @@ public class Sync extends AppCompatActivity {
 
                     //obtiene la meta data de las paginas de registro
                     int totalPages = Integer.parseInt( response.getString("totalPages"));
-                    int downloadPercent = 45 / totalPages; //el numero de porcentaje que aumenta con cada descarga de una nueva pagina
+
+
+                    int downloadPercent = totalPages == 0 ? 45 : (45 / totalPages); //el numero de porcentaje que aumenta con cada descarga de una nueva pagina
+
+
+                    ////limpiar base de datos antes de agregar los registros
+                    new CleanDatabases(context).cleanDB();
+
+
 
                     //el contenido de la pagina
                     JSONArray pageData = response.getJSONArray("pageData");
@@ -314,7 +323,7 @@ public class Sync extends AppCompatActivity {
                     }
                 }
                 //inserta el registro
-                insertStuden.insertRegister(contentValues);
+               // insertStuden.insertRegister(contentValues);
                 insertStuden.execSQList((String) contentValues.get("insertion_query"));
 
             }
