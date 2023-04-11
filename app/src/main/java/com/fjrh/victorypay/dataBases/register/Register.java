@@ -2,6 +2,7 @@ package com.fjrh.victorypay.dataBases.register;
 
 import com.fjrh.victorypay.Libraries.CodeGenerator;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -92,6 +93,13 @@ public class Register {
 
     public void setMetadata(JSONObject metadata) {
         this.metadata = metadata;
+    }
+    public void setMetadata(JSONArray metadata) {
+        try {
+            this.metadata = new JSONObject().put("data", metadata);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     public String getRegister_code() {

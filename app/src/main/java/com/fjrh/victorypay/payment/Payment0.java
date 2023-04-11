@@ -21,6 +21,11 @@ import android.widget.Toast;
 
 import com.fjrh.victorypay.R;
 import com.fjrh.victorypay.dataBases.prices.Prices;
+import com.fjrh.victorypay.dataBases.register.CreateMonthPaymentRegister;
+import com.fjrh.victorypay.dataBases.register.Register;
+import com.fjrh.victorypay.dataBases.users.Users;
+
+import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -131,6 +136,7 @@ public class Payment0 extends AppCompatActivity {
     private TextView[] codes;
     private TextView[] seccions;
     private TextView[] grades;
+
 
 
 
@@ -352,6 +358,16 @@ public class Payment0 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (studentList.size() > 0) {
+                    paymentData.put("monthly_price",String.valueOf(montPriceInt));
+
+                    for(int i = 0 ; i < studentList.size() ; i++){
+                        studentList.get(i).put("months", payments.get(i).getText().toString());
+                    }
+
+                    CreateMonthPaymentRegister CR = new CreateMonthPaymentRegister(context, paymentData, studentList);
+                    Register register = CR.getRegister();
+
+//////////////////////////////////////continuar desde aqui
 
                 } else {
                     Toast.makeText(context, "Debe agregar al menos un estudiante", Toast.LENGTH_LONG).show();
@@ -409,7 +425,7 @@ public class Payment0 extends AppCompatActivity {
         plus9.setOnClickListener(new LessAdd(9, 2));
         plus10.setOnClickListener(new LessAdd(10, 2));
 
-        /*
+
         payment1.addTextChangedListener(new calculateEvent(1));
         payment2.addTextChangedListener(new calculateEvent(2));
         payment3.addTextChangedListener(new calculateEvent(3));
@@ -420,7 +436,7 @@ public class Payment0 extends AppCompatActivity {
         payment8.addTextChangedListener(new calculateEvent(8));
         payment9.addTextChangedListener(new calculateEvent(9));
         payment10.addTextChangedListener(new calculateEvent(10));
-*/
+
 
     }
 
