@@ -370,8 +370,8 @@ public class Payment0 extends AppCompatActivity {
                     Register register = CR.getRegister();
 
                     InsertMonthlyPayments insertMonthlyPayments = new InsertMonthlyPayments(context);
-                    boolean isInserted = insertMonthlyPayments.insertOffline(register);
-                    if(isInserted){
+                    boolean isRegisterCreated = insertMonthlyPayments.createRegister(register);
+                    if(isRegisterCreated){
                         Intent i = new Intent(context, App.class);
                         startActivity(i);
                     }

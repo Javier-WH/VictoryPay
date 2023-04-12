@@ -271,6 +271,62 @@ public class Sync extends AppCompatActivity {
 
                     }
 
+///sincroniza los pagos mensuales
+
+
+
+                    setMessage("Obteniendo numero de paginas...");
+                    //pide la primera pagina de registros
+                    DownloadRegister downloadMonthlyRegister = new DownloadRegister(URL  + "/SyncRegister/getMonthlyPage", "1", Date);
+                    downloadMonthlyRegister.execute();
+                    String downloadMonthlyResponse =  downloadMonthlyRegister.get();
+                    JSONObject monthlyResponse = new JSONObject(downloadMonthlyResponse);
+
+                    //si el objeto de respuesta tiene la clave error
+                    if(monthlyResponse.has("error")){
+                        setOffline(true);
+                        setMessage("Ocurrió un error -> " + monthlyResponse.getString("error"));
+                        Thread.sleep(sleepTime);
+                        syncThread.interrupt();
+                    }
+
+                    //obtiene la meta data de las paginas de registro
+                    int totalMobthlyPages = Integer.parseInt( monthlyResponse.getString("totalPages"));
+
+
+                    int downloadMontlyPercent = totalMobthlyPages == 0 ? abnPercent : (abnPercent / totalMobthlyPages); //el numero de porcentaje que aumenta con cada descarga de una nueva pagina
+
+                    //el contenido de la pagina
+                    JSONArray pageMontlyData = monthlyResponse.getJSONArray("pageData");
+                    insertJSONregister(pageMontlyData);
+                    addPercent(downloadMontlyPercent);
+
+                    //lo mismo que lo anterior, pero iterando las paginas desde el indice 2 hasta el total de las paginas
+                    for (int i = 2 ; i <= totalMobthlyPages ; i++){
+
+                        setMessage("Descargando pagina de registros " + i + " de " + totalMobthlyPages);
+
+                        downloadMonthlyRegister = new DownloadRegister(URL + "/SyncRegister/getMonthlyPage", String.valueOf(i), Date);
+                        downloadMonthlyRegister.execute();
+                        downloadMonthlyResponse =  downloadMonthlyRegister.get();
+                        monthlyResponse = new JSONObject(downloadMonthlyResponse);
+                        if(monthlyResponse.has("error")){
+                            setOffline(true);
+                            setMessage("Ocurrió un error -> " + monthlyResponse.getString("error"));
+                            Thread.sleep(sleepTime);
+                            syncThread.interrupt();
+                        }
+
+                        pageMontlyData = monthlyResponse.getJSONArray("pageData");
+                        insertJSONregister(pageMontlyData);
+                        addPercent(downloadMontlyPercent);
+
+                    }
+
+
+
+
+
 
                     //syncroniza los colegios
                     setMessage("Obteniendo lista de colegios");

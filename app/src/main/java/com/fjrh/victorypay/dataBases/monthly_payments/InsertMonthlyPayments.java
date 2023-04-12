@@ -27,13 +27,13 @@ public class InsertMonthlyPayments extends DbHelper {
 
     }
 
-    public boolean insertOffline(Register register) {
+    //
+    public boolean createRegister(Register register) {
 
         try {
             JSONArray array = register.getMetadata().getJSONArray("data");
             JSONObject student0 = array.getJSONObject(0);
             String registerCode = student0.getString("register_code");
-
 
             ContentValues values = new ContentValues();
             values.put("register_code", registerCode);
@@ -49,8 +49,8 @@ public class InsertMonthlyPayments extends DbHelper {
             e.printStackTrace();
             return false;
         }
-
         return true;
-
     }
+
+
 }
