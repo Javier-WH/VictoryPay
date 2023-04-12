@@ -94,6 +94,7 @@ public class Register {
     public void setMetadata(JSONObject metadata) {
         this.metadata = metadata;
     }
+
     public void setMetadata(JSONArray metadata) {
         try {
             this.metadata = new JSONObject().put("data", metadata);

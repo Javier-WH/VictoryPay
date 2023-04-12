@@ -49,8 +49,9 @@ public class CreateMonthPaymentRegister {
 
         this.insertion_query = createInsertionQuery();
         this.rollback_query = createRollbackQuery();
-        this.metadata = createMetadata();
         this.register_code = CodeGenerator.getNewCode('R');
+        this.metadata = createMetadata();
+
 
 
     }
@@ -80,12 +81,10 @@ public class CreateMonthPaymentRegister {
                 student.put("student_code", studentData.get(i).get("code"));
                 student.put("tutor_code", studentData.get(i).get("tutor_code"));
                 student.put("payment", paymentData.get("mount"));
-                student.put("payment", paymentData.get("mount"));
-                student.put("payment", paymentData.get("mount"));
                 student.put("monthly_price", paymentData.get("monthly_price"));
                 student.put("cash", paymentData.get("type"));
-                student.put("operation_number", paymentData.get("operation"));
-                student.put("operation_date", paymentData.get("date"));
+                student.put("operation_number", paymentData.get("operation").isEmpty() ? "no suministrado" : paymentData.get("operation"));
+                student.put("operation_date", paymentData.get("date").equalsIgnoreCase("Seleccione una fecha") ? updatedAT : paymentData.get("date"));
                 student.put("months", studentData.get(i).get("months"));
                 student.put("user", user);
                 student.put("updatedAT", updatedAT);

@@ -19,7 +19,9 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.fjrh.victorypay.App;
 import com.fjrh.victorypay.R;
+import com.fjrh.victorypay.dataBases.monthly_payments.InsertMonthlyPayments;
 import com.fjrh.victorypay.dataBases.prices.Prices;
 import com.fjrh.victorypay.dataBases.register.CreateMonthPaymentRegister;
 import com.fjrh.victorypay.dataBases.register.Register;
@@ -367,7 +369,13 @@ public class Payment0 extends AppCompatActivity {
                     CreateMonthPaymentRegister CR = new CreateMonthPaymentRegister(context, paymentData, studentList);
                     Register register = CR.getRegister();
 
-//////////////////////////////////////continuar desde aqui
+                    InsertMonthlyPayments insertMonthlyPayments = new InsertMonthlyPayments(context);
+                    boolean isInserted = insertMonthlyPayments.insertOffline(register);
+                    if(isInserted){
+                        Intent i = new Intent(context, App.class);
+                        startActivity(i);
+                    }
+
 
                 } else {
                     Toast.makeText(context, "Debe agregar al menos un estudiante", Toast.LENGTH_LONG).show();
