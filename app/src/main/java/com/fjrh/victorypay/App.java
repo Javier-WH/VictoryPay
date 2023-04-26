@@ -6,11 +6,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.fjrh.victorypay.Register.Register1;
+import com.fjrh.victorypay.configPanel.ConfigPanel;
 import com.fjrh.victorypay.dataBases.params.Params;
 import com.fjrh.victorypay.dataBases.users.Users;
 import com.fjrh.victorypay.payment.Payment0;
@@ -111,6 +113,14 @@ public class App extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(context, Sync.class);
+                startActivity(i);
+            }
+        });
+
+        config.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(context, ConfigPanel.class);
                 startActivity(i);
             }
         });

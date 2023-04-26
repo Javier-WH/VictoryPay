@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
@@ -43,4 +44,13 @@ public class Params extends DbHelper {
         values.put("value", paramValue);
         return db.replace("params", null, values);
     }
+    ///
+
+    public void insertParamsList(ContentValues values){
+
+
+        db.replace("params", null, values);
+    }
+
+
 }

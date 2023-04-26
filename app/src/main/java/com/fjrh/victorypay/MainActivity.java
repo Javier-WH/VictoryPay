@@ -76,12 +76,10 @@ public class MainActivity extends AppCompatActivity {
         fetchManager.checkFetching();
         URL = fetchManager.getFetchinAddress();
 
-
         checkPrices();
         fillInputs();
+        checkParams();
 
-        params.insertParam("needLoad", "true");
-        params.insertParam("loadAtStart", "true");
 
 
         /***
@@ -175,6 +173,24 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void checkParams(){
+        //loadAtStart
+        boolean containsLoadAtStart = params.getParams().containsKey("loadAtStart");
+        if(!containsLoadAtStart){
+            params.insertParam("loadAtStart", "true");
+        }
+
+        //para que cargue solo la primera vez.
+        boolean containsNeedLoad = params.getParams().containsKey("needLoad");
+
+        if(!containsNeedLoad){
+            params.insertParam("needLoad", "true");
+        }
+
+
+
+
+    }
 
     /////////////////////
 

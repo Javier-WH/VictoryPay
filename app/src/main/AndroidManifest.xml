@@ -16,17 +16,22 @@
         android:theme="@style/Theme.VictoryPay"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-
+        <activity
+            android:name=".configPanel.ConfigPanel"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
         <activity
             android:name=".conflict.ConflictActivity"
-            android:label="Conflicto"
             android:exported="false"
+            android:label="Conflicto"
             android:windowSoftInputMode="stateVisible|adjustResize">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <activity
             android:name=".payment.Payment2"
             android:exported="false"
