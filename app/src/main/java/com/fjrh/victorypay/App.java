@@ -17,6 +17,7 @@ import com.fjrh.victorypay.dataBases.params.Params;
 import com.fjrh.victorypay.dataBases.users.Users;
 import com.fjrh.victorypay.payment.Payment0;
 import com.fjrh.victorypay.payment.Payment2;
+import com.fjrh.victorypay.pricesPanel.Prices_Panel;
 import com.fjrh.victorypay.sync.Sync;
 
 import java.util.HashMap;
@@ -121,6 +122,14 @@ public class App extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(context, ConfigPanel.class);
+                startActivity(i);
+            }
+        });
+
+        prices.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(context, Prices_Panel.class);
                 startActivity(i);
             }
         });
