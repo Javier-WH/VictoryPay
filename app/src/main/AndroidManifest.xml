@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" >
+    xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -15,17 +15,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.VictoryPay"
         android:usesCleartextTraffic="true"
-        tools:targetApi="31" >
+        tools:targetApi="31">
+        <activity
+            android:name=".Currency.Currency"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
         <activity
             android:name=".pricesPanel.Prices_Panel"
-            android:exported="false" >
+            android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".configPanel.ConfigPanel"
-            android:exported="false" >
+            android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -34,7 +41,7 @@
             android:name=".conflict.ConflictActivity"
             android:exported="false"
             android:label="Conflicto"
-            android:windowSoftInputMode="stateVisible|adjustResize" >
+            android:windowSoftInputMode="stateVisible|adjustResize">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -44,7 +51,7 @@
             android:exported="false"
             android:label="Pagos"
             android:parentActivityName=".App"
-            android:windowSoftInputMode="stateVisible|adjustResize" >
+            android:windowSoftInputMode="stateVisible|adjustResize">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".App" />
@@ -54,7 +61,7 @@
             android:exported="false"
             android:label="Pagos"
             android:parentActivityName=".App"
-            android:windowSoftInputMode="stateVisible|adjustResize" >
+            android:windowSoftInputMode="stateVisible|adjustResize">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".App" />
@@ -64,14 +71,14 @@
             android:exported="false"
             android:label="Pagos"
             android:parentActivityName=".App"
-            android:windowSoftInputMode="stateVisible|adjustResize" >
+            android:windowSoftInputMode="stateVisible|adjustResize">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".App" />
         </activity>
         <activity
             android:name=".Config.ConfigFetchingAddress"
-            android:theme="@style/Theme.VictoryPay.clean" >
+            android:theme="@style/Theme.VictoryPay.clean">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -79,7 +86,7 @@
         <activity
             android:name=".sync.Sync"
             android:exported="false"
-            android:theme="@style/Theme.VictoryPay.clean" >
+            android:theme="@style/Theme.VictoryPay.clean">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -89,7 +96,7 @@
             android:exported="false"
             android:label="Datos a Inscribir"
             android:parentActivityName=".App"
-            android:windowSoftInputMode="stateVisible|adjustResize" >
+            android:windowSoftInputMode="stateVisible|adjustResize">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".App" />
@@ -99,7 +106,7 @@
             android:exported="false"
             android:label="Información de Pago"
             android:parentActivityName=".App"
-            android:windowSoftInputMode="stateVisible|adjustResize" >
+            android:windowSoftInputMode="stateVisible|adjustResize">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".App" />
@@ -109,7 +116,7 @@
             android:exported="false"
             android:label="Datos de Contacto"
             android:parentActivityName=".App"
-            android:windowSoftInputMode="stateVisible|adjustResize" >
+            android:windowSoftInputMode="stateVisible|adjustResize">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".App" />
@@ -119,7 +126,7 @@
             android:exported="false"
             android:label="Datos del Representante"
             android:parentActivityName=".App"
-            android:windowSoftInputMode="adjustPan" >
+            android:windowSoftInputMode="adjustPan">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".App" />
@@ -129,7 +136,7 @@
             android:exported="false"
             android:label="Datos de los Padres"
             android:parentActivityName=".App"
-            android:windowSoftInputMode="stateVisible|adjustResize" >
+            android:windowSoftInputMode="stateVisible|adjustResize">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".App" />
@@ -139,7 +146,7 @@
             android:exported="false"
             android:label="Información Médica"
             android:parentActivityName=".App"
-            android:windowSoftInputMode="stateVisible|adjustResize" >
+            android:windowSoftInputMode="stateVisible|adjustResize">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".App" />
@@ -149,7 +156,7 @@
             android:exported="false"
             android:label="Agregar Instituto"
             android:parentActivityName=".App"
-            android:windowSoftInputMode="stateVisible|adjustResize" >
+            android:windowSoftInputMode="stateVisible|adjustResize">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".App" />
@@ -159,7 +166,7 @@
             android:exported="false"
             android:label="Datos Domiciliarios"
             android:parentActivityName=".App"
-            android:windowSoftInputMode="stateVisible|adjustResize" >
+            android:windowSoftInputMode="stateVisible|adjustResize">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".App" />
@@ -169,7 +176,7 @@
             android:exported="false"
             android:label="Datos Domiciliarios"
             android:parentActivityName=".App"
-            android:windowSoftInputMode="stateVisible|adjustResize" >
+            android:windowSoftInputMode="stateVisible|adjustResize">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".App" />
@@ -179,7 +186,7 @@
             android:exported="false"
             android:label="Datos del Estudiante"
             android:parentActivityName=".App"
-            android:windowSoftInputMode="stateVisible|adjustResize" >
+            android:windowSoftInputMode="stateVisible|adjustResize">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".App" />
@@ -188,7 +195,7 @@
             android:name=".App"
             android:exported="false"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/Theme.VictoryPay.clean" >
+            android:theme="@style/Theme.VictoryPay.clean">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
@@ -197,7 +204,7 @@
             android:name=".MainActivity"
             android:exported="true"
             android:theme="@style/Theme.VictoryPay.clean"
-            android:windowSoftInputMode="stateVisible|adjustResize" >
+            android:windowSoftInputMode="stateVisible|adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.fjrh.victorypay.Currency.Currency;
 import com.fjrh.victorypay.Register.Register1;
 import com.fjrh.victorypay.configPanel.ConfigPanel;
 import com.fjrh.victorypay.dataBases.params.Params;
@@ -130,6 +131,14 @@ public class App extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(context, Prices_Panel.class);
+                startActivity(i);
+            }
+        });
+
+        currency.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(context, Currency.class);
                 startActivity(i);
             }
         });

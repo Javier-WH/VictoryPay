@@ -45,7 +45,7 @@ public class Sync extends AppCompatActivity {
     private static int percentInt = 0;
     private static Sync syncActivity;
     private Thread syncThread;
-    private static Handler handler;
+    public static Handler handler;
     private static Params params;
     private static InsertStuden insertStuden;
     private static School school;

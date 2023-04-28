@@ -3,12 +3,15 @@ package com.fjrh.victorypay.pricesPanel;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.database.SQLException;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.fjrh.victorypay.Libraries.Alert;
 import com.fjrh.victorypay.R;
 import com.fjrh.victorypay.dataBases.prices.Prices;
 
@@ -24,6 +27,8 @@ public class Prices_Panel extends AppCompatActivity {
 
     private Prices prices;
     private Context context;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,7 +95,14 @@ public class Prices_Panel extends AppCompatActivity {
                 prices.insertItem("Inscripción", inscription.getText().toString());
                 prices.insertItem("Mensualidad", monthly.getText().toString());
                 prices.insertItem("Dolar", dolar.getText().toString());
-                finish();
+
+                Alert.showMessage(context, "Los precios se han actualizado", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                });
+
             }catch (SQLException e){
                 e.printStackTrace();
             }
